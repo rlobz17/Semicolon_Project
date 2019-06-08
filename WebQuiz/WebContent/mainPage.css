@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.bodyS{
+	width: 900px;
+	margin-left: 270px;
+}
+
+.header{
+	background: url(http://www.picz.ge/img/s4/1906/8/4/4e39d4f55044.png);
+	border-top: 8px solid #0c265c;
+	border-bottom: 8px solid #0c265c;
+	height: 200px;
+	width: auto;
+}
+
+.logo{
+	width: 389px;
+    height: 66px;
+    margin: 50px 0 0 35px;
+    float: left;
+}
