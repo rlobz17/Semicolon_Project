@@ -1,7 +1,9 @@
 @charset "UTF-8";
-.bodyS{
+.body{
 	width: 900px;
-	margin-left: 270px;
+    margin-left: 270px;
+    background: #f5f5f5;
+    border: 1px solid #a2a2a2;
 }
 
 .header{
@@ -13,8 +15,55 @@
 }
 
 .logo{
-	width: 389px;
-    height: 66px;
     margin: 50px 0 0 35px;
     float: left;
+}
+
+.footer{
+	width: auto;
+    height: 100px;
+    background: #e6e6e6;
+    border-top: 1px solid #a2a2a2;
+}
+
+.footLeft{
+	float: left;
+	margin: 40px;
+	color: #545454;
+}
+
+.footRight{
+	float: right;
+	margin: 40px;
+    color: #545454;
+}
+
+.searchArea{
+	width: auto;
+	height: 50px;
+	background: #3a3a3a;
+}
+
+.loginButt {
+    width: 138px;
+    height: 40px;
+    text-decoration: none;
+    background: white;
+    float: left;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 7px;
+}
+
+.loginTxt{
+    text-decoration: none;
+    color: black;
+    float: left;
+    overflow: hidden;
+    margin-top: 11px;
+    margin-left: 16px;
+}
+
+.searchForm{
+	
 }
