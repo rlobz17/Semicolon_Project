@@ -22,8 +22,11 @@
 			<div class="loginButt">
 				<a href="/WebQuiz" class="loginTxt"> რეგისტრაცია </a>
 			</div>
-			<div class="searchForm">
-				
+			<div>
+				<form action="/" method="post">
+                	<input type="hidden" name="do" value="search">
+                	<input type="text" name="input" class="searchInput" placeholder="მიუთითეთ საძიებო სიტყვა...">
+            	</form>
 			</div>
 		</div>
 		

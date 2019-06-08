@@ -64,6 +64,17 @@
     margin-left: 16px;
 }
 
-.searchForm{
-	
+.searchInput{
+	width: 580px;
+    background: rgba(0,0,0,.3);
+    border: none;
+    height: 37px;
+    padding: 0 5px;
+    border-radius: 3px;
+    color: #f9f9fa;
+    font: 12px newsfont;
+    box-shadow: inset 1px 2px 1px rgba(0,0,0,.15);
+    float: left;
+    margin-top: 7px;
+    margin-left: 5px;
 }
