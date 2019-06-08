@@ -12,5 +12,9 @@ public class DatabaseDAO {
 	}
 	
 	
+	public void addQuiz() {
+		
+	}
+	
 		
 }
