@@ -23,9 +23,9 @@
 				<a href="/WebQuiz" class="loginTxt"> რეგისტრაცია </a>
 			</div>
 			<div>
-				<form action="/" method="post">
+				<form action="search/searchServlet" method="post">
                 	<input type="hidden" name="do" value="search">
-                	<input type="text" name="input" class="searchInput" placeholder="მიუთითეთ საძიებო სიტყვა...">
+                	<input type="text" name="input" class="searchInput" placeholder="შეიყვანეთ საძიებო სიტყვა...">
             	</form>
 			</div>
 		</div>
