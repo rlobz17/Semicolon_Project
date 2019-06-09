@@ -2,12 +2,12 @@ package Database;
 
 import java.sql.Statement;
 
-public class DatabaseDAO {
+public class DataBaseDAO {
 	 
 	private Statement stm;
 	
  
-	public DatabaseDAO(Statement statement) {
+	public DataBaseDAO(Statement statement) {
 		stm = statement;
 	}
 	
@@ -15,6 +15,8 @@ public class DatabaseDAO {
 	public void addQuiz() {
 		
 	}
+	
+	
 	
 		
 }
