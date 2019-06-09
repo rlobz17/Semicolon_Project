@@ -29,7 +29,7 @@ public class UserDB {
 			
 			stmt.executeUpdate(insert);
 
-			con.close();  
+			con.close();
 		}catch(Exception e){
 			System.out.println(e);
 		}

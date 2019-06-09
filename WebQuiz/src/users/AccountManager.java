@@ -5,15 +5,17 @@ public class AccountManager {
 		
 	}
 	
-	public void addNewAccount() {
-		
+	public void addNewAccount(String firstname, String lastname, String username, String password, String mail) {
+		User user = null;
+		UserDB.addUser(user);
 	}
 	
-	public boolean containsAccount(String username) {
-		return false;
+	public boolean containsAccount(String username, String mail) {
+		return UserDB.searchUser(username, mail);
 	}
 	
 	public boolean doLogin(String username, String password) {
+		
 		return true;
 	}
 }
