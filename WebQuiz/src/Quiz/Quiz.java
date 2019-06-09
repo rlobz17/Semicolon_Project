@@ -7,7 +7,7 @@ public class Quiz {
 	private int quizID;
 	private User Creator;
 	private Data CreationData;
-	private int quizTaken;
+	private int quizTaken; // how many tames this quiz was ...
 	private String imgUrl;
 	private Question question;
 	
