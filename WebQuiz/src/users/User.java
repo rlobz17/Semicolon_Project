@@ -65,14 +65,14 @@ public class User {
 	 * @return the password
 	 */
 	public String getPassword() {
-		return password;
+		return passwordHash;
 	}
 
 	/**
 	 * @param password the password to set
 	 */
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordHash = password;
 	}
 
 	/**
