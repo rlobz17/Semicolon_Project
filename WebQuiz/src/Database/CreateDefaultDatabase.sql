@@ -1,8 +1,9 @@
 use webquizdatabase;
 
-DROP TABLE IF EXISTS quizes,accounts,questions,quizQuestions;
+DROP TABLE IF EXISTS quizes, accounts, questions, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
+DROP TABLE IF EXISTS , accounts, questions, quizQuestionLinks, questionTypes;
 
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (
@@ -30,10 +31,12 @@ CREATE TABLE quizes (
 
 CREATE TABLE questions(
 	question_id int(8) not null auto_increment,
+    questionType_name char(16) not null,
+    questionInType_id int(8) not null,
     primary key (question_id)
 );
 
-CREATE TABLE quizQuestions (
+CREATE TABLE quizQuestionLinks (
 	id int(8) not null auto_increment,
 	quiz_id int(8) not null,
     question_id int(8) not null,
