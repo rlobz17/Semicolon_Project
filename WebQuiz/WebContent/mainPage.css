@@ -82,3 +82,33 @@
 .content{
 	min-height: 700px;
 }
+
+.login {
+    width: fit-content;
+    height: auto;
+    background: #0c275c;
+    margin: auto;
+    margin-top: 15px;
+    padding: 15px;
+    font-size: 23px;
+    color: white;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.loginInput{
+	width: 180px;
+    background: rgb(255, 255, 255);
+    border: none;
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 3px;
+    color: #000000;
+    font-size: 14px;
+    box-shadow: inset 0px 1px 3px 2px rgba(0,0,0,.15);
+}
+
+.loginTable{
+	margin: auto;
+    margin-top: 25px;
+}
