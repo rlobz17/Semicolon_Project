@@ -5,12 +5,16 @@ import java.sql.Date;
 public class User {
 	private Date registrationDate;
 	private String mail;
+	private String firstName;
+	private String lastName;
 	private String userName;
 	private String passwordHash;
 	private String imgUrl;
 	private int quizesTaken;
 	
-	public User(Date registrationDate, String mail, String userName, String password, String imgUrl, int quizesTaken) {
+	public User(Date registrationDate, String mail, String userName, String password, String imgUrl, int quizesTaken,String lastName,String firstName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.registrationDate = registrationDate;
 		this.mail = mail;
 		this.passwordHash = password;
@@ -101,5 +105,33 @@ public class User {
 	 */
 	public void setQuizesTaken(int quizesTaken) {
 		this.quizesTaken = quizesTaken;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 }
