@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="mainPage.css" rel="stylesheet" type="text/css">
+
 <title>WebQuiz</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
 <script> 
@@ -20,7 +22,7 @@
 <body>
 	<div class="body">
 		<div id="headerContent"></div>
-		
+		<div class="content"> </div>
 		<div id="footerContent"></div>
 	</div>
 </body>
