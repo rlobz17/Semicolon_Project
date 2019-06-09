@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>ავტორიზაცია</title>
 <meta charset="UTF-8">
-<title>WebQuiz</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
 <script> 
    	$(function(){
