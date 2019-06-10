@@ -15,7 +15,7 @@ import users.AccountManager;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
+@WebServlet("/login/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,10 +47,10 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		if(acc.doLogin(username, password)) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/shevida");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");
 			dispatch.forward(request, response);
 		} else {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/vershevida");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/login_error.jsp");
 			dispatch.forward(request, response);
 		}
 	}

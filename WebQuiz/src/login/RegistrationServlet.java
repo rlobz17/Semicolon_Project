@@ -15,7 +15,7 @@ import users.AccountManager;
 /**
  * Servlet implementation class RegistrationServlet
  */
-@WebServlet("/RegistrationServlet")
+@WebServlet("/login/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
