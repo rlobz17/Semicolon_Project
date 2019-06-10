@@ -3,6 +3,7 @@ package users;
 import java.sql.Date;
 
 public class User {
+	private int userID;
 	private Date registrationDate;
 	private String mail;
 	private String firstName;
@@ -11,14 +12,16 @@ public class User {
 	private String passwordHash;
 	private String imgUrl;
 	private int quizesTaken;
+	private int quizesCreted;
 	
-	public User(Date registrationDate, String mail, String userName, String passwordHash, String imgUrl, int quizesTaken,String lastName,String firstName) {
+	
+	public User(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
+		this.setUserID(userID);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.registrationDate = registrationDate;
 		this.mail = mail;
 		this.passwordHash = passwordHash;
-		this.quizesTaken = quizesTaken;
 		this.imgUrl = imgUrl;
 		this.userName = userName;
 	}
@@ -134,4 +137,26 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	/**
+	 * @return the quizesCreted
+	 */
+	public int getQuizesCreted() {
+		return quizesCreted;
+	}
+
+	/**
+	 * @param quizesCreted the quizesCreted to set
+	 */
+	public void setQuizesCreted(int quizesCreted) {
+		this.quizesCreted = quizesCreted;
+	}
+
+	/**
+	 * @return the userID
+	 */
+	public int getUserID() {
+		return userID;
+	}
+
 }
