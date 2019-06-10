@@ -17,40 +17,16 @@
 	$("#footerContent").load("footer.jsp"); 
 	});
 </script>
+<script> 
+   	$(function(){
+	$("#loginContent").load("login_cont.jsp"); 
+	});
+</script>
 </head>
 <body>
 	<div class="body">
 		<div id="headerContent"></div>
-		<div class="content">
-			<div class="login">მომხმარებლის ავტორიზაცია</div>
-				<form action="login/LoginServlet" method="POST">
-					
-					<table class="loginTable"><tbody>
-		
-					<tr>
-						<td>
-							ლოგინი:
-						</td>
-						<td>
-							<input id="username" type="text" name="username" class="loginInput">
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							პაროლი:
-						</td>
-						<td>
-							<input id="password" type="password" name="password" class="loginInput">
-						</td>
-					</tr>
-			
-		
-					</tbody></table>
-				
-					<label style="margin-left: 50%;"><input value="შესვლა" type="submit"></label>
-				</form>
-		</div>
+		<div id="loginContent"></div>
 		<div id="footerContent"></div>
 	</div>
 </body>
