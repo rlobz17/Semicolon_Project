@@ -1,23 +1,27 @@
 package Quiz;
 
-import javafx.scene.chart.PieChart.Data;
+import java.sql.Date;
+import java.util.ArrayList;
+
 import users.User;
 
 public class Quiz {
 	private int quizID;
 	private User Creator;
-	private Data CreationData;
+	private Date CreationDate;
+	private Date UpdatedDate;
 	private int quizTaken; // how many tames this quiz was ....
 	private String imgUrl;
-	private Question question;
+	private ArrayList<Question> questions;
 	
-	public Quiz(int quizID,Question question,User Creator,Data CreationData,int quizTaken,String imgUrl) {
-		this.setQuizID(quizID);
+	public Quiz(int quizID,ArrayList<Question> questions,User Creator,Date UpdatedDate,Date CreationData,int quizTaken,String imgUrl) {
+		this.quizID = quizID;
+		this.UpdatedDate = UpdatedDate;
 		this.Creator = Creator;
-		this.CreationData = CreationData;
+		this.CreationDate = CreationData;
 		this.quizTaken = quizTaken;
 		this.imgUrl = imgUrl;
-		this.question = question;
+		this.questions = questions;
 	}
 
 	/**
@@ -51,15 +55,15 @@ public class Quiz {
 	/**
 	 * @return the creationData
 	 */
-	public Data getCreationData() {
-		return CreationData;
+	public Date getCreationData() {
+		return CreationDate;
 	}
 
 	/**
 	 * @param creationData the creationData to set
 	 */
-	public void setCreationData(Data creationData) {
-		CreationData = creationData;
+	public void setCreationData(Date creationData) {
+		CreationDate = creationData;
 	}
 
 	/**
@@ -75,19 +79,30 @@ public class Quiz {
 	public void setCreator(User creator) {
 		Creator = creator;
 	}
+	
+	
+	/**
+	 * @param Question
+	 * added this Question to current Quize
+	 * */
+	
+	public void addQuestion(Question q) {
+		this.questions.add(q);
+	}
+	
 
 	/**
 	 * @return the question
 	 */
-	public Question getQuestion() {
-		return question;
+	public ArrayList<Question> getQuestions() {
+		return questions;
 	}
 
 	/**
 	 * @param question the question to set
 	 */
-	public void setQuestion(Question question) {
-		this.question = question;
+	public void setQuestion(ArrayList<Question> questions) {
+		this.questions = questions;
 	}
 
 	/**
@@ -102,6 +117,20 @@ public class Quiz {
 	 */
 	public void setQuizID(int quizID) {
 		this.quizID = quizID;
+	}
+
+	/**
+	 * @return the updatedDate
+	 */
+	public Date getUpdatedDate() {
+		return UpdatedDate;
+	}
+
+	/**
+	 * @param updatedDate the updatedDate to set
+	 */
+	public void setUpdatedDate(Date updatedDate) {
+		UpdatedDate = updatedDate;
 	}
 	
 	
