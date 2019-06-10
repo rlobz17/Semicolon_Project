@@ -112,3 +112,14 @@
 	margin: auto;
     margin-top: 25px;
 }
+
+.loginErr{
+	width: 93%;
+    height: 20px;
+    background: #ff009f52;
+    margin: 15px;
+    border: 1px solid #F44336;
+    padding: 15px;
+    color: red;
+    font-weight: bold;
+}
