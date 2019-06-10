@@ -1,9 +1,14 @@
 package users;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class User {
+	//ivars
 	private int userID;
+	private int quizesTaken;
+	private int quizesCreted;
+
 	private Date registrationDate;
 	private String mail;
 	private String firstName;
@@ -11,9 +16,8 @@ public class User {
 	private String userName;
 	private String passwordHash;
 	private String imgUrl;
-	private int quizesTaken;
-	private int quizesCreted;
 	
+	private ArrayList<String> friendsList;
 	
 	public User(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
 		this.userID = userID;
@@ -157,6 +161,36 @@ public class User {
 	 */
 	public int getUserID() {
 		return userID;
+	}
+
+	/**
+	 * @return the friendsList
+	 */
+	public ArrayList<String> getFriendsList() {
+		return friendsList;
+	}
+	
+	/**
+	 * @param string name of the friend
+	 * adds givven name to the friend list
+	 * */
+	public void addFriend(String name) {
+		this.friendsList.add(name);
+	}
+	
+	/**
+	 * @param string name of the friend
+	 * checks if given name is in the friend list
+	 * */
+	public boolean isFriendsWith(String name) {
+		return this.friendsList.contains(name);
+	}
+
+	/**
+	 * @param friendsList the friendsList to set
+	 */
+	public void setFriendsList(ArrayList<String> friendsList) {
+		this.friendsList = friendsList;
 	}
 
 }
