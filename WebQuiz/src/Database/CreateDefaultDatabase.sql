@@ -1,9 +1,8 @@
 use webquizdatabase;
 
-DROP TABLE IF EXISTS quizes, accounts, questions, quizQuestionLinks, questionTypes;
+DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizQuestions;
  -- remove tables if they already exist and start from scratch
 
-DROP TABLE IF EXISTS accounts, questions, quizQuestionLinks, questionTypes;
 
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (
@@ -28,20 +27,30 @@ CREATE TABLE quizes (
     foreign key (quiz_publisher) references accounts(account_id)
 );
 
+CREATE TABLE questionTypes (
+	id int(8) not null auto_increment,
+	questionType_name varchar(64) not null,
+    questionType_task text not null,
+    primary key (id)
+);
 
 CREATE TABLE questions(
 	question_id int(8) not null auto_increment,
-    questionType_name char(16) not null,
-    questionInType_id int(8) not null,
-    primary key (question_id)
+    questionType_id int(8) not null,
+    primary key (question_id),
+    foreign key (questionType_id) references questionTypes(id)
 );
 
 CREATE TABLE quizQuestionLinks (
 	id int(8) not null auto_increment,
 	quiz_id int(8) not null,
     question_id int(8) not null,
-    primary key (id)
+    primary key (id),
+    foreign key (quiz_id) references quizes(quiz_id),
+    foreign key (question_id) references questions(question_id)
 );
+
+
 
 INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password) VALUES
 	("rezi", "lobzhanidze", "rlobz17", "rlobz17@freeuni.edu.ge", "rezi1234"),
@@ -59,3 +68,50 @@ INSERT INTO quizes (quiz_name, quiz_publisher) VALUES
     ("simpleQuiz5", 1),
     ("simpleQuiz6", 2)  
     ;
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+/*
+ *this code is left for undo purpose (probably never used)
+INSERT INTO questionTypes (questionType_name) VALUES
+	("Question_Response_type"),
+    ("Fill_In_The_Blank_type"),
+    ("Multiple_Choice_type"),
+    ("Picture_Response_type"),
+    ("Multi_Answer_type"),
+    ("Multiple_Choice_With_Multiple_Answers_type"),
+    ("Mathcing_type"),
+    ("Auto_Generated_type"),
+    ("Graded_Question_type"),
+    ("Timed_Question_type")
+    ;
+
+DROP TABLE IF EXISTS Question_Response_type, Fill_In_The_Blank_type, Multiple_Choice_type, Picture_Response_type, Multi_Answer_type, Multiple_Choice_With_Multiple_Answers_type,
+						Mathcing_type, Auto_Generated_type, Graded_Question_type, Timed_Question_type, answers;
+ -- remove tables if they already exist and start from scratch
+    
+*/
+
+
+
+
+
