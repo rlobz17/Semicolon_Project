@@ -16,6 +16,15 @@ public class Question {
 		this.setQuizIDs(quizIDs);
 	}
 	
+	
+	/**
+	 * @param string containing answer
+	 * checks if given param and answer are same
+	 * */
+	public boolean isCorrectAnswer(String answer) {
+		return this.answer.equals(answer);
+	}
+	
 	/**
 	 * @return the questions
 	 */
