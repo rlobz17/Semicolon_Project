@@ -6,12 +6,15 @@ public class AccountManager {
 	}
 	
 	public void addNewAccount(String firstname, String lastname, String username, String password, String mail) {
-		User user = null;
-		UserDB.addUser(user);
+		UserDB.addUser(firstname, lastname, username, password, mail);
 	}
 	
-	public boolean containsAccount(String username, String mail) {
-		return UserDB.searchUser(username, mail);
+	public String containsAccount(String username, String mail) {
+		int x = UserDB.searchUser(username, mail);
+		if(x==1) return "ლოგინი უკვე გამოყენებულია";
+		if(x==2) return "მეილი უკვე გამოყენებულია";
+		if(x==3) return "ლოგინი და მეილი უკვე გამოყენებულია";
+		return "0";
 	}
 	
 	public boolean doLogin(String username, String password) {

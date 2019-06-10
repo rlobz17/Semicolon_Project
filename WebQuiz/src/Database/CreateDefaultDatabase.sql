@@ -3,7 +3,7 @@ use webquizdatabase;
 DROP TABLE IF EXISTS quizes, accounts, questions, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
-DROP TABLE IF EXISTS , accounts, questions, quizQuestionLinks, questionTypes;
+DROP TABLE IF EXISTS accounts, questions, quizQuestionLinks, questionTypes;
 
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (
