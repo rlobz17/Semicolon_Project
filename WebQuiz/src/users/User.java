@@ -12,12 +12,12 @@ public class User {
 	private String imgUrl;
 	private int quizesTaken;
 	
-	public User(Date registrationDate, String mail, String userName, String password, String imgUrl, int quizesTaken,String lastName,String firstName) {
+	public User(Date registrationDate, String mail, String userName, String passwordHash, String imgUrl, int quizesTaken,String lastName,String firstName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.registrationDate = registrationDate;
 		this.mail = mail;
-		this.passwordHash = password;
+		this.passwordHash = passwordHash;
 		this.quizesTaken = quizesTaken;
 		this.imgUrl = imgUrl;
 		this.userName = userName;
@@ -75,8 +75,8 @@ public class User {
 	/**
 	 * @param password the password to set
 	 */
-	public void setPassword(String password) {
-		this.passwordHash = password;
+	public void setPassword(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	/**
