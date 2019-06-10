@@ -9,12 +9,9 @@ public class AccountManager {
 		UserDB.addUser(firstname, lastname, username, password, mail);
 	}
 	
-	public String containsAccount(String username, String mail) {
+	public int containsAccount(String username, String mail) {
 		int x = UserDB.searchUser(username, mail);
-		if(x==1) return "ლოგინი უკვე გამოყენებულია";
-		if(x==2) return "მეილი უკვე გამოყენებულია";
-		if(x==3) return "ლოგინი და მეილი უკვე გამოყენებულია";
-		return "0";
+		return x;
 	}
 	
 	public boolean doLogin(String username, String password) {
