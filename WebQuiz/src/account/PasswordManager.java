@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordManager {
 	// hashing algotithm
-	private final String hashingAlgorithm = "SHA-2";
+	private final String hashingAlgorithm = "SHA-512";
 	
 	/**
 	 * returns hash of given password with pre defined hashing algotihm
