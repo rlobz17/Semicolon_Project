@@ -1,9 +1,9 @@
-package users;
+package account;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class User {
+public class Account {
 	//ivars
 	private int userID;
 	private int quizesTaken;
@@ -19,7 +19,7 @@ public class User {
 	
 	private ArrayList<String> friendsList;
 	
-	public User(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
+	public Account(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;

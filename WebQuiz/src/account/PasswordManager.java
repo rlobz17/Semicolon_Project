@@ -1,4 +1,4 @@
-package users;
+package account;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

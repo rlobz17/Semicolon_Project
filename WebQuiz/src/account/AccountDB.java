@@ -1,4 +1,4 @@
-package users;
+package account;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 import Database.DataBaseINFO;
 
-public class UserDB {
+public class AccountDB {
 	public static void addUser(String firstname, String lastname, String username, String password, String mail) {
 		try{
 			// Build Path -> add extrenal archives -> "mysql-connector-java-8.0.16.jar"
@@ -83,8 +83,4 @@ public class UserDB {
 		return result;
 	}
 	
-	// for tests
-	public static void main(String[] args) {
-		
-	}
 }

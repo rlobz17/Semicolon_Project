@@ -3,18 +3,18 @@ package Quiz;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import users.User;
+import account.Account;
 
 public class Quiz {
 	private int quizID;
-	private User Creator;
+	private Account Creator;
 	private Date CreationDate;
 	private Date UpdatedDate;
 	private int quizTaken; // how many tames this quiz was ....
 	private String imgUrl;
 	private ArrayList<Question> questions;
 	
-	public Quiz(int quizID,ArrayList<Question> questions,User Creator,Date UpdatedDate,Date CreationData,int quizTaken,String imgUrl) {
+	public Quiz(int quizID,ArrayList<Question> questions,Account Creator,Date UpdatedDate,Date CreationData,int quizTaken,String imgUrl) {
 		this.quizID = quizID;
 		this.UpdatedDate = UpdatedDate;
 		this.Creator = Creator;
@@ -69,14 +69,14 @@ public class Quiz {
 	/**
 	 * @return the creator
 	 */
-	public User getCreator() {
+	public Account getCreator() {
 		return Creator;
 	}
 
 	/**
 	 * @param creator the creator to set
 	 */
-	public void setCreator(User creator) {
+	public void setCreator(Account creator) {
 		Creator = creator;
 	}
 	
