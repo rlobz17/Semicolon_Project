@@ -1,6 +1,6 @@
 use webquizdatabase;
 
-DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizQuestions;
+DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
 
@@ -28,17 +28,19 @@ CREATE TABLE quizes (
 );
 
 CREATE TABLE questionTypes (
-	id int(8) not null auto_increment,
+	questionType_id int(8) not null auto_increment,
 	questionType_name varchar(64) not null,
-    questionType_task text not null,
-    primary key (id)
+    questionType_defaultTask text not null,
+    primary key (questionType_id)
 );
 
 CREATE TABLE questions(
 	question_id int(8) not null auto_increment,
     questionType_id int(8) not null,
+    question_detail text, /*if null - question doesn't need any extra infromation*/
+    question_task text, /*if null - default questionType Task*/
     primary key (question_id),
-    foreign key (questionType_id) references questionTypes(id)
+    foreign key (questionType_id) references questionTypes(questionType_id)
 );
 
 CREATE TABLE quizQuestionLinks (
@@ -50,7 +52,14 @@ CREATE TABLE quizQuestionLinks (
     foreign key (question_id) references questions(question_id)
 );
 
-
+CREATE TABLE answers(
+	answer_id int(8) not null auto_increment,
+    question_id int(8) not null,
+    answer_index int(8) default null, /* determines if answers have order or not */
+    answer_detail text not null,
+    primary key (answer_id),
+    foreign key (question_id) references questions(question_id)
+);
 
 INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password) VALUES
 	("rezi", "lobzhanidze", "rlobz17", "rlobz17@freeuni.edu.ge", "rezi1234"),
@@ -62,21 +71,42 @@ INSERT INTO accounts (account_first_name, account_last_name, account_username, a
 
 INSERT INTO quizes (quiz_name, quiz_publisher) VALUES
 	("simpleQuiz1", 1),
-    ("simpleQuiz2", 2),
-    ("simpleQuiz3", 3),
-    ("simpleQuiz4", 4),
-    ("simpleQuiz5", 1),
-    ("simpleQuiz6", 2)  
+    ("simpleQuiz2", 2)
     ;
     
 
     
+INSERT INTO questionTypes (questionType_id, questionType_name, questionType_defaultTask) VALUES
+	(1,"Question_Response_type", "Answer the question"),
+    (2,"Fill_In_The_Blank_type", "Fill in the blank space"),
+    (3,"Multiple_Choice_type", "Select the correct answer"),
+    (4,"Picture_Response_type", "What does the picture show"),
+    (5,"Multi_Answer_type", "Fill in with answers"),
+    (6,"Multiple_Choice_With_Multiple_Answers_type", "Select Correct answers" ),
+    (7,"Mathcing_type" , "Match correct pairs"),
+    (8,"Auto_Generated_type" , "Auto generated question"),
+    (9,"Graded_Question_type" , "Answer the question (Will be graded later)"),
+    (10,"Timed_Question_type", "Answer the question before the time runs out")
+    ;
     
+INSERT INTO questions (questionType_id, question_detail, question_task) VALUES
+	(1, "Who is the best student in the group?" , null),
+    (4, "http://freeuni.edu.ge/sites/default/themes/freeuni/images/free-og.png", "Which University logo is painted in the picture?")
+    ;
     
-    
-    
-    
-    
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
+    (1, 1),
+    (2, 2)
+    ;
+
+INSERT INTO answers (question_id, answer_detail) VALUES
+    (1, "rlobz17"),
+    (1, "rezi"),
+    (1, "rezgo"),
+    (2, "freeuni"),
+    (2, "free university of tbilisi")
+    ;    
+
     
     
     
@@ -92,19 +122,7 @@ INSERT INTO quizes (quiz_name, quiz_publisher) VALUES
     
 /*
  *this code is left for undo purpose (probably never used)
-INSERT INTO questionTypes (questionType_name) VALUES
-	("Question_Response_type"),
-    ("Fill_In_The_Blank_type"),
-    ("Multiple_Choice_type"),
-    ("Picture_Response_type"),
-    ("Multi_Answer_type"),
-    ("Multiple_Choice_With_Multiple_Answers_type"),
-    ("Mathcing_type"),
-    ("Auto_Generated_type"),
-    ("Graded_Question_type"),
-    ("Timed_Question_type")
-    ;
-
+ 
 DROP TABLE IF EXISTS Question_Response_type, Fill_In_The_Blank_type, Multiple_Choice_type, Picture_Response_type, Multi_Answer_type, Multiple_Choice_With_Multiple_Answers_type,
 						Mathcing_type, Auto_Generated_type, Graded_Question_type, Timed_Question_type, answers;
  -- remove tables if they already exist and start from scratch
