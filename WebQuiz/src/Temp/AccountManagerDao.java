@@ -87,6 +87,7 @@ public class AccountManagerDao {
 	 * -1 - for sql Error 
 	 */
 	public int checkPassword(String username, String password, Statement stm) {
+		int result = 0;
 		try{  
 			
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
@@ -97,23 +98,25 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(selectUsername);
 						
 			if(rs.next()) {
-				if(rs.next()) {
-					//check if other user
-					return -1;
-				}
 				if(rs.getString("account_password").equals(password)) {
-					return 0;
+					result = 0;
 				}else {
-					return 2;
+					result = 2;
 				}
 			}else {
-				return 1;
+				result = 1;
+			}
+			
+			if(rs.next()) {
+				result = -1;
 			}
 
 		}catch(SQLException e){
 			e.printStackTrace();
 			return -1;
 		}
+		
+		return result;
 	}
 	
 }

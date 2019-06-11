@@ -7,10 +7,10 @@ DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, qu
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (
 	account_id int(8) not null auto_increment,
-    account_first_name varchar(64) not null,
-    account_last_name varchar(64) not null,
+    account_first_name varchar(64),
+    account_last_name varchar(64),
     account_username varchar(64) not null,
-    account_mail varchar(64),
+    account_mail varchar(64) not null,
     account_password char(128) not null,
     account_created datetime default now(),
     primary key (account_id)

@@ -1,6 +1,7 @@
 package Temp;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class AccountManager {
@@ -49,5 +50,9 @@ public class AccountManager {
 	 */
 	public int doLogin(String username, String password, Statement stm) {
 		return dao.checkPassword(username, password, stm);
+	}
+	
+	public ArrayList<String> listOfAccounts(Statement stm) {
+		return dao.listOfAccounts(stm);
 	}
 }
