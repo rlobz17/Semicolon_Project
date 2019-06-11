@@ -52,6 +52,7 @@ public class RegistrationServlet extends HttpServlet {
 		if(username.length() < 1 || password.length() < 1 || mail.length() <1) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/tryagain.jsp");
 			dispatch.forward(request, response);
+			return;
 		}
 		
 		//int res = acc.containsAccount(username, mail, null);
