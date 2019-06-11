@@ -44,7 +44,14 @@ public class AccountManager {
 		return dao.searchUser(username, mail, stm);
 	}
 	
-	public boolean doLogin(String username, String password, Statement stm) {
-		return false;
+	/**
+	 * @return 
+	 * 0 - successfully matched username and password,
+	 * 1 - if username not in use,
+	 * 2 - if password is incorrect,
+	 * -1 - for sql Error 
+	 */
+	public int doLogin(String username, String password, Statement stm) {
+		return -1;
 	}
 }
