@@ -1,5 +1,21 @@
 package Temp;
 
-public class AccountManager {
+import account.AccountDB;
 
+public class AccountManager {
+	public AccountManager() {}
+	
+	public void addNewAccount(String firstname, String lastname, String username, String password, String mail) {
+		AccountDB.addUser(firstname, lastname, username, password, mail);
+	}
+	
+	public int containsAccount(String username, String mail) {
+		int x = AccountDB.searchUser(username, mail);
+		return x;
+	}
+	
+	public boolean doLogin(String username, String password) {
+		
+		return false;
+	}
 }
