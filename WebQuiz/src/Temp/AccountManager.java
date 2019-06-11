@@ -1,6 +1,5 @@
 package Temp;
 
-import account.AccountDB;
 
 public class AccountManager {
 	public AccountManager() {}
