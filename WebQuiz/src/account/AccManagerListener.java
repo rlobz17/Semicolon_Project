@@ -1,4 +1,4 @@
-package users;
+package account;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

@@ -1,9 +1,9 @@
-package users;
+package account;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class User {
+public class Account {
 	//ivars
 	private int userID;
 	private int quizesTaken;
@@ -19,7 +19,7 @@ public class User {
 	
 	private ArrayList<String> friendsList;
 	
-	public User(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
+	public Account(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -37,12 +37,6 @@ public class User {
 		return registrationDate;
 	}
 
-	/**
-	 * @param registrationDate the registrationDate to set
-	 */
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
 
 	/**
 	 * @return the mail
@@ -51,12 +45,7 @@ public class User {
 		return mail;
 	}
 
-	/**
-	 * @param mail the mail to set
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+
 
 	/**
 	 * @return the userName
@@ -65,12 +54,6 @@ public class User {
 		return userName;
 	}
 
-	/**
-	 * @param userName the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	/**
 	 * @return the password
@@ -79,12 +62,7 @@ public class User {
 		return passwordHash;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
+
 
 	/**
 	 * @return the imgUrl
@@ -93,12 +71,6 @@ public class User {
 		return imgUrl;
 	}
 
-	/**
-	 * @param imgUrl the imgUrl to set
-	 */
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
 
 	/**
 	 * @return the quizesTaken
@@ -107,12 +79,7 @@ public class User {
 		return quizesTaken;
 	}
 
-	/**
-	 * @param quizesTaken the quizesTaken to set
-	 */
-	public void setQuizesTaken(int quizesTaken) {
-		this.quizesTaken = quizesTaken;
-	}
+
 
 	/**
 	 * @return the firstName
@@ -121,12 +88,7 @@ public class User {
 		return firstName;
 	}
 
-	/**
-	 * @param firstName the firstName to set
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+
 
 	/**
 	 * @return the lastName
@@ -135,12 +97,7 @@ public class User {
 		return lastName;
 	}
 
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+
 
 	/**
 	 * @return the quizesCreted
@@ -149,12 +106,7 @@ public class User {
 		return quizesCreted;
 	}
 
-	/**
-	 * @param quizesCreted the quizesCreted to set
-	 */
-	public void setQuizesCreted(int quizesCreted) {
-		this.quizesCreted = quizesCreted;
-	}
+
 
 	/**
 	 * @return the userID
@@ -184,13 +136,6 @@ public class User {
 	 * */
 	public boolean isFriendsWith(String name) {
 		return this.friendsList.contains(name);
-	}
-
-	/**
-	 * @param friendsList the friendsList to set
-	 */
-	public void setFriendsList(ArrayList<String> friendsList) {
-		this.friendsList = friendsList;
 	}
 
 }
