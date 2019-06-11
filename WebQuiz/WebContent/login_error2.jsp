@@ -38,7 +38,7 @@
 	<div class="body">
 	
 		<div id="headerContent"></div>
-		<div class="loginErr"> • არასწორი ლოგინი ან პაროლი</div>
+		<div class="loginErr"> • შეყვანილი პაროლი არასწორია, სცადეთ თავიდან</div>
 		<div id="loginContent"></div>
 		<div id="footerContent"></div>
 		
