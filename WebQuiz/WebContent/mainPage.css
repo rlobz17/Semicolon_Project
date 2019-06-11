@@ -1,17 +1,20 @@
 @charset "UTF-8";
-.body{
-	max-width: 900px;
+.body {
+    max-width: 900px;
     margin: auto;
     background: #f5f5f5;
-    border: 1px solid #a2a2a2;
+    box-shadow: 0px 0px 4px 4px #717171;
+    border-right: 1px solid #4ba4e9;
+    border-left: 1px solid #4ba4e9;
+    border-bottom: 1px solid #4ba4e9;
 }
 
-.header{
-	background: url(http://www.picz.ge/img/s4/1906/8/4/4e39d4f55044.png);
-	border-top: 8px solid #af820d;
-    border-bottom: 8px solid #af820d;
-	height: 200px;
-	width: auto;
+.header {
+    background: url(http://www.picz.ge/img/s4/1906/8/4/4e39d4f55044.png);
+    border-top: 3px solid #f7bc45;
+    border-bottom: 3px solid #f7bc45;
+    height: 200px;
+    width: auto;
 }
 
 .logo{
@@ -23,25 +26,26 @@
 	width: auto;
     height: 100px;
     background: #e6e6e6;
-    border-top: 1px solid #a2a2a2;
+    border-top: 1px solid #4ba4e9;
 }
 
 .footLeft{
 	float: left;
 	margin: 40px;
-	color: #545454;
+	color: #2b2b2b;
 }
 
 .footRight{
 	float: right;
 	margin: 40px;
-    color: #545454;
+    color: #2b2b2b;
 }
 
 .searchArea{
 	width: auto;
 	height: 50px;
 	background: #3a3a3a;
+	border-bottom: 2px solid #4ba4e9;
 }
 
 .loginButt {
