@@ -6,6 +6,13 @@ public class Answer {
 	private int answerIndex;
 	private String answerDetail;
 	
+	public Answer(int answerID, int questionID,int answerIndex, String answerDetail) {
+		this.answerDetail = answerDetail;
+		this.answerID = answerID;
+		this.answerIndex = answerIndex;
+		this.answerDetail = answerDetail;
+	}
+	
 	/**
 	 * @return the answerID
 	 */
