@@ -5,6 +5,7 @@ public class Answer {
 	private int questionID;
 	private int answerIndex;
 	private String answerDetail;
+	
 	/**
 	 * @return the answerID
 	 */
