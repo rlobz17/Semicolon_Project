@@ -49,20 +49,26 @@ public class RegistrationServlet extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		
-		int res = acc.containsAccount(username, mail, null);
+		if(username.length() < 1 || password.length() < 1 || mail.length() <1) {
+			RequestDispatcher dispatch = request.getRequestDispatcher("/tryagain.jsp");
+			dispatch.forward(request, response);
+		}
+		
+		//int res = acc.containsAccount(username, mail, null);
+		int res = 3; // for test
 		
 		if(res==0) {
-			acc.addNewAccount(firstname, lastname, username, password, mail, null);
-			RequestDispatcher dispatch = request.getRequestDispatcher("/daregistrirda");
+			//acc.addNewAccount(firstname, lastname, username, password, mail, null);
+			RequestDispatcher dispatch = request.getRequestDispatcher("/new_user.jsp");
 			dispatch.forward(request, response);
 		} else if(res==1){
-			RequestDispatcher dispatch = request.getRequestDispatcher("/userdakavebulia");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid_username.jsp");
 			dispatch.forward(request, response);
 		} else if(res==2) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/maildakavebulia");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid_mail.jsp");
 			dispatch.forward(request, response);
 		} else if(res==3) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/orivedakavebulia");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid.jsp");
 			dispatch.forward(request, response);
 		}
 	}

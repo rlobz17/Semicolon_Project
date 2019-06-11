@@ -38,7 +38,7 @@
 	<div class="body">
 	
 		<div id="headerContent"></div>
-		<div class="loginErr"> • მეილი უკვე დაკავებულია</div>
+		<div class="loginErr"> • შეიყვანეთ აუცილებელი ველები!</div>
 		<div id="regContent"></div>
 		<div id="footerContent"></div>
 		
