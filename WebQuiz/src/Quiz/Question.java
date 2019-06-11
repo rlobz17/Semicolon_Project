@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Question {
 	
 	//ivars
-	private ArrayList<String> questions;
 	private int questionID;
 	private ArrayList<Integer> quizIDs; // stores ids of quizes in which this question is used
+	private ArrayList<String> answers;
+	private String questionType;
 	private String answer;
 	
-	public Question(ArrayList<String> questions, int questionID,ArrayList<Integer> quizIDs) {
+	public Question(ArrayList<String> answers, String questionType, int questionID,ArrayList<Integer> quizIDs) {
 		this.questionID = questionID;
-		this.questions = questions;
+		this.questionType = questionType;
+		this.setAnswers(answers);
 		this.setQuizIDs(quizIDs);
 	}
 	
@@ -25,18 +27,7 @@ public class Question {
 		return this.answer.equals(answer);
 	}
 	
-	/**
-	 * @return the questions
-	 */
-	public ArrayList<String> getQuestions() {
-		return questions;
-	}
-	/**
-	 * @param questions the questions to set
-	 */
-	public void setQuestions(ArrayList<String> questions) {
-		this.questions = questions;
-	}
+
 	/**
 	 * @return the questionID
 	 */
@@ -75,6 +66,22 @@ public class Question {
 	 */
 	public void setQuizIDs(ArrayList<Integer> quizIDs) {
 		this.quizIDs = quizIDs;
+	}
+
+
+	/**
+	 * @return the answers
+	 */
+	public ArrayList<String> getAnswers() {
+		return answers;
+	}
+
+
+	/**
+	 * @param answers the answers to set
+	 */
+	public void setAnswers(ArrayList<String> answers) {
+		this.answers = answers;
 	}
 	
 }
