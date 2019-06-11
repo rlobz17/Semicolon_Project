@@ -37,12 +37,6 @@ public class Account {
 		return registrationDate;
 	}
 
-	/**
-	 * @param registrationDate the registrationDate to set
-	 */
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
 
 	/**
 	 * @return the mail
@@ -51,12 +45,7 @@ public class Account {
 		return mail;
 	}
 
-	/**
-	 * @param mail the mail to set
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+
 
 	/**
 	 * @return the userName
@@ -79,12 +68,7 @@ public class Account {
 		return passwordHash;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
+
 
 	/**
 	 * @return the imgUrl
@@ -93,12 +77,6 @@ public class Account {
 		return imgUrl;
 	}
 
-	/**
-	 * @param imgUrl the imgUrl to set
-	 */
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
 
 	/**
 	 * @return the quizesTaken
@@ -107,12 +85,7 @@ public class Account {
 		return quizesTaken;
 	}
 
-	/**
-	 * @param quizesTaken the quizesTaken to set
-	 */
-	public void setQuizesTaken(int quizesTaken) {
-		this.quizesTaken = quizesTaken;
-	}
+
 
 	/**
 	 * @return the firstName
@@ -121,12 +94,7 @@ public class Account {
 		return firstName;
 	}
 
-	/**
-	 * @param firstName the firstName to set
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+
 
 	/**
 	 * @return the lastName
@@ -135,12 +103,7 @@ public class Account {
 		return lastName;
 	}
 
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+
 
 	/**
 	 * @return the quizesCreted
@@ -149,12 +112,7 @@ public class Account {
 		return quizesCreted;
 	}
 
-	/**
-	 * @param quizesCreted the quizesCreted to set
-	 */
-	public void setQuizesCreted(int quizesCreted) {
-		this.quizesCreted = quizesCreted;
-	}
+
 
 	/**
 	 * @return the userID
@@ -184,13 +142,6 @@ public class Account {
 	 * */
 	public boolean isFriendsWith(String name) {
 		return this.friendsList.contains(name);
-	}
-
-	/**
-	 * @param friendsList the friendsList to set
-	 */
-	public void setFriendsList(ArrayList<String> friendsList) {
-		this.friendsList = friendsList;
 	}
 
 }

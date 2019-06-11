@@ -14,8 +14,8 @@ public class Question {
 	public Question(ArrayList<String> answers, String questionType, int questionID,ArrayList<Integer> quizIDs) {
 		this.questionID = questionID;
 		this.questionType = questionType;
-		this.setAnswers(answers);
-		this.setQuizIDs(quizIDs);
+		this.answers = (answers);
+		this.quizIDs = (quizIDs);
 	}
 	
 	
@@ -34,12 +34,7 @@ public class Question {
 	public int getQuestionID() {
 		return questionID;
 	}
-	/**
-	 * @param questionID the questionID to set
-	 */
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
-	}
+
 	
 	/**
 	 * @return the answer
@@ -47,12 +42,7 @@ public class Question {
 	public String getAnswer() {
 		return answer;
 	}
-	/**
-	 * @param answer the answer to set
-	 */
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
+
 
 	/**
 	 * @return the quizIDs
@@ -61,12 +51,7 @@ public class Question {
 		return quizIDs;
 	}
 
-	/**
-	 * @param quizIDs the quizIDs to set
-	 */
-	public void setQuizIDs(ArrayList<Integer> quizIDs) {
-		this.quizIDs = quizIDs;
-	}
+
 
 
 	/**
@@ -77,11 +62,6 @@ public class Question {
 	}
 
 
-	/**
-	 * @param answers the answers to set
-	 */
-	public void setAnswers(ArrayList<String> answers) {
-		this.answers = answers;
-	}
+
 	
 }

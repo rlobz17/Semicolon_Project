@@ -31,12 +31,7 @@ public class Quiz {
 		return imgUrl;
 	}
 
-	/**
-	 * @param imgUrl the imgUrl to set
-	 */
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+
 
 	/**
 	 * @return the quitTaken
@@ -45,12 +40,7 @@ public class Quiz {
 		return quizTaken;
 	}
 
-	/**
-	 * @param quitTaken the quitTaken to set
-	 */
-	public void setQuitTaken(int quitTaken) {
-		this.quizTaken = quitTaken;
-	}
+
 
 	/**
 	 * @return the creationData
@@ -59,12 +49,7 @@ public class Quiz {
 		return CreationDate;
 	}
 
-	/**
-	 * @param creationData the creationData to set
-	 */
-	public void setCreationData(Date creationData) {
-		CreationDate = creationData;
-	}
+
 
 	/**
 	 * @return the creator
@@ -73,14 +58,7 @@ public class Quiz {
 		return Creator;
 	}
 
-	/**
-	 * @param creator the creator to set
-	 */
-	public void setCreator(Account creator) {
-		Creator = creator;
-	}
-	
-	
+
 	/**
 	 * @param Question
 	 * added this Question to current Quize
@@ -98,12 +76,7 @@ public class Quiz {
 		return questions;
 	}
 
-	/**
-	 * @param question the question to set
-	 */
-	public void setQuestion(ArrayList<Question> questions) {
-		this.questions = questions;
-	}
+
 
 	/**
 	 * @return the quizID
@@ -112,12 +85,6 @@ public class Quiz {
 		return quizID;
 	}
 
-	/**
-	 * @param quizID the quizID to set
-	 */
-	public void setQuizID(int quizID) {
-		this.quizID = quizID;
-	}
 
 	/**
 	 * @return the updatedDate
@@ -126,13 +93,4 @@ public class Quiz {
 		return UpdatedDate;
 	}
 
-	/**
-	 * @param updatedDate the updatedDate to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		UpdatedDate = updatedDate;
-	}
-	
-	
-	
 }
