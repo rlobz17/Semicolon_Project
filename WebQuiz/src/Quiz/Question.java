@@ -7,11 +7,11 @@ public class Question {
 	//ivars
 	private int questionID;
 	private ArrayList<Integer> quizIDs; // stores ids of quizes in which this question is used
-	private ArrayList<String> answers;
+	private ArrayList<Answer> answers;
 	private String questionType;
-	private String answer;
+	private Answer correctAnswer;
 	
-	public Question(ArrayList<String> answers, String questionType, int questionID,ArrayList<Integer> quizIDs) {
+	public Question(ArrayList<Answer> answers, String questionType, int questionID,ArrayList<Integer> quizIDs) {
 		this.questionID = questionID;
 		this.questionType = questionType;
 		this.answers = (answers);
@@ -24,7 +24,7 @@ public class Question {
 	 * checks if given param and answer are same
 	 * */
 	public boolean isCorrectAnswer(String answer) {
-		return this.answer.equals(answer);
+		return this.correctAnswer.getAnswerDetail().equals(answer);
 	}
 	
 
@@ -40,7 +40,7 @@ public class Question {
 	 * @return the answer
 	 */
 	public String getAnswer() {
-		return answer;
+		return correctAnswer.getAnswerDetail();
 	}
 
 
@@ -57,7 +57,7 @@ public class Question {
 	/**
 	 * @return the answers
 	 */
-	public ArrayList<String> getAnswers() {
+	public ArrayList<Answer> getAnswers() {
 		return answers;
 	}
 
