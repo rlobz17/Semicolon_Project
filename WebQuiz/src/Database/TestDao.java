@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import Database.*;
 import Temp.AccountManagerDao;
 
-class TestDAO {
+class TestDao {
 	
 	private String database = DataBaseINFO.MYSQL_DATABASE_NAME;
 	private String account = DataBaseINFO.MYSQL_USERNAME;
@@ -41,7 +41,7 @@ class TestDAO {
 	@Test
 	void testAccountManager() {		
 		AccountManagerDao manager = new AccountManagerDao();
-		ArrayList<String> list = manager.listOfAccounts();
+		ArrayList<String> list = manager.listOfAccounts(createStatement());
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 		}
