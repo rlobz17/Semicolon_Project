@@ -34,13 +34,9 @@ public class AccountManager {
 	 * 1 - if username is in use, 
 	 * 2 - if mail is in use, 
 	 * 3 - if username and mail both in use,
-	 * 4 - if username or mail field is empty
 	 * -1 - for sql Error 
 	 */
 	public int containsAccount(String username, String mail, Statement stm) {
-		if(username.equals("") || mail.equals("")) {
-			return 4;
-		}
 		return dao.searchUser(username, mail, stm);
 	}
 	
@@ -52,6 +48,6 @@ public class AccountManager {
 	 * -1 - for sql Error 
 	 */
 	public int doLogin(String username, String password, Statement stm) {
-		return -1;
+		return dao.checkPassword(username, password, stm);
 	}
 }

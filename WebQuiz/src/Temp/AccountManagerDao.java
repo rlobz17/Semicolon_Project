@@ -78,4 +78,42 @@ public class AccountManagerDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @return 
+	 * 0 - successfully matched username and password,
+	 * 1 - if username not in use,
+	 * 2 - if password is incorrect,
+	 * -1 - for sql Error 
+	 */
+	public int checkPassword(String username, String password, Statement stm) {
+		try{  
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String selectUsername = "Select * from accounts ";
+			selectUsername += "where account_username = \"" + username + "\";";
+						
+			ResultSet rs = stm.executeQuery(selectUsername);
+						
+			if(rs.next()) {
+				if(rs.next()) {
+					//check if other user
+					return -1;
+				}
+				if(rs.getString("account_password").equals(password)) {
+					return 0;
+				}else {
+					return 2;
+				}
+			}else {
+				return 1;
+			}
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 }
