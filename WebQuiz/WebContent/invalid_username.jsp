@@ -5,7 +5,7 @@
 
 <head>
 
-<title>ავტორიზაცია</title>
+<title>რეგისტრაცია</title>
 
 <meta charset="UTF-8">
 
@@ -27,7 +27,7 @@
 
 <script> 
    	$(function(){
-	$("#loginContent").load("/WebQuizProject/login_cont.jsp"); 
+	$("#regContent").load("/WebQuizProject/registration_cont.jsp"); 
 	});
 </script>
 
@@ -38,8 +38,8 @@
 	<div class="body">
 	
 		<div id="headerContent"></div>
-		<div class="loginErr"> • არასწორი ლოგინი ან პაროლი</div>
-		<div id="loginContent"></div>
+		<div class="loginErr"> • ლოგინი უკვე დაკავებულია</div>
+		<div id="regContent"></div>
 		<div id="footerContent"></div>
 		
 	</div>

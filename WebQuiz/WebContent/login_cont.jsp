@@ -2,18 +2,24 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta charset="UTF-8">
+
 <link href="mainPage.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
 	<div class="content">
+	
 		<div class="login">მომხმარებლის ავტორიზაცია</div>
-		<form action="login/LoginServlet" method="POST">
+		
+		<form action="/WebQuizProject/login/LoginServlet" method="POST">
 					
-			<table class="loginTable"><tbody>
+			<table class="loginTable">
+			<tbody>
 		
 			<tr>
 				<td>
@@ -33,11 +39,15 @@
 				</td>
 			</tr>
 		
-			</tbody></table>
+			</tbody>
+			</table>
 				
 			<label style="margin-left: 50%;"><input value="შესვლა" type="submit"></label>
+			
 		</form>
+		
 	</div>
 
 </body>
+
 </html>

@@ -10,13 +10,13 @@
 <body>
 	<div class="content">
 		<div class="login">ახალი მომხმარებლის რეგისტრაცია</div>
-		<form action="login/RegistrationServlet" method="POST">
+		<form action="/WebQuizProject/login/RegistrationServlet" method="POST">
 					
 		<table class="loginTable"><tbody>
 		
 			<tr>
 				<td>
-					ლოგინი:
+					ლოგინი:*
 				</td>
 				<td>
 					<input id="username" type="text" name="username" class="loginInput">
@@ -25,7 +25,7 @@
 					
 			<tr>
 				<td>
-					პაროლი:
+					პაროლი:*
 				</td>
 				<td>
 					<input id="password" type="password" name="password" class="loginInput">
@@ -52,7 +52,7 @@
 					
 			<tr>
 				<td>
-					მეილი:
+					მეილი:*
 				</td>
 				<td>
 					<input id="mail" type="text" name="mail" class="loginInput">
