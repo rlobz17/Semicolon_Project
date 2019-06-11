@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import account.AccountManager;
+import Temp.AccountManager;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -49,10 +49,10 @@ public class RegistrationServlet extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		
-		int res = acc.containsAccount(username, mail);
+		int res = acc.containsAccount(username, mail, null);
 		
 		if(res==0) {
-			acc.addNewAccount(firstname, lastname, username, password, mail);
+			acc.addNewAccount(firstname, lastname, username, password, mail, null);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/daregistrirda");
 			dispatch.forward(request, response);
 		} else if(res==1){

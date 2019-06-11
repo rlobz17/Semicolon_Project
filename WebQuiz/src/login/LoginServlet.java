@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import account.AccountManager;
+import Temp.AccountManager;
 
 /**
  * Servlet implementation class LoginServlet
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(acc.doLogin(username, password)) {
+		if(acc.doLogin(username, password, null)) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");
 			dispatch.forward(request, response);
 		} else {

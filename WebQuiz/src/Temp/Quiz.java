@@ -4,8 +4,6 @@ package Temp;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import account.Account;
-
 public class Quiz {
 	private int quizID;
 	private Account Creator;
