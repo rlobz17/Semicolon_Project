@@ -60,4 +60,6 @@ public class AccountManager {
 	public Account getAccount(String username, Statement stm) {
 		return dao.getAccount(username, stm);
 	}
+	
+	
 }
