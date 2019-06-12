@@ -15,18 +15,16 @@ public class Account {
 	private String firstName;
 	private String lastName;
 	private String userName;
-	private String passwordHash;
 	private String imgUrl;
 	
 	private ArrayList<String> friendsList;
 	
-	public Account(int userID,Date registrationDate, String mail, String userName, String passwordHash, String imgUrl,String lastName,String firstName) {
+	public Account(int userID,Date registrationDate, String mail, String userName, String imgUrl,String lastName,String firstName) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.registrationDate = registrationDate;
 		this.mail = mail;
-		this.passwordHash = passwordHash;
 		this.imgUrl = imgUrl;
 		this.userName = userName;
 	}
@@ -54,15 +52,6 @@ public class Account {
 	public String getUserName() {
 		return userName;
 	}
-
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return passwordHash;
-	}
-
 
 
 	/**
