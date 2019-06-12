@@ -118,13 +118,6 @@ public class Account {
 		return friendsList;
 	}
 	
-	/**
-	 * @param string name of the friend
-	 * adds givven name to the friend list
-	 * */
-	public void addFriend(String name) {
-		this.friendsList.add(name);
-	}
 	
 	/**
 	 * @param string name of the friend
@@ -142,15 +135,12 @@ public class Account {
 
 	/**
 	 * @return the notifications
+	 * 
 	 */
 	public ArrayList<Message> getNotifications() {
 		return notifications;
 	}
 
-	//adds new Notification
-	public void addNotification(Message msg) {
-		this.notifications.add(msg);
-	}
 
 	/**
 	 * @return the isAdmin
@@ -159,13 +149,5 @@ public class Account {
 		return isAdmin;
 	}
 
-	/**
-	 *	makes current user Admin
-	 */
-	public void makeAdmin() {
-		if(!this.isAdmin) {
-			this.isAdmin = true;
-		}
-	}
 
 }
