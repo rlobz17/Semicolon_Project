@@ -36,7 +36,6 @@ public class AccManagerListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent sce)  { 
          // Auto-generated method stub
-    	
     	ServletContext cont = sce.getServletContext();
     	try {
 			DateBaseManager baseManager = new DateBaseManager();
