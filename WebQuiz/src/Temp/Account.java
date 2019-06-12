@@ -135,6 +135,7 @@ public class Account {
 
 	/**
 	 * @return the notifications
+	 * 
 	 */
 	public ArrayList<Message> getNotifications() {
 		return notifications;
