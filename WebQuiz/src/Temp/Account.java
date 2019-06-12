@@ -5,11 +5,15 @@ package Temp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import account.Message;
+
 public class Account {
 	//ivars
 	private int userID;
 	private int quizesTaken;
 	private int quizesCreted;
+	
+	private boolean isAdmin;
 
 	private Date registrationDate;
 	private String mail;
@@ -19,6 +23,7 @@ public class Account {
 	private String imgUrl;
 	
 	private ArrayList<String> friendsList;
+	private ArrayList<Message> notifications;
 	
 	public Account(int userID,Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName) {
 		this.userID = userID;
@@ -133,6 +138,34 @@ public class Account {
 	public String toString() {
 		return "ID " + userID +" | RegDate "+registrationDate + " | Mail " + mail + 
 				" | Username " + userName +" | ImgUrl "+ imgUrl + " | FirstName " + firstName + " | LastName " + lastName;
+	}
+
+	/**
+	 * @return the notifications
+	 */
+	public ArrayList<Message> getNotifications() {
+		return notifications;
+	}
+
+	//adds new Notification
+	public void addNotification(Message msg) {
+		this.notifications.add(msg);
+	}
+
+	/**
+	 * @return the isAdmin
+	 */
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	/**
+	 *	makes current user Admin
+	 */
+	public void makeAdmin() {
+		if(!this.isAdmin) {
+			this.isAdmin = true;
+		}
 	}
 
 }
