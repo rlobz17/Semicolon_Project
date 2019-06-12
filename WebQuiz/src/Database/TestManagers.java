@@ -71,6 +71,14 @@ class TestManagers {
 		System.out.println("Should be 3: " + manager.containsAccount("test", "test", stm));
 		System.out.println("-----------------------");
 		
+		System.out.println("testing getAccount:");
+		System.out.println("rlobz17: " + manager.getAccount("rlobz17", stm));
+		System.out.println("snoza17: " + manager.getAccount("snoza17", stm));
+		System.out.println("dpopk17: " + manager.getAccount("dpopk17", stm));
+		System.out.println("dkvel17: " + manager.getAccount("dkvel17", stm));
+		System.out.println("-----------------------");
+		
+		
 	}
 
 }

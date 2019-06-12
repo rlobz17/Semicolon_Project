@@ -12,6 +12,7 @@ CREATE TABLE accounts (
     account_username varchar(64) not null,
     account_mail varchar(64) not null,
     account_password char(128) not null,
+    account_imgUrl text,
     account_created datetime default now(),
     primary key (account_id)
 );

@@ -1,8 +1,9 @@
 package Temp;
 
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Account {
 	//ivars
@@ -19,7 +20,7 @@ public class Account {
 	
 	private ArrayList<String> friendsList;
 	
-	public Account(int userID,Date registrationDate, String mail, String userName, String imgUrl,String lastName,String firstName) {
+	public Account(int userID,Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -126,6 +127,12 @@ public class Account {
 	 * */
 	public boolean isFriendsWith(String name) {
 		return this.friendsList.contains(name);
+	}
+	
+	@Override
+	public String toString() {
+		return "ID " + userID +" | RegDate "+registrationDate + " | Mail " + mail + 
+				" | Username " + userName +" | ImgUrl "+ imgUrl + " | FirstName " + firstName + " | LastName " + lastName;
 	}
 
 }
