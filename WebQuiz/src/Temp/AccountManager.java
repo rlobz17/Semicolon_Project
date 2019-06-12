@@ -55,4 +55,8 @@ public class AccountManager {
 	public ArrayList<String> listOfAccounts(Statement stm) {
 		return dao.listOfAccounts(stm);
 	}
+	
+	public Account getAccount(String username, Statement stm) {
+		return null;
+	}
 }
