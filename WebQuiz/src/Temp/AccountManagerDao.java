@@ -148,8 +148,8 @@ public class AccountManagerDao {
 				String mail = rs.getString("account_mail");
 				String userName = rs.getString("account_username");
 				String imgUrl = rs.getString("account_imgUrl");
-				String lastName = rs.getString("account_first_name");
-				String firstName = rs.getString("account_last_name");
+				String firstName = rs.getString("account_first_name");
+				String lastName = rs.getString("account_last_name");
 				
 				
 				result = new Account(Integer.parseInt(userID), registrationDate, mail, userName, imgUrl, firstName, lastName);
