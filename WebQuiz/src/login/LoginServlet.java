@@ -1,6 +1,8 @@
 package login;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -46,7 +48,16 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		int result = acc.doLogin(username, password, null);
+		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+		Statement stm = null;
+		try {
+			stm = d.getConnection().createStatement();
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int result = acc.doLogin(username, password, stm);
 		
 		if(result==0) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");

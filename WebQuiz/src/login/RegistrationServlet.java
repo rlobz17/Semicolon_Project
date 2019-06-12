@@ -1,6 +1,8 @@
 package login;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.DataBaseINFO;
 import Temp.AccountManager;
 
 /**
@@ -55,11 +58,20 @@ public class RegistrationServlet extends HttpServlet {
 			return;
 		}
 		
-		//int res = acc.containsAccount(username, mail, null);
-		int res = 3; // for test
+		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+		Statement stm = null;
+		try {
+			stm = d.getConnection().createStatement();
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int res = acc.containsAccount(username, mail, stm);
+		//int res = 3; // for test
 		
 		if(res==0) {
-			//acc.addNewAccount(firstname, lastname, username, password, mail, null);
+			acc.addNewAccount(firstname, lastname, username, password, mail, stm);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/new_user.jsp");
 			dispatch.forward(request, response);
 		} else if(res==1){
