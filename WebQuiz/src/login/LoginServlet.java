@@ -46,11 +46,19 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(acc.doLogin(username, password, null)) {
+		int result = acc.doLogin(username, password, null);
+		
+		if(result==0) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");
 			dispatch.forward(request, response);
+		} else if(result==1){
+			RequestDispatcher dispatch = request.getRequestDispatcher("/login_error1.jsp");
+			dispatch.forward(request, response);
+		} else if(result==2) {
+			RequestDispatcher dispatch = request.getRequestDispatcher("/login_error2.jsp");
+			dispatch.forward(request, response);
 		} else {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/login_error.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/login_error3.jsp");
 			dispatch.forward(request, response);
 		}
 	}

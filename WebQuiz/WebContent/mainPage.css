@@ -127,3 +127,15 @@
     color: red;
     font-weight: bold;
 }
+
+
+.loginSucc {
+    width: 93%;
+    height: 20px;
+    background: #2cec0f73;
+    margin: 15px;
+    border: 1px solid #277500;
+    padding: 15px;
+    color: #116108;
+    font-weight: bold;
+}

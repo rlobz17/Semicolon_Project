@@ -1,6 +1,7 @@
 package Temp;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class AccountManager {
@@ -34,17 +35,24 @@ public class AccountManager {
 	 * 1 - if username is in use, 
 	 * 2 - if mail is in use, 
 	 * 3 - if username and mail both in use,
-	 * 4 - if username or mail field is empty
 	 * -1 - for sql Error 
 	 */
 	public int containsAccount(String username, String mail, Statement stm) {
-		if(username.equals("") || mail.equals("")) {
-			return 4;
-		}
 		return dao.searchUser(username, mail, stm);
 	}
 	
-	public boolean doLogin(String username, String password, Statement stm) {
-		return false;
+	/**
+	 * @return 
+	 * 0 - successfully matched username and password,
+	 * 1 - if username not in use,
+	 * 2 - if password is incorrect,
+	 * -1 - for sql Error 
+	 */
+	public int doLogin(String username, String password, Statement stm) {
+		return dao.checkPassword(username, password, stm);
+	}
+	
+	public ArrayList<String> listOfAccounts(Statement stm) {
+		return dao.listOfAccounts(stm);
 	}
 }
