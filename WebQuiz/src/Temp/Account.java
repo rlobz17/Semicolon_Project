@@ -25,7 +25,7 @@ public class Account {
 	private ArrayList<String> friendsList;
 	private ArrayList<Message> notifications;
 	
-	public Account(int userID,Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName) {
+	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -41,6 +41,13 @@ public class Account {
 	public Date getRegistrationDate() {
 		return registrationDate;
 	}
+	
+	/**
+	 * set the registrationDate
+	 */	
+	public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
 
 	/**
@@ -49,8 +56,13 @@ public class Account {
 	public String getMail() {
 		return mail;
 	}
-
-
+	
+	/**
+	 * set the mail
+	 */	
+	public void setMail(String mail) {
+        this.mail = mail;
+    }
 
 	/**
 	 * @return the userName
@@ -58,7 +70,13 @@ public class Account {
 	public String getUserName() {
 		return userName;
 	}
-
+	
+	/**
+	 * set the userName
+	 */	
+	public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
 	/**
 	 * @return the imgUrl
@@ -66,6 +84,13 @@ public class Account {
 	public String getImgUrl() {
 		return imgUrl;
 	}
+	
+	/**
+	 * set the imgUrl
+	 */	
+	public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
 
 	/**
@@ -74,6 +99,13 @@ public class Account {
 	public int getQuizesTaken() {
 		return quizesTaken;
 	}
+	
+	/**
+	 * set the QuizesTaken
+	 */	
+	public void setQuizesTaken(int quizesTaken) {
+        this.quizesTaken = quizesTaken;
+    }
 
 
 
@@ -84,6 +116,12 @@ public class Account {
 		return firstName;
 	}
 
+	/**
+	 * set the firstName
+	 */	
+	public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
 
 	/**
@@ -93,6 +131,12 @@ public class Account {
 		return lastName;
 	}
 
+	/**
+	 * set the lastName
+	 */	
+	public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
 
 	/**
@@ -101,7 +145,13 @@ public class Account {
 	public int getQuizesCreted() {
 		return quizesCreted;
 	}
-
+	
+	/**
+	 * set the QuizesCreted
+	 */	
+	public void setQuizesCreted(int quizesCreted) {
+        this.quizesCreted = quizesCreted;
+    }
 
 
 	/**
@@ -117,6 +167,13 @@ public class Account {
 	public ArrayList<String> getFriendsList() {
 		return friendsList;
 	}
+	
+	/**
+	 * set the friendsList
+	 */	
+	public void setFriendsList(ArrayList<String> friendsList) {
+        this.friendsList = friendsList;
+    }
 	
 	
 	/**
@@ -140,6 +197,13 @@ public class Account {
 	public ArrayList<Message> getNotifications() {
 		return notifications;
 	}
+	
+	/**
+	 * set the friendsList
+	 */	
+	public void setNotifications(ArrayList<Message> notifications) {
+        this.notifications = notifications;
+    }
 
 
 	/**
@@ -149,5 +213,11 @@ public class Account {
 		return isAdmin;
 	}
 
+	/**
+	 * set the isAdmin
+	 */	
+	public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
 }
