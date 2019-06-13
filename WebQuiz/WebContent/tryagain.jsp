@@ -38,7 +38,7 @@
 	<div class="body">
 	
 		<div id="headerContent"></div>
-		<div class="loginErr"> • შეიყვანეთ აუცილებელი ველები!</div>
+		<div class="loginErr"> • შეიყვანეთ აუცილებელი ველები! გაითვალისწინეთ, ლოგინი უნდა შეიცავდეს მხოლოდ ლათინურ სიმბოლოებს, ციფრებს, სფეისს ან . -</div>
 		<div id="regContent"></div>
 		<div id="footerContent"></div>
 		

@@ -219,5 +219,21 @@ public class Account {
 	public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+	
+	public static String whitespaceChange(String username) {
+		String withoutSpace = "";
+		
+		for(int i=0; i<username.length(); i++) {
+			char ch = username.charAt(i);
+			
+			if(ch!='_') {
+				withoutSpace += ch;
+			} else {
+				withoutSpace += ' ';
+			}
+		}
+		
+		return withoutSpace;
+	}
 
 }

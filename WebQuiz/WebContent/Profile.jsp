@@ -24,6 +24,8 @@ try {
 	e.printStackTrace();
 }
 
+username = Account.whitespaceChange(username);
+
 Account acc = m.getAccount(username, stm);
 
 %>

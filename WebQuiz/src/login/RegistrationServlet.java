@@ -54,6 +54,16 @@ public class RegistrationServlet extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		
+		for(int i=0; i<username.length(); i++) {
+			char ch = username.charAt(i);
+			if(!(ch>='a' && ch<='z') && !(ch>='A' && ch<='Z')
+					&& !(ch>='0' && ch<='9') && ch!=' ' && ch!='.' && ch!='-') {
+				RequestDispatcher dispatch = request.getRequestDispatcher("/tryagain.jsp");
+				dispatch.forward(request, response);
+				return;
+			}
+		}
+		
 		if(username.length() < 1 || password.length() < 1 || mail.length() <1) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/tryagain.jsp");
 			dispatch.forward(request, response);
