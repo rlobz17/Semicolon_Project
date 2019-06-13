@@ -4,18 +4,27 @@ import java.util.Date;
 
 public class QuizLite {
 	
+	private int quiz_id;
 	private String title;
-	private String author; 
+	private int publisher_id; 
 	private String imgurl;
 	private Date date;
 	private int quizDone;
 	
-	public QuizLite(String title, String author, String imgurl, Date date, int quizDone) {
+	public QuizLite(int quiz_id, String title, int publisher_id, String imgurl, Date date, int quizDone) {
+		this.quiz_id = quiz_id;
 		this.title = title;
-		this.author = author;
+		this.publisher_id = publisher_id;
 		this.imgurl = imgurl;
 		this.date = date;
 		this.quizDone = quizDone;
+	}
+	
+	/**
+	 * @return the quiz_id
+	 */
+	public int getQuizID() {
+		return quiz_id;
 	}
 	
 	/**
@@ -26,10 +35,10 @@ public class QuizLite {
 	}
 
 	/**
-	 * @return the author
+	 * @return the publisher
 	 */
-	public String getAuthor() {
-		return author;
+	public int getPublisherID() {
+		return publisher_id;
 	}
 
 	/**
