@@ -6,15 +6,15 @@ public class QuizLite {
 	
 	private int quiz_id;
 	private String title;
-	private int publisher_id; 
+	private String publisher; 
 	private String imgurl;
 	private Date date;
 	private int quizDone;
 	
-	public QuizLite(int quiz_id, String title, int publisher_id, String imgurl, Date date, int quizDone) {
+	public QuizLite(int quiz_id, String title, String publisher, String imgurl, Date date, int quizDone) {
 		this.quiz_id = quiz_id;
 		this.title = title;
-		this.publisher_id = publisher_id;
+		this.publisher = publisher;
 		this.imgurl = imgurl;
 		this.date = date;
 		this.quizDone = quizDone;
@@ -37,8 +37,8 @@ public class QuizLite {
 	/**
 	 * @return the publisher
 	 */
-	public int getPublisherID() {
-		return publisher_id;
+	public String getPublisher() {
+		return publisher;
 	}
 
 	/**
