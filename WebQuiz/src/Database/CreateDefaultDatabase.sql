@@ -23,9 +23,11 @@ CREATE TABLE quizes (
     quiz_name varchar(64) not null,
     quiz_created datetime default now(),
     quiz_edited datetime,
-    quiz_publisher int(8) not null,
+    quiz_publisherId int(8) not null,
+    quiz_imgUrl text,
+    quiz_doneCount int default 0,
     primary key (quiz_id),
-    foreign key (quiz_publisher) references accounts(account_id)
+    foreign key (quiz_publisherId) references accounts(account_id)
 );
 
 CREATE TABLE questionTypes (
@@ -70,9 +72,9 @@ INSERT INTO accounts (account_first_name, account_last_name, account_username, a
     ;
     
 
-INSERT INTO quizes (quiz_name, quiz_publisher) VALUES
-	("simpleQuiz1", 1),
-    ("simpleQuiz2", 2)
+INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
+	("simpleQuiz1", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz2", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
     ;
     
 

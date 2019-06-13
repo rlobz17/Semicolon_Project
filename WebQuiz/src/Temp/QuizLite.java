@@ -61,4 +61,10 @@ public class QuizLite {
 	public String getImgurl() {
 		return imgurl;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID " + quiz_id +" | title "+title + " | publisher " + publisher + 
+				" | imgurl " + imgurl +" | date "+ date + " | quizDone " + quizDone;
+	}
 }
