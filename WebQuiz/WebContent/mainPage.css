@@ -198,3 +198,17 @@
     color: #696969;
     font-size: 19px;
 }
+
+.mainContent{
+	width: 70%;
+    background: white;
+    height: -webkit-fill-available;
+    float: left;
+}
+
+.sidebar{
+	width: 30%;
+    height: -webkit-fill-available;
+    float: right;
+    background: #4ba4e94d;
+}

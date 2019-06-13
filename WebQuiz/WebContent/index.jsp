@@ -32,7 +32,17 @@
 	
 		<div id="headerContent"></div>
 		
-		<div class="content"> </div>
+		<div class="content"> 
+		
+			<div class="mainContent">
+		
+			</div>
+			
+			<div class="sidebar">
+			
+			</div>
+		
+		</div>
 		
 		<div id="footerContent"></div>
 		
