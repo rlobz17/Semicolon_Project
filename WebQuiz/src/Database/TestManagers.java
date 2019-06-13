@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import Database.*;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
+import Temp.QuizLite;
+import Temp.QuizLiteManager;
 
 class TestManagers {
 	
@@ -21,7 +23,16 @@ class TestManagers {
 	private String password = DataBaseINFO.MYSQL_PASSWORD;
 	private String server = DataBaseINFO.MYSQL_DATABASE_SERVER;
 	
-	public Statement createStatement() {		
+	public Statement createStatement() {
+		
+		/*
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://"+server+"?autoReconnect=true&useSSL=false", account, password);
@@ -33,6 +44,8 @@ class TestManagers {
 			e.printStackTrace();
 		}
 		
+		
+		
 		return null;
 		
 	}
@@ -41,6 +54,10 @@ class TestManagers {
 
 	@Test
 	void testAccountManager() {
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS AccountManager");
+		System.out.println("////////////////////////////");
+		
 		Statement stm = createStatement();
 		AccountManager manager = new AccountManager();
 		ArrayList<String> list = manager.listOfAccounts(stm);
@@ -79,6 +96,53 @@ class TestManagers {
 		System.out.println("-----------------------");
 		
 		
+	}
+	
+	@Test
+	void testQuizLiteManager() {
+				
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS QuizLiteManager");
+		System.out.println("////////////////////////////");
+		
+		
+		Statement stm = createStatement();
+		QuizLiteManager manager = new QuizLiteManager();
+		System.out.println("testing getAllQuizNumber:");
+		System.out.println("Should be 2: " + manager.getAllQuizNumber(stm));
+		System.out.println("-----------------------");
+		
+		ArrayList<QuizLite> quizes = null;
+		System.out.println("testing getAllQuizNumber:");
+		
+		System.out.println("getting quizLites (null, null, 0, 100, stm) -");
+		quizes = manager.getQuizLites(null, null, 0, 100, stm);
+		for(int i=0; i<quizes.size(); i++) {
+			QuizLite quizLite = quizes.get(i);
+			System.out.println(quizLite);
+		}
+		
+		System.out.println("-----------------------");
+		System.out.println("getting quizLites (null, 1, 0, 10, stm) -");
+		quizes = manager.getQuizLites(null, 1, 0, 10, stm);
+		for(int i=0; i<quizes.size(); i++) {
+			QuizLite quizLite = quizes.get(i);
+			System.out.println(quizLite);
+		}
+		System.out.println("-----------------------");
+		System.out.println("getting quizLites ('1', null, 0, 10, stm) -");
+		quizes = manager.getQuizLites("1", null, 0, 10, stm);
+		for(int i=0; i<quizes.size(); i++) {
+			QuizLite quizLite = quizes.get(i);
+			System.out.println(quizLite);
+		}
+		System.out.println("-----------------------");
+		System.out.println("getting quizLites ('1', 1, 0, 10, stm) -");
+		quizes = manager.getQuizLites("1", 1, 0, 10, stm);
+		for(int i=0; i<quizes.size(); i++) {
+			QuizLite quizLite = quizes.get(i);
+			System.out.println(quizLite);
+		}
 	}
 
 }
