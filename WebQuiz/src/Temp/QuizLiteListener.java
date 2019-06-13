@@ -36,6 +36,7 @@ public class QuizLiteListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce)  { 
          // Auto-generated method stub
     	ServletContext cont = sce.getServletContext();
+    	
     	try {
 			DateBaseManager baseManager = new DateBaseManager();
 			cont.setAttribute("baseManager", baseManager);
@@ -46,6 +47,9 @@ public class QuizLiteListener implements ServletContextListener {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	QuizLiteManager manager = new QuizLiteManager();
+    	cont.setAttribute("QuizLite", manager);
     }
 	
 }
