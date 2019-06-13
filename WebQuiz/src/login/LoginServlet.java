@@ -1,6 +1,7 @@
 package login;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Temp.AccountManager;
+import account.PasswordManager;
 
 /**
  * Servlet implementation class LoginServlet
@@ -48,6 +50,16 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		PasswordManager m = new PasswordManager();
+		String hashPassword = null;
+		
+		try {
+			hashPassword = m.hashPassword(password);
+		} catch (NoSuchAlgorithmException e1) {
+			// Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
 		Statement stm = null;
 		try {
@@ -57,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		int result = acc.doLogin(username, password, stm);
+		int result = acc.doLogin(username, hashPassword, stm);
 		
 		if(result==0) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");

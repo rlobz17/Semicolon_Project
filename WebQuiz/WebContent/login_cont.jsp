@@ -42,7 +42,7 @@
 			</tbody>
 			</table>
 				
-			<label style="margin-left: 50%;"><input value="შესვლა" type="submit"></label>
+			<label><input value="შესვლა" class="logButt" type="submit"></label>
 			
 		</form>
 		

@@ -22,11 +22,11 @@
 	<div class="searchArea">
 	
 		<div class="loginButt">
-			<a href="login.jsp" class="loginTxt"> ავტორიზაცია </a>
+			<a href="/WebQuizProject/login.jsp" class="loginTxt"> ავტორიზაცია </a>
 		</div>
 		
 		<div class="loginButt">
-			<a href="registration.jsp" class="loginTxt"> რეგისტრაცია </a>
+			<a href="/WebQuizProject/registration.jsp" class="loginTxt"> რეგისტრაცია </a>
 		</div>
 		
 		<div>
