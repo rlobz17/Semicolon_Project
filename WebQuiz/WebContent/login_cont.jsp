@@ -9,6 +9,14 @@
 
 <link href="mainPage.css" rel="stylesheet" type="text/css">
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
+
+<script> 
+   	$(function(){
+	$("#sidebarContent").load("sidebar.jsp"); 
+	});
+</script>
+
 </head>
 <body>
 
