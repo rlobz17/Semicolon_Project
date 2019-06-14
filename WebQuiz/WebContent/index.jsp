@@ -24,6 +24,12 @@
 	});
 </script>
 
+<script> 
+   	$(function(){
+	$("#sidebarContent").load("sidebar.jsp"); 
+	});
+</script>
+
 </head>
 
 <body>
@@ -38,9 +44,7 @@
 		
 			</div>
 			
-			<div class="sidebar">
-			
-			</div>
+			<div id="sidebarContent"></div>
 		
 		</div>
 		
