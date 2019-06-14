@@ -40,8 +40,8 @@
 		
 		<div class="content"> 
 		
-			<div class="mainContent">
-		
+			<div class="navigation">
+			
 			</div>
 			
 			<div id="sidebarContent"></div>
