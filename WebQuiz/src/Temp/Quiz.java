@@ -60,7 +60,7 @@ public class Quiz {
 
 	/**
 	 * @param Question
-	 * added this Question to current Quize
+	 * adds this Question to current Quiz
 	 * */
 	
 	public void addQuestion(Question q) {

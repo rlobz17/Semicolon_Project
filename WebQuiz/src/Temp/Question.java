@@ -7,16 +7,16 @@ public class Question {
 	
 	//ivars
 	private int questionID;
-	private ArrayList<Integer> quizIDs; // stores ids of quizes in which this question is used
+	private String quizID; // stores ids of quizes in which this question is used
 	private ArrayList<Answer> answers;
 	private String questionType;
 	private Answer correctAnswer;
 	
-	public Question(ArrayList<Answer> answers, String questionType, int questionID,ArrayList<Integer> quizIDs) {
+	public Question(ArrayList<Answer> answers, String questionType, int questionID, String quizID) {
 		this.questionID = questionID;
 		this.questionType = questionType;
 		this.answers = (answers);
-		this.quizIDs = (quizIDs);
+		this.quizID = (quizID);
 	}
 	
 	
@@ -46,13 +46,11 @@ public class Question {
 
 
 	/**
-	 * @return the quizIDs
+	 * @return the quizID
 	 */
-	public ArrayList<Integer> getQuizIDs() {
-		return quizIDs;
+	public String getQuizIDs() {
+		return quizID;
 	}
-
-
 
 
 	/**
