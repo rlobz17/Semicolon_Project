@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import Database.*;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
+import Temp.Answer;
+import Temp.AnswerManager;
 import Temp.QuestionManager;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
@@ -110,7 +112,7 @@ class TestManagers {
 		Statement stm = createStatement();
 		QuizLiteManager manager = new QuizLiteManager();
 		System.out.println("testing getAllQuizNumber:");
-		System.out.println("Should be 2: " + manager.getAllQuizNumber(stm));
+		System.out.println("Should be 22: " + manager.getAllQuizNumber(stm));
 		System.out.println("-----------------------");
 		
 		ArrayList<QuizLite> quizes = null;
@@ -161,6 +163,30 @@ class TestManagers {
 		System.out.println("Correct return values on getQuestionType method");
 		System.out.println("-----------------------");
 		
+	}
+	
+	@Test
+	void testAnswerManager() {
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS AnswerManager");
+		System.out.println("////////////////////////////");
+		
+		Statement stm = createStatement();
+		AnswerManager manager = new AnswerManager();
+		
+		System.out.println("testing getAllAnswer:");
+		System.out.println("getting all answers on questionId = 1");
+		ArrayList<Answer> result = manager.getAllAnswer(1, stm);
+		for(int i=0; i<result.size(); i++) {
+			System.out.println(result.get(i));
+		}
+		
+		System.out.println("-----------------------");
+		System.out.println("getting all answers on questionId = 2");
+		result = manager.getAllAnswer(2, stm);
+		for(int i=0; i<result.size(); i++) {
+			System.out.println(result.get(i));
+		}
 	}
 
 }

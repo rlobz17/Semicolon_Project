@@ -19,7 +19,7 @@ public class QuestionManagerDao {
 			ResultSet rs = stm.executeQuery("SELECT t.questionType_name FROM questiontypes t "
 					+ "where t.questionType_id = (select q.questionType_id from questions q where q.question_id = "+questionID+");");
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				result = rs.getString(1);
 			}	
 		} catch (SQLException e) {

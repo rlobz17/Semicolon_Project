@@ -58,7 +58,7 @@ CREATE TABLE quizQuestionLinks (
 CREATE TABLE answers(
 	answer_id int(8) not null auto_increment,
     question_id int(8) not null,
-    answer_index int(8) default null, /* determines if answers have order or not */
+    answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
@@ -124,12 +124,12 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
     (2, 2)
     ;
 
-INSERT INTO answers (question_id, answer_detail) VALUES
-    (1, "rlobz17"),
-    (1, "rezi"),
-    (1, "rezgo"),
-    (2, "freeuni"),
-    (2, "free university of tbilisi")
+INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
+    (1, 1, "rlobz17"),
+    (1, 3, "rezi"),
+    (1, 2, "rezgo"),
+    (2, -1, "freeuni"),
+    (2, -1, "free university of tbilisi")
     ;    
 
     
