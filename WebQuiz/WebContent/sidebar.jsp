@@ -28,7 +28,7 @@
 		
 		<div class="sideElem">
 		
-			<div class="block">განცხადებები</div>
+			<div class="block">ბოლო განცხადებები</div>
 			
             
 		</div>
@@ -37,6 +37,7 @@
 		
 			<div class="block">რეკლამა</div>
 			
+			<img src="http://www.picz.ge/img/s1/1906/21/6/6c553cedb137.png" style="width: 276px;margin-left: 10px;">
             
 		</div>
 		

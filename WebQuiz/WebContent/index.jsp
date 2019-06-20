@@ -94,13 +94,35 @@ ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
 						Date dat = quiz.getDate();
 						
 						int year = dat.getYear() + 1900;
-						int month = dat.getMonth();
-						int day = dat.getDay();
+						int month = dat.getMonth() + 1;
+						int day = dat.getDate();
 						
 						int hour = dat.getHours();
 						int min = dat.getMinutes();
 						
-						String date = day + "/" + month + "/" + year + ", " + hour + ":" + min;
+						String dd = "" + day;
+						String mm = "" + month;
+						
+						String hourr = "" + hour;
+						String minn = "" + min;
+						
+						if(day<10){
+							dd = "0" + day;
+						}
+						
+						if(month<10){
+							mm = "0" + month;
+						}
+						
+						if(hour<10){
+							hourr = "0" + hour;
+						}
+						
+						if(min<10){
+							minn = "0" + min;
+						}
+						
+						String date = dd + "/" + mm + "/" + year + ", " + hourr + ":" + minn;
 						
 						%>
 							
