@@ -25,7 +25,9 @@ try {
 }
 
 int quizNumber = m.getAllQuizNumber(stm);
+String p = request.getParameter("page");
 int currentPage = 1;
+if(p!=null) currentPage = Integer.parseInt(p);
 
 navigation n = new navigation(quizNumber, currentPage);
 
@@ -33,7 +35,7 @@ int pages = n.getPageNumber();
 ArrayList<Integer> pagesArr = n.pagesToShow();
 
 int count = 10;
-int beginIndex = (currentPage-1)*count + 1;
+int beginIndex = (currentPage-1)*count;
 
 ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
 %>    
@@ -137,7 +139,7 @@ ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
 							} else{
 								%>
 							
-								<a href="/bla" ><%= i %></a>
+								<a href="/WebQuizProject/index.jsp?page=<%= i %>" ><%= i %></a>
 							
 								<%
 							}
