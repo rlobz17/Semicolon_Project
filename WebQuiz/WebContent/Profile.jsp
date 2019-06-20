@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
@@ -80,7 +81,17 @@ Account acc = m.getAccount(username, stm);
 						<%
 					} else{
 						
-						String date = acc.getRegistrationDate().toString();
+						Date dat = acc.getRegistrationDate();
+						
+						int year = dat.getYear() + 1900;
+						int month = dat.getMonth();
+						int day = dat.getDay();
+						
+						int hour = dat.getHours();
+						int min = dat.getMinutes();
+						
+						String date = day + "/" + month + "/" + year + ", " + hour + ":" + min;
+						
 						String mail = acc.getMail();
 						String imgurl = acc.getImgUrl();
 						

@@ -118,7 +118,7 @@ ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
                 					<img src="http://www.picz.ge/img/s2/1811/5/6/67d913510a23.png" class="icon icon-author">
 										<a href="http://localhost:8080/WebQuizProject/Profile.jsp?username=<%= author%>">	<%= author %> </a>
 									</li>
-            						<span class="grey" style="margin-left: 5%; margin-right: 5%;"><%= date %></span>
+            						<span class="grey" style="margin-left: 2%; margin-right: 2%;"><%= date %></span>
 									<li class="meta_coms"> <img src="http://www.picz.ge/img/s1/1811/5/1/19e64068e570.png" class="icon icon-coms"> <%= quizDone %> </li>
 									</ul>
        							</div>
