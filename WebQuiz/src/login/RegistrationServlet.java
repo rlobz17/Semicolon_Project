@@ -94,16 +94,16 @@ public class RegistrationServlet extends HttpServlet {
 		
 		if(res==0) {
 			acc.addNewAccount(firstname, lastname, username, hashPassword, mail, stm);
-			RequestDispatcher dispatch = request.getRequestDispatcher("/new_user.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=0");
 			dispatch.forward(request, response);
 		} else if(res==1){
-			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid_username.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=1");
 			dispatch.forward(request, response);
 		} else if(res==2) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid_mail.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=2");
 			dispatch.forward(request, response);
 		} else if(res==3) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/invalid.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=3");
 			dispatch.forward(request, response);
 		}
 	}

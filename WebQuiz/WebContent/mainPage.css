@@ -95,6 +95,7 @@
     background: white;
     position: relative;
     overflow: hidden;
+    min-height: 700px;
 }
 
 .login {

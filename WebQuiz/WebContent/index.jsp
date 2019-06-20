@@ -97,7 +97,10 @@ ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
 						int month = dat.getMonth();
 						int day = dat.getDay();
 						
-						String date = day + "/" + month + "/" + year;
+						int hour = dat.getHours();
+						int min = dat.getMinutes();
+						
+						String date = day + "/" + month + "/" + year + ", " + hour + ":" + min;
 						
 						%>
 							
