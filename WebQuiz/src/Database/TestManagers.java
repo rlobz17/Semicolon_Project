@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import Database.*;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
+import Temp.QuestionManager;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
 
@@ -143,6 +144,23 @@ class TestManagers {
 			QuizLite quizLite = quizes.get(i);
 			System.out.println(quizLite);
 		}
+	}
+	
+	@Test
+	void testQuestionManager() {
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS QuestionManager");
+		System.out.println("////////////////////////////");
+		
+		Statement stm = createStatement();
+		QuestionManager manager = new QuestionManager();
+		
+		System.out.println("testing getQuestionType:");
+		assertEquals("Question_Response_type", manager.getQuestionType(1, stm));
+		assertEquals("Picture_Response_type", manager.getQuestionType(2, stm));
+		System.out.println("Correct return values on getQuestionType method");
+		System.out.println("-----------------------");
+		
 	}
 
 }
