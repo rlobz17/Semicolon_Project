@@ -14,7 +14,6 @@ CREATE TABLE accounts (
     account_password char(128) not null,
     account_imgUrl text,
     account_created datetime default now(),
-    account_quizesCreated int(8) default 0,
     account_quizesTaken int(8) default 0,
     account_isAdmin bool default false,
     primary key (account_id)
@@ -60,6 +59,7 @@ CREATE TABLE quizQuestionLinks (
 
 CREATE TABLE answers(
 	answer_id int(8) not null auto_increment,
+    
     question_id int(8) not null,
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
@@ -68,11 +68,11 @@ CREATE TABLE answers(
 );
 
 -- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234' hashed in sha-512
-INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password, account_quizesCreated) VALUES
-	("rezi", "lobzhanidze", "rlobz17", "rlobz17@freeuni.edu.ge", '899ebae3fc157705404ea24cb090ce5f42e7af6a019dc304e3fc7943adf4360060cc67f51b86ba83ff76344fc7d77a4e34d30a213e5804212f58acd737f760a1', 11),
-    ("shota", "nozadze", "snoza17", "snoza17@freeuni.edu.ge", 'eb734e38f4f768eba4cf7c8d02e4d04f8350616c680a506cedb68a6af1fcafef83be5ddb3ea3038a8bff12ae198549fe936e06f9b80c229a15e396c4765d5f57', 11),
-    ("davit", "popkhadze", "dpopk17","dpopk17@freeuni.edu.ge", '227893fda4a3337dc6a242538fa543c0d58489dc43c2e7574d2f8f8fe04876016ad2ac5c010a577d63abf35af3ab15918a08405d18c8af5df002954c31704bd9', 0),
-    ("davit", "kveladze", "dkvel17", "dkvel17@freeuni.edu.ge", '7899d010326dbc410102de1294962da127d057609b522ee802922d799244ef3e2877c4f39e00d95ce1035e77045d97122cc77b29c76cf1daac5d07c7022d7a6c', 0)
+INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password) VALUES
+	("rezi", "lobzhanidze", "rlobz17", "rlobz17@freeuni.edu.ge", '899ebae3fc157705404ea24cb090ce5f42e7af6a019dc304e3fc7943adf4360060cc67f51b86ba83ff76344fc7d77a4e34d30a213e5804212f58acd737f760a1'),
+    ("shota", "nozadze", "snoza17", "snoza17@freeuni.edu.ge", 'eb734e38f4f768eba4cf7c8d02e4d04f8350616c680a506cedb68a6af1fcafef83be5ddb3ea3038a8bff12ae198549fe936e06f9b80c229a15e396c4765d5f57'),
+    ("davit", "popkhadze", "dpopk17","dpopk17@freeuni.edu.ge", '227893fda4a3337dc6a242538fa543c0d58489dc43c2e7574d2f8f8fe04876016ad2ac5c010a577d63abf35af3ab15918a08405d18c8af5df002954c31704bd9'),
+    ("davit", "kveladze", "dkvel17", "dkvel17@freeuni.edu.ge", '7899d010326dbc410102de1294962da127d057609b522ee802922d799244ef3e2877c4f39e00d95ce1035e77045d97122cc77b29c76cf1daac5d07c7022d7a6c')
     ;
     
 
@@ -99,7 +99,6 @@ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
     ("simpleQuiz20", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
     ("simpleQuiz21", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
     ("simpleQuiz22", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
-    
     ;
     
 

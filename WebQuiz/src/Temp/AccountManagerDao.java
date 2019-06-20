@@ -125,7 +125,11 @@ public class AccountManagerDao {
 	
 	
 	public Account getAccount(String username, Statement stm) {
+		Date registrationDate;
 		Account result = null;
+		String userID, mail, userName, imgUrl, firstName, lastName;
+		int quizesTaken, quizesCreated;
+		boolean isAdmin;
 		try{  
 			
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
@@ -136,32 +140,45 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(selectUsername);
 			
 			if(rs.next()) {
-				String userID = rs.getString("account_id");
+				userID = rs.getString("account_id");
 				
-				Date registrationDate;
+				
 				try {
 					registrationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("account_created"));
 				} catch (ParseException e) {
 					e.printStackTrace();
 					return null;
 				}
-				String mail = rs.getString("account_mail");
-				String userName = rs.getString("account_username");
-				String imgUrl = rs.getString("account_imgUrl");
-				String firstName = rs.getString("account_first_name");
-				String lastName = rs.getString("account_last_name");
-				int quizesCreated = rs.getInt("account_quizesCreated");
-				int quizesTaken = rs.getInt("account_quizesTaken");
-				boolean isAdmin = rs.getBoolean("account_isAdmin");
-				
-				result = new Account(Integer.parseInt(userID), registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, isAdmin);
+				mail = rs.getString("account_mail");
+				userName = rs.getString("account_username");
+				imgUrl = rs.getString("account_imgUrl");
+				firstName = rs.getString("account_first_name");
+				lastName = rs.getString("account_last_name");
+				quizesTaken = rs.getInt("account_quizesTaken");
+				isAdmin = rs.getBoolean("account_isAdmin");
+								
 			}else {
-				result = null;
+				return null;
 			}
 			
 			if(rs.next()) {
-				result = null;
+				return null;
 			}
+			
+			String getQuizesCount = "Select count(*) from quizes q ";
+			getQuizesCount += "where q.quiz_publisherId = " + userID + ";";
+			
+			
+			rs = stm.executeQuery(getQuizesCount);
+			if(rs.next()) {
+				quizesCreated = rs.getInt(1);
+			}else {
+				quizesCreated = 0;
+			}
+			
+			result = new Account(Integer.parseInt(userID), registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, isAdmin);
+
+			
 
 		}catch(SQLException e){
 			e.printStackTrace();

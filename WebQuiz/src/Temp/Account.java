@@ -11,7 +11,7 @@ public class Account {
 	//ivars
 	private int userID;
 	private int quizesTaken;
-	private int quizesCreted;
+	private int quizesCreated;
 	
 	private boolean isAdmin;
 
@@ -25,7 +25,7 @@ public class Account {
 	private ArrayList<String> friendsList;
 	private ArrayList<Message> notifications;
 	
-	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName, int quizesCreted, int quizesTaken, boolean isAdmin) {
+	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName, int quizesCreated, int quizesTaken, boolean isAdmin) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -33,7 +33,7 @@ public class Account {
 		this.mail = mail;
 		this.imgUrl = imgUrl;
 		this.userName = userName;
-		this.quizesCreted = quizesCreted;
+		this.quizesCreated = quizesCreated;
 		this.quizesTaken = quizesTaken;
 		this.isAdmin = isAdmin;
 	}
@@ -136,8 +136,8 @@ public class Account {
 	/**
 	 * @return the quizesCreted
 	 */
-	public int getQuizesCreted() {
-		return quizesCreted;
+	public int getQuizesCreated() {
+		return quizesCreated;
 	}
 	
 	/**
@@ -170,11 +170,7 @@ public class Account {
 		return this.friendsList.contains(name);
 	}
 	
-	@Override
-	public String toString() {
-		return "ID " + userID +" | RegDate "+registrationDate + " | Mail " + mail + 
-				" | Username " + userName +" | ImgUrl "+ imgUrl + " | FirstName " + firstName + " | LastName " + lastName;
-	}
+	
 
 	/**
 	 * @return the notifications
@@ -214,6 +210,14 @@ public class Account {
 		}
 		
 		return withoutSpace;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "ID " + userID +" | RegDate "+registrationDate + " | Mail " + mail + 
+				" | Username " + userName +" | ImgUrl "+ imgUrl + " | FirstName " + firstName + " | LastName " + lastName +
+				" | quizesCreated " + quizesCreated + " | quizesTaken " + quizesTaken + " | isAdmin " + isAdmin;
 	}
 
 }
