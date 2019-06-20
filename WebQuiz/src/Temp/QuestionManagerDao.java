@@ -3,6 +3,7 @@ package Temp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Database.DataBaseINFO;
 
@@ -18,6 +19,69 @@ public class QuestionManagerDao {
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT t.questionType_name FROM questiontypes t "
 					+ "where t.questionType_id = (select q.questionType_id from questions q where q.question_id = "+questionID+");");
+			
+			if(rs.next()) {
+				result = rs.getString(1);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return result;	
+	}
+	
+	
+	/**
+	 * @return returns null if SQLError or QuestionID not found, Question if it was found
+	 */
+	public Question getQuestion(int questionID, AnswerManager answerManager, Statement stm) {
+		Question result = null;
+		int questionTypeID;
+		String questionDetail, questionTask;
+		ArrayList<Answer> correctAnswers;
+		try {
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			ResultSet rs = stm.executeQuery("SELECT * FROM questions where question_id =  "+ questionID);			
+			if(rs.next()) {				
+				questionTypeID = rs.getInt("questionType_id"); 
+				questionDetail = rs.getString("question_detail");
+				questionTask = rs.getString("question_task");			
+			}else {
+				return null;
+			}
+			
+			if(rs.next()) {
+				return null;
+			}
+			correctAnswers = answerManager.getAllAnswer(questionID, stm);
+			if(correctAnswers == null) {
+				return null;
+			}
+			
+			if(questionTask == null) {
+				questionTask = getQuestionDefaultTask(questionTypeID, stm);
+				if(questionTask==null) {
+					return null;
+				}
+			}
+			
+			result = new Question(questionID, questionTypeID, questionDetail, questionTask, correctAnswers);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return result;	
+	}
+	
+	public String getQuestionDefaultTask(int questionTypeID, Statement stm) {
+		String result = null;
+		try {
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			ResultSet rs = stm.executeQuery("SELECT questionType_defaultTask FROM questiontypes t "
+					+ "where t.questionType_id = "+questionTypeID);
 			
 			if(rs.next()) {
 				result = rs.getString(1);

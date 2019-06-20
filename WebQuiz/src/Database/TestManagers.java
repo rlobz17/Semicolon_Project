@@ -163,6 +163,13 @@ class TestManagers {
 		System.out.println("Correct return values on getQuestionType method");
 		System.out.println("-----------------------");
 		
+		System.out.println("testing getQuestion:");
+		System.out.println("getting Question with id 1:");
+		System.out.println(manager.getQuestion(1, stm));
+		System.out.println("getting Question with id 2:");
+		System.out.println(manager.getQuestion(2, stm));
+		System.out.println("-----------------------");
+		
 	}
 	
 	@Test

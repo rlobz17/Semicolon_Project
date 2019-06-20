@@ -5,9 +5,11 @@ import java.sql.Statement;
 public class QuestionManager {
 	
 	private QuestionManagerDao dao;
+	private AnswerManager answerManager;
 	
 	public QuestionManager() {
 		dao = new QuestionManagerDao();
+		answerManager = new AnswerManager();
 	}
 	
 	/**
@@ -16,5 +18,11 @@ public class QuestionManager {
 	public String getQuestionType(int questionID, Statement stm) {
 		return dao.getQuestionType(questionID, stm);
 	}
+	
+	public Question getQuestion(int questionID, Statement stm) {
+		return dao.getQuestion(questionID, answerManager, stm);
+	}
+	
+	
 
 }

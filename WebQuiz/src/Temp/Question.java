@@ -7,26 +7,20 @@ public class Question {
 	
 	//ivars
 	private int questionID;
-	private String quizID; // stores ids of quizes in which this question is used
-	private ArrayList<Answer> answers;
-	private String questionType;
-	private Answer correctAnswer;
+	private ArrayList<Answer> correctAnswers;
+	private int questionTypeID;
+	private String questionDetail;
+	private String questionTask;
 	
-	public Question(ArrayList<Answer> answers, String questionType, int questionID, String quizID) {
+	public Question(int questionID, int questionTypeID, String questionDetail, String questionTask, ArrayList<Answer> correctAnswers) {
 		this.questionID = questionID;
-		this.questionType = questionType;
-		this.answers = (answers);
-		this.quizID = (quizID);
+		this.questionTypeID = questionTypeID;
+		this.questionDetail = questionDetail;
+		this.questionTask = questionTask;
+		this.correctAnswers = correctAnswers;
 	}
 	
 	
-	/**
-	 * @param string containing answer
-	 * checks if given param and answer are same
-	 * */
-	public boolean isCorrectAnswer(String answer) {
-		return this.correctAnswer.getAnswerDetail().equals(answer);
-	}
 	
 
 	/**
@@ -36,31 +30,42 @@ public class Question {
 		return questionID;
 	}
 
-	
-	/**
-	 * @return the answer
-	 */
-	public String getAnswer() {
-		return correctAnswer.getAnswerDetail();
-	}
-
-
-	/**
-	 * @return the quizID
-	 */
-	public String getQuizIDs() {
-		return quizID;
-	}
-
-
 	/**
 	 * @return the answers
 	 */
-	public ArrayList<Answer> getAnswers() {
-		return answers;
+	public ArrayList<Answer> getCorrectAnswers() {
+		return correctAnswers;
+	}
+	
+	
+	/**
+	 * @return the questionType
+	 */
+	public int getQuestionType() {
+		return questionTypeID;
 	}
 
 
+	/**
+	 * @return the questionType
+	 */
+	public String getQuestionDetail() {
+		return questionDetail;
+	}
+
+	/**
+	 * @return the questionType
+	 */
+	public String getQuestionTask() {
+		return questionTask;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "questionID " + questionID +" | questionTypeID "+questionTypeID + " | questionDetail " + questionDetail + 
+				" | questionTask " + questionTask;
+	}
 
 	
 }
