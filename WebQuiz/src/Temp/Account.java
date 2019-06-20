@@ -25,7 +25,7 @@ public class Account {
 	private ArrayList<String> friendsList;
 	private ArrayList<Message> notifications;
 	
-	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName) {
+	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName, int quizesCreted, int quizesTaken, boolean isAdmin) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -33,6 +33,9 @@ public class Account {
 		this.mail = mail;
 		this.imgUrl = imgUrl;
 		this.userName = userName;
+		this.quizesCreted = quizesCreted;
+		this.quizesTaken = quizesTaken;
+		this.isAdmin = isAdmin;
 	}
 
 	/**
@@ -99,15 +102,6 @@ public class Account {
 	public int getQuizesTaken() {
 		return quizesTaken;
 	}
-	
-	/**
-	 * set the QuizesTaken
-	 */	
-	public void setQuizesTaken(int quizesTaken) {
-        this.quizesTaken = quizesTaken;
-    }
-
-
 
 	/**
 	 * @return the firstName
@@ -146,14 +140,6 @@ public class Account {
 		return quizesCreted;
 	}
 	
-	/**
-	 * set the QuizesCreted
-	 */	
-	public void setQuizesCreted(int quizesCreted) {
-        this.quizesCreted = quizesCreted;
-    }
-
-
 	/**
 	 * @return the userID
 	 */
@@ -213,12 +199,6 @@ public class Account {
 		return isAdmin;
 	}
 
-	/**
-	 * set the isAdmin
-	 */	
-	public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
 	
 	public static String whitespaceChange(String username) {
 		String withoutSpace = "";

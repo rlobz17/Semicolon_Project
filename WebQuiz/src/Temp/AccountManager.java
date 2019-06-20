@@ -62,4 +62,22 @@ public class AccountManager {
 	}
 	
 	
+	public int addQuizesCreated(int accountId, Statement stm) {
+		return -1;
+	}
+	
+	public int addQuizesTaken(int accountId, Statement stm) {
+		return -1;
+	}
+	
+	public int makeAccountAdmin(int accountId ,Statement stm) {
+		return -1;
+	}
+	
+	public int makeAccountUser(int accountId ,Statement stm) {
+		return -1;
+	}
+		
+	
+	
 }

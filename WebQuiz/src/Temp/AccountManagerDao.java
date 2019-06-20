@@ -150,9 +150,11 @@ public class AccountManagerDao {
 				String imgUrl = rs.getString("account_imgUrl");
 				String firstName = rs.getString("account_first_name");
 				String lastName = rs.getString("account_last_name");
+				int quizesCreated = rs.getInt("account_quizesCreated");
+				int quizesTaken = rs.getInt("account_quizesTaken");
+				boolean isAdmin = rs.getBoolean("account_isAdmin");
 				
-				
-				result = new Account(Integer.parseInt(userID), registrationDate, mail, userName, imgUrl, firstName, lastName);
+				result = new Account(Integer.parseInt(userID), registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, isAdmin);
 			}else {
 				result = null;
 			}
