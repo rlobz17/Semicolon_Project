@@ -18,6 +18,7 @@ import Temp.AnswerManager;
 import Temp.QuestionManager;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
+import Temp.QuizManager;
 
 class TestManagers {
 	
@@ -195,5 +196,27 @@ class TestManagers {
 			System.out.println(result.get(i));
 		}
 	}
+	
+	@Test
+	void testQuizManager() {
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS QuizManager");
+		System.out.println("////////////////////////////");
+		
+		Statement stm = createStatement();
+		QuizManager manager = new QuizManager();
+		QuestionManager questionManager = new QuestionManager();
+		
+		System.out.println("testing getQuiz:");
+		System.out.println("getting quiz with id = 1");
+		System.out.println(manager.getQuiz(1, questionManager, stm));
+		System.out.println("-----------------------");
+		
+		System.out.println("getting quiz with id = 2");
+		System.out.println(manager.getQuiz(2, questionManager, stm));
+		System.out.println("-----------------------");
+	}
+	
+	
 
 }

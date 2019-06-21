@@ -3,14 +3,19 @@ package Temp;
 import java.sql.Statement;
 
 public class QuizManager {
+	
+	private QuizManagerDao dao;
+	
+	public QuizManager() {
+		dao = new QuizManagerDao();	
+	}
 
 	
 	/**
 	 * @return returns null if SQLError or Quiz was not found, Quiz if it was found
 	 */
-	public Quiz getQuiz(String quizId, Statement stm) {
-		//TODO  implement.
-		return null;
+	public Quiz getQuiz(int quizId, QuestionManager questionManager, Statement stm) {
+		return dao.getQuiz(quizId, questionManager, stm);
 	}
 	
 	/**
