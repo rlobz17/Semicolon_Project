@@ -63,8 +63,12 @@ public class Question {
 	
 	@Override
 	public String toString() {
+		String answers = "\n";
+		for(int i=0; i<correctAnswers.size(); i++) {
+			answers += correctAnswers.get(i).toString() + "\n";
+		}
 		return "questionID " + questionID +" | questionTypeID "+questionTypeID + " | questionDetail " + questionDetail + 
-				" | questionTask " + questionTask;
+				" | questionTask " + questionTask +"\nCorrect Answers :" + answers;
 	}
 
 	
