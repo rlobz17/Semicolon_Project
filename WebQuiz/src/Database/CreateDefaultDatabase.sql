@@ -77,27 +77,27 @@ INSERT INTO accounts (account_first_name, account_last_name, account_username, a
     
 
 INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
-	("simpleQuiz1", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+	("simpleQuiz1", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz2", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz3", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz3", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz4", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz5", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz5", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz6", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz7", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz7", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz8", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz9", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz9", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz10", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz11", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz11", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz12", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz13", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz13", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz14", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz15", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz15", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz16", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz17", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz17", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz18", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz19", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz19", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz20", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz21", 1, "https://extensionscdn.joomla.org/cache/fab_image/5a1d9263bfb27_resizeDown1200px525px16.png"),
+    ("simpleQuiz21", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz22", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
     ;
     
