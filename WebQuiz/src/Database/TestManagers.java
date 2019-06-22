@@ -215,6 +215,35 @@ class TestManagers {
 		System.out.println("getting quiz with id = 2");
 		System.out.println(manager.getQuiz(2, questionManager, stm));
 		System.out.println("-----------------------");
+		
+		System.out.println("testing addQuizTakenCount:");
+		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		/*
+			System.out.println("adding 5 done on quiz with id = 1");
+			for(int i=0; i<5; i++) {
+				manager.addQuizTakenCount(1, stm);
+			}
+			assertEquals(5, manager.getQuiz(1, questionManager, stm).getQuizTaken());
+			
+			System.out.println("adding 15 done on quiz with id = 3");
+			for(int i=0; i<15; i++) {
+				manager.addQuizTakenCount(3, stm);
+			}
+			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
+			System.out.println("adding 25 done on quiz with id = 10");
+			for(int i=0; i<25; i++) {
+				manager.addQuizTakenCount(10, stm);
+			}
+			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
+			
+			System.out.println("checking again...");
+			
+			assertEquals(5, manager.getQuiz(1, questionManager, stm).getQuizTaken());
+			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
+			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
+		*/
+		
+		
 	}
 	
 	

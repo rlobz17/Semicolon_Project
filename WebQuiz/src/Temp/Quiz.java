@@ -45,7 +45,7 @@ public class Quiz {
 	/**
 	 * @return the quitTaken
 	 */
-	public int getQuitTaken() {
+	public int getQuizTaken() {
 		return quizTaken;
 	}
 

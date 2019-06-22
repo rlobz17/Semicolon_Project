@@ -30,9 +30,8 @@ public class QuizManager {
 	/**
 	 * @return returns -1 if SQLError, 0 if quiz with this id was not found, 1 if quiz was updated successfully
 	 */
-	public int addQuizTakenCount(String quiz_id, Statement stm) {
-		//TODO implement.
-		return 0;
+	public boolean addQuizTakenCount(int quiz_id, Statement stm) {
+		return dao.addQuizTakenCount(quiz_id, stm);
 	}
 	
 

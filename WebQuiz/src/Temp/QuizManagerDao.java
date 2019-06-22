@@ -32,7 +32,7 @@ public class QuizManagerDao {
 			}
 			
 			if(questionIDs.size() == 0) {
-				return null;
+				//return null;
 			}
 			
 			ArrayList<Question> questions = new ArrayList<>();
@@ -83,4 +83,47 @@ public class QuizManagerDao {
 		
 		return result;
 	}
+	
+	
+	
+	/**
+	 * @return returns false if SQLError, true if quiz was updated successfully
+	 */
+	public boolean addQuizTakenCount(int quiz_id, Statement stm) {
+		try{  
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String updateDoneCount = "UPDATE quizes SET quiz_doneCount = quiz_doneCount + 1 ";
+			updateDoneCount += "where quiz_id = " + quiz_id;
+			
+			return stm.execute(updateDoneCount);
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
