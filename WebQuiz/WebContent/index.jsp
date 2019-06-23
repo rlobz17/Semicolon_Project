@@ -26,12 +26,20 @@ try {
 
 int quizNumber = m.getAllQuizNumber(stm);
 String p = request.getParameter("page");
+
 int currentPage = 1;
-if(p!=null) currentPage = Integer.parseInt(p);
 
 navigation n = new navigation(quizNumber, currentPage);
 
 int pages = n.getPageNumber();
+
+if(p!=null){
+	currentPage = Integer.parseInt(p);
+	if(currentPage<1 || currentPage > pages){
+		currentPage = 1;
+	}
+}
+
 ArrayList<Integer> pagesArr = n.pagesToShow();
 
 int count = 10;

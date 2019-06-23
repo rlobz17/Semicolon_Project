@@ -26,7 +26,7 @@ try {
 
 String p = request.getParameter("page");
 
-int count = 0;
+int count = 30;
 int beginIndex = 1;
 String search = (String)request.getAttribute("searchInput");
 

@@ -30,7 +30,7 @@
 		</div>
 		
 		<div>
-			<form action="search/searchServlet" method="post">
+			<form action="/WebQuizProject/search/searchServlet" method="post">
                 <input type="hidden" name="do" value="search">
                 <input type="text" name="search" class="searchInput" placeholder="შეიყვანეთ საძიებო სიტყვა...">
             </form>
