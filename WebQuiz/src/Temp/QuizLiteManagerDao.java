@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Database.DataBaseINFO;
+import javafx.util.Pair;
 
 public class QuizLiteManagerDao {
 
@@ -29,12 +30,12 @@ public class QuizLiteManagerDao {
 		return result;
 	}
 	
-	public ArrayList<QuizLite> getQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
+	public Pair<ArrayList<QuizLite>, Integer> getQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
 		ArrayList<QuizLite> result = new ArrayList<>();
-		
+		int allFoundCount = 0;
 		try {
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
-			String query = " SELECT q.quiz_id,";
+			String query = " SELECT  SQL_CALC_FOUND_ROWS q.quiz_id,";
 			query += " q.quiz_name,";
 			query += " (select a.account_username from accounts a where a.account_id = q.quiz_publisherId) publisher,";
 			query += " q.quiz_imgUrl,";
@@ -48,6 +49,7 @@ public class QuizLiteManagerDao {
 
 			
 			ResultSet rs = stm.executeQuery(query);
+			
 			while(rs.next()) {
 				int quiz_id = rs.getInt("quiz_id");
 				String title = rs.getString("quiz_name");
@@ -67,7 +69,14 @@ public class QuizLiteManagerDao {
 				
 				QuizLite newQuizLite = new QuizLite(quiz_id, title, publisher, imgurl, createDate, quizDone);
 				result.add(newQuizLite);			
-			}	
+			}
+			
+			ResultSet rs2 = stm.executeQuery("SELECT FOUND_ROWS();");
+			if(rs2.next()) {
+				allFoundCount = rs2.getInt(1);
+			}else {
+				return null;
+			}
 			
 			
 		} catch (SQLException e) {
@@ -75,6 +84,6 @@ public class QuizLiteManagerDao {
 			return null;
 		}	
 		
-		return result;
+		return new Pair<ArrayList<QuizLite>, Integer>(result, allFoundCount);
 	}
 }

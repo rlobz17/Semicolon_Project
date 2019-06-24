@@ -19,6 +19,7 @@ import Temp.QuestionManager;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
 import Temp.QuizManager;
+import javafx.util.Pair;
 
 class TestManagers {
 	
@@ -116,37 +117,47 @@ class TestManagers {
 		System.out.println("Should be 22: " + manager.getAllQuizNumber(stm));
 		System.out.println("-----------------------");
 		
-		ArrayList<QuizLite> quizes = null;
+		Pair< ArrayList<QuizLite>, Integer> result = null;
 		System.out.println("testing getAllQuizNumber:");
 		
 		System.out.println("getting quizLites (null, null, 0, 100, stm) -");
-		quizes = manager.getQuizLites(null, null, 0, 100, stm);
+		result = manager.getQuizLites(null, null, 0, 100, stm);
+		ArrayList<QuizLite> quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(quizLite);
+			System.out.println(i+") "+ quizLite);
 		}
+		System.out.println("All Quizes found in this search: " + result.getValue());
+		System.out.println("-----------------------");
 		
-		System.out.println("-----------------------");
 		System.out.println("getting quizLites (null, 1, 0, 10, stm) -");
-		quizes = manager.getQuizLites(null, 1, 0, 10, stm);
+		result = manager.getQuizLites(null, 1, 0, 10, stm);
+		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(quizLite);
+			System.out.println(i+") "+ quizLite);
 		}
+		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
+		
 		System.out.println("getting quizLites ('1', null, 0, 10, stm) -");
-		quizes = manager.getQuizLites("1", null, 0, 10, stm);
+		result = manager.getQuizLites("1", null, 0, 10, stm);
+		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(quizLite);
+			System.out.println(i+") "+ quizLite);
 		}
+		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
+		
 		System.out.println("getting quizLites ('1', 1, 0, 10, stm) -");
-		quizes = manager.getQuizLites("1", 1, 0, 10, stm);
+		result = manager.getQuizLites("1", 1, 0, 10, stm);
+		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(quizLite);
+			System.out.println(i+") "+ quizLite);
 		}
+		System.out.println("All Quizes found in this search: " + result.getValue());
 	}
 	
 	@Test
