@@ -17,11 +17,11 @@ public class QuizLiteManager {
 		return dao.getAllQuizNumber(stm);
 	}
 	
-	public  Pair<ArrayList<QuizLite>, Integer> getQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
+	public  Pair<ArrayList<QuizLite>, Integer> searchQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
 		if(search ==null ) {
 			search = "";
 		}
-		return dao.getQuizLites(search, user_id, beginIndex, count, stm);
+		return dao.searchQuizLites(search, user_id, beginIndex, count, stm);
 	}
 
 }

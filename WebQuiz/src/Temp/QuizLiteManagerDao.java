@@ -30,24 +30,35 @@ public class QuizLiteManagerDao {
 		return result;
 	}
 	
-	public Pair<ArrayList<QuizLite>, Integer> getQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
+	public Pair<ArrayList<QuizLite>, Integer> searchQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
 		ArrayList<QuizLite> result = new ArrayList<>();
 		int allFoundCount = 0;
 		try {
+			
+			String fullTextSearch ="", likeClauseSearch = "%";
+			if(search!=null) {
+				for(int i=0; i<search.length(); i++) {
+					char current = search.charAt(i);
+					fullTextSearch += current + "*";
+					likeClauseSearch += current + "%";
+				}
+			}
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
-			String query = " SELECT  SQL_CALC_FOUND_ROWS q.quiz_id,";
+			String query = " SELECT q.quiz_id,";
 			query += " q.quiz_name,";
 			query += " (select a.account_username from accounts a where a.account_id = q.quiz_publisherId) publisher,";
 			query += " q.quiz_imgUrl,";
 			query += " q.quiz_created,";
-			query += " q.quiz_doneCount";
+			query += " q.quiz_doneCount,";
+			query += " MATCH (quiz_name) AGAINST('"+fullTextSearch+"' IN BOOLEAN MODE) as score";
 			query += " FROM quizes q ";
-			query += " where q.quiz_name like '%"+search+ "%'";
+			query += " where (q.quiz_name like '"+likeClauseSearch+"' or (soundex(q.quiz_name) like soundex('"+search+"')))";
 			if(user_id != null) {query += " and q.quiz_publisherId = " + user_id;}
-			query += " order by quiz_created desc ";
+			query += " order by score desc ";
 			query += " limit "+beginIndex+", "+ count +";";
 
 			
+			System.out.println(query);
 			ResultSet rs = stm.executeQuery(query);
 			
 			while(rs.next()) {
@@ -71,9 +82,13 @@ public class QuizLiteManagerDao {
 				result.add(newQuizLite);			
 			}
 			
-			ResultSet rs2 = stm.executeQuery("SELECT FOUND_ROWS();");
-			if(rs2.next()) {
-				allFoundCount = rs2.getInt(1);
+			query = " SELECT count(1)";
+			query += " FROM quizes q ";
+			query += " where (q.quiz_name like '"+likeClauseSearch+"' or (soundex(q.quiz_name) like soundex('"+search+"')))";
+			if(user_id != null) {query += " and q.quiz_publisherId = " + user_id;}
+			rs = stm.executeQuery(query);
+			if(rs.next()) {
+				allFoundCount = rs.getInt(1);
 			}else {
 				return null;
 			}

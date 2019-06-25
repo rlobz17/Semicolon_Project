@@ -16,7 +16,9 @@ CREATE TABLE accounts (
     account_created datetime default now(),
     account_quizesTaken int(8) default 0,
     account_isAdmin bool default false,
-    primary key (account_id)
+   
+    primary key (account_id),
+	fulltext(account_first_name, account_last_name, account_username, account_mail)
 );
 
 
@@ -29,7 +31,8 @@ CREATE TABLE quizes (
     quiz_imgUrl text,
     quiz_doneCount int default 0,
     primary key (quiz_id),
-    foreign key (quiz_publisherId) references accounts(account_id)
+    foreign key (quiz_publisherId) references accounts(account_id),
+	fulltext(quiz_name)
 );
 
 CREATE TABLE questionTypes (

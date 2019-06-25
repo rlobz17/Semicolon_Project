@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Database.DataBaseINFO;
+import javafx.util.Pair;
 
 public class AccountManagerDao {
 
@@ -185,6 +186,69 @@ public class AccountManagerDao {
 		}
 		
 		return result;
+	}
+	
+	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
+		ArrayList<Account> result = new ArrayList<>();
+		int allFoundCount = 0;
+		try {
+			String fullTextSearch ="", likeClauseSearch = "%";
+			if(search!=null) {
+				for(int i=0; i<search.length(); i++) {
+					char current = search.charAt(i);
+					fullTextSearch += current + "*";
+					likeClauseSearch += current + "%";
+				}
+			}
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			String query = " SELECT  account_username,";
+			query += " MATCH (account_first_name, account_last_name, account_username, account_mail) AGAINST('"+fullTextSearch+"' IN BOOLEAN MODE) as score";
+			query += " from accounts a";
+			query += " where (account_first_name like '"+likeClauseSearch+"' or  (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += "  account_last_name like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += "  account_username like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += " account_mail like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')))";
+			query += " order by score desc";
+			query += " limit "+beginIndex+", "+ count +";";
+			ResultSet rs = stm.executeQuery(query);		
+
+			
+			ArrayList<String> foundAccounts = new ArrayList<>();
+			while(rs.next()) {
+				foundAccounts.add(rs.getString(1));				
+			}
+			
+			for(int i=0; i<foundAccounts.size(); i++) {
+				Account acc = getAccount(foundAccounts.get(i), stm);
+				if(acc==null) {
+					return null;
+				}else {
+					result.add(acc);
+				}
+			}
+			
+			query = " SELECT  count(1)";
+			query += " from accounts a";
+			query += " where (account_first_name like '"+likeClauseSearch+"' or  (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += "  account_last_name like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += "  account_username like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
+			query += " account_mail like '"+likeClauseSearch+"' or (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')))";
+			rs = stm.executeQuery(query);	
+
+			if(rs.next()) {
+				allFoundCount = rs.getInt(1);
+			}else {
+				return null;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return new Pair<ArrayList<Account>, Integer>(result, allFoundCount);
+
 	}
 	
 }

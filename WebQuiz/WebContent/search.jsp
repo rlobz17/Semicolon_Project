@@ -9,29 +9,29 @@
     pageEncoding="UTF-8"%>
     
 <%
-ServletContext cont = getServletContext();
-Object obj = cont.getAttribute("QuizLite");
+    	ServletContext cont = getServletContext();
+    Object obj = cont.getAttribute("QuizLite");
 
-QuizLiteManager m = (QuizLiteManager)obj;
+    QuizLiteManager m = (QuizLiteManager)obj;
 
-Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-Statement stm = null;
+    Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+    Statement stm = null;
 
-try {
-	stm = d.getConnection().createStatement();
-} catch (SQLException e) {
-	// Auto-generated catch block
-	e.printStackTrace();
-}
+    try {
+    	stm = d.getConnection().createStatement();
+    } catch (SQLException e) {
+    	// Auto-generated catch block
+    	e.printStackTrace();
+    }
 
-String p = request.getParameter("page");
+    String p = request.getParameter("page");
 
-int count = 30;
-int beginIndex = 1;
-String search = (String)request.getAttribute("searchInput");
+    int count = 30;
+    int beginIndex = 1;
+    String search = (String)request.getAttribute("searchInput");
 
-ArrayList<QuizLite> quizes = m.getQuizLites(search, null, beginIndex, count, stm);
-%>    
+    ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, stm).getKey();
+    %>    
     
 <!DOCTYPE html>
 <html>

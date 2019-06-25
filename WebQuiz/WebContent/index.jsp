@@ -9,44 +9,44 @@
     pageEncoding="UTF-8"%>
     
 <%
-ServletContext cont = getServletContext();
-Object obj = cont.getAttribute("QuizLite");
+    	ServletContext cont = getServletContext();
+    Object obj = cont.getAttribute("QuizLite");
 
-QuizLiteManager m = (QuizLiteManager)obj;
+    QuizLiteManager m = (QuizLiteManager)obj;
 
-Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-Statement stm = null;
+    Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+    Statement stm = null;
 
-try {
-	stm = d.getConnection().createStatement();
-} catch (SQLException e) {
-	// Auto-generated catch block
-	e.printStackTrace();
-}
+    try {
+    	stm = d.getConnection().createStatement();
+    } catch (SQLException e) {
+    	// Auto-generated catch block
+    	e.printStackTrace();
+    }
 
-int quizNumber = m.getAllQuizNumber(stm);
-String p = request.getParameter("page");
+    int quizNumber = m.getAllQuizNumber(stm);
+    String p = request.getParameter("page");
 
-int currentPage = 1;
+    int currentPage = 1;
 
-navigation n = new navigation(quizNumber, currentPage);
+    navigation n = new navigation(quizNumber, currentPage);
 
-int pages = n.getPageNumber();
+    int pages = n.getPageNumber();
 
-if(p!=null){
-	currentPage = Integer.parseInt(p);
-	if(currentPage<1 || currentPage > pages){
-		currentPage = 1;
-	}
-}
+    if(p!=null){
+    	currentPage = Integer.parseInt(p);
+    	if(currentPage<1 || currentPage > pages){
+    		currentPage = 1;
+    	}
+    }
 
-ArrayList<Integer> pagesArr = n.pagesToShow();
+    ArrayList<Integer> pagesArr = n.pagesToShow();
 
-int count = 10;
-int beginIndex = (currentPage-1)*count;
+    int count = 10;
+    int beginIndex = (currentPage-1)*count;
 
-ArrayList<QuizLite> quizes = m.getQuizLites(null, null, beginIndex, count, stm);
-%>    
+    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, stm).getKey();
+    %>    
     
 <!DOCTYPE html>
 <html>

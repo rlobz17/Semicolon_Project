@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import Database.*;
+import Temp.Account;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
 import Temp.Answer;
@@ -60,12 +61,19 @@ class TestManagers {
 	@Test
 	void testAccountManager() {
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("testing CLASS AccountManager");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
 		Statement stm = createStatement();
 		AccountManager manager = new AccountManager();
 		ArrayList<String> list = manager.listOfAccounts(stm);
+		System.out.println("testing addNewAccount:");
+		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		/*
 		System.out.println("Before Test------------");
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
@@ -78,7 +86,8 @@ class TestManagers {
 			System.out.println(list.get(i));
 		}
 		System.out.println("-----------------------");
-		
+		*/
+		System.out.println("////////////////////////////");
 		System.out.println("testing checkPassword:");
 		System.out.println("Should be 0: " + manager.doLogin("test", "test", stm));
 		System.out.println("Should be 1: " + manager.doLogin("0", "test", stm));
@@ -86,6 +95,7 @@ class TestManagers {
 		System.out.println("Should be 1: " + manager.doLogin("", "", stm));
 		System.out.println("-----------------------");
 		
+		System.out.println("////////////////////////////");
 		System.out.println("testing containsAccount:");
 		System.out.println("Should be 0: " + manager.containsAccount("test1", "test1", stm));
 		System.out.println("Should be 1: " + manager.containsAccount("test", "test1", stm));
@@ -93,6 +103,7 @@ class TestManagers {
 		System.out.println("Should be 3: " + manager.containsAccount("test", "test", stm));
 		System.out.println("-----------------------");
 		
+		System.out.println("////////////////////////////");
 		System.out.println("testing getAccount:");
 		System.out.println("rlobz17: " + manager.getAccount("rlobz17", stm));
 		System.out.println("snoza17: " + manager.getAccount("snoza17", stm));
@@ -101,13 +112,64 @@ class TestManagers {
 		System.out.println("-----------------------");
 		
 		
+		
+		System.out.println("////////////////////////////");
+		Pair< ArrayList<Account>, Integer> result = null;
+		System.out.println("testing searchAccounts:");
+		
+		System.out.println("-----------------------");
+		System.out.println("getting account (null, 0, 2, stm) -");
+		result = manager.searchAccounts(null, 0, 2, stm);
+		ArrayList<Account> accounts = result.getKey();
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println((i+1)+") "+ account);
+		}
+		System.out.println("All Accounts found in this search: " + result.getValue());
+		System.out.println("-----------------------");
+		
+		System.out.println("getting account (rlobz, 0, 100, stm) -");
+		result = manager.searchAccounts("rlobz", 0, 100, stm);
+		accounts = result.getKey();
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println((i+1)+") "+ account);
+		}
+		System.out.println("All Accounts found in this search: " + result.getValue());
+		System.out.println("-----------------------");
+		
+		System.out.println("getting account (l, 0, 100, stm) -");
+		result = manager.searchAccounts("l", 0, 100, stm);
+		accounts = result.getKey();
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println((i+1)+") "+ account);
+		}
+		System.out.println("All Accounts found in this search: " + result.getValue());
+		System.out.println("-----------------------");
+		
+		System.out.println("getting account (rexi, 0, 100, stm) -");
+		result = manager.searchAccounts("rexi", 0, 100, stm);
+		accounts = result.getKey();
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println((i+1)+") "+ account);
+		}
+		System.out.println("All Accounts found in this search: " + result.getValue());
+		System.out.println("-----------------------");
+		
+		
+		
 	}
 	
 	@Test
 	void testQuizLiteManager() {
-				
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		System.out.println("testing CLASS QuizLiteManager");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
 		
@@ -117,45 +179,47 @@ class TestManagers {
 		System.out.println("Should be 22: " + manager.getAllQuizNumber(stm));
 		System.out.println("-----------------------");
 		
-		Pair< ArrayList<QuizLite>, Integer> result = null;
-		System.out.println("testing getAllQuizNumber:");
 		
+		System.out.println("////////////////////////////");
+		Pair< ArrayList<QuizLite>, Integer> result = null;
+		System.out.println("testing searchQuizLites:");
+		System.out.println("-----------------------");
 		System.out.println("getting quizLites (null, null, 0, 100, stm) -");
-		result = manager.getQuizLites(null, null, 0, 100, stm);
+		result = manager.searchQuizLites(null, null, 0, 100, stm);
 		ArrayList<QuizLite> quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(i+") "+ quizLite);
+			System.out.println((i+1)+") "+ quizLite);
 		}
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
 		System.out.println("getting quizLites (null, 1, 0, 10, stm) -");
-		result = manager.getQuizLites(null, 1, 0, 10, stm);
+		result = manager.searchQuizLites(null, 1, 0, 10, stm);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(i+") "+ quizLite);
+			System.out.println((i+1)+") "+ quizLite);
 		}
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
 		System.out.println("getting quizLites ('1', null, 0, 10, stm) -");
-		result = manager.getQuizLites("1", null, 0, 10, stm);
+		result = manager.searchQuizLites("1", null, 0, 10, stm);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(i+") "+ quizLite);
+			System.out.println((i+1)+") "+ quizLite);
 		}
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
 		System.out.println("getting quizLites ('1', 1, 0, 10, stm) -");
-		result = manager.getQuizLites("1", 1, 0, 10, stm);
+		result = manager.searchQuizLites("1", 1, 0, 10, stm);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
-			System.out.println(i+") "+ quizLite);
+			System.out.println((i+1)+") "+ quizLite);
 		}
 		System.out.println("All Quizes found in this search: " + result.getValue());
 	}
@@ -163,7 +227,11 @@ class TestManagers {
 	@Test
 	void testQuestionManager() {
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("testing CLASS QuestionManager");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
 		Statement stm = createStatement();
@@ -174,6 +242,7 @@ class TestManagers {
 		assertEquals("Picture_Response_type", manager.getQuestionType(2, stm));
 		System.out.println("Correct return values on getQuestionType method");
 		System.out.println("-----------------------");
+		System.out.println("////////////////////////////");
 		
 		System.out.println("testing getQuestion:");
 		System.out.println("getting Question with id 1:");
@@ -187,8 +256,13 @@ class TestManagers {
 	@Test
 	void testAnswerManager() {
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("testing CLASS AnswerManager");
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		
 		
 		Statement stm = createStatement();
 		AnswerManager manager = new AnswerManager();
@@ -211,8 +285,13 @@ class TestManagers {
 	@Test
 	void testQuizManager() {
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
 		System.out.println("testing CLASS QuizManager");
 		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		
 		
 		Statement stm = createStatement();
 		QuizManager manager = new QuizManager();
@@ -227,6 +306,7 @@ class TestManagers {
 		System.out.println(manager.getQuiz(2, questionManager, stm));
 		System.out.println("-----------------------");
 		
+		System.out.println("////////////////////////////");
 		System.out.println("testing addQuizTakenCount:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		/*
@@ -253,6 +333,7 @@ class TestManagers {
 			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
 			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
 		*/
+		System.out.println("-----------------------");
 		
 		
 	}

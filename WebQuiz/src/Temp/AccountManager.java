@@ -3,6 +3,8 @@ package Temp;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javafx.util.Pair;
+
 
 public class AccountManager {
 	AccountManagerDao dao; 
@@ -78,6 +80,7 @@ public class AccountManager {
 		return -1;
 	}
 		
-	
-	
-}
+	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
+		return dao.searchAccounts(search, beginIndex, count, stm);
+	}
+}	
