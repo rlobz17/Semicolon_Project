@@ -204,7 +204,18 @@ class TestManagers {
 		assertEquals(0, manager.addQuizesTaken(1, stm));
 		System.out.println("update account_quizesTaken to id=5 (should return 1)");
 		assertEquals(1, manager.addQuizesTaken(5, stm));
-	*/	
+		
+		System.out.println("-----------------------");
+		System.out.println("change state of account with id=1 to admin");
+		assertEquals(0, manager.makeAccountAdmin(1, stm));
+		System.out.println("change state of account with id=2 to user");
+		assertEquals(0, manager.makeAccountUser(2, stm));
+		System.out.println("change state of account with id=5 to admin (should return 1)");
+		assertEquals(1, manager.makeAccountAdmin(5, stm));
+		System.out.println("change state of account with id=5 to user (should return 1)");
+		assertEquals(1, manager.makeAccountUser(5, stm));
+		
+	*/
 		
 		
 	}
@@ -390,6 +401,7 @@ class TestManagers {
 			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
 			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
 		*/
+		
 		System.out.println("-----------------------");
 		
 		

@@ -533,4 +533,52 @@ public class AccountManagerDao {
 		return result;
 	}
 	
+	
+	public static final int ADMIN = 0;
+	public static final int USER = 1;
+	
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed state of account with this id
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeAccountState(int accountId, int task ,Statement stm) {
+		int result = -1;
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			
+			String changeState = "Update accounts ";
+			if(task==ADMIN) {changeState += " set account_isAdmin = true";}
+			else { changeState += " set account_isAdmin = false"; } 
+			changeState += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(changeState);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
 }

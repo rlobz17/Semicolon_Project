@@ -127,12 +127,25 @@ public class AccountManager {
 		return dao.addQuizesTaken(accountId, stm);
 	}
 	
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed state of account with this id to admin
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
 	public int makeAccountAdmin(int accountId ,Statement stm) {
-		return -1;
+		return dao.changeAccountState(accountId, AccountManagerDao.ADMIN, stm);
 	}
 	
+	/**
+	 * @return 
+	 *  0 - successfully changed state of account with this id to user
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
 	public int makeAccountUser(int accountId ,Statement stm) {
-		return -1;
+		return dao.changeAccountState(accountId, AccountManagerDao.USER, stm);
 	}
 		
 	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
