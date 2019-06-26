@@ -117,12 +117,14 @@ public class AccountManager {
 	}
 	
 	
-	public int addQuizesCreated(int accountId, Statement stm) {
-		return -1;
-	}
-	
+	/**
+	 * @return 
+	 *  0 - successfully added number of quizes taken,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
 	public int addQuizesTaken(int accountId, Statement stm) {
-		return -1;
+		return dao.addQuizesTaken(accountId, stm);
 	}
 	
 	public int makeAccountAdmin(int accountId ,Statement stm) {

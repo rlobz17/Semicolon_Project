@@ -489,4 +489,48 @@ public class AccountManagerDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @return 
+	 *  0 - successfully added number of quizes taken,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int addQuizesTaken(int accountId, Statement stm) {
+
+		int result = -1;
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			
+			String addTaken = "Update accounts ";
+			addTaken += " set account_quizesTaken = account_quizesTaken +1";
+			addTaken += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(addTaken);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
 }

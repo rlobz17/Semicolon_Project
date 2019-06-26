@@ -163,7 +163,7 @@ class TestManagers {
 		System.out.println("testing accountUpdates:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		
-		/*
+	/*	
 		System.out.println("-----------------------");
 		System.out.println("update account_first_name to rezi1 with id=1");
 		assertEquals(0, manager.changeFirstName(1, "rezi1", stm));
@@ -198,9 +198,13 @@ class TestManagers {
 		System.out.println("update account_imgUrl to someImageURL with id=5 (should return 1)");
 		assertEquals(1, manager.changeImg(5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", stm));
 		
-		*/
 		
-		
+		System.out.println("-----------------------");
+		System.out.println("update account_quizesTaken to id=1");
+		assertEquals(0, manager.addQuizesTaken(1, stm));
+		System.out.println("update account_quizesTaken to id=5 (should return 1)");
+		assertEquals(1, manager.addQuizesTaken(5, stm));
+	*/	
 		
 		
 	}
