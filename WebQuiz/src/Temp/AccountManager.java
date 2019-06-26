@@ -64,6 +64,59 @@ public class AccountManager {
 	}
 	
 	
+	/**
+	 * @return 
+	 *  0 - successfully changed first name of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeFirstName(int accountId, String newFirstName, Statement stm) {
+		return dao.changeFirstName(accountId, newFirstName, stm);
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed last name of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeLastName(int accountId, String newLastName, Statement stm) {
+		return dao.changeLastName(accountId, newLastName, stm);
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed username of account with this id,
+	 *  1 - account with this id was not found,
+	 *  2 - if username is already in use,
+	 * -1 - for sql Error 
+	 */
+	public int changeUsername(int accountId, String newUsername, Statement stm) {
+		return dao.changeUsername(accountId, newUsername, stm);
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed mail of account with this id,
+	 *  1 - account with this id was not found
+	 *  2 - if mail is already in use,
+	 * -1 - for sql Error 
+	 */
+	public int changeMail(int accountId, String newMail, Statement stm) {
+		return dao.changeMail(accountId, newMail, stm);
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed profile picture of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeImg(int accountId, String newImgUrl, Statement stm) {
+		return dao.changeImg(accountId, newImgUrl, stm);
+	}
+	
+	
 	public int addQuizesCreated(int accountId, Statement stm) {
 		return -1;
 	}

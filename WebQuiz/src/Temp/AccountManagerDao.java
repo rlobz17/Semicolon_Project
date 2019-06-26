@@ -251,4 +251,242 @@ public class AccountManagerDao {
 
 	}
 	
+	/**
+	 * @return 
+	 *  0 - successfully changed first name of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeFirstName(int accountId, String newFirstName, Statement stm) {
+		int result = -1;
+		
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_first_name = '" + newFirstName + "'";
+			updateString += " where account_id = " + accountId;
+
+			
+			System.out.println(updateString);
+			stm.executeUpdate(updateString);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed last name of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeLastName(int accountId, String newLastName, Statement stm) {
+		int result = -1;
+		
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_last_name = '" + newLastName+ "'";
+			updateString += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(updateString);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed username of account with this id,
+	 *  1 - account with this id was not found,
+	 *  2 - if username is already in use,
+	 * -1 - for sql Error 
+	 */
+	public int changeUsername(int accountId, String newUsername, Statement stm) {
+		int result = -1;
+		
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			String findThisUsername = "Select * from accounts ";
+			findThisUsername += "where account_username = '" + newUsername+ "'";
+						
+			rs = stm.executeQuery(findThisUsername);
+			
+			if(rs.next()) {
+				return 2;
+			}
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_username = '" + newUsername+ "'";
+			updateString += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(updateString);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed mail of account with this id,
+	 *  1 - account with this id was not found
+	 *  2 - if mail is already in use,
+	 * -1 - for sql Error 
+	 */
+	public int changeMail(int accountId, String newMail, Statement stm) {
+
+		int result = -1;
+		
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+						
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			String findThisMail = "Select * from accounts ";
+			findThisMail += "where account_mail = '" + newMail+ "'";
+						
+			rs = stm.executeQuery(findThisMail);
+			
+			if(rs.next()) {
+				return 2;
+			}
+			
+			
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_mail = '" + newMail+ "'";
+			updateString += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(updateString);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 *  0 - successfully changed profile picture of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changeImg(int accountId, String newImgUrl, Statement stm) {
+		
+		int result = -1;
+		
+		try{ 
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				return 1;
+			}else {
+				if(rs.next()) {
+					return -1;
+				}
+			}
+			
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_imgUrl = '" + newImgUrl+ "'";
+			updateString += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(updateString);
+			result = 0;
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
 }

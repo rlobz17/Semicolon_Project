@@ -159,6 +159,49 @@ class TestManagers {
 		System.out.println("-----------------------");
 		
 		
+		System.out.println("////////////////////////////");
+		System.out.println("testing accountUpdates:");
+		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		
+		/*
+		System.out.println("-----------------------");
+		System.out.println("update account_first_name to rezi1 with id=1");
+		assertEquals(0, manager.changeFirstName(1, "rezi1", stm));
+		System.out.println("update account_first_name to rezi1 with id=5 (should return 1)");
+		assertEquals(1, manager.changeFirstName(5, "rezi1", stm));
+		
+		System.out.println("-----------------------");
+		System.out.println("update account_last_name to lobzhanidze1 with id=1");
+		assertEquals(0, manager.changeLastName(1, "lobzhanidze1", stm));
+		System.out.println("update account_last_name to lobzhanidze1 with id=5 (should return 1)");
+		assertEquals(1, manager.changeLastName(5, "lobzhanidze1", stm));
+		
+		System.out.println("-----------------------");
+		System.out.println("update account_username to rezgo with id=1");
+		assertEquals(0, manager.changeUsername(1, "rezgo", stm));
+		System.out.println("update account_username to rezi1 with id=5 (should return 1)");
+		assertEquals(1, manager.changeUsername(5, "rezi1", stm));
+		System.out.println("update account_username to snoza17 with id=1 (should return 2)");
+		assertEquals(2, manager.changeUsername(1, "snoza17", stm));
+		
+		System.out.println("-----------------------");
+		System.out.println("update account_mail to rezi.lobzhanidze@gmail.com with id=1");
+		assertEquals(0, manager.changeMail(1, "rezi.lobzhanidze@gmail.com", stm));
+		System.out.println("update account_mail to rezi.lobzhanidze@gmail.com with id=5 (should return 1)");
+		assertEquals(1, manager.changeMail(5, "rezi.lobzhanidze@gmail.com", stm));
+		System.out.println("update account_mail to snoza17@freeuni.edu.ge with id=1 (should return 2)");
+		assertEquals(2, manager.changeMail(1, "snoza17@freeuni.edu.ge", stm));
+		
+		System.out.println("-----------------------");
+		System.out.println("update account_imgUrl to someImageURL with id=1");
+		assertEquals(0, manager.changeImg(1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", stm));
+		System.out.println("update account_imgUrl to someImageURL with id=5 (should return 1)");
+		assertEquals(1, manager.changeImg(5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", stm));
+		
+		*/
+		
+		
+		
 		
 	}
 	
