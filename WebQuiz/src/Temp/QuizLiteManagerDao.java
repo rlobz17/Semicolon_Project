@@ -36,12 +36,12 @@ public class QuizLiteManagerDao {
 		try {
 			
 			String fullTextSearch ="", likeClauseSearch = "%";
-			if(search!=null) {
+			if(search.length()!=0) {
 				for(int i=0; i<search.length(); i++) {
 					char current = search.charAt(i);
-					fullTextSearch += current + "*";
 					likeClauseSearch += current + "%";
 				}
+				fullTextSearch = search + "*" ;
 			}
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			String query = " SELECT q.quiz_id,";

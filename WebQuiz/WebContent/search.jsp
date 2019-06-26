@@ -27,7 +27,7 @@
     String p = request.getParameter("page");
 
     int count = 30;
-    int beginIndex = 1;
+    int beginIndex = 0;
     String search = (String)request.getAttribute("searchInput");
 
     ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, stm).getKey();
