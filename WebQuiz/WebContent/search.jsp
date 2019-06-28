@@ -24,11 +24,34 @@
     	e.printStackTrace();
     }
 
+    
     String p = request.getParameter("page");
+    
+    int currentPage = 1;
+    if(p!=null){
+    	currentPage = Integer.parseInt(p);
+    }
 
-    int count = 30;
-    int beginIndex = 0;
+    int count = 10;
+    int beginIndex = (currentPage-1)*count;
+    
     String search = (String)request.getAttribute("searchInput");
+    
+    if(search==null){
+    	search = request.getParameter("search");
+    }
+    
+	int quizNumber = m.searchQuizLites(search, null, beginIndex, count, stm).getValue();
+    
+    navigation n = new navigation(quizNumber, currentPage);
+
+    int pages = n.getPageNumber();
+
+    if(currentPage<1 || currentPage > pages){
+    	currentPage = 1;
+    }
+
+    ArrayList<Integer> pagesArr = n.pagesToShow();
 
     ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, stm).getKey();
     %>    
@@ -146,6 +169,26 @@
 					}
 				
 				%>
+				
+				<div class="navigation">
+					<%
+						for(int i=1; i<=pages; i++){
+							if(i==currentPage){
+								%>
+							
+								<span><%= i %></span>
+							
+								<%
+							} else{
+								%>
+							
+								<a href="/WebQuizProject/search.jsp?page=<%= i %>&search=<%= search %>" ><%= i %></a>
+							
+								<%
+							}
+						}
+					%>
+				</div>
 			
 			</div>
 			

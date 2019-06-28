@@ -28,17 +28,17 @@
     String p = request.getParameter("page");
 
     int currentPage = 1;
+    if(p!=null){
+    	currentPage = Integer.parseInt(p);
+    }
 
     navigation n = new navigation(quizNumber, currentPage);
 
     int pages = n.getPageNumber();
 
-    if(p!=null){
-    	currentPage = Integer.parseInt(p);
-    	if(currentPage<1 || currentPage > pages){
-    		currentPage = 1;
-    	}
-    }
+    if(currentPage<1 || currentPage > pages){
+		currentPage = 1;
+	}
 
     ArrayList<Integer> pagesArr = n.pagesToShow();
 
@@ -54,7 +54,7 @@
 <head>
 
 <meta charset="UTF-8">
-<link href="mainPage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mainPage.css"/>
 
 <title>WebQuiz</title>
 
@@ -62,19 +62,19 @@
 
 <script> 
    	$(function(){
-	$("#headerContent").load("header.jsp"); 
+	$("#headerContent").load("/WebQuizProject/header.jsp"); 
 	});
 </script>
 
 <script> 
    	$(function(){
-	$("#footerContent").load("footer.jsp"); 
+	$("#footerContent").load("/WebQuizProject/footer.jsp"); 
 	});
 </script>
 
 <script> 
    	$(function(){
-	$("#sidebarContent").load("sidebar.jsp"); 
+	$("#sidebarContent").load("/WebQuizProject/sidebar.jsp"); 
 	});
 </script>
 
