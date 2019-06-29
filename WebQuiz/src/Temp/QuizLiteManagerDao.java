@@ -54,7 +54,8 @@ public class QuizLiteManagerDao {
 			query += " FROM quizes q ";
 			query += " where (q.quiz_name like '"+likeClauseSearch+"' or (soundex(q.quiz_name) like soundex('"+search+"')))";
 			if(user_id != null) {query += " and q.quiz_publisherId = " + user_id;}
-			query += " order by score desc ";
+			if(search.length()!=0) {query += " order by score desc ";}
+			else {query += " order by quiz_created desc ";}
 			query += " limit "+beginIndex+", "+ count +";";
 
 			
