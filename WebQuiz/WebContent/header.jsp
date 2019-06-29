@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	String user = (String)request.getSession().getAttribute("username");
+
+	Boolean logged = false;
+	if(user!=null) logged = true;
+%>
 <!DOCTYPE html>
 <html>
 
@@ -21,13 +28,33 @@
 		
 	<div class="searchArea">
 	
-		<div class="loginButt">
-			<a href="/WebQuizProject/login.jsp" class="loginTxt"> ავტორიზაცია </a>
-		</div>
-		
-		<div class="loginButt">
-			<a href="/WebQuizProject/registration.jsp" class="loginTxt"> რეგისტრაცია </a>
-		</div>
+		<%
+			if(!logged){
+				%>
+				
+				<div class="loginButt">
+					<a href="/WebQuizProject/login.jsp" class="loginTxt"> ავტორიზაცია </a>
+				</div>
+				
+				<div class="loginButt">
+					<a href="/WebQuizProject/registration.jsp" class="loginTxt"> რეგისტრაცია </a>
+				</div>
+				
+		<%
+			} else{
+				%>
+				
+				<div class="loginButt">
+					<a href="/WebQuizProject/Profile.jsp?username=<%= user %>" class="loginTxt"> პროფილი </a>
+				</div>
+				
+				<div class="loginButt">
+					<a href="/WebQuizProject/registration.jsp" class="loginTxt"> გასვლა </a>
+				</div>
+				
+				<%
+			}
+		%>
 		
 		<div>
 			<form action="/WebQuizProject/search/searchServlet" method="post">

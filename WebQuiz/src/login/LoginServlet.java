@@ -72,7 +72,8 @@ public class LoginServlet extends HttpServlet {
 		int result = acc.doLogin(username, hashPassword, stm);
 		
 		if(result==0) {
-			RequestDispatcher dispatch = request.getRequestDispatcher("/welcome.jsp");
+			request.getSession().setAttribute("username", username);
+			RequestDispatcher dispatch = request.getRequestDispatcher("/index.jsp");
 			dispatch.forward(request, response);
 		} else if(result==1){
 			RequestDispatcher dispatch = request.getRequestDispatcher("/login.jsp?error_id=1");
