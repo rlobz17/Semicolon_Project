@@ -1,3 +1,4 @@
+<%@page import="Temp.AccountManager"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
@@ -31,7 +32,7 @@
 	
 	String title = quiz.getQuizName();
 	String imgURL = quiz.getImgUrl();
-	int author = quiz.getCreatorID();
+	int authorID = quiz.getCreatorID();
 	
 	Date dat = quiz.getCreationData();
 	int quizDone = quiz.getQuizTaken();
@@ -66,6 +67,12 @@
 	}
 	
 	String date = dd + "/" + mm + "/" + year + ", " + hourr + ":" + minn;
+	
+	Object objAcc = cont.getAttribute("manager");
+	
+    AccountManager accM = (AccountManager)objAcc;
+    
+    String author = accM.getAccountUsername(authorID, stm);
 %>
     
 <!DOCTYPE html>
