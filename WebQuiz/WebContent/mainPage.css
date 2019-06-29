@@ -445,7 +445,6 @@
 
 .fullQuiz{
 	width: 98%;
-	min-height: 500px;
 	margin: 1%;
 	border: 1px solid #e7e7e7;
 	border-radius: 6px;
@@ -475,6 +474,7 @@
     margin-top: 10px;
     border: 1px solid #e7e7e7;
     border-radius: 10px;
+    background: #3a3a3a;
 }
 
 .fullstoryImg img{
@@ -488,4 +488,26 @@
 
 .fullstoryImg:hover img {
       transform: translateZ(0) scale(1.2); overflow:hidden;
+}
+
+.startQuiz {
+    height: 30px;
+    background: #9c1010;
+    color: #ffffff;
+    width: 29%;
+    font-size: 24px;
+    padding: 12px;
+    margin: auto;
+    border-radius: 7px;
+    text-shadow: 1px 1px #000000;
+    line-height: 31px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.quizTxt {
+    text-decoration: none;
+    color: white;
+    float: left;
+    overflow: hidden;
 }
