@@ -29,6 +29,7 @@
 	Quiz quiz = quizManager.getQuiz(quizID, questionManager, stm);
 	
 	String title = quiz.getQuizName();
+	String imgURL = quiz.getImgUrl();
 %>
     
 <!DOCTYPE html>
@@ -73,7 +74,17 @@
 			
 			<div class="mainContent">		
 				
-				<h1><%= title %></h1>
+				<div class="fullQuiz">
+					
+					<div class="fullTitle"> 
+						<%= title%>
+					</div>
+					
+					<div class="fullstoryImg">
+						<img src="<%= imgURL %>">
+					</div>
+					
+				</div>
 		
 			</div>
 				

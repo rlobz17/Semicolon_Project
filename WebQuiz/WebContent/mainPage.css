@@ -350,7 +350,8 @@
 }
 
 .shortstoryImg:hover img {
-      transform: translateZ(0) scale(1.2); overflow:hidden;}
+      transform: translateZ(0) scale(1.2); overflow:hidden;
+}
 
 .shortstoryTxt {
     font-size: 1.1em;
@@ -439,4 +440,52 @@
 .grey a {
 	color: #545454;
 	text-decoration: none;
+}
+
+
+.fullQuiz{
+	width: 98%;
+	min-height: 500px;
+	margin: 1%;
+	border: 1px solid #e7e7e7;
+	border-radius: 6px;
+}
+
+.fullTitle {
+        height: auto;
+        background: #206fad9e;
+        color: #f7bc45;
+        width: 96.5%;
+        font-size: 17px;
+        padding: 12px;
+        overflow: hidden;
+        border-radius: 6px;
+        text-shadow: 1px 1px #982929;
+        border-bottom: 1px solid #f7bc45;
+}
+
+.fullstoryImg {
+    position: relative;
+    background-size: 100% 100%;
+    width: 78%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+}
+
+.fullstoryImg img{
+   	width:100%;
+   	height:100%;
+   	object-fit: cover;
+    transition: .5s;
+    transform: translateZ(0);
+    backface-visibility: hidden; 
+}
+
+.fullstoryImg:hover img {
+      transform: translateZ(0) scale(1.2); overflow:hidden;
 }
