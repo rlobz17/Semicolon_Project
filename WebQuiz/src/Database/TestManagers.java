@@ -112,6 +112,12 @@ class TestManagers {
 		System.out.println("-----------------------");
 		
 		
+		System.out.println("////////////////////////////");
+		System.out.println("testing getAccountUsername method:");
+		System.out.println("id = 1: " + manager.getAccountUsername(1, stm));
+		System.out.println("id = 2: " + manager.getAccountUsername(2, stm));
+		System.out.println("-----------------------");
+		
 		
 		System.out.println("////////////////////////////");
 		Pair< ArrayList<Account>, Integer> result = null;

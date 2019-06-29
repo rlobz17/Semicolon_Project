@@ -191,6 +191,40 @@ public class AccountManagerDao {
 	
 	/**
 	 * @return 
+	 * String - username of account with this id
+	 * null - for sql Error 
+	 */
+	public String getAccountUsername(int userID, Statement stm) {
+		String result = null;		
+	
+		try{  	
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String selectUsername = "Select account_username from accounts ";
+			selectUsername += "where account_id = " + userID;
+						
+			ResultSet rs = stm.executeQuery(selectUsername);
+			
+			if(rs.next()) {
+				result = rs.getString(1);
+				if(rs.next()) {
+					return null;
+				}
+			}else {
+				return null;
+			}
+		
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+		return result;
+
+	}
+	
+	/**
+	 * @return 
 	 * Account - found account with this userID
 	 * null - for sql Error 
 	 */

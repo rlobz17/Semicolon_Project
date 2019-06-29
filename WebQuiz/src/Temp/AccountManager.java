@@ -86,6 +86,14 @@ public class AccountManager {
 		return dao.getAccount(userID, stm);
 	}
 	
+	/**
+	 * @return 
+	 * Account - found account with this username
+	 * null - for sql Error 
+	 */
+	public String getAccountUsername(int userID, Statement stm) {
+		return dao.getAccountUsername(userID, stm);
+	}
 	
 	/**
 	 * @return 
