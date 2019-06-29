@@ -104,11 +104,11 @@ class TestManagers {
 		System.out.println("-----------------------");
 		
 		System.out.println("////////////////////////////");
-		System.out.println("testing getAccount:");
+		System.out.println("testing getAccount methods (2 with username, 2 with id):");
 		System.out.println("rlobz17: " + manager.getAccount("rlobz17", stm));
-		System.out.println("snoza17: " + manager.getAccount("snoza17", stm));
+		System.out.println("id = 2: " + manager.getAccount(2, stm));
 		System.out.println("dpopk17: " + manager.getAccount("dpopk17", stm));
-		System.out.println("dkvel17: " + manager.getAccount("dkvel17", stm));
+		System.out.println("id = 4: " + manager.getAccount(4, stm));
 		System.out.println("-----------------------");
 		
 		

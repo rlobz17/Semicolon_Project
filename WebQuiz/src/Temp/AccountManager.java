@@ -54,13 +54,36 @@ public class AccountManager {
 		return dao.checkPassword(username, password, stm);
 	}
 	
+	
+	/**
+	 * This method is used for testing.
+	 * @return 
+	 * ArrayList<String> - list of all acounts
+	 * null - for sql Error
+	 * @
+	 * 
+	 */
 	public ArrayList<String> listOfAccounts(Statement stm) {
 		return dao.listOfAccounts(stm);
 	}
 	
-		
+	
+	/**
+	 * @return 
+	 * Account - found account with this username
+	 * null - for sql Error 
+	 */
 	public Account getAccount(String username, Statement stm) {
 		return dao.getAccount(username, stm);
+	}
+	
+	/**
+	 * @return 
+	 * Account - found account with this userID
+	 * null - for sql Error 
+	 */
+	public Account getAccount(int userID, Statement stm) {
+		return dao.getAccount(userID, stm);
 	}
 	
 	
@@ -147,7 +170,13 @@ public class AccountManager {
 	public int makeAccountUser(int accountId ,Statement stm) {
 		return dao.changeAccountState(accountId, AccountManagerDao.USER, stm);
 	}
-		
+	
+	
+	/**
+	 * @return 
+	 * Pair<ArrayList<Account>, Integer> - ArrayList<Account> is searched, ordered and limited account list, Integer is full number of accounts found in this search.
+	 * null - for sql Error 
+	 */
 	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
 		return dao.searchAccounts(search, beginIndex, count, stm);
 	}
