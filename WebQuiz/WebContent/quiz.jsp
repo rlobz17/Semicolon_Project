@@ -1,9 +1,34 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="Temp.QuestionManager"%>
+<%@page import="Temp.QuizManager"%>
+<%@page import="Temp.Quiz"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-	String quiz = request.getParameter("id");
-	int quizID = Integer.parseInt(quiz);
+	String q = request.getParameter("id");
+	int quizID = Integer.parseInt(q);
+	
+	ServletContext cont = getServletContext();
+    Object obj = cont.getAttribute("Quiz");
+	
+    QuizManager quizManager = (QuizManager)obj;
+	QuestionManager questionManager = new QuestionManager();
+	
+	Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+    Statement stm = null;
+
+    try {
+    	stm = d.getConnection().createStatement();
+    } catch (SQLException e) {
+    	// Auto-generated catch block
+    	e.printStackTrace();
+    }
+	
+	Quiz quiz = quizManager.getQuiz(quizID, questionManager, stm);
+	
+	String title = quiz.getQuizName();
 %>
     
 <!DOCTYPE html>
@@ -48,7 +73,7 @@
 			
 			<div class="mainContent">		
 				
-				<h1><%= quizID %></h1>
+				<h1><%= title %></h1>
 		
 			</div>
 				
