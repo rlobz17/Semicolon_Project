@@ -18,6 +18,7 @@ import Temp.Answer;
 import Temp.AnswerManager;
 import Temp.Question;
 import Temp.QuestionManager;
+import Temp.Quiz;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
 import Temp.QuizManager;
@@ -432,6 +433,20 @@ class TestManagers {
 		*/
 		
 		System.out.println("-----------------------");
+		System.out.println("testing addQuiz method:");
+		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		/*
+			ArrayList<Question> testQuestions = new ArrayList<>();
+			ArrayList<Answer> testAnswers = new ArrayList<>();
+			testAnswers.add(new Answer(0, 0, 1, "test"));
+			Question newQuestion = new Question(0, 1, null, null, testAnswers);
+			testQuestions.add(newQuestion);
+			
+			System.out.println("adding new quiz with testQuestions");
+			Quiz newQuiz = new Quiz(0, "testQuiz", testQuestions, 1, null, null, 0, "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg");
+			int result = manager.addQuiz(newQuiz,stm);
+			System.out.println(manager.getQuiz(result, stm));
+		*/
 		
 		
 	}

@@ -104,7 +104,6 @@ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
     ("simpleQuiz22", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
     ;
     
-
     
 INSERT INTO questionTypes (questionType_id, questionType_name, questionType_defaultTask) VALUES
 	(1,"Question_Response_type", "Answer the question"),

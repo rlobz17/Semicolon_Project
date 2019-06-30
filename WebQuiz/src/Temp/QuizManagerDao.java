@@ -107,14 +107,41 @@ public class QuizManagerDao {
 	
 	/**
 	 * @return
-	 * 0 - if done without any problem,
-	 * 1 - quiz was not added
+	 * 0 - quiz  was not added
+	 * quizID - quiz was added with this id 
 	 * -1 - if sql Error
 	 */
-	public int addQuiz(Quiz quiz, Statement stm) {
+	public int addQuiz(Quiz quiz,ArrayList<Integer> questionIDs, Statement stm) {
 		int result = 0;
+		try{  
+			
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String addQuiz = "INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES";
+			addQuiz += "('"+ quiz.getQuizName()+"'";
+			addQuiz += "," + quiz.getCreatorID();
+			addQuiz += ",'" + quiz.getImgUrl() + "')";
 		
-		return 0;
+			stm.executeUpdate(addQuiz);
+			
+			ResultSet rs =  stm.executeQuery("select last_insert_id()");
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}else {
+				return -1;
+			}
+			
+			
+			for(int i=0; i<questionIDs.size(); i++) {
+				stm.executeUpdate("INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES ("+result+","+questionIDs.get(i)+")");
+			}
+			 
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		return result;
 	}
 }
 

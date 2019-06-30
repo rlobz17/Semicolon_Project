@@ -29,6 +29,13 @@ public class Question {
 	public int getQuestionID() {
 		return questionID;
 	}
+	
+	/**
+	 * sets the questionID
+	 */
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
+	}
 
 	/**
 	 * @return the answers
