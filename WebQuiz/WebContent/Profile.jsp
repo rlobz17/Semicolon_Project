@@ -29,6 +29,17 @@ username = Account.whitespaceChange(username);
 
 Account acc = m.getAccount(username, stm);
 
+String user = (String)request.getSession().getAttribute("username");
+Account viewerAcc = m.getAccount(user, stm);
+
+boolean myAccount = false;
+boolean isAdmin = false;
+
+if(user!=null){
+	myAccount = user.equals(username);
+	isAdmin = viewerAcc.isAdmin();
+}
+
 %>
     
 <!DOCTYPE html>
@@ -256,6 +267,94 @@ Account acc = m.getAccount(username, stm);
 						<%
 					}
 				%>
+				
+			<%
+				if(myAccount || isAdmin){
+					%>
+						<div class="profileEdit">
+						
+							<div class="login">მონაცემების ცვლილება</div>
+							
+							<form action="/" method="POST">
+							
+								<table class="loginTable"><tbody>
+											
+									<tr>
+										<td>
+											ახალი სახელი:
+										</td>
+										<td>
+											<input id="firstname" type="text" name="firstname" class="loginInput">
+										</td>
+									</tr>
+											
+									<tr>
+										<td>
+											ახალი გვარი:
+										</td>
+										<td>
+											<input id="lastname" type="text" name="lastname" class="loginInput">
+										</td>
+									</tr>
+											
+									<tr>
+										<td>
+											ახალი მეილი:
+										</td>
+										<td>
+											<input id="mail" type="text" name="mail" class="loginInput">
+										</td>
+									</tr>
+									
+								
+								</tbody></table>
+										
+								<label><input value="შეცვლა" class="logButt" type="submit"></label>
+							
+							</form>
+						
+						</div>
+						
+						
+						<div class="profileEdit">
+						
+							<div class="login">პაროლის ცვლილება</div>
+							
+							<form action="/" method="POST">
+							
+								<table class="loginTable"><tbody>
+											
+									<tr>
+										<td>
+											ძველი პაროლი:*
+										</td>
+										<td>
+											<input id="old_password" type="password" name="old_password" class="loginInput">
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											ახალი პაროლი:*
+										</td>
+										<td>
+											<input id="new_password" type="password" name="new_password" class="loginInput">
+										</td>
+									</tr>
+									
+								
+								</tbody></table>
+										
+								<label><input value="შეცვლა" class="logButt" type="submit"></label>
+							
+							</form>
+						
+						</div>
+						
+					<%
+				}
+			
+			%>
 				
 			</div>
 		
