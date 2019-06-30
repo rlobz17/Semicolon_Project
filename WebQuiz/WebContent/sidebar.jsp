@@ -15,12 +15,16 @@
 			
 			<div class="menu">
 				<ul>
-					<li><a href="/">კატეგორია1</a></li>
-					<li><a href="/">კატეგორია2</a></li>
-					<li><a href="/">კატეგორია3</a></li>
-					<li><a href="/">კატეგორია4</a></li>
-					<li><a href="/">კატეგორია5</a></li>
-					<li><a href="/">კატეგორია6</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=culture">კულტურა</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=religion">რელიგია</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=politics">პოლიტიკა</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=sport">სპორტი</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=history">ისტორია</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=science">მეცნიერება</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=art">ხელოვნება</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=kids">საბავშვო</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=medicine">მედიცინა</a></li>
+					<li><a href="/WebQuizProject/categories.jsp?id=other">სხვა</a></li>
 				</ul>
             </div>
             
