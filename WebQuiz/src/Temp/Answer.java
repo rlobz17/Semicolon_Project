@@ -28,6 +28,13 @@ public class Answer implements Comparable<Answer> {
 	public int getQuestionID() {
 		return questionID;
 	}
+	
+	/**
+	 * sets question id to @param questionID
+	 */
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
+	}
 
 
 	/**

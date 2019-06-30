@@ -65,7 +65,6 @@ public class QuestionManagerDao {
 					return null;
 				}
 			}
-			
 			result = new Question(questionID, questionTypeID, questionDetail, questionTask, correctAnswers);
 			
 		} catch (SQLException e) {
@@ -92,6 +91,46 @@ public class QuestionManagerDao {
 		}	
 		
 		return result;	
+	}
+	
+	/**
+	 * @return
+	 *  0 - question was not added
+	 *  questionID - if question was added successfully
+	 * -1 - if sql Error
+	 */
+	public int addQuestion(Question newQuestion, Statement stm) {
+		int result = 1;
+		
+		try {
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task) VALUES";
+			addQuestionString += "(" +newQuestion.getQuestionType();
+			if(newQuestion.getQuestionDetail() == null) {addQuestionString += ",null";}
+			else {addQuestionString += ",'" + newQuestion.getQuestionDetail()+"'";}
+			if(newQuestion.getQuestionTask()== null) {addQuestionString += ",null)";}
+			else {addQuestionString += ",'" + newQuestion.getQuestionTask()+"')";}
+			
+						
+			
+			stm.executeUpdate(addQuestionString);
+			
+			ResultSet rs =  stm.executeQuery("select last_insert_id()");
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}else {
+				result = -1;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}	
+		
+		
+		return result;
 	}
 
 }

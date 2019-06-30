@@ -5,21 +5,26 @@ import java.sql.Statement;
 public class QuizManager {
 	
 	private QuizManagerDao dao;
+	private QuestionManager questionManager;
 	
-	public QuizManager() {
-		dao = new QuizManagerDao();	
+	public QuizManager(QuestionManager questionManager) {
+		dao = new QuizManagerDao();
+		this.questionManager = questionManager;
 	}
 
 	
 	/**
 	 * @return returns null if SQLError or Quiz was not found, Quiz if it was found
 	 */
-	public Quiz getQuiz(int quizId, QuestionManager questionManager, Statement stm) {
+	public Quiz getQuiz(int quizId, Statement stm) {
 		return dao.getQuiz(quizId, questionManager, stm);
 	}
 	
 	/**
-	 * @return returns -1 if SQLError, 0 if quiz is not added, 1 if quiz was added successfully
+	 * @return
+	 * 0 - if done without any problem,
+	 * 1 - quiz was not added
+	 * -1 - if sql Error
 	 */
 	public int addQuiz(Quiz quiz, Statement stm) {
 		//TODO implement.

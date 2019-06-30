@@ -25,4 +25,14 @@ public class AnswerManager {
 		Collections.sort(result);
 		return result;
 	}
+	
+	/**
+	 * @return
+	 *  0 - if done without any problem,
+	 *  1 - answer was not added
+	 * -1 - if sql Error
+	 */
+	public int addAnswer(Answer newAnswer, Statement stm) {
+		return dao.addAnswer(newAnswer, stm);
+	}
 }

@@ -33,4 +33,33 @@ public class AnswerManagerDao {
 		
 		return result;	
 	}
+	
+	
+	/**
+	 * @return
+	 *  0 - if done without any problem,
+	 *  1 - answer was not added
+	 * -1 - if sql Error
+	 */
+	public int addAnswer(Answer newAnswer, Statement stm) {
+		int result = 1;
+				
+		try {
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String addAnswerString = "INSERT INTO answers (question_id, answer_index, answer_detail) VALUES";
+			addAnswerString+= "("+newAnswer.getQuestionID();
+			addAnswerString+= ","+newAnswer.getAnswerIndex();
+			addAnswerString+= ",'"+newAnswer.getAnswerDetail()+"')";
+			
+			System.out.println(addAnswerString);
+			stm.executeUpdate(addAnswerString);
+			result = 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}	
+		
+		return result;
+	}
 }

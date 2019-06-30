@@ -59,7 +59,6 @@ public class QuizLiteManagerDao {
 			query += " limit "+beginIndex+", "+ count +";";
 
 			
-			System.out.println(query);
 			ResultSet rs = stm.executeQuery(query);
 			
 			while(rs.next()) {

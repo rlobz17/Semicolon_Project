@@ -104,6 +104,18 @@ public class QuizManagerDao {
 			return false;
 		}
 	}
+	
+	/**
+	 * @return
+	 * 0 - if done without any problem,
+	 * 1 - quiz was not added
+	 * -1 - if sql Error
+	 */
+	public int addQuiz(Quiz quiz, Statement stm) {
+		int result = 0;
+		
+		return 0;
+	}
 }
 
 
