@@ -16,7 +16,6 @@
     Object obj = cont.getAttribute("Quiz");
 	
     QuizManager quizManager = (QuizManager)obj;
-	QuestionManager questionManager = new QuestionManager();
 	
 	Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
     Statement stm = null;
@@ -28,7 +27,7 @@
     	e.printStackTrace();
     }
 	
-	Quiz quiz = quizManager.getQuiz(quizID, questionManager, stm);
+	Quiz quiz = quizManager.getQuiz(quizID, stm);
 	
 	String title = quiz.getQuizName();
 	String imgURL = quiz.getImgUrl();
