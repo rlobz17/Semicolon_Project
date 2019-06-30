@@ -10,16 +10,16 @@ import javax.servlet.annotation.WebListener;
 import Database.DateBaseManager;
 
 /**
- * Application Lifecycle Listener implementation class QuizListener
+ * Application Lifecycle Listener implementation class QuestionListener
  *
  */
 @WebListener
-public class QuizListener implements ServletContextListener {
+public class QuestionListener implements ServletContextListener {
 
     /**
      * Default constructor. 
      */
-    public QuizListener() {
+    public QuestionListener() {
         // Auto-generated constructor stub
     }
 
@@ -47,13 +47,10 @@ public class QuizListener implements ServletContextListener {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+    	    	
+    	QuestionManager questionManager = new QuestionManager();
     	
-        Object obj = cont.getAttribute("Question");
-    	
-    	QuestionManager questionManager = (QuestionManager)obj;
-    	
-    	QuizManager manager = new QuizManager(questionManager);
-    	cont.setAttribute("Quiz", manager);
+    	cont.setAttribute("Question", questionManager);
     }
 	
 }
