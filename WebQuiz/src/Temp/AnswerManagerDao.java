@@ -10,6 +10,12 @@ import Database.DataBaseINFO;
 public class AnswerManagerDao {
 
 	
+	
+	/**
+	 * @return 
+	 * ArrayList<Answer> - correctly ordered answers for question with this id
+	 * null - for sql Error 
+	 */
 	public ArrayList<Answer> getAllAnswer(int questionId, Statement stm) {
 		ArrayList<Answer> result = new ArrayList<>();
 		try {

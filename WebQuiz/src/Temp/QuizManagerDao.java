@@ -14,7 +14,11 @@ import Database.DataBaseINFO;
 public class QuizManagerDao {
 
 	
-	
+	/**
+	 * @return 
+	 * Quiz - found Quiz with this quizId
+	 * null - for sql error
+	 */
 	public Quiz getQuiz(int quizId, QuestionManager questionManager, Statement stm) {
 		Quiz result = null;
 		try{  
@@ -87,7 +91,9 @@ public class QuizManagerDao {
 	
 	
 	/**
-	 * @return returns false if SQLError, true if quiz was updated successfully
+	 * @return 
+	 * true  - if quiz was updated successfully
+	 * false - for sql error
 	 */
 	public boolean addQuizTakenCount(int quiz_id, Statement stm) {
 		try{  

@@ -15,7 +15,9 @@ public class QuizManager {
 
 	
 	/**
-	 * @return returns null if SQLError or Quiz was not found, Quiz if it was found
+	 * @return 
+	 * Quiz - found Quiz with this quizId
+	 * null - for sql error
 	 */
 	public Quiz getQuiz(int quizId, Statement stm) {
 		return dao.getQuiz(quizId, questionManager, stm);
@@ -41,7 +43,9 @@ public class QuizManager {
 	
 	
 	/**
-	 * @return returns -1 if SQLError, 0 if quiz with this id was not found, 1 if quiz was updated successfully
+	 * @return 
+	 * true  - if quiz was updated successfully
+	 * false - for sql error
 	 */
 	public boolean addQuizTakenCount(int quiz_id, Statement stm) {
 		return dao.addQuizTakenCount(quiz_id, stm);

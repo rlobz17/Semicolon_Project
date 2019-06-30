@@ -14,9 +14,10 @@ public class AnswerManager {
 	
 	
 	/**
-	 * @return returns correctly ordered answers for question.
+	 * @return 
+	 * ArrayList<Answer> - correctly ordered answers for question with this id
+	 * null - for sql Error 
 	 */
-	
 	public ArrayList<Answer> getAllAnswer(int question_id, Statement stm){
 		ArrayList<Answer> result = dao.getAllAnswer(question_id, stm);
 		if(result==null) {

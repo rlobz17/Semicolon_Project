@@ -14,6 +14,13 @@ import javafx.util.Pair;
 
 public class AccountManagerDao {
 
+	
+	/**
+	 * This method is used for testing.
+	 * @return 
+	 * ArrayList<String> - list of all acounts
+	 * null - for sql Error
+	 */
 	public ArrayList<String> listOfAccounts(Statement stm) {
 		ArrayList <String> result = new ArrayList<String>();
 		try {
@@ -29,6 +36,16 @@ public class AccountManagerDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @return
+	 * 0 - if done without any problem,
+	 * 1 - if username is in use, 
+	 * 2 - if mail is in use, 
+	 * 3 - if username and mail both in use,
+	 * 4 - if username or mail field is empty,
+	 * -1 - if sql Error
+	 */
 	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Statement stm) {
 		
 		try {
@@ -49,8 +66,15 @@ public class AccountManagerDao {
 	}
 	
 	
-	
-	public int searchUser(String username, String mail, Statement stm) {
+	/**
+	 * @return 
+	 * 0 - if username and mail both not in use,
+	 * 1 - if username is in use, 
+	 * 2 - if mail is in use, 
+	 * 3 - if username and mail both in use,
+	 * -1 - for sql Error 
+	 */
+	public int containsAccount(String username, String mail, Statement stm) {
 		int result = 0;
 		try{  
 			
@@ -125,6 +149,11 @@ public class AccountManagerDao {
 	}
 	
 	
+	/**
+	 * @return 
+	 * Account - found account with this username
+	 * null - for sql Error 
+	 */
 	public Account getAccount(String username, Statement stm) {
 		Date registrationDate;
 		Account result = null;
@@ -289,6 +318,12 @@ public class AccountManagerDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @return 
+	 * Pair<ArrayList<Account>, Integer> - ArrayList<Account> is searched, ordered and limited account list, Integer is full number of accounts found in this search.
+	 * null - for sql Error 
+	 */
 	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
 		ArrayList<Account> result = new ArrayList<>();
 		int allFoundCount = 0;

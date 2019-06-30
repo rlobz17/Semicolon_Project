@@ -21,7 +21,7 @@ public class AccountManager {
 	 * 3 - if username and mail both in use,
 	 * 4 - if username or mail field is empty,
 	 * -1 - if sql Error
-	 * */
+	 */
 	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Statement stm) {
 		int result = containsAccount(username, mail, stm);
 		if(result == 0) {
@@ -33,14 +33,14 @@ public class AccountManager {
 	
 	/**
 	 * @return 
-	 * 0 - if username and mail both not in use,
+	 * 0 - if username and mail both available,
 	 * 1 - if username is in use, 
 	 * 2 - if mail is in use, 
 	 * 3 - if username and mail both in use,
 	 * -1 - for sql Error 
 	 */
 	public int containsAccount(String username, String mail, Statement stm) {
-		return dao.searchUser(username, mail, stm);
+		return dao.containsAccount(username, mail, stm);
 	}
 	
 	/**
@@ -60,8 +60,6 @@ public class AccountManager {
 	 * @return 
 	 * ArrayList<String> - list of all acounts
 	 * null - for sql Error
-	 * @
-	 * 
 	 */
 	public ArrayList<String> listOfAccounts(Statement stm) {
 		return dao.listOfAccounts(stm);
@@ -88,7 +86,7 @@ public class AccountManager {
 	
 	/**
 	 * @return 
-	 * Account - found account with this username
+	 * String - username of account with this id
 	 * null - for sql Error 
 	 */
 	public String getAccountUsername(int userID, Statement stm) {

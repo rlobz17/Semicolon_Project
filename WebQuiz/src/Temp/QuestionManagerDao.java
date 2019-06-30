@@ -11,7 +11,9 @@ public class QuestionManagerDao {
 
 	
 	/**
-	 * @return returns null if SQLError or QuestionID not found, Question_Name if it was found
+	 * @return
+	 * String QuestionTypeName - for the question with this id 
+	 * null - for sql Error
 	 */
 	public String getQuestionType(int questionID, Statement stm) {
 		String result = null;
@@ -33,7 +35,9 @@ public class QuestionManagerDao {
 	
 	
 	/**
-	 * @return returns null if SQLError or QuestionID not found, Question if it was found
+	 * @return
+	 * Question - question with id of @param questionID
+	 * null - if sql Error
 	 */
 	public Question getQuestion(int questionID, AnswerManager answerManager, Statement stm) {
 		Question result = null;
@@ -75,6 +79,12 @@ public class QuestionManagerDao {
 		return result;	
 	}
 	
+	
+	/**
+	 * @return
+	 * String defaultTask - default task for this questionTypeID
+	 * null - if sql Error
+	 */
 	public String getQuestionDefaultTask(int questionTypeID, Statement stm) {
 		String result = null;
 		try {
@@ -92,6 +102,7 @@ public class QuestionManagerDao {
 		
 		return result;	
 	}
+	
 	
 	/**
 	 * @return

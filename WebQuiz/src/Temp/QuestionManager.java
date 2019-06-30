@@ -14,7 +14,9 @@ public class QuestionManager {
 	}
 	
 	/**
-	 * @return returns null if SQLError or QuestionID not found, Question_Name if it was found
+	 * @return
+	 * String QuestionTypeName - for the question with this id 
+	 * null - for sql Error
 	 */
 	public String getQuestionType(int questionID, Statement stm) {
 		return dao.getQuestionType(questionID, stm);

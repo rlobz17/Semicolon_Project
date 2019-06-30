@@ -14,6 +14,11 @@ import javafx.util.Pair;
 public class QuizLiteManagerDao {
 
 	
+	/**
+	 * @return 
+	 * int allQuizNumber - counts all quiz number in the search.
+	 * -1 - for sql Error 
+	 */
 	public int getAllQuizNumber(Statement stm) {
 		int result = 0;
 		try {
@@ -30,6 +35,12 @@ public class QuizLiteManagerDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @return 
+	 * Pair<ArrayList<QuizLite>, Integer> - ArrayList<QuizLite> is searched, ordered and limited QuizLite list, Integer is full number of QuizLites found in this search.
+	 * null - for sql Error 
+	 */
 	public Pair<ArrayList<QuizLite>, Integer> searchQuizLites(String search, Integer user_id, int beginIndex, int count, Statement stm) {
 		ArrayList<QuizLite> result = new ArrayList<>();
 		int allFoundCount = 0;
