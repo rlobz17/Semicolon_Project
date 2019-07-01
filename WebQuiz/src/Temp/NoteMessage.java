@@ -2,14 +2,14 @@ package Temp;
 
 import java.util.Date;
 
-public class Note {
+public class NoteMessage {
 	
 	private Account from;
 	private Account to;
 	private String message;
 	private Date date;
 	
-	public Note(Account from, Account to, String message, Date date) {
+	public NoteMessage(Account from, Account to, String message, Date date) {
 		this.from = from;
 		this.to = to;
 		this.message = message;
