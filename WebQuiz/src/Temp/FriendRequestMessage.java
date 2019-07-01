@@ -8,12 +8,15 @@ public class FriendRequestMessage {
 	private Account to;
 	private Date date;
 	private boolean accept;
+	private int messageID;
 	
-	public FriendRequestMessage(Account from, Account to, Date date) {
+	public FriendRequestMessage(Account from, Account to, Date date, int messageID) {
 		this.from = from;
 		this.to = to;
 		this.date = date;
+		this.setMessageID(messageID);
 		accept = false;
+		
 	}
 
 	public void acceptFriendship() {
@@ -46,5 +49,13 @@ public class FriendRequestMessage {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getMessageID() {
+		return messageID;
+	}
+
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
 	}
 }

@@ -8,12 +8,14 @@ public class NoteMessage {
 	private Account to;
 	private String message;
 	private Date date;
+	private int messageID;
 	
-	public NoteMessage(Account from, Account to, String message, Date date) {
+	public NoteMessage(Account from, Account to, String message, Date date, int messageID) {
 		this.from = from;
 		this.to = to;
 		this.message = message;
 		this.date = date;
+		this.setMessageID(messageID);
 	}
 
 	public Account getFrom() {
@@ -46,5 +48,13 @@ public class NoteMessage {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getMessageID() {
+		return messageID;
+	}
+
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
 	}
 }
