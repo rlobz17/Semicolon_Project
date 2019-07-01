@@ -1,20 +1,22 @@
-package Temp;
+package Message;
 
 import java.util.Date;
 
-public class NoteMessage {
+import Temp.Account;
+
+public class ChallengeMessage {
 	
 	private Account from;
 	private Account to;
-	private String message;
 	private Date date;
+	private final String quizLink;
 	private int messageID;
 	
-	public NoteMessage(Account from, Account to, String message, Date date, int messageID) {
+	public ChallengeMessage(Account from, Account to, Date date, String quizLink, int messageID) {
 		this.from = from;
-		this.to = to;
-		this.message = message;
+		this.to = to; 
 		this.date = date;
+		this.quizLink = quizLink;
 		this.setMessageID(messageID);
 	}
 
@@ -34,20 +36,16 @@ public class NoteMessage {
 		this.to = to;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getQuizLink() {
+		return quizLink;
 	}
 
 	public int getMessageID() {

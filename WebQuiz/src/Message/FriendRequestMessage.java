@@ -1,6 +1,8 @@
-package Temp;
+package Message;
 
 import java.util.Date;
+
+import Temp.Account;
 
 public class FriendRequestMessage {
 	
