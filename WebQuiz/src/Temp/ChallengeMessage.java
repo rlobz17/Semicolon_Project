@@ -8,12 +8,14 @@ public class ChallengeMessage {
 	private Account to;
 	private Date date;
 	private final String quizLink;
+	private int messageID;
 	
-	public ChallengeMessage(Account from, Account to, Date date, String quizLink) {
+	public ChallengeMessage(Account from, Account to, Date date, String quizLink, int messageID) {
 		this.from = from;
 		this.to = to; 
 		this.date = date;
 		this.quizLink = quizLink;
+		this.setMessageID(messageID);
 	}
 
 	public Account getFrom() {
@@ -42,5 +44,13 @@ public class ChallengeMessage {
 
 	public String getQuizLink() {
 		return quizLink;
+	}
+
+	public int getMessageID() {
+		return messageID;
+	}
+
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
 	}
 }
