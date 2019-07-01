@@ -24,28 +24,36 @@
     	e.printStackTrace();
     }
 
-    int quizNumber = m.getAllQuizNumber(stm);
+    
     String p = request.getParameter("page");
-
+    
     int currentPage = 1;
     if(p!=null){
     	currentPage = Integer.parseInt(p);
     }
 
+    int count = 10;
+    int beginIndex = (currentPage-1)*count;
+    
+    String search = (String)request.getAttribute("searchInput");
+    
+    if(search==null){
+    	search = request.getParameter("search");
+    }
+    
+	int quizNumber = m.searchQuizLites(search, null, beginIndex, count, stm).getValue();
+    
     navigation n = new navigation(quizNumber, currentPage);
 
     int pages = n.getPageNumber();
 
     if(currentPage<1 || currentPage > pages){
-		currentPage = 1;
-	}
+    	currentPage = 1;
+    }
 
     ArrayList<Integer> pagesArr = n.pagesToShow();
 
-    int count = 10;
-    int beginIndex = (currentPage-1)*count;
-
-    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, stm).getKey();
+    ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, stm).getKey();
     %>    
     
 <!DOCTYPE html>
@@ -89,6 +97,8 @@
 		<div class="content"> 
 			
 			<div class="mainContent">
+				
+				<div class="loginSucc"> • ძიების შედეგები:</div>
 			
 				<%
 					int size = quizes.size();
@@ -98,8 +108,6 @@
 						String title = quiz.getTitle();
 						String img = quiz.getImgurl();
 						String author = quiz.getPublisher();
-						int quizID = quiz.getQuizID();
-						
 						int quizDone = quiz.getQuizDone();
 						Date dat = quiz.getDate();
 						
@@ -140,7 +148,7 @@
 								<div class="shortstoryImg">
 									<img src="<%= img %>">
 									<h1 class="shortstoryTxt">
-									<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID %>"><%= title %></a>
+									<a class="shortstoryTitle" style="text-decoration: none;" href="/"><%= title %></a>
 									</h1>
 								</div>
 
@@ -161,7 +169,7 @@
 					}
 				
 				%>
-		
+				
 				<div class="navigation">
 					<%
 						for(int i=1; i<=pages; i++){
@@ -174,7 +182,7 @@
 							} else{
 								%>
 							
-								<a href="/WebQuizProject/index.jsp?page=<%= i %>" ><%= i %></a>
+								<a href="/WebQuizProject/search.jsp?page=<%= i %>&search=<%= search %>" ><%= i %></a>
 							
 								<%
 							}

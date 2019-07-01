@@ -31,6 +31,12 @@
 	});
 </script>
 
+<script> 
+   	$(function(){
+	$("#sidebarContent").load("/WebQuizProject/sidebar.jsp"); 
+	});
+</script>
+
 </head>
 
 <body>
@@ -38,8 +44,19 @@
 	<div class="body">
 	
 		<div id="headerContent"></div>
-		<div class="loginErr"> • შეიყვანეთ აუცილებელი ველები!</div>
-		<div id="regContent"></div>
+		<div class="content">
+			
+			<div class="mainContent">
+		
+				<div class="loginErr"> • შეიყვანეთ აუცილებელი ველები! გაითვალისწინეთ, ლოგინი უნდა შეიცავდეს მხოლოდ ლათინურ სიმბოლოებს, ციფრებს, სფეისს ან . -</div>
+				<div id="regContent"></div>
+				
+			</div>
+			
+			<div id="sidebarContent"></div>
+		
+		</div>
+			
 		<div id="footerContent"></div>
 		
 	</div>

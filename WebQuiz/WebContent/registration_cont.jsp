@@ -62,7 +62,7 @@
 		
 		</tbody></table>
 				
-		<label style="margin-left: 50%;"><input value="დარეგისტრირება" type="submit"></label>
+		<label><input value="დარეგისტრირება" class="logButt" type="submit"></label>
 	</form>
 	</div>
 </body>

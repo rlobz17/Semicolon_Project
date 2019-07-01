@@ -1,13 +1,13 @@
 package Temp;
 
 
-public class Answer {
+public class Answer implements Comparable<Answer> {
 	private int answerID;
 	private int questionID;
 	private int answerIndex;
 	private String answerDetail;
 	
-	public Answer(int answerID, int questionID,int answerIndex, String answerDetail) {
+	public Answer(int answerID, int questionID, int answerIndex, String answerDetail) {
 		this.answerDetail = answerDetail;
 		this.answerID = answerID;
 		this.answerIndex = answerIndex;
@@ -28,12 +28,20 @@ public class Answer {
 	public int getQuestionID() {
 		return questionID;
 	}
+	
+	/**
+	 * sets question id to @param questionID
+	 */
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
+	}
 
 
 	/**
 	 * @return the answerIndex
+	 * null - if answers have no order
 	 */
-	public int getAnswerIndex() {
+	public Integer getAnswerIndex() {
 		return answerIndex;
 	}
 
@@ -45,6 +53,20 @@ public class Answer {
 		return answerDetail;
 	}
 
+	
+	@Override
+	public int compareTo(Answer o) {
+		
+		
+		int res = (this.getAnswerIndex() > o.getAnswerIndex()) ? 1 : (this.getAnswerIndex() < o.getAnswerIndex()) ? -1 : 0;
+	//	System.out.println(this.answerIndex +" is compared to "+o.answerIndex +". returned " + res);
+		return res;
+	}
+	
+	@Override
+	public String toString() {
+		return ("Answer Id = "+answerID+", Answer Detail = " + this.answerDetail);
+	}
 
 	
 }

@@ -1,23 +1,26 @@
 package Temp;
 
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Quiz {
 	private int quizID;
-	private Account Creator;
+	private String quiz_name;
+	private int Creator_id;
 	private Date CreationDate;
 	private Date UpdatedDate;
 	private int quizTaken; // how many tames this quiz was ....
 	private String imgUrl;
 	private ArrayList<Question> questions;
 	
-	public Quiz(int quizID,ArrayList<Question> questions,Account Creator,Date UpdatedDate,Date CreationData,int quizTaken,String imgUrl) {
+	public Quiz(int quizID, String quiz_name, ArrayList<Question> questions,int Creator_id,Date UpdatedDate,Date CreationDate,int quizTaken,String imgUrl) {
 		this.quizID = quizID;
+		this.quiz_name = quiz_name;
 		this.UpdatedDate = UpdatedDate;
-		this.Creator = Creator;
-		this.CreationDate = CreationData;
+		this.Creator_id = Creator_id;
+		this.CreationDate = CreationDate;
 		this.quizTaken = quizTaken;
 		this.imgUrl = imgUrl;
 		this.questions = questions;
@@ -29,13 +32,20 @@ public class Quiz {
 	public String getImgUrl() {
 		return imgUrl;
 	}
+	
+	/**
+	 * @return the imgUrl
+	 */
+	public String getQuizName() {
+		return quiz_name;
+	}
 
 
 
 	/**
 	 * @return the quitTaken
 	 */
-	public int getQuitTaken() {
+	public int getQuizTaken() {
 		return quizTaken;
 	}
 
@@ -53,14 +63,14 @@ public class Quiz {
 	/**
 	 * @return the creator
 	 */
-	public Account getCreator() {
-		return Creator;
+	public int getCreatorID() {
+		return Creator_id;
 	}
 
 
 	/**
 	 * @param Question
-	 * added this Question to current Quize
+	 * adds this Question to current Quiz
 	 * */
 	
 	public void addQuestion(Question q) {
@@ -91,5 +101,16 @@ public class Quiz {
 	public Date getUpdatedDate() {
 		return UpdatedDate;
 	}
-
+	
+	
+	
+	@Override
+	public String toString() {
+		String quests = "\n";
+		for(int i=0; i<questions.size(); i++) {
+			quests += "Question 1)\n" + questions.get(i).toString() + "\n";
+		}
+		return "quizID " + quizID +" | quiz_name "+quiz_name + " | CreationDate "+CreationDate + " | UpdatedDate " + UpdatedDate + 
+				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken + " | imgUrl " + quests;
+	}
 }

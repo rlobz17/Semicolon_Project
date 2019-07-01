@@ -1,26 +1,23 @@
 package account;
 
-import java.sql.SQLException;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import Database.DateBaseManager;
 import Temp.AccountManager;
 
 /**
- * Application Lifecycle Listener implementation class AccManagerListener
+ * Application Lifecycle Listener implementation class ProfileListener
  *
  */
 @WebListener
-public class AccManagerListener implements ServletContextListener {
+public class ProfileListener implements ServletContextListener {
 
     /**
      * Default constructor. 
      */
-    public AccManagerListener() {
+    public ProfileListener() {
         // Auto-generated constructor stub
     }
 
@@ -36,20 +33,9 @@ public class AccManagerListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent sce)  { 
          // Auto-generated method stub
+    	AccountManager acM = new AccountManager();
     	ServletContext cont = sce.getServletContext();
-    	try {
-			DateBaseManager baseManager = new DateBaseManager();
-			cont.setAttribute("baseManager", baseManager);
-		} catch (ClassNotFoundException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
-    	AccountManager acc = new AccountManager();
-    	
-    	cont.setAttribute("manager", acc);
+    	cont.setAttribute("profile", acM);
     }
 	
 }

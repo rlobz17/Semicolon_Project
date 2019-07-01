@@ -1,19 +1,24 @@
 @charset "UTF-8";
 .body {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
-    background: #f5f5f5;
-    box-shadow: 0px 0px 4px 4px #717171;
-    border-right: 1px solid #4ba4e9;
-    border-left: 1px solid #4ba4e9;
-    border-bottom: 1px solid #4ba4e9;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px 4px #949393;
+    border-right: 1px solid #e7e7e7;
+    border-left: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: monospace;
+    font-size: 16px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
 }
 
 .header {
-    background: url(http://www.picz.ge/img/s4/1906/8/4/4e39d4f55044.png);
+    background: url(http://www.picz.ge/img/s1/1906/20/e/edf43237f8d0.png);
     border-top: 3px solid #f7bc45;
     border-bottom: 3px solid #f7bc45;
-    height: 200px;
+    height: 250px;
     width: auto;
 }
 
@@ -25,20 +30,22 @@
 .footer{
 	width: auto;
     height: 100px;
-    background: #e6e6e6;
-    border-top: 1px solid #4ba4e9;
+    background: #ffffff;
+    border-top: 1px solid #e7e7e7;
+    font-size: 13px;
+    margin-top: 2px;
 }
 
 .footLeft{
 	float: left;
 	margin: 40px;
-	color: #2b2b2b;
+	color: #545454;
 }
 
 .footRight{
 	float: right;
 	margin: 40px;
-    color: #2b2b2b;
+    color: #545454;
 }
 
 .searchArea{
@@ -69,7 +76,7 @@
 }
 
 .searchInput{
-	width: 580px;
+	width: 678px;
     background: rgba(0,0,0,.3);
     border: none;
     height: 37px;
@@ -84,20 +91,28 @@
 }
 
 .content{
-	min-height: 700px;
+	width: 100%;
+    background: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 700px;
 }
 
 .login {
     width: fit-content;
     height: auto;
-    background: #0c275c;
+    background: linear-gradient(to bottom, #f1f0f0 0%,#edecec 28%,#dddcdc 100%);
     margin: auto;
     margin-top: 15px;
     padding: 15px;
-    font-size: 23px;
-    color: white;
-    font-weight: bold;
+    font-size: 19px;
+    color: #696969;
     border-radius: 7px;
+    box-shadow: 0px 0px 2px 2px #717171;
+    border: 1px solid #e8e6e7;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-shadow: #fff 0px 2px 1px;
 }
 
 .loginInput{
@@ -114,12 +129,27 @@
 
 .loginTable{
 	margin: auto;
-    margin-top: 25px;
+    margin-top: 15px;
+}
+
+.loginTable tbody>tr {
+    margin: 50px;
+    background: #ffffff;
+}
+
+.loginTable tbody>tr>td {
+	padding: 6px;
+	border: 1px solid #e2e1e1;
+	border-radius: 5px;
+	background: #6da4cc;
+	box-shadow: 0px 0px 2px 0px #717171;
+	color: #f7bc45;
+	text-shadow: 1px 1px #982929;
+    text-align: center;
 }
 
 .loginErr{
 	width: 93%;
-    height: 20px;
     background: #ff009f52;
     margin: 15px;
     border: 1px solid #F44336;
@@ -131,11 +161,358 @@
 
 .loginSucc {
     width: 93%;
-    height: 20px;
     background: #2cec0f73;
     margin: 15px;
     border: 1px solid #277500;
     padding: 15px;
     color: #116108;
     font-weight: bold;
+}
+
+.logButt {
+    background: white;
+    text-shadow: 0 1px 0 #fff;
+    border: 1px solid #b3b3b3;
+    color: #383838;
+    padding: 1px 9px 4px 9px;
+    margin-top: 10px;
+    margin-left: 44%;
+    height: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 1px #717171;
+}
+
+.profileTable{
+	margin: auto;
+	margin-top: 15px;
+	width: 95%;
+	background: #eaeaea;
+}
+
+.profileTable tbody>tr {
+    margin: 50px;
+    background: #ffffff;
+}
+
+.profileTable tbody>tr>td {
+	padding: 10px;
+	background: #ffffff;
+	color: black;
+	width: 50%;
+}
+
+.profileTableHead{
+	background: linear-gradient(to bottom, #f1f0f0 0%,#edecec 28%,#dddcdc 100%);
+    text-shadow: #fff 0px 1px 0px;
+    padding-left: 30%;
+    border: 1px solid #ccc;
+    color: #696969;
+    font-size: 19px;
+}
+
+.mainContent{
+	width: 69.8%;
+    background: white;
+    float: left;
+    overflow: hidden;
+}
+
+.sidebar{
+	width: 30%;
+    float: right;
+    position: static;
+    z-index: 1;
+    overflow: hidden;
+    border-left: 1px solid #e7e7e7;
+}
+
+.block {
+    height: 20px;
+    background: #206fad9e;
+    color: #f7bc45;
+    width: 85%;
+    font-size: 17px;
+    padding: 12px;
+    margin: 9px;
+    border-radius: 7px;
+    text-shadow: 1px 1px #982929;
+}
+
+.sideElem {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.menu {
+	border-top:0;
+	border-radius: 0 0 3px 3px;
+}
+
+.menu ul {
+	list-style:none;
+	margin: 7px;
+	width: 98%;
+	margin-left: -30px;
+}
+
+.menu ul li a {
+	display:block;
+	text-decoration:none;
+	height:32px;
+	margin-right: 17px;
+	padding:0 10px;
+	font-size: 14px;
+	line-height:32px;
+	color:#000000;
+	background: #f7bc4526;
+	border: 1px solid #4ba4e9;
+}
+
+.menu ul li a:hover {
+	background: #f7bc45;
+	box-shadow:inset 0px 1px 3px rgba(0,0,0,.3);
+	color:#fff;
+}
+
+.navigation{
+	float: left;
+	margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navigation > span, .navigation a {
+	padding:1px 7px;
+	display:block;
+	float:left;
+	margin-right:4px;
+	text-align:center;
+	font-weight:bold;
+	font:13px roboto;
+	line-height:24px;
+}
+
+.navigation > span {
+	background: #f7bc45;
+	color:#FFFFFF;
+	line-height:25px;
+	text-align:center;
+	width: 12px;
+    border-radius: 20px;
+}
+
+.navigation a {
+	background: #4ba4e9a3;
+	text-decoration:none;
+	color: #000;
+	font:13px roboto;
+	line-height:25px;
+	width: 12px;
+    border-radius: 20px;
+}
+
+.navigation a:hover { 
+	background: #f7bc45;
+	color:#ffffff;
+}
+
+.shortstoryMain {
+    width: 48.7%;
+    box-shadow: 0px 0px 1px 1px #5eb0eca6;
+    float: left;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.shortstoryMain:hover {
+    box-shadow: 0px 0px 4px 4px #717171;
+}
+
+.shortstoryImg {
+   	position: relative;
+   	background-size: 100% 100%;
+   	width: 100%;
+   	height: 230px;
+   	overflow: hidden;
+   	backface-visibility: hidden;
+   	position: relative;
+}
+
+.shortstoryImg img{
+   	width:100%;
+   	height:100%;
+   	object-fit: cover;
+    transition: .5s;
+    transform: translateZ(0);
+    backface-visibility: hidden; 
+}
+
+.shortstoryImg:hover img {
+      transform: translateZ(0) scale(1.2); overflow:hidden;
+}
+
+.shortstoryTxt {
+    font-size: 1.1em;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 7px;
+    font: inherit;
+    vertical-align: baseline;
+    padding: 8px;
+    background: #000000ab;
+    color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px #a0a0a0a8;
+}
+
+.shortstoryTxt:hover {
+    box-shadow: 0px 0px 4px 4px #711725bd;
+}
+
+.shortstoryTitle{
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	font-family: initial;
+	font-size: 14px;
+}
+
+.shortstoryTitle:hover {
+    color: #47a0e7; 
+}
+
+.shortstoryLower {
+    position: relative;
+    font-size: 13px;
+    background-color: #eaeaea;
+    padding-left: 3%;
+    padding-top: 3%;
+    height: 21px;
+    font-weight: bold;
+    text-align: left;
+    border-top: 1px solid #6da4cc;
+}
+
+.meta {
+	font-family: monospace;
+	font-weight: bold;
+	color: #3394e6;
+	text-decoration: none;
+}
+
+.meta:after { 
+	clear: both; 
+	display: table; 
+	content: ""; 
+}
+
+.meta {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+.meta > li {
+	display: inline;
+	margin-left: 2%;
+}
+
+.meta > li:first-child { 
+	margin-left: 0; 
+}
+
+.meta > li .icon {     
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	margin-top: -1.5%;
+}
+
+.grey {
+	color: #999;
+}
+
+.grey a {
+	color: #545454;
+	text-decoration: none;
+}
+
+
+.fullQuiz{
+	width: 98%;
+	margin: 1%;
+	border: 1px solid #e7e7e7;
+	border-radius: 6px;
+}
+
+.fullTitle {
+        height: auto;
+        background: #206fad9e;
+        color: #f7bc45;
+        width: 96.5%;
+        font-size: 17px;
+        padding: 12px;
+        overflow: hidden;
+        border-radius: 6px;
+        text-shadow: 1px 1px #982929;
+        border-bottom: 1px solid #f7bc45;
+}
+
+.fullstoryImg {
+    position: relative;
+    background-size: 100% 100%;
+    width: 78%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #3a3a3a;
+}
+
+.fullstoryImg img{
+   	width:100%;
+   	height:100%;
+   	object-fit: cover;
+    transition: .5s;
+    transform: translateZ(0);
+    backface-visibility: hidden; 
+}
+
+.fullstoryImg:hover img {
+      transform: translateZ(0) scale(1.2); overflow:hidden;
+}
+
+.startQuiz {
+    height: 30px;
+    background: #9c1010;
+    color: #ffffff;
+    width: 29%;
+    font-size: 24px;
+    padding: 12px;
+    margin: auto;
+    border-radius: 7px;
+    text-shadow: 1px 1px #000000;
+    line-height: 31px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.quizTxt {
+    text-decoration: none;
+    color: white;
+    float: left;
+    overflow: hidden;
+}
+
+.profileEdit{
+	margin-bottom: 20px;
+    margin-top: 50px;
 }
