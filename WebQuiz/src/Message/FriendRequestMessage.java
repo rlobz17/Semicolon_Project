@@ -11,14 +11,15 @@ public class FriendRequestMessage {
 	private Date date;
 	private boolean accept;
 	private int messageID;
+	private String messageType;
 	
-	public FriendRequestMessage(Account from, Account to, Date date, int messageID) {
+	public FriendRequestMessage(Account from, Account to, Date date, int messageID, String messageType) {
 		this.from = from;
 		this.to = to;
 		this.date = date;
-		this.setMessageID(messageID);
+		this.messageID = messageID;
 		accept = false;
-		
+		this.messageType = messageType;
 	}
 
 	public void acceptFriendship() {
@@ -59,5 +60,13 @@ public class FriendRequestMessage {
 
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
+	}
+
+	public String getMessageType() {
+		return messageType;
+	}
+
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
 	}
 }

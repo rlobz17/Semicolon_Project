@@ -1,5 +1,10 @@
 use webquizdatabase;
 
+-- history tables
+DROP TABLE IF EXISTS accountQuizTakeLink, takeHistory;
+ -- remove tables if they already exist and start from scratch  
+ 
+-- main tables
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
@@ -138,13 +143,37 @@ INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
 
     
     
+ -- History Part    
+Create table takeHistory(
+	takeHistory_id int(8) not null auto_increment,
+    takeHistory_date datetime default now(),
+    takeHistory_score double,
+    primary key (takeHistory_id)
+);
+
+create table accountQuizTakeLink(
+	accountQuizTakeLink_id int(8) not null auto_increment,
+    account_id int(8) not null,
+    quiz_id int(8) not null,
+    takeHistory_id int(8) not null,
+    primary key (accountQuizTakeLink_id),
+    foreign key (account_id) references accounts(account_id),
+    foreign key (quiz_id) references quizes(quiz_id),
+    foreign key (takeHistory_id) references takeHistory(takeHistory_id)
+);
     
+
+INSERT INTO takeHistory (takeHistory_date, takeHistory_score) VALUES
+    (now(), 100),
+    (now(), 90)
+    ;  
     
-    
-    
-    
-    
-    
+INSERT INTO accountQuizTakeLink (account_id, quiz_id, takeHistory_id) VALUES
+    (1, 1, 1),
+    (2, 1, 2)
+    ;  
+
+
     
     
     

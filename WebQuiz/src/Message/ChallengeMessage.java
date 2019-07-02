@@ -11,13 +11,15 @@ public class ChallengeMessage {
 	private Date date;
 	private final String quizLink;
 	private int messageID;
+	private String messageType;
 	
-	public ChallengeMessage(Account from, Account to, Date date, String quizLink, int messageID) {
+	public ChallengeMessage(Account from, Account to, Date date, String quizLink, int messageID, String messageType) {
 		this.from = from;
 		this.to = to; 
 		this.date = date;
 		this.quizLink = quizLink;
-		this.setMessageID(messageID);
+		this.messageID = messageID;
+		this.messageType = messageType;
 	}
 
 	public Account getFrom() {
@@ -54,5 +56,13 @@ public class ChallengeMessage {
 
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
+	}
+
+	public String getMessageType() {
+		return messageType;
+	}
+
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
 	}
 }
