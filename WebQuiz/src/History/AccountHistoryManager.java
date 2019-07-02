@@ -23,4 +23,16 @@ public class AccountHistoryManager {
 	
 		return null;
 	}
+	
+	/**
+	 * @param accountID 
+	 * @param stm
+	 * @return 
+	 * double average - average score of account with this accountID
+	 * -1 - for sql error
+	 */
+	public double getAccountAverageScore(int accountID, Statement stm) {
+		
+		return -1;
+	}
 }

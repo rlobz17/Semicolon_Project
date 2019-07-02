@@ -23,4 +23,17 @@ public class QuizHistoryManager {
 		
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param quizID
+	 * @param stm
+	 * @return
+	 * double average - average score of quiz with this quizID
+	 * -1 - for sql error 
+	 */
+	public double getQuizAverageScore(int quizID, Statement stm) {
+		
+		return -1;
+	}
 }
