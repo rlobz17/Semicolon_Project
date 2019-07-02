@@ -9,7 +9,12 @@
     pageEncoding="UTF-8"%>
     
 <%
-    	ServletContext cont = getServletContext();
+	String LogOut = request.getParameter("log");
+	if(LogOut!=null && LogOut.equals("out")){
+		request.getSession().setAttribute("username", null);	
+	}
+	
+    ServletContext cont = getServletContext();
     Object obj = cont.getAttribute("QuizLite");
 
     QuizLiteManager m = (QuizLiteManager)obj;
@@ -46,7 +51,8 @@
     int beginIndex = (currentPage-1)*count;
 
     ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, stm).getKey();
-    %>    
+
+%>    
     
 <!DOCTYPE html>
 <html>
