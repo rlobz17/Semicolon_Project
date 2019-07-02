@@ -33,7 +33,6 @@ public class QuizHistoryManager {
 	 * -1 - for sql error 
 	 */
 	public double getQuizAverageScore(int quizID, Statement stm) {
-		
-		return -1;
+		return dao.getQuizAverageScore(quizID, stm);
 	}
 }

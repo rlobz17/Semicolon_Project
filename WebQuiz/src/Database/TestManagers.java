@@ -11,6 +11,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import Database.*;
+import History.AccountHistoryManager;
+import History.AccountHistoryManagerDao;
+import History.QuizHistoryManager;
 import Temp.Account;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
@@ -451,6 +454,33 @@ class TestManagers {
 		
 	}
 	
+	
+	@Test
+	void testHistory() {
+		
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("testing CLASS AccountHistoryManager and CLASS QuizHistoryManager");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		System.out.println("////////////////////////////");
+		
+		Statement stm = createStatement();
+		
+		AccountHistoryManager accountHistory = new AccountHistoryManager();
+		QuizHistoryManager quizHistory = new QuizHistoryManager();
+		
+		
+		System.out.println("testing QuizHistoryManager:");
+		System.out.println("////////////////////////////");
+		System.out.println("testing getQuizAverageScore method:");
+		
+		System.out.println("getting average from quiz with id(1) - " + quizHistory.getQuizAverageScore(1, stm));
+		System.out.println("getting average from quiz with id(2) - " + quizHistory.getQuizAverageScore(2, stm));
+		System.out.println("-----------------------");
+		
+	}
 	
 
 }
