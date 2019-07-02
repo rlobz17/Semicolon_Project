@@ -11,13 +11,15 @@ public class NoteMessage {
 	private String message;
 	private Date date;
 	private int messageID;
+	private String messageType;
 	
-	public NoteMessage(Account from, Account to, String message, Date date, int messageID) {
+	public NoteMessage(Account from, Account to, String message, Date date, int messageID, String messageType) {
 		this.from = from;
 		this.to = to;
 		this.message = message;
 		this.date = date;
-		this.setMessageID(messageID);
+		this.messageID = messageID;
+		this.messageType = messageType;
 	}
 
 	public Account getFrom() {
@@ -58,5 +60,13 @@ public class NoteMessage {
 
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
+	}
+
+	public String getMessageType() {
+		return messageType;
+	}
+
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
 	}
 }
