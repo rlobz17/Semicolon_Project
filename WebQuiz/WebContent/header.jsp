@@ -57,7 +57,7 @@
 		%>
 		
 		<div>
-			<form action="/WebQuizProject/search/searchServlet" method="post">
+			<form action="/WebQuizProject/search/searchServlet" method="get">
                 <input type="hidden" name="do" value="search">
                 <input type="text" name="search" class="searchInput" placeholder="შეიყვანეთ საძიებო სიტყვა...">
             </form>

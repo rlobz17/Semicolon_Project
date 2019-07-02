@@ -29,13 +29,6 @@ public class searchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Auto-generated method stub
 		ServletContext cont = getServletContext();
 		Object obj = cont.getAttribute("searchListener");
 		
@@ -45,6 +38,13 @@ public class searchServlet extends HttpServlet {
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/search.jsp");
 		dispatch.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Auto-generated method stub
 	}
 
 }
