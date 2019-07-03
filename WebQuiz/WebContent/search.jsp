@@ -9,7 +9,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-    	ServletContext cont = getServletContext();
+   	ServletContext cont = getServletContext();
     Object obj = cont.getAttribute("QuizLite");
 
     QuizLiteManager m = (QuizLiteManager)obj;
@@ -26,10 +26,14 @@
 
     
     String p = request.getParameter("page");
-    
+        
     int currentPage = 1;
     if(p!=null){
     	currentPage = Integer.parseInt(p);
+    }
+    
+    if(currentPage<0){
+    	currentPage = 1;
     }
 
     int count = 10;
@@ -54,7 +58,8 @@
     ArrayList<Integer> pagesArr = n.pagesToShow();
 
     ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, stm).getKey();
-    %>    
+    
+%>    
     
 <!DOCTYPE html>
 <html>
