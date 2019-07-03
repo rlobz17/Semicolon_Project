@@ -177,17 +177,31 @@
 				
 				<div class="navigation">
 					<%
-						for(int i=1; i<=pages; i++){
-							if(i==currentPage){
+						int last=0;
+						for(int i=0; i<pagesArr.size(); i++){
+							int show = pagesArr.get(i);
+							
+							if(show-last>1){
+								%>
+								
+								<span> ... </span>
+							
+								<%
+								
+							}	
+							
+							last = show;
+							
+							if(show==currentPage){
 								%>
 							
-								<span><%= i %></span>
+								<span><%= show %></span>
 							
 								<%
 							} else{
 								%>
 							
-								<a href="/WebQuizProject/search.jsp?page=<%= i %>&search=<%= search %>" ><%= i %></a>
+								<a href="/WebQuizProject/search.jsp?page=<%= show %>&search=<%= search %>" ><%= show %></a>
 							
 								<%
 							}

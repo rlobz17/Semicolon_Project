@@ -37,11 +37,15 @@ public class navigation {
 		
 		if(start > 1) {
 			for(int i=start; i<currentPage; i++) {
-				arr.add(i);
+				if(!arr.contains(i)) {
+					arr.add(i);
+				}
 			}
 		} else {
 			for(int i=2; i<currentPage; i++) {
-				arr.add(i);
+				if(!arr.contains(i)) {
+					arr.add(i);
+				}
 			}
 		}
 		
@@ -50,11 +54,15 @@ public class navigation {
 		
 		if(end <= pagesNum) {
 			for(int i=currentPage; i<=end; i++) {
-				arr.add(i);
+				if(!arr.contains(i)) {
+					arr.add(i);
+				}
 			}
 		} else {
 			for(int i=currentPage; i<=pagesNum; i++) {
-				arr.add(i);
+				if(!arr.contains(i)) {
+					arr.add(i);
+				}
 			}
 		}
 		
