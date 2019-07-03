@@ -237,6 +237,7 @@ if(user!=null){
 									
 								<td>
 									<%= quizesCreated %>
+									<a href="/WebQuizProject/user_quizes.jsp?user=<%= acc.getUserID() %>" class="seeQuizes">[ქვიზების ნახვა]</a>
 								</td>
 							</tr>
 							
