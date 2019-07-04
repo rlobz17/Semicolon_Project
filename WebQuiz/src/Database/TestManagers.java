@@ -2,11 +2,14 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,19 +50,59 @@ class TestManagers {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://"+server+"?autoReconnect=true&useSSL=false", account, password);
-			Statement stmt = con.createStatement();
-			return stmt;
+			Statement cont = con.createStatement();
+			return cont;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		
 		
 		return null;
-		
 	}
+	
+	public Connection createConnection() {
+		
+		/*
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://"+server+"?autoReconnect=true&useSSL=false", account, password);
+			return con;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		return null;
+	}
+
+@Test
+void newTest() {
+	Connection con = createConnection();
+	QuizLiteManager manager = new QuizLiteManager();
+	
+	Pair< ArrayList<QuizLite>, Integer> result = null;
+	System.out.println("testing searchQuizLites:");
+	System.out.println("-----------------------");
+	System.out.println("getting quizLites (null, null, 0, 100, con) -");
+	result = manager.searchQuizLites(null, null, 0, 100, con);
+	ArrayList<QuizLite> quizes = result.getKey();
+	for(int i=0; i<quizes.size(); i++) {
+		QuizLite quizLite = quizes.get(i);
+		System.out.println((i+1)+") "+ quizLite);
+	}
+	System.out.println("All Quizes found in this search: " + result.getValue());
+	System.out.println("-----------------------");
+}
 	
 	
 
@@ -73,57 +116,60 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
-		Statement stm = createStatement();
+		
+		Connection con = createConnection();
 		AccountManager manager = new AccountManager();
-		ArrayList<String> list = manager.listOfAccounts(stm);
+		AccountHistoryManager historyManager = new AccountHistoryManager();
+		
 		System.out.println("testing addNewAccount:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		/*
+		ArrayList<String> list = manager.listOfAccounts(con);
 		System.out.println("Before Test------------");
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		System.out.println("-----------------------");
 		System.out.println("After Test-------------");
-		manager.addNewAccount("test", "test", "test", "test", "test", stm);
-		list = manager.listOfAccounts(stm);
+		manager.addNewAccount("test", "test", "test", "test", "test", con);
+		list = manager.listOfAccounts(con);
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		System.out.println("-----------------------");
-		*/
+		
 		System.out.println("////////////////////////////");
 		System.out.println("testing checkPassword:");
-		System.out.println("Should be 0: " + manager.doLogin("test", "test", stm));
-		System.out.println("Should be 1: " + manager.doLogin("0", "test", stm));
-		System.out.println("Should be 2: " + manager.doLogin("test", "0", stm));
-		System.out.println("Should be 1: " + manager.doLogin("", "", stm));
+		System.out.println("Should be 0: " + manager.doLogin("test", "test", con));
+		System.out.println("Should be 1: " + manager.doLogin("0", "test", con));
+		System.out.println("Should be 2: " + manager.doLogin("test", "0", con));
+		System.out.println("Should be 1: " + manager.doLogin("", "", con));
 		System.out.println("-----------------------");
 		
 		System.out.println("////////////////////////////");
 		System.out.println("testing containsAccount:");
 		System.out.println("testing is correct. i just put it in comments because, it needed addNewAccountTest to be runned");
 		/*
-			System.out.println("Should be 0: " + manager.containsAccount("test1", "test1", stm));
-			System.out.println("Should be 1: " + manager.containsAccount("test", "test1", stm));
-			System.out.println("Should be 2: " + manager.containsAccount("test1", "test", stm));
-			System.out.println("Should be 3: " + manager.containsAccount("test", "test", stm));
+			System.out.println("Should be 0: " + manager.containsAccount("test1", "test1", con));
+			System.out.println("Should be 1: " + manager.containsAccount("test", "test1", con));
+			System.out.println("Should be 2: " + manager.containsAccount("test1", "test", con));
+			System.out.println("Should be 3: " + manager.containsAccount("test", "test", con));
 		*/
 		System.out.println("-----------------------");
 		
 		System.out.println("////////////////////////////");
 		System.out.println("testing getAccount methods (2 with username, 2 with id):");
-		System.out.println("rlobz17: " + manager.getAccount("rlobz17", stm));
-		System.out.println("id = 2: " + manager.getAccount(2, stm));
-		System.out.println("dpopk17: " + manager.getAccount("dpopk17", stm));
-		System.out.println("id = 4: " + manager.getAccount(4, stm));
+		System.out.println("rlobz17: " + manager.getAccount("rlobz17",historyManager, con));
+		System.out.println("id = 2: " + manager.getAccount(2,historyManager, con));
+		System.out.println("dpopk17: " + manager.getAccount("dpopk17",historyManager, con));
+		System.out.println("id = 4: " + manager.getAccount(4,historyManager, con));
 		System.out.println("-----------------------");
 		
 		
 		System.out.println("////////////////////////////");
 		System.out.println("testing getAccountUsername method:");
-		System.out.println("id = 1: " + manager.getAccountUsername(1, stm));
-		System.out.println("id = 2: " + manager.getAccountUsername(2, stm));
+		System.out.println("id = 1: " + manager.getAccountUsername(1, con));
+		System.out.println("id = 2: " + manager.getAccountUsername(2, con));
 		System.out.println("-----------------------");
 		
 		
@@ -132,8 +178,8 @@ class TestManagers {
 		System.out.println("testing searchAccounts:");
 		
 		System.out.println("-----------------------");
-		System.out.println("getting account (null, 0, 2, stm) -");
-		result = manager.searchAccounts(null, 0, 2, stm);
+		System.out.println("getting account (null, 0, 2, historyManager, con) -");
+		result = manager.searchAccounts(null, 0, 2, historyManager, con);
 		ArrayList<Account> accounts = result.getKey();
 		for(int i=0; i<accounts.size(); i++) {
 			Account account = accounts.get(i);
@@ -142,8 +188,8 @@ class TestManagers {
 		System.out.println("All Accounts found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting account (rlobz, 0, 100, stm) -");
-		result = manager.searchAccounts("rlobz", 0, 100, stm);
+		System.out.println("getting account (rlobz, 0, 100, historyManager, con) -");
+		result = manager.searchAccounts("rlobz", 0, 100, historyManager, con);
 		accounts = result.getKey();
 		for(int i=0; i<accounts.size(); i++) {
 			Account account = accounts.get(i);
@@ -152,8 +198,8 @@ class TestManagers {
 		System.out.println("All Accounts found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting account (l, 0, 100, stm) -");
-		result = manager.searchAccounts("l", 0, 100, stm);
+		System.out.println("getting account (l, 0, 100, historyManager, con) -");
+		result = manager.searchAccounts("l", 0, 100, historyManager, con);
 		accounts = result.getKey();
 		for(int i=0; i<accounts.size(); i++) {
 			Account account = accounts.get(i);
@@ -162,8 +208,8 @@ class TestManagers {
 		System.out.println("All Accounts found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting account (rexi, 0, 100, stm) -");
-		result = manager.searchAccounts("rexi", 0, 100, stm);
+		System.out.println("getting account (rexi, 0, 100, historyManager, con) -");
+		result = manager.searchAccounts("rexi", 0, 100, historyManager, con);
 		accounts = result.getKey();
 		for(int i=0; i<accounts.size(); i++) {
 			Account account = accounts.get(i);
@@ -176,60 +222,55 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("testing accountUpdates:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+	
+/*	
 		
-	/*	
 		System.out.println("-----------------------");
 		System.out.println("update account_first_name to rezi1 with id=1");
-		assertEquals(0, manager.changeFirstName(1, "rezi1", stm));
+		assertEquals(0, manager.changeFirstName(1, "rezi1", con));
 		System.out.println("update account_first_name to rezi1 with id=5 (should return 1)");
-		assertEquals(1, manager.changeFirstName(5, "rezi1", stm));
+		assertEquals(1, manager.changeFirstName(5, "rezi1", con));
 		
 		System.out.println("-----------------------");
 		System.out.println("update account_last_name to lobzhanidze1 with id=1");
-		assertEquals(0, manager.changeLastName(1, "lobzhanidze1", stm));
+		assertEquals(0, manager.changeLastName(1, "lobzhanidze1", con));
 		System.out.println("update account_last_name to lobzhanidze1 with id=5 (should return 1)");
-		assertEquals(1, manager.changeLastName(5, "lobzhanidze1", stm));
+		assertEquals(1, manager.changeLastName(5, "lobzhanidze1", con));
 		
 		System.out.println("-----------------------");
 		System.out.println("update account_username to rezgo with id=1");
-		assertEquals(0, manager.changeUsername(1, "rezgo", stm));
+		assertEquals(0, manager.changeUsername(1, "rezgo", con));
 		System.out.println("update account_username to rezi1 with id=5 (should return 1)");
-		assertEquals(1, manager.changeUsername(5, "rezi1", stm));
+		assertEquals(1, manager.changeUsername(5, "rezi1", con));
 		System.out.println("update account_username to snoza17 with id=1 (should return 2)");
-		assertEquals(2, manager.changeUsername(1, "snoza17", stm));
+		assertEquals(2, manager.changeUsername(1, "snoza17", con));
 		
 		System.out.println("-----------------------");
 		System.out.println("update account_mail to rezi.lobzhanidze@gmail.com with id=1");
-		assertEquals(0, manager.changeMail(1, "rezi.lobzhanidze@gmail.com", stm));
+		assertEquals(0, manager.changeMail(1, "rezi.lobzhanidze@gmail.com", con));
 		System.out.println("update account_mail to rezi.lobzhanidze@gmail.com with id=5 (should return 1)");
-		assertEquals(1, manager.changeMail(5, "rezi.lobzhanidze@gmail.com", stm));
+		assertEquals(1, manager.changeMail(5, "rezi.lobzhanidze@gmail.com", con));
 		System.out.println("update account_mail to snoza17@freeuni.edu.ge with id=1 (should return 2)");
-		assertEquals(2, manager.changeMail(1, "snoza17@freeuni.edu.ge", stm));
+		assertEquals(2, manager.changeMail(1, "snoza17@freeuni.edu.ge", con));
 		
 		System.out.println("-----------------------");
 		System.out.println("update account_imgUrl to someImageURL with id=1");
-		assertEquals(0, manager.changeImg(1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", stm));
+		assertEquals(0, manager.changeImg(1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", con));
 		System.out.println("update account_imgUrl to someImageURL with id=5 (should return 1)");
-		assertEquals(1, manager.changeImg(5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", stm));
+		assertEquals(1, manager.changeImg(5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", con));
 		
-		
-		System.out.println("-----------------------");
-		System.out.println("update account_quizesTaken to id=1");
-		assertEquals(0, manager.addQuizesTaken(1, stm));
-		System.out.println("update account_quizesTaken to id=5 (should return 1)");
-		assertEquals(1, manager.addQuizesTaken(5, stm));
 		
 		System.out.println("-----------------------");
 		System.out.println("change state of account with id=1 to admin");
-		assertEquals(0, manager.makeAccountAdmin(1, stm));
+		assertEquals(0, manager.makeAccountAdmin(1, con));
 		System.out.println("change state of account with id=2 to user");
-		assertEquals(0, manager.makeAccountUser(2, stm));
+		assertEquals(0, manager.makeAccountUser(2, con));
 		System.out.println("change state of account with id=5 to admin (should return 1)");
-		assertEquals(1, manager.makeAccountAdmin(5, stm));
+		assertEquals(1, manager.makeAccountAdmin(5, con));
 		System.out.println("change state of account with id=5 to user (should return 1)");
-		assertEquals(1, manager.makeAccountUser(5, stm));
+		assertEquals(1, manager.makeAccountUser(5, con));
 		
-	*/
+ */   
 		
 		
 	}
@@ -245,10 +286,10 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		
 		
-		Statement stm = createStatement();
+		Connection con = createConnection();
 		QuizLiteManager manager = new QuizLiteManager();
 		System.out.println("testing getAllQuizNumber:");
-		System.out.println("Should be 22: " + manager.getAllQuizNumber(stm));
+		System.out.println("Should be 22: " + manager.getAllQuizNumber(con));
 		System.out.println("-----------------------");
 		
 		
@@ -256,8 +297,8 @@ class TestManagers {
 		Pair< ArrayList<QuizLite>, Integer> result = null;
 		System.out.println("testing searchQuizLites:");
 		System.out.println("-----------------------");
-		System.out.println("getting quizLites (null, null, 0, 100, stm) -");
-		result = manager.searchQuizLites(null, null, 0, 100, stm);
+		System.out.println("getting quizLites (null, null, 0, 100, con) -");
+		result = manager.searchQuizLites(null, null, 0, 100, con);
 		ArrayList<QuizLite> quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -266,8 +307,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites (null, 1, 0, 10, stm) -");
-		result = manager.searchQuizLites(null, 1, 0, 10, stm);
+		System.out.println("getting quizLites (null, 1, 0, 10, con) -");
+		result = manager.searchQuizLites(null, 1, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -276,8 +317,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('1', null, 0, 10, stm) -");
-		result = manager.searchQuizLites("1", null, 0, 10, stm);
+		System.out.println("getting quizLites ('1', null, 0, 10, con) -");
+		result = manager.searchQuizLites("1", null, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -286,8 +327,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('1', 1, 0, 10, stm) -");
-		result = manager.searchQuizLites("1", 1, 0, 10, stm);
+		System.out.println("getting quizLites ('1', 1, 0, 10, con) -");
+		result = manager.searchQuizLites("1", 1, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -296,8 +337,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('SimpleQuiz21', null, 0, 10, stm) -");
-		result = manager.searchQuizLites("SimpleQuiz21", null, 0, 10, stm);
+		System.out.println("getting quizLites ('SimpleQuiz21', null, 0, 10, con) -");
+		result = manager.searchQuizLites("SimpleQuiz21", null, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -316,21 +357,21 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
-		Statement stm = createStatement();
+		Connection con = createConnection();
 		QuestionManager manager = new QuestionManager();
 		
 		System.out.println("testing getQuestionType:");
-		assertEquals("Question_Response_type", manager.getQuestionType(1, stm));
-		assertEquals("Picture_Response_type", manager.getQuestionType(2, stm));
+		assertEquals("Question_Response_type", manager.getQuestionType(1, con));
+		assertEquals("Picture_Response_type", manager.getQuestionType(2, con));
 		System.out.println("Correct return values on getQuestionType method");
 		System.out.println("-----------------------");
 		System.out.println("////////////////////////////");
 		
 		System.out.println("testing getQuestion:");
 		System.out.println("getting Question with id 1:");
-		System.out.println(manager.getQuestion(1, stm));
+		System.out.println(manager.getQuestion(1, con));
 		System.out.println("getting Question with id 2:");
-		System.out.println(manager.getQuestion(2, stm));
+		System.out.println(manager.getQuestion(2, con));
 		System.out.println("-----------------------");
 		
 		
@@ -344,9 +385,9 @@ class TestManagers {
 			
 			System.out.println("addQuestion(1,null,null) with testAnswers");
 			Question newQuestion = new Question(0, 1, null, null, testAnswers);
-			int newQuestionID = manager.addQuestion(newQuestion, stm);
+			int newQuestionID = manager.addQuestion(newQuestion, con);
 			System.out.println("added Question - ");
-			System.out.println(manager.getQuestion(newQuestionID, stm));
+			System.out.println(manager.getQuestion(newQuestionID, con));
 		
 		*/
 		
@@ -364,19 +405,19 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		
 		
-		Statement stm = createStatement();
+		Connection con = createConnection();
 		AnswerManager manager = new AnswerManager();
 		
 		System.out.println("testing getAllAnswer:");
 		System.out.println("getting all answers on questionId = 1");
-		ArrayList<Answer> result = manager.getAllAnswer(1, stm);
+		ArrayList<Answer> result = manager.getAllAnswer(1, con);
 		for(int i=0; i<result.size(); i++) {
 			System.out.println(result.get(i));
 		}
 		
 		System.out.println("-----------------------");
 		System.out.println("getting all answers on questionId = 2");
-		result = manager.getAllAnswer(2, stm);
+		result = manager.getAllAnswer(2, con);
 		for(int i=0; i<result.size(); i++) {
 			System.out.println(result.get(i));
 		}
@@ -393,49 +434,21 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		
 		
-		Statement stm = createStatement();
+		Connection con = createConnection();
 		
 		QuestionManager questionManager = new QuestionManager();
-		QuizManager manager = new QuizManager(questionManager);
+		QuizHistoryManager historyManager = new QuizHistoryManager();
+		QuizManager manager = new QuizManager(questionManager, historyManager);
 		
 		System.out.println("testing getQuiz:");
 		System.out.println("getting quiz with id = 1");
-		System.out.println(manager.getQuiz(1, stm));
+		System.out.println(manager.getQuiz(1, con));
 		System.out.println("-----------------------");
 		
 		System.out.println("getting quiz with id = 2");
-		System.out.println(manager.getQuiz(2, stm));
+		System.out.println(manager.getQuiz(2, con));
 		System.out.println("-----------------------");
 		
-		System.out.println("////////////////////////////");
-		System.out.println("testing addQuizTakenCount:");
-		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
-		/*
-			System.out.println("adding 5 done on quiz with id = 1");
-			for(int i=0; i<5; i++) {
-				manager.addQuizTakenCount(1, stm);
-			}
-			assertEquals(5, manager.getQuiz(1, questionManager, stm).getQuizTaken());
-			
-			System.out.println("adding 15 done on quiz with id = 3");
-			for(int i=0; i<15; i++) {
-				manager.addQuizTakenCount(3, stm);
-			}
-			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
-			System.out.println("adding 25 done on quiz with id = 10");
-			for(int i=0; i<25; i++) {
-				manager.addQuizTakenCount(10, stm);
-			}
-			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
-			
-			System.out.println("checking again...");
-			
-			assertEquals(5, manager.getQuiz(1, questionManager, stm).getQuizTaken());
-			assertEquals(15, manager.getQuiz(3, questionManager, stm).getQuizTaken());
-			assertEquals(25, manager.getQuiz(10, questionManager, stm).getQuizTaken());
-		*/
-		
-		System.out.println("-----------------------");
 		System.out.println("testing addQuiz method:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		/*
@@ -446,9 +459,9 @@ class TestManagers {
 			testQuestions.add(newQuestion);
 			
 			System.out.println("adding new quiz with testQuestions");
-			Quiz newQuiz = new Quiz(0, "testQuiz", testQuestions, 1, null, null, 0, "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg");
-			int result = manager.addQuiz(newQuiz,stm);
-			System.out.println(manager.getQuiz(result, stm));
+			Quiz newQuiz = new Quiz(0, "testQuiz", testQuestions, 1, null, null, 0,0, "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg");
+			int result = manager.addQuiz(newQuiz,con);
+			System.out.println(manager.getQuiz(result, con));
 		*/
 		
 		
@@ -466,7 +479,7 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("////////////////////////////");
 		
-		Statement stm = createStatement();
+		Connection con = createConnection();
 		
 		AccountHistoryManager accountHistory = new AccountHistoryManager();
 		QuizHistoryManager quizHistory = new QuizHistoryManager();
@@ -476,8 +489,20 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("testing getQuizAverageScore method:");
 		
-		System.out.println("getting average from quiz with id(1) - " + quizHistory.getQuizAverageScore(1, stm));
-		System.out.println("getting average from quiz with id(2) - " + quizHistory.getQuizAverageScore(2, stm));
+		System.out.println("getting average from quiz with id(1) - " + quizHistory.getQuizAverageScore(1, con));
+		System.out.println("getting average from quiz with id(2) - " + quizHistory.getQuizAverageScore(2, con));
+		System.out.println("-----------------------");
+		
+		
+		System.out.println("////////////////////////////");
+		System.out.println("testing AccountHistoryManager:");
+		System.out.println("////////////////////////////");
+		System.out.println("testing getAccountAverageScore method:");
+		
+		System.out.println("getting average from account with id(1) - " + accountHistory.getAccountAverageScore(1, con));
+		System.out.println("getting average from account with id(2) - " + accountHistory.getAccountAverageScore(2, con));
+		System.out.println("getting average from account with id(3) - " + accountHistory.getAccountAverageScore(3, con));
+		System.out.println("getting average from account with id(4) - " + accountHistory.getAccountAverageScore(4, con));
 		System.out.println("-----------------------");
 		
 	}

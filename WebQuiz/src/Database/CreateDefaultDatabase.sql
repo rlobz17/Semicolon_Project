@@ -1,7 +1,7 @@
 use webquizdatabase;
 
 -- history tables
-DROP TABLE IF EXISTS accountQuizTakeLink, takeHistory;
+DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
  -- remove tables if they already exist and start from scratch  
  
 -- main tables
@@ -19,7 +19,6 @@ CREATE TABLE accounts (
     account_password char(128) not null,
     account_imgUrl text,
     account_created datetime default now(),
-    account_quizesTaken int(8) default 0,
     account_isAdmin bool default false,
    
     primary key (account_id),
@@ -34,7 +33,6 @@ CREATE TABLE quizes (
     quiz_edited datetime,
     quiz_publisherId int(8) not null,
     quiz_imgUrl text,
-    quiz_doneCount int default 0,
     primary key (quiz_id),
     foreign key (quiz_publisherId) references accounts(account_id),
 	fulltext(quiz_name)
@@ -94,7 +92,12 @@ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
     ("simpleQuiz7", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz8", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
     ("simpleQuiz9", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz10", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
+    ("simpleQuiz10", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
+;
+
+do sleep(1);
+
+INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
     ("simpleQuiz11", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
     ("simpleQuiz12", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
     ("simpleQuiz13", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
@@ -151,7 +154,7 @@ Create table takeHistory(
     primary key (takeHistory_id)
 );
 
-create table accountQuizTakeLink(
+create table accountQuizTakeLinks(
 	accountQuizTakeLink_id int(8) not null auto_increment,
     account_id int(8) not null,
     quiz_id int(8) not null,
@@ -163,15 +166,28 @@ create table accountQuizTakeLink(
 );
     
 
-INSERT INTO takeHistory (takeHistory_date, takeHistory_score) VALUES
-    (now(), 100),
-    (now(), 90)
-    ;  
+INSERT INTO takeHistory (takeHistory_score) VALUES
+    (100),
+    (90)
+    ; 
     
-INSERT INTO accountQuizTakeLink (account_id, quiz_id, takeHistory_id) VALUES
+ do sleep(1);
+ 
+ INSERT INTO takeHistory (takeHistory_score) VALUES
+    (70),
+    (95),
+    (100),
+    (30)
+    ; 
+    
+INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
     (1, 1, 1),
-    (2, 1, 2)
-    ;  
+    (2, 1, 2),
+    (3, 1, 3),
+    (4, 1, 4),
+    (1, 2, 5),
+    (2, 2, 6)
+;  
 
 
     

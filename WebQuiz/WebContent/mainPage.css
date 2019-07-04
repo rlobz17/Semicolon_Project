@@ -280,6 +280,7 @@
 	margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 96%;
 }
 
 .navigation > span, .navigation a {
@@ -515,4 +516,28 @@
 .profileEdit{
 	margin-bottom: 20px;
     margin-top: 50px;
+}
+
+.myProfileTxt{
+    text-decoration: none;
+    color: black;
+    float: left;
+    overflow: hidden;
+    margin-top: 11px;
+    margin-left: 26px;
+}
+
+.logoutTxt{
+	text-decoration: none;
+	color: black;
+	float: left;
+	overflow: hidden;
+	margin-top: 11px;
+	margin-left: 40px;
+}
+
+.seeQuizes{
+	color: #7b7b7b;
+    text-decoration: none;
+    font-size: 14px;
 }

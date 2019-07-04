@@ -1,6 +1,6 @@
 package Temp;
 
-import java.sql.Statement;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class QuestionManager {
@@ -18,8 +18,8 @@ public class QuestionManager {
 	 * String QuestionTypeName - for the question with this id 
 	 * null - for sql Error
 	 */
-	public String getQuestionType(int questionID, Statement stm) {
-		return dao.getQuestionType(questionID, stm);
+	public String getQuestionType(int questionID, Connection con) {
+		return dao.getQuestionType(questionID, con);
 	}
 	
 	
@@ -28,8 +28,8 @@ public class QuestionManager {
 	 * Question - question with id of @param questionID
 	 * null - if sql Error
 	 */
-	public Question getQuestion(int questionID, Statement stm) {
-		return dao.getQuestion(questionID, answerManager, stm);
+	public Question getQuestion(int questionID, Connection con) {
+		return dao.getQuestion(questionID, answerManager, con);
 	}
 	
 	
@@ -39,8 +39,8 @@ public class QuestionManager {
 	 *  questionID - if question was added successfully
 	 * -1 - if sql Error
 	 */
-	public int addQuestion(Question newQuestion, Statement stm) {
-		int result =  dao.addQuestion(newQuestion, stm);
+	public int addQuestion(Question newQuestion, Connection con) {
+		int result =  dao.addQuestion(newQuestion, con);
 		ArrayList<Answer> answers = newQuestion.getCorrectAnswers();
 		if(answers==null) {
 			return 0;
@@ -48,7 +48,7 @@ public class QuestionManager {
 		for(int i=0; i<answers.size(); i++) {
 			Answer answer = answers.get(i);
 			answer.setQuestionID(result);
-			int answerManagerResult = answerManager.addAnswer(answer, stm);
+			int answerManagerResult = answerManager.addAnswer(answer, con);
 			if(answerManagerResult == -1) {
 				return -1;
 			}

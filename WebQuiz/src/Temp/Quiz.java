@@ -11,17 +11,19 @@ public class Quiz {
 	private int Creator_id;
 	private Date CreationDate;
 	private Date UpdatedDate;
-	private int quizTaken; // how many tames this quiz was ....
+	private int quizTaken; // how many tames this quiz was taken
+	private double quizAverage; // average score of this quiz
 	private String imgUrl;
 	private ArrayList<Question> questions;
 	
-	public Quiz(int quizID, String quiz_name, ArrayList<Question> questions,int Creator_id,Date UpdatedDate,Date CreationDate,int quizTaken,String imgUrl) {
+	public Quiz(int quizID, String quiz_name, ArrayList<Question> questions,int Creator_id,Date UpdatedDate,Date CreationDate,int quizTaken,double quizAverage,String imgUrl) {
 		this.quizID = quizID;
 		this.quiz_name = quiz_name;
 		this.UpdatedDate = UpdatedDate;
 		this.Creator_id = Creator_id;
 		this.CreationDate = CreationDate;
 		this.quizTaken = quizTaken;
+		this.quizAverage = quizAverage;
 		this.imgUrl = imgUrl;
 		this.questions = questions;
 	}
@@ -48,7 +50,15 @@ public class Quiz {
 	public int getQuizTaken() {
 		return quizTaken;
 	}
-
+	
+	
+	/**
+	 * @return the quizAverage
+	 */
+	public double getQuizAverage() {
+		return quizAverage;
+	}
+	
 
 
 	/**
@@ -111,6 +121,6 @@ public class Quiz {
 			quests += "Question 1)\n" + questions.get(i).toString() + "\n";
 		}
 		return "quizID " + quizID +" | quiz_name "+quiz_name + " | CreationDate "+CreationDate + " | UpdatedDate " + UpdatedDate + 
-				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken + " | imgUrl " + quests;
+				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken +" | quizAverage "+ quizAverage+ " | imgUrl " + quests;
 	}
 }

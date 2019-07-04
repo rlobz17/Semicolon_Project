@@ -15,16 +15,16 @@
 			
 			<div class="menu">
 				<ul>
-					<li><a href="/WebQuizProject/categories.jsp?id=culture">კულტურა</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=religion">რელიგია</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=politics">პოლიტიკა</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=sport">სპორტი</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=history">ისტორია</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=science">მეცნიერება</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=art">ხელოვნება</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=kids">საბავშვო</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=medicine">მედიცინა</a></li>
-					<li><a href="/WebQuizProject/categories.jsp?id=other">სხვა</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=culture">კულტურა</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=religion">რელიგია</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=politics">პოლიტიკა</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=sport">სპორტი</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=history">ისტორია</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=science">მეცნიერება</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=art">ხელოვნება</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=kids">საბავშვო</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=medicine">მედიცინა</a></li>
+					<li><a href="/WebQuizProject/category.jsp?id=other">სხვა</a></li>
 				</ul>
             </div>
             

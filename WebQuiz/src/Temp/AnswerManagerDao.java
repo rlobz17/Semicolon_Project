@@ -1,5 +1,6 @@
 package Temp;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,9 +17,10 @@ public class AnswerManagerDao {
 	 * ArrayList<Answer> - correctly ordered answers for question with this id
 	 * null - for sql Error 
 	 */
-	public ArrayList<Answer> getAllAnswer(int questionId, Statement stm) {
+	public ArrayList<Answer> getAllAnswer(int questionId,  Connection con) {
 		ArrayList<Answer> result = new ArrayList<>();
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT * FROM answers "
 					+ "where "+questionId+" = question_id;");
@@ -31,7 +33,8 @@ public class AnswerManagerDao {
 				
 				Answer newAnswer = new Answer(answerID, questionID, answerIndex, answerDetail);
 				result.add(newAnswer);		
-			}	
+			}
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -47,10 +50,11 @@ public class AnswerManagerDao {
 	 *  1 - answer was not added
 	 * -1 - if sql Error
 	 */
-	public int addAnswer(Answer newAnswer, Statement stm) {
+	public int addAnswer(Answer newAnswer,  Connection con) {
 		int result = 1;
 				
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String addAnswerString = "INSERT INTO answers (question_id, answer_index, answer_detail) VALUES";
@@ -58,9 +62,9 @@ public class AnswerManagerDao {
 			addAnswerString+= ","+newAnswer.getAnswerIndex();
 			addAnswerString+= ",'"+newAnswer.getAnswerDetail()+"')";
 			
-			System.out.println(addAnswerString);
 			stm.executeUpdate(addAnswerString);
 			result = 0;
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;

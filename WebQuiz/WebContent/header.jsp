@@ -45,11 +45,11 @@
 				%>
 				
 				<div class="loginButt">
-					<a href="/WebQuizProject/Profile.jsp?username=<%= user %>" class="loginTxt"> პროფილი </a>
+					<a href="/WebQuizProject/Profile.jsp?username=<%= user %>" class="myProfileTxt"> პროფილი </a>
 				</div>
 				
 				<div class="loginButt">
-					<a href="/WebQuizProject/registration.jsp" class="loginTxt"> გასვლა </a>
+					<a href="/WebQuizProject/index.jsp?log=out" class="logoutTxt"> გასვლა </a>
 				</div>
 				
 				<%
@@ -57,7 +57,7 @@
 		%>
 		
 		<div>
-			<form action="/WebQuizProject/search/searchServlet" method="post">
+			<form action="/WebQuizProject/search/searchServlet" method="get">
                 <input type="hidden" name="do" value="search">
                 <input type="text" name="search" class="searchInput" placeholder="შეიყვანეთ საძიებო სიტყვა...">
             </form>

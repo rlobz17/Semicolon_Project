@@ -1,6 +1,7 @@
 package Temp;
 
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Database.DataBaseINFO;
+import History.AccountHistoryManager;
 import javafx.util.Pair;
 
 public class AccountManagerDao {
@@ -21,17 +23,21 @@ public class AccountManagerDao {
 	 * ArrayList<String> - list of all acounts
 	 * null - for sql Error
 	 */
-	public ArrayList<String> listOfAccounts(Statement stm) {
+	public ArrayList<String> listOfAccounts(Connection con) {
 		ArrayList <String> result = new ArrayList<String>();
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT e.account_username FROM accounts e");
 			while(rs.next()) {
 				result.add(rs.getString(1));
-			}	
+			}
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+		
+
 		
 		return result;
 	}
@@ -46,9 +52,10 @@ public class AccountManagerDao {
 	 * 4 - if username or mail field is empty,
 	 * -1 - if sql Error
 	 */
-	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Statement stm) {
+	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Connection con) {
 		
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			String insert = "INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password) VALUES (";
 			if(firstname == "") {insert += "null, ";} else {insert += "\"" + firstname + "\", ";}
@@ -58,6 +65,8 @@ public class AccountManagerDao {
 			insert += "\"" + password + "\");";
 						
 			stm.executeUpdate(insert);
+			stm.close();
+			
 			return 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,10 +83,10 @@ public class AccountManagerDao {
 	 * 3 - if username and mail both in use,
 	 * -1 - for sql Error 
 	 */
-	public int containsAccount(String username, String mail, Statement stm) {
+	public int containsAccount(String username, String mail, Connection con) {
 		int result = 0;
 		try{  
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectUsername = "Select * from accounts ";
@@ -88,8 +97,7 @@ public class AccountManagerDao {
 			if(rs.next()) {
 				result = 1;
 			}
-						
-			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
 			String selectMail = "Select * from accounts ";
 			selectMail += "where account_mail = \"" + mail + "\";";
 			
@@ -99,6 +107,8 @@ public class AccountManagerDao {
 					result = 3;
 				} else result = 2;
 			}
+			
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -115,10 +125,10 @@ public class AccountManagerDao {
 	 * 2 - if password is incorrect,
 	 * -1 - for sql Error 
 	 */
-	public int checkPassword(String username, String password, Statement stm) {
+	public int checkPassword(String username, String password, Connection con) {
 		int result = 0;
 		try{  
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectUsername = "Select * from accounts ";
@@ -139,6 +149,8 @@ public class AccountManagerDao {
 			if(rs.next()) {
 				result = -1;
 			}
+			
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -154,15 +166,15 @@ public class AccountManagerDao {
 	 * Account - found account with this username
 	 * null - for sql Error 
 	 */
-	public Account getAccount(String username, Statement stm) {
+	public Account getAccount(String username, AccountHistoryManager historyManager, Connection con) {
 		Date registrationDate;
 		Account result = null;
 		String mail, userName, imgUrl, firstName, lastName;
 		int userID;
-		int quizesTaken, quizesCreated;
+		int quizesCreated;
 		boolean isAdmin;
 		try{  
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectUsername = "Select * from accounts ";
@@ -178,6 +190,7 @@ public class AccountManagerDao {
 					registrationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("account_created"));
 				} catch (ParseException e) {
 					e.printStackTrace();
+					stm.close();
 					return null;
 				}
 				mail = rs.getString("account_mail");
@@ -185,14 +198,15 @@ public class AccountManagerDao {
 				imgUrl = rs.getString("account_imgUrl");
 				firstName = rs.getString("account_first_name");
 				lastName = rs.getString("account_last_name");
-				quizesTaken = rs.getInt("account_quizesTaken");
 				isAdmin = rs.getBoolean("account_isAdmin");
 								
 			}else {
+				stm.close();
 				return null;
 			}
 			
 			if(rs.next()) {
+				stm.close();
 				return null;
 			}
 			
@@ -207,9 +221,12 @@ public class AccountManagerDao {
 				quizesCreated = 0;
 			}
 			
-			result = new Account(userID, registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, isAdmin);
-
+			int quizesTaken = historyManager.getAccountQuizTakenCount(userID, con);
+			double quizesAverage = historyManager.getAccountAverageScore(userID, con);
 			
+			result = new Account(userID, registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, quizesAverage, isAdmin);
+
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -223,10 +240,11 @@ public class AccountManagerDao {
 	 * String - username of account with this id
 	 * null - for sql Error 
 	 */
-	public String getAccountUsername(int userID, Statement stm) {
+	public String getAccountUsername(int userID, Connection con) {
 		String result = null;		
 	
-		try{  	
+		try{ 
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectUsername = "Select account_username from accounts ";
@@ -237,12 +255,15 @@ public class AccountManagerDao {
 			if(rs.next()) {
 				result = rs.getString(1);
 				if(rs.next()) {
+					stm.close();
 					return null;
 				}
 			}else {
+				stm.close();
 				return null;
 			}
-		
+			
+			stm.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 			return null;
@@ -257,14 +278,15 @@ public class AccountManagerDao {
 	 * Account - found account with this userID
 	 * null - for sql Error 
 	 */
-	public Account getAccount(int userID, Statement stm) {
+	public Account getAccount(int userID, AccountHistoryManager historyManager, Connection con) {
 		Date registrationDate;
 		Account result = null;
 		String mail, userName, imgUrl, firstName, lastName;
-		int quizesTaken, quizesCreated;
+		int quizesCreated;
 		boolean isAdmin;
-		try{  
+		try{ 
 			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectUsername = "Select * from accounts ";
@@ -278,6 +300,7 @@ public class AccountManagerDao {
 					registrationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("account_created"));
 				} catch (ParseException e) {
 					e.printStackTrace();
+					stm.close();
 					return null;
 				}
 				mail = rs.getString("account_mail");
@@ -285,14 +308,15 @@ public class AccountManagerDao {
 				imgUrl = rs.getString("account_imgUrl");
 				firstName = rs.getString("account_first_name");
 				lastName = rs.getString("account_last_name");
-				quizesTaken = rs.getInt("account_quizesTaken");
 				isAdmin = rs.getBoolean("account_isAdmin");
 								
 			}else {
+				stm.close();
 				return null;
 			}
 			
 			if(rs.next()) {
+				stm.close();
 				return null;
 			}
 			
@@ -307,9 +331,13 @@ public class AccountManagerDao {
 				quizesCreated = 0;
 			}
 			
-			result = new Account(userID, registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken, isAdmin);
-
+			int quizesTaken = historyManager.getAccountQuizTakenCount(userID, con);
+			double quizesAverage = historyManager.getAccountAverageScore(userID, con);
 			
+			
+			result = new Account(userID, registrationDate, mail, userName, imgUrl, firstName, lastName, quizesCreated, quizesTaken,quizesAverage, isAdmin);
+
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -324,10 +352,11 @@ public class AccountManagerDao {
 	 * Pair<ArrayList<Account>, Integer> - ArrayList<Account> is searched, ordered and limited account list, Integer is full number of accounts found in this search.
 	 * null - for sql Error 
 	 */
-	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
+	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, AccountHistoryManager historyManager, Connection con) {
 		ArrayList<Account> result = new ArrayList<>();
 		int allFoundCount = 0;
 		try {
+			Statement stm = con.createStatement();
 			String fullTextSearch ="", likeClauseSearch = "%";
 			if(search!=null) {
 				for(int i=0; i<search.length(); i++) {
@@ -337,7 +366,7 @@ public class AccountManagerDao {
 				}
 			}
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
-			String query = " SELECT  account_username,";
+			String query = " SELECT  account_id,";
 			query += " MATCH (account_first_name, account_last_name, account_username, account_mail) AGAINST('"+fullTextSearch+"' IN BOOLEAN MODE) as score";
 			query += " from accounts a";
 			query += " where (account_first_name like '"+likeClauseSearch+"' or  (soundex(a.account_first_name) like soundex('"+likeClauseSearch+"')) or";
@@ -349,18 +378,14 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(query);		
 
 			
-			ArrayList<String> foundAccounts = new ArrayList<>();
+		
 			while(rs.next()) {
-				foundAccounts.add(rs.getString(1));				
-			}
-			
-			for(int i=0; i<foundAccounts.size(); i++) {
-				Account acc = getAccount(foundAccounts.get(i), stm);
+				Account acc = getAccount(rs.getInt(1),historyManager, con);
 				if(acc==null) {
 					return null;
 				}else {
 					result.add(acc);
-				}
+				}			
 			}
 			
 			query = " SELECT  count(1)";
@@ -374,9 +399,11 @@ public class AccountManagerDao {
 			if(rs.next()) {
 				allFoundCount = rs.getInt(1);
 			}else {
+				stm.close();
 				return null;
 			}
 			
+			stm.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -393,11 +420,11 @@ public class AccountManagerDao {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeFirstName(int accountId, String newFirstName, Statement stm) {
+	public int changeFirstName(int accountId, String newFirstName, Connection con) {
 		int result = -1;
 		
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -406,9 +433,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 			
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -418,13 +447,14 @@ public class AccountManagerDao {
 			updateString += " set account_first_name = '" + newFirstName + "'";
 			updateString += " where account_id = " + accountId;
 
-			
-			System.out.println(updateString);
+
 			stm.executeUpdate(updateString);
 			result = 0;
 
+			stm.close();
 		}catch(SQLException e){
 			e.printStackTrace();
+			
 			return -1;
 		}
 		
@@ -437,11 +467,11 @@ public class AccountManagerDao {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeLastName(int accountId, String newLastName, Statement stm) {
+	public int changeLastName(int accountId, String newLastName, Connection con) {
 		int result = -1;
 		
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -450,9 +480,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 			
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -465,6 +497,7 @@ public class AccountManagerDao {
 						
 			stm.executeUpdate(updateString);
 			result = 0;
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -481,11 +514,11 @@ public class AccountManagerDao {
 	 *  2 - if username is already in use,
 	 * -1 - for sql Error 
 	 */
-	public int changeUsername(int accountId, String newUsername, Statement stm) {
+	public int changeUsername(int accountId, String newUsername, Connection con) {
 		int result = -1;
 		
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -494,9 +527,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 			
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -507,6 +542,7 @@ public class AccountManagerDao {
 			rs = stm.executeQuery(findThisUsername);
 			
 			if(rs.next()) {
+				stm.close();
 				return 2;
 			}
 			
@@ -517,6 +553,7 @@ public class AccountManagerDao {
 						
 			stm.executeUpdate(updateString);
 			result = 0;
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -533,12 +570,12 @@ public class AccountManagerDao {
 	 *  2 - if mail is already in use,
 	 * -1 - for sql Error 
 	 */
-	public int changeMail(int accountId, String newMail, Statement stm) {
+	public int changeMail(int accountId, String newMail, Connection con) {
 
 		int result = -1;
 		
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -547,9 +584,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 						
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -560,6 +599,7 @@ public class AccountManagerDao {
 			rs = stm.executeQuery(findThisMail);
 			
 			if(rs.next()) {
+				stm.close();
 				return 2;
 			}
 			
@@ -572,6 +612,7 @@ public class AccountManagerDao {
 						
 			stm.executeUpdate(updateString);
 			result = 0;
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -587,12 +628,12 @@ public class AccountManagerDao {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeImg(int accountId, String newImgUrl, Statement stm) {
+	public int changeImg(int accountId, String newImgUrl, Connection con) {
 		
 		int result = -1;
 		
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -601,9 +642,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 			
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -616,6 +659,7 @@ public class AccountManagerDao {
 						
 			stm.executeUpdate(updateString);
 			result = 0;
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -626,49 +670,49 @@ public class AccountManagerDao {
 	}
 	
 	
-	/**
-	 * @return 
-	 *  0 - successfully added number of quizes taken,
-	 *  1 - account with this id was not found
-	 * -1 - for sql Error 
-	 */
-	public int addQuizesTaken(int accountId, Statement stm) {
-
-		int result = -1;
-		try{ 
-			
-			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
-			
-			String findAccount = "Select 1 from accounts ";
-			findAccount += "where account_id = " + accountId;
-						
-			ResultSet rs = stm.executeQuery(findAccount);
-			
-			if(!rs.next()) {
-				return 1;
-			}else {
-				if(rs.next()) {
-					return -1;
-				}
-			}
-			
-			
-			String addTaken = "Update accounts ";
-			addTaken += " set account_quizesTaken = account_quizesTaken +1";
-			addTaken += " where account_id = " + accountId;
-
-						
-			stm.executeUpdate(addTaken);
-			result = 0;
-
-		}catch(SQLException e){
-			e.printStackTrace();
-			return -1;
-		}
-		
-		return result;
-	}
-	
+//	/**
+//	 * @return 
+//	 *  0 - successfully added number of quizes taken,
+//	 *  1 - account with this id was not found
+//	 * -1 - for sql Error 
+//	 */
+//	public int addQuizesTaken(int accountId, Connection con) {
+//
+//		int result = -1;
+//		try{ 
+//			Statement stm = con.createStatement();
+//			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+//			
+//			String findAccount = "Select 1 from accounts ";
+//			findAccount += "where account_id = " + accountId;
+//						
+//			ResultSet rs = stm.executeQuery(findAccount);
+//			
+//			if(!rs.next()) {
+//				return 1;
+//			}else {
+//				if(rs.next()) {
+//					return -1;
+//				}
+//			}
+//			
+//			
+//			String addTaken = "Update accounts ";
+//			addTaken += " set account_quizesTaken = account_quizesTaken +1";
+//			addTaken += " where account_id = " + accountId;
+//
+//						
+//			stm.executeUpdate(addTaken);
+//			result = 0;
+//
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//			return -1;
+//		}
+//		
+//		return result;
+//	}
+//	
 	
 	public static final int ADMIN = 0;
 	public static final int USER = 1;
@@ -680,10 +724,10 @@ public class AccountManagerDao {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeAccountState(int accountId, int task ,Statement stm) {
+	public int changeAccountState(int accountId, int task ,Connection con) {
 		int result = -1;
 		try{ 
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String findAccount = "Select 1 from accounts ";
@@ -692,9 +736,11 @@ public class AccountManagerDao {
 			ResultSet rs = stm.executeQuery(findAccount);
 			
 			if(!rs.next()) {
+				stm.close();
 				return 1;
 			}else {
 				if(rs.next()) {
+					stm.close();
 					return -1;
 				}
 			}
@@ -708,6 +754,7 @@ public class AccountManagerDao {
 						
 			stm.executeUpdate(changeState);
 			result = 0;
+			stm.close();
 
 		}catch(SQLException e){
 			e.printStackTrace();

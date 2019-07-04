@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
 <%@page import="Temp.QuizLite"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,22 +10,22 @@
     pageEncoding="UTF-8"%>
     
 <%
-    	ServletContext cont = getServletContext();
+	String LogOut = request.getParameter("log");
+	if(LogOut!=null && LogOut.equals("out")){
+		request.getSession().setAttribute("username", null);	
+	}
+	
+    ServletContext cont = getServletContext();
     Object obj = cont.getAttribute("QuizLite");
 
     QuizLiteManager m = (QuizLiteManager)obj;
 
     Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-    Statement stm = null;
+    
+    Connection con = d.getConnection();
 
-    try {
-    	stm = d.getConnection().createStatement();
-    } catch (SQLException e) {
-    	// Auto-generated catch block
-    	e.printStackTrace();
-    }
 
-    int quizNumber = m.getAllQuizNumber(stm);
+    int quizNumber = m.getAllQuizNumber(con);
     String p = request.getParameter("page");
 
     int currentPage = 1;
@@ -45,8 +46,9 @@
     int count = 10;
     int beginIndex = (currentPage-1)*count;
 
-    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, stm).getKey();
-    %>    
+    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, con).getKey();
+
+%>    
     
 <!DOCTYPE html>
 <html>
@@ -164,17 +166,32 @@
 		
 				<div class="navigation">
 					<%
-						for(int i=1; i<=pages; i++){
-							if(i==currentPage){
+						int last=0;
+						for(int i=0; i<pagesArr.size(); i++){
+							
+							int show = pagesArr.get(i);
+							
+							if(show-last>1){
+								%>
+								
+								<span> ... </span>
+							
+								<%
+								
+							}	
+							
+							last = show;
+							
+							if(show==currentPage){
 								%>
 							
-								<span><%= i %></span>
+								<span><%= show %></span>
 							
 								<%
 							} else{
 								%>
 							
-								<a href="/WebQuizProject/index.jsp?page=<%= i %>" ><%= i %></a>
+								<a href="/WebQuizProject/index.jsp?page=<%= show %>" ><%= show %></a>
 							
 								<%
 							}

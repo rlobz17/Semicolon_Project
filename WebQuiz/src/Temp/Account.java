@@ -13,6 +13,8 @@ public class Account {
 	private int quizesTaken;
 	private int quizesCreated;
 	
+	private double quizesAverage;
+	
 	private boolean isAdmin;
 
 	private Date registrationDate;
@@ -22,10 +24,11 @@ public class Account {
 	private String userName;
 	private String imgUrl;
 	
+	
 	private ArrayList<String> friendsList;
 	private ArrayList<Message> notifications;
 	
-	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName, int quizesCreated, int quizesTaken, boolean isAdmin) {
+	public Account(int userID, Date registrationDate, String mail, String userName, String imgUrl, String firstName, String lastName, int quizesCreated, int quizesTaken,double quizesAverage, boolean isAdmin) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -35,6 +38,7 @@ public class Account {
 		this.userName = userName;
 		this.quizesCreated = quizesCreated;
 		this.quizesTaken = quizesTaken;
+		this.quizesAverage = quizesAverage;
 		this.isAdmin = isAdmin;
 	}
 
@@ -141,6 +145,13 @@ public class Account {
 	}
 	
 	/**
+	 * @return the quizesAverage
+	 */
+	public double getQuizesAverage() {
+		return quizesAverage;
+	}
+	
+	/**
 	 * @return the userID
 	 */
 	public int getUserID() {
@@ -217,7 +228,7 @@ public class Account {
 	public String toString() {
 		return "ID " + userID +" | RegDate "+registrationDate + " | Mail " + mail + 
 				" | Username " + userName +" | ImgUrl "+ imgUrl + " | FirstName " + firstName + " | LastName " + lastName +
-				" | quizesCreated " + quizesCreated + " | quizesTaken " + quizesTaken + " | isAdmin " + isAdmin;
+				" | quizesCreated " + quizesCreated + " | quizesTaken " + quizesTaken + " | quizesAverage " + quizesAverage +" | isAdmin " + isAdmin;
 	}
 
 }

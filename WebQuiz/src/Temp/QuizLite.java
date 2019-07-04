@@ -10,14 +10,16 @@ public class QuizLite {
 	private String imgurl;
 	private Date date;
 	private int quizDone;
+	private double quizAverage;
 	
-	public QuizLite(int quiz_id, String title, String publisher, String imgurl, Date date, int quizDone) {
+	public QuizLite(int quiz_id, String title, String publisher, String imgurl, Date date, int quizDone, double quizAverage) {
 		this.quiz_id = quiz_id;
 		this.title = title;
 		this.publisher = publisher;
 		this.imgurl = imgurl;
 		this.date = date;
 		this.quizDone = quizDone;
+		this.quizAverage = quizAverage;
 	}
 	
 	/**
@@ -55,6 +57,14 @@ public class QuizLite {
 		return quizDone;
 	}
 	
+	/** 
+	 * @return the quiz average score
+	 */
+	public double getQuizAverage() {
+		return quizAverage;
+	}
+	
+	
 	/**
 	 * @return the imgurl
 	 */
@@ -65,6 +75,6 @@ public class QuizLite {
 	@Override
 	public String toString() {
 		return "ID " + quiz_id +" | title "+title + " | publisher " + publisher + 
-				" | imgurl " + imgurl +" | date "+ date + " | quizDone " + quizDone;
+				" | imgurl " + imgurl +" | date "+ date + " | quizDone " + quizDone + " | quizAverage " + quizAverage;
 	}
 }

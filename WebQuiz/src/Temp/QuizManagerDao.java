@@ -1,6 +1,7 @@
 package Temp;
 
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Database.DataBaseINFO;
+import History.QuizHistoryManager;
 
 public class QuizManagerDao {
 
@@ -19,10 +21,10 @@ public class QuizManagerDao {
 	 * Quiz - found Quiz with this quizId
 	 * null - for sql error
 	 */
-	public Quiz getQuiz(int quizId, QuestionManager questionManager, Statement stm) {
+	public Quiz getQuiz(int quizId, QuestionManager questionManager, QuizHistoryManager historyManager, Connection con) {
 		Quiz result = null;
 		try{  
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String selectQuestionIDs = "Select question_id from quizquestionlinks ";
@@ -36,14 +38,16 @@ public class QuizManagerDao {
 			}
 			
 			if(questionIDs.size() == 0) {
-				//return null;
+				stm.close();
+				return null;
 			}
 			
 			ArrayList<Question> questions = new ArrayList<>();
 			
 			for(int i=0; i<questionIDs.size(); i++) {
-				Question question = questionManager.getQuestion(questionIDs.get(i), stm);
+				Question question = questionManager.getQuestion(questionIDs.get(i), con);
 				if(question == null) {
+					stm.close();
 					return null;
 				}
 				questions.add(question);
@@ -54,9 +58,12 @@ public class QuizManagerDao {
 			
 			rs = stm.executeQuery(selectQuiz);
 			
+			String quiz_name, imgURL;
+			Date CreationDate , UpdatedDate;
+			int creatorID;
+			
 			if(rs.next()) {
-				String quiz_name = rs.getString("quiz_name");
-				Date CreationDate , UpdatedDate;
+				quiz_name = rs.getString("quiz_name");
 				try {
 					CreationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("quiz_created"));
 					String updateDateString = rs.getString("quiz_edited");
@@ -67,12 +74,12 @@ public class QuizManagerDao {
 					}
 				} catch (ParseException e) {
 					e.printStackTrace();
+					stm.close();
 					return null;
 				}
-				int creatorID = rs.getInt("quiz_publisherId");
-				String imgURL = rs.getString("quiz_imgUrl");
-				int quizTaken = rs.getInt("quiz_doneCount");
-				result = new Quiz(quizId, quiz_name, questions, creatorID, UpdatedDate, CreationDate, quizTaken, imgURL);
+				creatorID = rs.getInt("quiz_publisherId");
+				imgURL = rs.getString("quiz_imgUrl");
+				
 			}else {
 				return null;
 			}
@@ -80,6 +87,22 @@ public class QuizManagerDao {
 			if(rs.next()) {
 				return null;
 			}
+			
+			double quizAverage = historyManager.getQuizAverageScore(quizId, con);
+			if(quizAverage == -1) {
+				stm.close(); 
+				return null;
+			}
+			
+			int quizTaken = historyManager.getQuizTakenCount(quizId, con);
+			if(quizTaken == -1) {
+				stm.close();
+				return null;
+			}
+					
+			
+			result = new Quiz(quizId, quiz_name, questions, creatorID, UpdatedDate, CreationDate, quizTaken, quizAverage, imgURL);
+			stm.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 			return null;
@@ -95,20 +118,24 @@ public class QuizManagerDao {
 	 * true  - if quiz was updated successfully
 	 * false - for sql error
 	 */
-	public boolean addQuizTakenCount(int quiz_id, Statement stm) {
+	public boolean addQuizTakenCount(int quiz_id,  Connection con) {
+		boolean result = false;
 		try{  
 			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String updateDoneCount = "UPDATE quizes SET quiz_doneCount = quiz_doneCount + 1 ";
 			updateDoneCount += "where quiz_id = " + quiz_id;
 			
-			return stm.execute(updateDoneCount);
+			result = stm.execute(updateDoneCount);
+			stm.close();
 			
 		}catch(SQLException e){
 			e.printStackTrace();
 			return false;
 		}
+		return result;
 	}
 	
 	/**
@@ -117,10 +144,10 @@ public class QuizManagerDao {
 	 * quizID - quiz was added with this id 
 	 * -1 - if sql Error
 	 */
-	public int addQuiz(Quiz quiz,ArrayList<Integer> questionIDs, Statement stm) {
+	public int addQuiz(Quiz quiz,ArrayList<Integer> questionIDs, Connection con) {
 		int result = 0;
 		try{  
-			
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String addQuiz = "INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES";
@@ -134,6 +161,7 @@ public class QuizManagerDao {
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}else {
+				stm.close();
 				return -1;
 			}
 			
@@ -142,7 +170,7 @@ public class QuizManagerDao {
 				stm.executeUpdate("INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES ("+result+","+questionIDs.get(i)+")");
 			}
 			 
-			
+			stm.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 			return -1;

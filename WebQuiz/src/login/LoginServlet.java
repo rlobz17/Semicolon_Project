@@ -2,6 +2,8 @@ package login;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.DataBaseINFO;
 import Temp.AccountManager;
 import account.PasswordManager;
 
@@ -61,15 +64,10 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-		Statement stm = null;
-		try {
-			stm = d.getConnection().createStatement();
-		} catch (SQLException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
+		    
+		Connection con = d.getConnection();
 		
-		int result = acc.doLogin(username, hashPassword, stm);
+		int result = acc.doLogin(username, hashPassword, con);
 		
 		if(result==0) {
 			request.getSession().setAttribute("username", username);
