@@ -1,8 +1,9 @@
 package Temp;
 
-import java.sql.Statement;
+import java.sql.Connection;
 import java.util.ArrayList;
 
+import History.AccountHistoryManager;
 import javafx.util.Pair;
 
 
@@ -22,10 +23,10 @@ public class AccountManager {
 	 * 4 - if username or mail field is empty,
 	 * -1 - if sql Error
 	 */
-	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Statement stm) {
-		int result = containsAccount(username, mail, stm);
+	public int addNewAccount(String firstname, String lastname, String username, String password, String mail,Connection con) {
+		int result = containsAccount(username, mail, con);
 		if(result == 0) {
-			return dao.addNewAccount(firstname, lastname, username, password, mail, stm);
+			return dao.addNewAccount(firstname, lastname, username, password, mail, con);
 		}
 		return result;
 	}
@@ -39,8 +40,8 @@ public class AccountManager {
 	 * 3 - if username and mail both in use,
 	 * -1 - for sql Error 
 	 */
-	public int containsAccount(String username, String mail, Statement stm) {
-		return dao.containsAccount(username, mail, stm);
+	public int containsAccount(String username, String mail, Connection con) {
+		return dao.containsAccount(username, mail, con);
 	}
 	
 	/**
@@ -50,8 +51,8 @@ public class AccountManager {
 	 * 2 - if password is incorrect,
 	 * -1 - for sql Error 
 	 */
-	public int doLogin(String username, String password, Statement stm) {
-		return dao.checkPassword(username, password, stm);
+	public int doLogin(String username, String password, Connection con) {
+		return dao.checkPassword(username, password, con);
 	}
 	
 	
@@ -61,8 +62,8 @@ public class AccountManager {
 	 * ArrayList<String> - list of all acounts
 	 * null - for sql Error
 	 */
-	public ArrayList<String> listOfAccounts(Statement stm) {
-		return dao.listOfAccounts(stm);
+	public ArrayList<String> listOfAccounts(Connection con) {
+		return dao.listOfAccounts(con);
 	}
 	
 	
@@ -71,8 +72,8 @@ public class AccountManager {
 	 * Account - found account with this username
 	 * null - for sql Error 
 	 */
-	public Account getAccount(String username, Statement stm) {
-		return dao.getAccount(username, stm);
+	public Account getAccount(String username, AccountHistoryManager historyManager, Connection con) {
+		return dao.getAccount(username, historyManager, con);
 	}
 	
 	/**
@@ -80,8 +81,8 @@ public class AccountManager {
 	 * Account - found account with this userID
 	 * null - for sql Error 
 	 */
-	public Account getAccount(int userID, Statement stm) {
-		return dao.getAccount(userID, stm);
+	public Account getAccount(int userID, AccountHistoryManager historyManager, Connection con) {
+		return dao.getAccount(userID, historyManager, con);
 	}
 	
 	/**
@@ -89,8 +90,8 @@ public class AccountManager {
 	 * String - username of account with this id
 	 * null - for sql Error 
 	 */
-	public String getAccountUsername(int userID, Statement stm) {
-		return dao.getAccountUsername(userID, stm);
+	public String getAccountUsername(int userID, Connection con) {
+		return dao.getAccountUsername(userID, con);
 	}
 	
 	/**
@@ -99,8 +100,8 @@ public class AccountManager {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeFirstName(int accountId, String newFirstName, Statement stm) {
-		return dao.changeFirstName(accountId, newFirstName, stm);
+	public int changeFirstName(int accountId, String newFirstName, Connection con) {
+		return dao.changeFirstName(accountId, newFirstName, con);
 	}
 	
 	/**
@@ -109,8 +110,8 @@ public class AccountManager {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeLastName(int accountId, String newLastName, Statement stm) {
-		return dao.changeLastName(accountId, newLastName, stm);
+	public int changeLastName(int accountId, String newLastName, Connection con) {
+		return dao.changeLastName(accountId, newLastName, con);
 	}
 	
 	/**
@@ -120,8 +121,8 @@ public class AccountManager {
 	 *  2 - if username is already in use,
 	 * -1 - for sql Error 
 	 */
-	public int changeUsername(int accountId, String newUsername, Statement stm) {
-		return dao.changeUsername(accountId, newUsername, stm);
+	public int changeUsername(int accountId, String newUsername, Connection con) {
+		return dao.changeUsername(accountId, newUsername, con);
 	}
 	
 	/**
@@ -131,8 +132,8 @@ public class AccountManager {
 	 *  2 - if mail is already in use,
 	 * -1 - for sql Error 
 	 */
-	public int changeMail(int accountId, String newMail, Statement stm) {
-		return dao.changeMail(accountId, newMail, stm);
+	public int changeMail(int accountId, String newMail, Connection con) {
+		return dao.changeMail(accountId, newMail, con);
 	}
 	
 	/**
@@ -141,20 +142,20 @@ public class AccountManager {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int changeImg(int accountId, String newImgUrl, Statement stm) {
-		return dao.changeImg(accountId, newImgUrl, stm);
+	public int changeImg(int accountId, String newImgUrl, Connection con) {
+		return dao.changeImg(accountId, newImgUrl, con);
 	}
 	
 	
-	/**
-	 * @return 
-	 *  0 - successfully added number of quizes taken,
-	 *  1 - account with this id was not found
-	 * -1 - for sql Error 
-	 */
-	public int addQuizesTaken(int accountId, Statement stm) {
-		return dao.addQuizesTaken(accountId, stm);
-	}
+//	/**
+//	 * @return 
+//	 *  0 - successfully added number of quizes taken,
+//	 *  1 - account with this id was not found
+//	 * -1 - for sql Error 
+//	 */
+//	public int addQuizesTaken(int accountId, Connection con) {
+//		return dao.addQuizesTaken(accountId, con);
+//	}
 	
 	
 	/**
@@ -163,8 +164,8 @@ public class AccountManager {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int makeAccountAdmin(int accountId ,Statement stm) {
-		return dao.changeAccountState(accountId, AccountManagerDao.ADMIN, stm);
+	public int makeAccountAdmin(int accountId ,Connection con) {
+		return dao.changeAccountState(accountId, AccountManagerDao.ADMIN, con);
 	}
 	
 	/**
@@ -173,8 +174,8 @@ public class AccountManager {
 	 *  1 - account with this id was not found
 	 * -1 - for sql Error 
 	 */
-	public int makeAccountUser(int accountId ,Statement stm) {
-		return dao.changeAccountState(accountId, AccountManagerDao.USER, stm);
+	public int makeAccountUser(int accountId ,Connection con) {
+		return dao.changeAccountState(accountId, AccountManagerDao.USER, con);
 	}
 	
 	
@@ -183,7 +184,7 @@ public class AccountManager {
 	 * Pair<ArrayList<Account>, Integer> - ArrayList<Account> is searched, ordered and limited account list, Integer is full number of accounts found in this search.
 	 * null - for sql Error 
 	 */
-	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, Statement stm) {
-		return dao.searchAccounts(search, beginIndex, count, stm);
+	public  Pair<ArrayList<Account>, Integer> searchAccounts(String search, int beginIndex, int count, AccountHistoryManager historyManager, Connection con) {
+		return dao.searchAccounts(search, beginIndex, count, historyManager, con);
 	}
 }	

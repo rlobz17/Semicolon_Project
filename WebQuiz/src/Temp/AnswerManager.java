@@ -1,5 +1,6 @@
 package Temp;
 
+import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,8 +19,8 @@ public class AnswerManager {
 	 * ArrayList<Answer> - correctly ordered answers for question with this id
 	 * null - for sql Error 
 	 */
-	public ArrayList<Answer> getAllAnswer(int question_id, Statement stm){
-		ArrayList<Answer> result = dao.getAllAnswer(question_id, stm);
+	public ArrayList<Answer> getAllAnswer(int question_id, Connection con){
+		ArrayList<Answer> result = dao.getAllAnswer(question_id, con);
 		if(result==null) {
 			return null;
 		}
@@ -33,7 +34,7 @@ public class AnswerManager {
 	 *  1 - answer was not added
 	 * -1 - if sql Error
 	 */
-	public int addAnswer(Answer newAnswer, Statement stm) {
-		return dao.addAnswer(newAnswer, stm);
+	public int addAnswer(Answer newAnswer, Connection con) {
+		return dao.addAnswer(newAnswer, con);
 	}
 }

@@ -1,9 +1,11 @@
 package Temp;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 
 import Database.DataBaseINFO;
 
@@ -15,9 +17,10 @@ public class QuestionManagerDao {
 	 * String QuestionTypeName - for the question with this id 
 	 * null - for sql Error
 	 */
-	public String getQuestionType(int questionID, Statement stm) {
+	public String getQuestionType(int questionID, Connection con) {
 		String result = null;
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT t.questionType_name FROM questiontypes t "
 					+ "where t.questionType_id = (select q.questionType_id from questions q where q.question_id = "+questionID+");");
@@ -25,6 +28,7 @@ public class QuestionManagerDao {
 			if(rs.next()) {
 				result = rs.getString(1);
 			}	
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -39,12 +43,13 @@ public class QuestionManagerDao {
 	 * Question - question with id of @param questionID
 	 * null - if sql Error
 	 */
-	public Question getQuestion(int questionID, AnswerManager answerManager, Statement stm) {
+	public Question getQuestion(int questionID, AnswerManager answerManager,  Connection con) {
 		Question result = null;
 		int questionTypeID;
 		String questionDetail, questionTask;
 		ArrayList<Answer> correctAnswers;
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT * FROM questions where question_id =  "+ questionID);			
 			if(rs.next()) {				
@@ -52,24 +57,29 @@ public class QuestionManagerDao {
 				questionDetail = rs.getString("question_detail");
 				questionTask = rs.getString("question_task");			
 			}else {
+				stm.close();
 				return null;
 			}
 			
 			if(rs.next()) {
+				stm.close();
 				return null;
 			}
-			correctAnswers = answerManager.getAllAnswer(questionID, stm);
+			correctAnswers = answerManager.getAllAnswer(questionID, con);
 			if(correctAnswers == null) {
+				stm.close();
 				return null;
 			}
 			
 			if(questionTask == null) {
-				questionTask = getQuestionDefaultTask(questionTypeID, stm);
+				questionTask = getQuestionDefaultTask(questionTypeID, con);
 				if(questionTask==null) {
+					stm.close();
 					return null;
 				}
 			}
 			result = new Question(questionID, questionTypeID, questionDetail, questionTask, correctAnswers);
+			stm.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,9 +95,10 @@ public class QuestionManagerDao {
 	 * String defaultTask - default task for this questionTypeID
 	 * null - if sql Error
 	 */
-	public String getQuestionDefaultTask(int questionTypeID, Statement stm) {
+	public String getQuestionDefaultTask(int questionTypeID,  Connection con) {
 		String result = null;
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT questionType_defaultTask FROM questiontypes t "
 					+ "where t.questionType_id = "+questionTypeID);
@@ -95,6 +106,7 @@ public class QuestionManagerDao {
 			if(rs.next()) {
 				result = rs.getString(1);
 			}	
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -110,10 +122,11 @@ public class QuestionManagerDao {
 	 *  questionID - if question was added successfully
 	 * -1 - if sql Error
 	 */
-	public int addQuestion(Question newQuestion, Statement stm) {
+	public int addQuestion(Question newQuestion, Connection con) {
 		int result = 1;
 		
 		try {
+			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			
 			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task) VALUES";
@@ -133,6 +146,8 @@ public class QuestionManagerDao {
 			}else {
 				result = -1;
 			}
+			
+			stm.close();
 			
 			
 		} catch (SQLException e) {
