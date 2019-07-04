@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="Temp.AccountManager"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.SQLException"%>
@@ -18,16 +19,10 @@
     QuizManager quizManager = (QuizManager)obj;
 	
 	Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-    Statement stm = null;
-
-    try {
-    	stm = d.getConnection().createStatement();
-    } catch (SQLException e) {
-    	// Auto-generated catch block
-    	e.printStackTrace();
-    }
+   	
+	Connection con = d.getConnection();
 	
-	Quiz quiz = quizManager.getQuiz(quizID, stm);
+	Quiz quiz = quizManager.getQuiz(quizID, con);
 	
 	
 %>
@@ -127,7 +122,7 @@
 						
 					    AccountManager accM = (AccountManager)objAcc;
 					    
-					    String author = accM.getAccountUsername(authorID, stm);
+					    String author = accM.getAccountUsername(authorID, con);
 					    
 					    
 					    %>

@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.SQLException"%>
@@ -16,21 +17,15 @@ AccountManager m = (AccountManager)obj;
 String username = request.getParameter("username");
 
 Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-Statement stm = null;
 
-try {
-	stm = d.getConnection().createStatement();
-} catch (SQLException e) {
-	// Auto-generated catch block
-	e.printStackTrace();
-}
+Connection con = d.getConnection();
 
 username = Account.whitespaceChange(username);
 
-Account acc = m.getAccount(username, stm);
+Account acc = m.getAccount(username, null, con);
 
 String user = (String)request.getSession().getAttribute("username");
-Account viewerAcc = m.getAccount(user, stm);
+Account viewerAcc = m.getAccount(user, null, con);
 
 boolean myAccount = false;
 boolean isAdmin = false;

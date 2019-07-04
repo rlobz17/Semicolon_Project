@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="Temp.AccountManager"%>
 <%@page import="Temp.Account"%>
 <%@page import="java.util.Date"%>
@@ -17,14 +18,8 @@
     QuizLiteManager m = (QuizLiteManager)obj;
 
     Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-    Statement stm = null;
-
-    try {
-    	stm = d.getConnection().createStatement();
-    } catch (SQLException e) {
-    	// Auto-generated catch block
-    	e.printStackTrace();
-    }
+    
+    Connection con = d.getConnection();
 
     
     String p = request.getParameter("page");
@@ -49,7 +44,7 @@
 
     AccountManager man = (AccountManager)objAcc;
     
-    Account acc = man.getAccount(user_id, stm);
+    Account acc = man.getAccount(user_id, null, con);
     
 %>    
     
@@ -98,7 +93,7 @@
 				<%
 					if(acc!=null){
 						
-						int quizNumber = m.searchQuizLites(null, user_id, beginIndex, count, stm).getValue();
+						int quizNumber = m.searchQuizLites(null, user_id, beginIndex, count, con).getValue();
 					    
 					    navigation n = new navigation(quizNumber, currentPage);
 
@@ -110,7 +105,7 @@
 
 					    ArrayList<Integer> pagesArr = n.pagesToShow();
 
-					    ArrayList<QuizLite> quizes = m.searchQuizLites(null, user_id, beginIndex, count, stm).getKey();
+					    ArrayList<QuizLite> quizes = m.searchQuizLites(null, user_id, beginIndex, count, con).getKey();
 					    
 					    %>
 					    

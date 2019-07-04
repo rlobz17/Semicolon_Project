@@ -2,6 +2,7 @@ package login;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -80,20 +81,16 @@ public class RegistrationServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-		Statement stm = null;
-		try {
-			stm = d.getConnection().createStatement();
-		} catch (SQLException e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		int res = acc.containsAccount(username, mail, stm);
+		Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+		
+		Connection con = d.getConnection();
+		
+		int res = acc.containsAccount(username, mail, con);
 		//int res = 3; // for test
 		
 		if(res==0) {
-			acc.addNewAccount(firstname, lastname, username, hashPassword, mail, stm);
+			acc.addNewAccount(firstname, lastname, username, hashPassword, mail, con);
 			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=0");
 			dispatch.forward(request, response);
 		} else if(res==1){

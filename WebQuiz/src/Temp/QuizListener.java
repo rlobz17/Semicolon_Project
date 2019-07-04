@@ -51,8 +51,8 @@ public class QuizListener implements ServletContextListener {
         Object obj = cont.getAttribute("Question");
     	
     	QuestionManager questionManager = (QuestionManager)obj;
-    	
-    	QuizManager manager = new QuizManager(questionManager);
+    	    	
+    	QuizManager manager = new QuizManager(questionManager, null);
     	cont.setAttribute("Quiz", manager);
     }
 	

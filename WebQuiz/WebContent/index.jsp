@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
 <%@page import="Temp.QuizLite"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,16 +21,11 @@
     QuizLiteManager m = (QuizLiteManager)obj;
 
     Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-    Statement stm = null;
+    
+    Connection con = d.getConnection();
 
-    try {
-    	stm = d.getConnection().createStatement();
-    } catch (SQLException e) {
-    	// Auto-generated catch block
-    	e.printStackTrace();
-    }
 
-    int quizNumber = m.getAllQuizNumber(stm);
+    int quizNumber = m.getAllQuizNumber(con);
     String p = request.getParameter("page");
 
     int currentPage = 1;
@@ -50,7 +46,7 @@
     int count = 10;
     int beginIndex = (currentPage-1)*count;
 
-    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, stm).getKey();
+    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, con).getKey();
 
 %>    
     
