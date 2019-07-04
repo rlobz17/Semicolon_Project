@@ -136,10 +136,13 @@
 						
 						String date = dd + "/" + mm + "/" + year + ", " + hourr + ":" + minn;
 						
+						double quizAVG = quiz.getQuizAverage();
+						
 						%>
 							
 							<div class="shortstoryMain">
 								<div class="shortstoryImg">
+									<div class="avgScore"><%= quizAVG%> </div>
 									<img src="<%= img %>">
 									<h1 class="shortstoryTxt">
 									<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID %>"><%= title %></a>
