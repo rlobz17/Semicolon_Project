@@ -69,4 +69,10 @@ public class NoteMessage {
 	public void setMessageType(String messageType) {
 		this.messageType = messageType;
 	}
+	
+	@Override
+	public String toString() {
+		return "You have message from: " + from.getFirstName() + " " + from.getLastName() +
+				"\n" + "Message: " + message;
+	}
 }

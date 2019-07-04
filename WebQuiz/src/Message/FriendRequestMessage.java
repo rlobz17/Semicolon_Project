@@ -17,8 +17,8 @@ public class FriendRequestMessage {
 		this.from = from;
 		this.to = to;
 		this.date = date;
-		this.messageID = messageID;
 		accept = false;
+		this.messageID = messageID;
 		this.messageType = messageType;
 	}
 
@@ -68,5 +68,11 @@ public class FriendRequestMessage {
 
 	public void setMessageType(String messageType) {
 		this.messageType = messageType;
+	}
+	
+	@Override
+	public String toString() {
+		return "User: " + from.getFirstName() + " " + from.getLastName() + 
+				" sent you a friend request!";
 	}
 }
