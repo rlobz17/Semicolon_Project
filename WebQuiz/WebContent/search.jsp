@@ -111,6 +111,8 @@
 						int quizDone = quiz.getQuizDone();
 						Date dat = quiz.getDate();
 						
+						int quizID = quiz.getQuizID();
+						
 						int year = dat.getYear() + 1900;
 						int month = dat.getMonth() + 1;
 						int day = dat.getDate();
@@ -148,7 +150,7 @@
 								<div class="shortstoryImg">
 									<img src="<%= img %>">
 									<h1 class="shortstoryTxt">
-									<a class="shortstoryTitle" style="text-decoration: none;" href="/"><%= title %></a>
+									<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID%>"><%= title %></a>
 									</h1>
 								</div>
 

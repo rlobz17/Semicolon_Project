@@ -1,3 +1,4 @@
+<%@page import="History.AccountHistoryManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Temp.AccountManager"%>
 <%@page import="Temp.Account"%>
@@ -44,7 +45,11 @@
 
     AccountManager man = (AccountManager)objAcc;
     
-    Account acc = man.getAccount(user_id, null, con);
+    Object accHist = cont.getAttribute("AccHistory");
+
+    AccountHistoryManager accountHistory = (AccountHistoryManager)accHist;
+    
+    Account acc = man.getAccount(user_id, accountHistory, con);
     
 %>    
     

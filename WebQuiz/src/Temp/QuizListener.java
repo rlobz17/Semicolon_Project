@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import Database.DateBaseManager;
+import History.QuizHistoryManager;
 
 /**
  * Application Lifecycle Listener implementation class QuizListener
@@ -51,8 +52,12 @@ public class QuizListener implements ServletContextListener {
         Object obj = cont.getAttribute("Question");
     	
     	QuestionManager questionManager = (QuestionManager)obj;
+    	
+    	Object obj2 = cont.getAttribute("QuizHistory");
+    	
+    	QuizHistoryManager quizHistory = (QuizHistoryManager)obj2;
     	    	
-    	QuizManager manager = new QuizManager(questionManager, null);
+    	QuizManager manager = new QuizManager(questionManager, quizHistory);
     	cont.setAttribute("Quiz", manager);
     }
 	
