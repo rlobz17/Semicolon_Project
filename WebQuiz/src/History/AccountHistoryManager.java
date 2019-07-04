@@ -21,7 +21,7 @@ public class AccountHistoryManager {
 	 * null - for sql error
 	 */
 	public ArrayList<Story> getAccountHistory(int accountID, Connection con) {
-		return null;
+		return dao.getAccountHistory(accountID, con);
 	}
 	
 	/**
