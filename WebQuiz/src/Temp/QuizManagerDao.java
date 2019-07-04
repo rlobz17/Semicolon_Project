@@ -37,17 +37,13 @@ public class QuizManagerDao {
 				questionIDs.add(rs.getInt(1));
 			}
 			
-			if(questionIDs.size() == 0) {
-				stm.close();
-				return null;
-			}
-			
 			ArrayList<Question> questions = new ArrayList<>();
 			
 			for(int i=0; i<questionIDs.size(); i++) {
 				Question question = questionManager.getQuestion(questionIDs.get(i), con);
 				if(question == null) {
 					stm.close();
+					System.out.println("2");
 					return null;
 				}
 				questions.add(question);
