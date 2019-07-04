@@ -23,12 +23,15 @@ Connection con = d.getConnection();
 
 username = Account.whitespaceChange(username);
 
-AccountHistoryManager accountHistory = null;
+Object accHist = cont.getAttribute("AccHistory");
 
-Account acc = m.getAccount(username, null, con);
+AccountHistoryManager accountHistory = (AccountHistoryManager)accHist;
+
+Account acc = m.getAccount(username, accountHistory, con);
 
 String user = (String)request.getSession().getAttribute("username");
-Account viewerAcc = m.getAccount(user, null, con);
+
+Account viewerAcc = m.getAccount(user, accountHistory, con);
 
 boolean myAccount = false;
 boolean isAdmin = false;
