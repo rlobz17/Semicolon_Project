@@ -1,3 +1,4 @@
+<%@page import="History.AccountHistoryManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,6 +22,8 @@ Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseMa
 Connection con = d.getConnection();
 
 username = Account.whitespaceChange(username);
+
+AccountHistoryManager accountHistory = null;
 
 Account acc = m.getAccount(username, null, con);
 
