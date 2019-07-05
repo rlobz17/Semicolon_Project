@@ -2,12 +2,12 @@ package Temp;
 
 public class QuestionTypes {
 
-	private static final String Question_Response_type = "Question_Response_type";
-	private static final String Fill_In_The_Blank_type = "Fill_In_The_Blank_type";
-	private static final String Multiple_Choice_type = "Multiple_Choice_type";
-	private static final String Multi_Answer_type = "Multi_Answer_type";
-	private static final String Multiple_Choice_With_Multiple_Answers_type = "Multiple_Choice_With_Multiple_Answers_type";
-	private static final String Matching_type = "Matching_type";
+	private static final String Question_Response_type = "Question_Response_type"; // ღია კითხვა
+	private static final String Fill_In_The_Blank_type = "Fill_In_The_Blank_type"; // გამოტოვებული სიტყვა
+	private static final String Multiple_Choice_type = "Multiple_Choice_type"; // რამდენიმე სავარაუდოდან 1ის არჩევა
+	private static final String Multi_Answer_type = "Multi_Answer_type"; // რამდენიმე შესავსები ველი
+	private static final String Multiple_Choice_With_Multiple_Answers_type = "Multiple_Choice_With_Multiple_Answers_type"; // რამდენიმე სავარაუდოდა რამდენიმეს არჩევა
+	private static final String Matching_type = "Matching_type"; // შესაბამისობა
 
 	
 	/**
