@@ -27,7 +27,17 @@
         
     int currentPage = 1;
     if(p!=null){
-    	currentPage = Integer.parseInt(p);
+    	
+    	for(int i=0; i<p.length(); i++){
+    		if(p.charAt(i)<'0' || p.charAt(i) > '9'){
+    			break;
+    		}
+    		
+    		if(i==p.length()-1){
+    			currentPage = Integer.parseInt(p);
+    		}
+    	}
+    	
     }
     
     if(currentPage<0){
@@ -39,7 +49,17 @@
     
     String user = request.getParameter("user");
     
-    int user_id = Integer.parseInt(user);
+    int user_id = 0;
+    
+    for(int i=0; i<user.length(); i++){
+		if(user.charAt(i)<'0' || user.charAt(i) > '9'){
+			break;
+		}
+		
+		if(i==user.length()-1){
+			user_id = Integer.parseInt(user);
+		}
+	}
     
     Object objAcc = cont.getAttribute("profile");
 
@@ -158,13 +178,15 @@
 								
 								String date = dd + "/" + mm + "/" + year + ", " + hourr + ":" + minn;
 								
+								int quizID = quiz.getQuizID();
+								
 								%>
 									
 									<div class="shortstoryMain">
 										<div class="shortstoryImg">
 											<img src="<%= img %>">
 											<h1 class="shortstoryTxt">
-											<a class="shortstoryTitle" style="text-decoration: none;" href="/"><%= title %></a>
+											<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID%>"><%= title %></a>
 											</h1>
 										</div>
 

@@ -29,8 +29,19 @@
     String p = request.getParameter("page");
 
     int currentPage = 1;
+    
     if(p!=null){
-    	currentPage = Integer.parseInt(p);
+    	
+    	for(int i=0; i<p.length(); i++){
+    		if(p.charAt(i)<'0' || p.charAt(i) > '9'){
+    			break;
+    		}
+    		
+    		if(i==p.length()-1){
+    			currentPage = Integer.parseInt(p);
+    		}
+    	}
+    	
     }
 
     navigation n = new navigation(quizNumber, currentPage);
