@@ -217,8 +217,49 @@ INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
 ;  
 
 
+
+
+
+
+/*
+ * testable quiz
+ */
+
+
+INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
+	("ქვიზი მათემატიკაზე", 2, "https://wallpaperaccess.com/full/237781.jpg");
+	
+
+INSERT INTO questions (questionType_id, question_detail, question_task) VALUES
+	(1, "რამდენია 2+5?" , null),
+    (2, "3 გამრავლებული _____-ზე არის 21", null),
+    (3, "9-6?", null),
+    (6, "8ის ჯერადები არის...", null),
+    (5, "რომელია 4-ზე ნაკლები ნატურალური რიცხვები?", null),
+    (7, "შესაბამისობა: ა) 7; ბ) 8", null);
     
     
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
+    (23, 3),
+    (23, 4),
+    (23, 5),
+    (23, 6),
+    (23, 7),
+    (23, 8)
+    ;    
+    
+
+INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
+    (3, -1, "7"),
+    (4, -1, "7"),
+    (5, 2, "3"),
+    (6, 1, "8"),
+    (6, 2, "16"),
+    (6, 3, "24"),
+    (7, -1, "1"),
+    (7, -1, "2"),
+    (7, -1, "3")
+    ;
     
     
 /*
