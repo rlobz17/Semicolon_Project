@@ -95,7 +95,8 @@ CREATE TABLE messages (
 	primary key (message_id),
 	foreign key (messageType_id) references messageTypes(messageType_id),
     foreign key (from_account_id) references accounts (account_id),
-    foreign key (to_account_id) references accounts (account_id)
+    foreign key (to_account_id) references accounts (account_id),
+    foreign key (quiz_id) references quizes (quiz_id)
     
 );
 
