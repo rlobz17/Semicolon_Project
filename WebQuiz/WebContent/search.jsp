@@ -24,7 +24,17 @@
         
     int currentPage = 1;
     if(p!=null){
-    	currentPage = Integer.parseInt(p);
+    	
+    	for(int i=0; i<p.length(); i++){
+    		if(p.charAt(i)<'0' || p.charAt(i) > '9'){
+    			break;
+    		}
+    		
+    		if(i==p.length()-1){
+    			currentPage = Integer.parseInt(p);
+    		}
+    	}
+    	
     }
     
     if(currentPage<0){
@@ -111,6 +121,8 @@
 						int quizDone = quiz.getQuizDone();
 						Date dat = quiz.getDate();
 						
+						int quizID = quiz.getQuizID();
+						
 						int year = dat.getYear() + 1900;
 						int month = dat.getMonth() + 1;
 						int day = dat.getDate();
@@ -148,7 +160,7 @@
 								<div class="shortstoryImg">
 									<img src="<%= img %>">
 									<h1 class="shortstoryTxt">
-									<a class="shortstoryTitle" style="text-decoration: none;" href="/"><%= title %></a>
+									<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID%>"><%= title %></a>
 									</h1>
 								</div>
 

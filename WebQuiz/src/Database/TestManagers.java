@@ -7,16 +7,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
 
 import org.junit.jupiter.api.Test;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 import Database.*;
 import History.AccountHistoryManager;
 import History.AccountHistoryManagerDao;
 import History.QuizHistoryManager;
+import History.Story;
 import Temp.Account;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
@@ -37,32 +37,10 @@ class TestManagers {
 	private String password = DataBaseINFO.MYSQL_PASSWORD;
 	private String server = DataBaseINFO.MYSQL_DATABASE_SERVER;
 	
-	public Statement createStatement() {
-		
-		/*
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		*/
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://"+server+"?autoReconnect=true&useSSL=false", account, password);
-			Statement cont = con.createStatement();
-			return cont;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		
-		
-		return null;
-	}
 	
 	public Connection createConnection() {
+		
+		// if you want to test managers with 5 second delay uncomment below.
 		
 		/*
 		try {
@@ -84,26 +62,6 @@ class TestManagers {
 		
 		return null;
 	}
-
-@Test
-void newTest() {
-	Connection con = createConnection();
-	QuizLiteManager manager = new QuizLiteManager();
-	
-	Pair< ArrayList<QuizLite>, Integer> result = null;
-	System.out.println("testing searchQuizLites:");
-	System.out.println("-----------------------");
-	System.out.println("getting quizLites (null, null, 0, 100, con) -");
-	result = manager.searchQuizLites(null, null, 0, 100, con);
-	ArrayList<QuizLite> quizes = result.getKey();
-	for(int i=0; i<quizes.size(); i++) {
-		QuizLite quizLite = quizes.get(i);
-		System.out.println((i+1)+") "+ quizLite);
-	}
-	System.out.println("All Quizes found in this search: " + result.getValue());
-	System.out.println("-----------------------");
-}
-	
 	
 
 	@Test
@@ -123,6 +81,7 @@ void newTest() {
 		
 		System.out.println("testing addNewAccount:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		
 		/*
 		ArrayList<String> list = manager.listOfAccounts(con);
 		System.out.println("Before Test------------");
@@ -146,16 +105,19 @@ void newTest() {
 		System.out.println("Should be 1: " + manager.doLogin("", "", con));
 		System.out.println("-----------------------");
 		
+		*/
+		
 		System.out.println("////////////////////////////");
 		System.out.println("testing containsAccount:");
 		System.out.println("testing is correct. i just put it in comments because, it needed addNewAccountTest to be runned");
+		
 		/*
 			System.out.println("Should be 0: " + manager.containsAccount("test1", "test1", con));
 			System.out.println("Should be 1: " + manager.containsAccount("test", "test1", con));
 			System.out.println("Should be 2: " + manager.containsAccount("test1", "test", con));
 			System.out.println("Should be 3: " + manager.containsAccount("test", "test", con));
 		*/
-		System.out.println("-----------------------");
+		
 		
 		System.out.println("////////////////////////////");
 		System.out.println("testing getAccount methods (2 with username, 2 with id):");
@@ -223,8 +185,7 @@ void newTest() {
 		System.out.println("testing accountUpdates:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 	
-/*	
-		
+		/*		
 		System.out.println("-----------------------");
 		System.out.println("update account_first_name to rezi1 with id=1");
 		assertEquals(0, manager.changeFirstName(1, "rezi1", con));
@@ -270,7 +231,7 @@ void newTest() {
 		System.out.println("change state of account with id=5 to user (should return 1)");
 		assertEquals(1, manager.makeAccountUser(5, con));
 		
- */   
+		 */   
 		
 		
 	}
@@ -364,15 +325,16 @@ void newTest() {
 		assertEquals("Question_Response_type", manager.getQuestionType(1, con));
 		assertEquals("Picture_Response_type", manager.getQuestionType(2, con));
 		System.out.println("Correct return values on getQuestionType method");
-		System.out.println("-----------------------");
-		System.out.println("////////////////////////////");
+	
 		
+		System.out.println("////////////////////////////");
 		System.out.println("testing getQuestion:");
 		System.out.println("getting Question with id 1:");
 		System.out.println(manager.getQuestion(1, con));
+		System.out.println("-----------------------");
 		System.out.println("getting Question with id 2:");
 		System.out.println(manager.getQuestion(2, con));
-		System.out.println("-----------------------");
+		
 		
 		
 		System.out.println("////////////////////////////");
@@ -491,7 +453,26 @@ void newTest() {
 		
 		System.out.println("getting average from quiz with id(1) - " + quizHistory.getQuizAverageScore(1, con));
 		System.out.println("getting average from quiz with id(2) - " + quizHistory.getQuizAverageScore(2, con));
+		
 		System.out.println("-----------------------");
+		System.out.println("testing getQuizTakenCount method:");
+		System.out.println("getting taken count from quiz with id(1) - " + quizHistory.getQuizTakenCount(1, con));
+		System.out.println("getting taken count from quiz with id(2) - " + quizHistory.getQuizTakenCount(2, con));
+		
+		System.out.println("-----------------------");
+		System.out.println("testing getQuizHistory method:");
+		ArrayList<Story> history = null;
+		System.out.println("getting history for quiz with id(1)");
+		history = quizHistory.getQuizHistory(1, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
+		System.out.println("getting history for quiz with id(2)");
+		history = quizHistory.getQuizHistory(2, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
+		
 		
 		
 		System.out.println("////////////////////////////");
@@ -503,7 +484,37 @@ void newTest() {
 		System.out.println("getting average from account with id(2) - " + accountHistory.getAccountAverageScore(2, con));
 		System.out.println("getting average from account with id(3) - " + accountHistory.getAccountAverageScore(3, con));
 		System.out.println("getting average from account with id(4) - " + accountHistory.getAccountAverageScore(4, con));
+		
 		System.out.println("-----------------------");
+		System.out.println("testing getAccountQuizTakenCount method:");
+		System.out.println("getting taken quiz count from account with id(1) - " + accountHistory.getAccountQuizTakenCount(1, con));
+		System.out.println("getting taken quiz count from account with id(2) - " + accountHistory.getAccountQuizTakenCount(2, con));
+		System.out.println("getting taken quiz count from account with id(3) - " + accountHistory.getAccountQuizTakenCount(3, con));
+		System.out.println("getting taken quiz count from account with id(4) - " + accountHistory.getAccountQuizTakenCount(4, con));
+		
+		System.out.println("-----------------------");
+		System.out.println("testing getAccountHistory method:");
+		history = null;
+		System.out.println("getting history for account with id(1)");
+		history = accountHistory.getAccountHistory(1, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
+		System.out.println("getting history for account with id(2)");
+		history = accountHistory.getAccountHistory(2, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
+		System.out.println("getting history for account with id(3)");
+		history = accountHistory.getAccountHistory(3, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
+		System.out.println("getting history for account with id(4)");
+		history = accountHistory.getAccountHistory(4, con);
+		for(int i=0; i<history.size(); i++) {
+			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+		}
 		
 	}
 	

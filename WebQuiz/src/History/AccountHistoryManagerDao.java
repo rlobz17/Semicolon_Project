@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Database.DataBaseINFO;
 
@@ -19,8 +22,39 @@ public class AccountHistoryManagerDao {
 	 * null - for sql error
 	 */
 	public ArrayList<Story> getAccountHistory(int accountID, Connection con) {
-	
-		return null;
+		ArrayList<Story> result = new ArrayList<>();
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			
+			String getAccountHistory =  "select * from webquizdatabase.accountquiztakelinks l";
+			getAccountHistory += " join webquizdatabase.takehistory h on l.takeHistory_id = h.takeHistory_id";
+			getAccountHistory += " where l.account_id = " + accountID;
+			getAccountHistory += " order by h.takeHistory_date desc";
+			
+			ResultSet rs = stm.executeQuery(getAccountHistory);
+			while(rs.next()) {
+				int storyID = rs.getInt("takeHistory_id");
+				int quizID = rs.getInt("quiz_id");
+				Date takenDate;
+				try {
+					takenDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("takeHistory_date"));
+				} catch (ParseException e) {
+					e.printStackTrace();
+					stm.close();
+					return null;
+				}
+				double score = rs.getDouble("takeHistory_score");
+				result.add(new Story(storyID, accountID, quizID, takenDate, score));
+			}
+			
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		return result;
 	}
 	
 	/**

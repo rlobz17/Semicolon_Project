@@ -4,18 +4,27 @@ import java.util.Date;
 
 public class Story {
 
-	
+	private int storyID;
 	private int accountID;
 	private int quizID;
 	private Date takenDate;
-	private int score;
+	private double score;
 	
 	
-	public Story(int accountID, int quizID, Date takenDate, int score) {
+	public Story(int storyID, int accountID, int quizID, Date takenDate, double score) {
+		this.storyID = storyID;
 		this.accountID = accountID;
 		this.quizID = (quizID);
 		this.takenDate = takenDate;
 		this.score = score;
+	}
+
+	
+	/**
+	 * @return the storyID
+	 */
+	public int getStoryID() {
+		return storyID;
 	}
 	
 	/**
@@ -42,13 +51,13 @@ public class Story {
 	/**
 	 * @return the score
 	 */
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 
 	@Override
 	public String toString() {
-		return "Account("+accountID+") completed quiz("+quizID+") and got "+score+" ----- "+takenDate.toString();
+		return "::("+storyID+"):: Account("+accountID+") completed quiz("+quizID+") and got "+score+" ----- "+takenDate.toString();
 	}
 	
 }

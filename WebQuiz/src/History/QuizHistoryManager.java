@@ -14,21 +14,20 @@ public class QuizHistoryManager {
 	
 	/**
 	 * 
-	 * @param quizID
-	 * @param stm
+	 * @param quizID id of quiz that exists
+	 * @param con
 	 * @return
 	 * ArrayList<Strory> - history of quiz with this quizID
 	 * null - for sql error
 	 */
 	public ArrayList<Story> getQuizHistory(int quizID, Connection con) {
-		
-		return null;
+		return dao.getQuizHistory(quizID, con);
 	}
 	
 	/**
 	 * 
-	 * @param quizID
-	 * @param stm
+	 * @param quizID id of quiz that exists
+	 * @param con
 	 * @return
 	 * double average - average score of quiz with this quizID
 	 * -1 - for sql error 
@@ -39,8 +38,8 @@ public class QuizHistoryManager {
 	
 	/**
 	 * 
-	 * @param quizID
-	 * @param stm
+	 * @param quizID id of quiz that exists
+	 * @param con
 	 * @return
 	 * int count - taken count of quiz with this quizID
 	 * -1 - for sql error 

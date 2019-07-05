@@ -8,10 +8,21 @@ public class navigation {
 	
 	static final int quizPerPage = 10;
 	
+	/** constructor:
+	 * passed parameters -
+	 * quizNumber: number of quizes in the database
+	 * currentPage: page where we are now
+	 */
+	
 	public navigation(int quizNumber, int currentPage) {
 		this.quizNumber = quizNumber;
 		this.currentPage = currentPage;
 	}
+	
+	/**
+	 * getPageNumber:
+	 * @return number of pages that should be on the web-page
+	 */
 	
 	public int getPageNumber() {
 		int result = 0;
@@ -26,6 +37,15 @@ public class navigation {
 		
 		return result;
 	}
+	
+	/**
+	 * PagesToShow:
+	 * @return pages that should be on the foot line of the page
+	 * For example: currently on the web-page are 180 pages,
+	 * but we can't show all of the, there should be some of them,
+	 * if we are on the first page, we have to show:
+	 * 1, 2, 3, 4, 5, 180.
+	 */
 	
 	public ArrayList<Integer> pagesToShow(){
 		ArrayList<Integer> arr = new ArrayList<Integer>();

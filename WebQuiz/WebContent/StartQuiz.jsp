@@ -13,7 +13,7 @@
 	String q = request.getParameter("id");
 
 	int quizID = -1;
-	
+		
 	for(int i=0; i<q.length(); i++){
 		if(q.charAt(i)<'0' || q.charAt(i) > '9'){
 			break;
@@ -164,20 +164,7 @@
 									<img src="<%= imgURL %>">
 								</div>
 								
-								<div class="startQuiz">
-									<a href="/" class="quizTxt"> ქვიზის დაწყება </a>
-								</div>
 								
-								<div class="shortstoryLower">
-									<ul class="meta grey">
-									<li class="meta_author">
-									<img src="http://www.picz.ge/img/s2/1811/5/6/67d913510a23.png" class="icon icon-author">
-										<a href="http://localhost:8080/WebQuizProject/Profile.jsp?username=<%= author%>">	<%= author %> </a>
-									</li>
-									<span class="grey" style="margin-left: 2%; margin-right: 2%;"><%= date %></span>
-									<li class="meta_coms"> <img src="http://www.picz.ge/img/s1/1811/5/1/19e64068e570.png" class="icon icon-coms"> <%= quizDone %> </li>
-									</ul>
-								</div>
 								
 							</div>
 					    	

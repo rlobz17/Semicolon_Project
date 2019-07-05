@@ -1,3 +1,4 @@
+<%@page import="History.AccountHistoryManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,10 +23,15 @@ Connection con = d.getConnection();
 
 username = Account.whitespaceChange(username);
 
-Account acc = m.getAccount(username, null, con);
+Object accHist = cont.getAttribute("AccHistory");
+
+AccountHistoryManager accountHistory = (AccountHistoryManager)accHist;
+
+Account acc = m.getAccount(username, accountHistory, con);
 
 String user = (String)request.getSession().getAttribute("username");
-Account viewerAcc = m.getAccount(user, null, con);
+
+Account viewerAcc = m.getAccount(user, accountHistory, con);
 
 boolean myAccount = false;
 boolean isAdmin = false;

@@ -29,8 +29,19 @@
     String p = request.getParameter("page");
 
     int currentPage = 1;
+    
     if(p!=null){
-    	currentPage = Integer.parseInt(p);
+    	
+    	for(int i=0; i<p.length(); i++){
+    		if(p.charAt(i)<'0' || p.charAt(i) > '9'){
+    			break;
+    		}
+    		
+    		if(i==p.length()-1){
+    			currentPage = Integer.parseInt(p);
+    		}
+    	}
+    	
     }
 
     navigation n = new navigation(quizNumber, currentPage);
@@ -136,10 +147,13 @@
 						
 						String date = dd + "/" + mm + "/" + year + ", " + hourr + ":" + minn;
 						
+						double quizAVG = quiz.getQuizAverage();
+						
 						%>
 							
 							<div class="shortstoryMain">
 								<div class="shortstoryImg">
+									<div class="avgScore"><%= quizAVG%> </div>
 									<img src="<%= img %>">
 									<h1 class="shortstoryTxt">
 									<a class="shortstoryTitle" style="text-decoration: none;" href="/WebQuizProject/quiz.jsp?id=<%= quizID %>"><%= title %></a>

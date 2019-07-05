@@ -541,3 +541,17 @@
     text-decoration: none;
     font-size: 14px;
 }
+
+.avgScore{
+	background: #f7bc45;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    float: right;
+    right: 2%;
+    color: #952d2f;
+    padding: 15px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: -2px 2px 1px 1px #0000006b;
+}
