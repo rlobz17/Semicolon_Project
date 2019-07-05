@@ -47,7 +47,7 @@ public class QuizHistoryListener implements ServletContextListener {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-    	    	
+    	
     	QuizHistoryManager quizM = new QuizHistoryManager();
     	
     	cont.setAttribute("QuizHistory", quizM);

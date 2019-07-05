@@ -10,7 +10,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	String q = request.getParameter("id");
+	String q = (String)request.getSession().getAttribute("quizID");
 
 	int quizID = -1;
 		
@@ -35,6 +35,10 @@
 	
 	Quiz quiz = quizManager.getQuiz(quizID, con);
 	
+	String user = (String)request.getSession().getAttribute("username");
+
+	boolean logged = false;
+	if(user!=null) logged = true;
 	
 %>
     
@@ -164,6 +168,35 @@
 									<img src="<%= imgURL %>">
 								</div>
 								
+								
+								<%
+									if(!logged){
+										%>
+										
+											<div class="loginErr"> • თქვენ არ ხართ შესული ექაუნთში</div>
+							
+											<div class="loginSucc"> <a href="/WebQuizProject/login.jsp" style="color: #2a6113;"> 
+												• გთხოვთ გაიაროთ ავტორიაზაცია
+											</a></div>
+											
+										<%									
+										
+									} else{
+										
+									}
+								%>
+								
+								
+								<div class="shortstoryLower">
+									<ul class="meta grey">
+									<li class="meta_author">
+									<img src="http://www.picz.ge/img/s2/1811/5/6/67d913510a23.png" class="icon icon-author">
+										<a href="http://localhost:8080/WebQuizProject/Profile.jsp?username=<%= author%>">	<%= author %> </a>
+									</li>
+									<span class="grey" style="margin-left: 2%; margin-right: 2%;"><%= date %></span>
+									<li class="meta_coms"> <img src="http://www.picz.ge/img/s1/1811/5/1/19e64068e570.png" class="icon icon-coms"> <%= quizDone %> </li>
+									</ul>
+								</div>								
 								
 								
 							</div>

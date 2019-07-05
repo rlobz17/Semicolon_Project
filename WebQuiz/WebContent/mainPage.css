@@ -492,10 +492,8 @@
 }
 
 .startQuiz {
-    height: 30px;
     background: #9c1010;
     color: #ffffff;
-    width: 29%;
     font-size: 24px;
     padding: 12px;
     margin: auto;
@@ -504,6 +502,7 @@
     line-height: 31px;
     margin-top: 30px;
     margin-bottom: 30px;
+    margin-left: 37%;
 }
 
 .quizTxt {

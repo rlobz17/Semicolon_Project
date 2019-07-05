@@ -1,6 +1,9 @@
 package Quiz;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class StartQuizServlet
  */
-@WebServlet("/StartQuizServlet")
+@WebServlet("/Quiz/StartQuizServlet")
 public class StartQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,6 +38,13 @@ public class StartQuizServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
+				
+		String quizID = (String)request.getSession().getAttribute("quizID");
+				
+		String url = "/StartQuiz.jsp?id=" + quizID;
+		
+		RequestDispatcher dispatch = request.getRequestDispatcher(url);
+		dispatch.forward(request, response);
 		
 	}
 

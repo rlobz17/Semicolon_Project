@@ -164,20 +164,24 @@
 									<img src="<%= imgURL %>">
 								</div>
 								
-								<div class="startQuiz">
-									<a href="/" class="quizTxt"> ქვიზის დაწყება </a>
-								</div>
+								<form action="/WebQuizProject/Quiz/StartQuizServlet" method="POST">
 								
-								<div class="shortstoryLower">
-									<ul class="meta grey">
-									<li class="meta_author">
-									<img src="http://www.picz.ge/img/s2/1811/5/6/67d913510a23.png" class="icon icon-author">
-										<a href="http://localhost:8080/WebQuizProject/Profile.jsp?username=<%= author%>">	<%= author %> </a>
-									</li>
-									<span class="grey" style="margin-left: 2%; margin-right: 2%;"><%= date %></span>
-									<li class="meta_coms"> <img src="http://www.picz.ge/img/s1/1811/5/1/19e64068e570.png" class="icon icon-coms"> <%= quizDone %> </li>
-									</ul>
-								</div>
+									<input value="ქვიზის დაწყება" class="startQuiz" type="submit" >
+									
+									<% request.getSession().setAttribute("quizID", q); %>
+									
+									<div class="shortstoryLower">
+										<ul class="meta grey">
+										<li class="meta_author">
+										<img src="http://www.picz.ge/img/s2/1811/5/6/67d913510a23.png" class="icon icon-author">
+											<a href="http://localhost:8080/WebQuizProject/Profile.jsp?username=<%= author%>">	<%= author %> </a>
+										</li>
+										<span class="grey" style="margin-left: 2%; margin-right: 2%;"><%= date %></span>
+										<li class="meta_coms"> <img src="http://www.picz.ge/img/s1/1811/5/1/19e64068e570.png" class="icon icon-coms"> <%= quizDone %> </li>
+										</ul>
+									</div>
+								
+								</form>
 								
 							</div>
 					    	

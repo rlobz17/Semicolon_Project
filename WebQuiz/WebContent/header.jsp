@@ -4,7 +4,7 @@
 <%
 	String user = (String)request.getSession().getAttribute("username");
 
-	Boolean logged = false;
+	boolean logged = false;
 	if(user!=null) logged = true;
 %>
 <!DOCTYPE html>
