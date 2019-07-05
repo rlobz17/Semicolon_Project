@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import Database.DateBaseManager;
+import History.QuizHistoryListener;
 import History.QuizHistoryManager;
 
 /**
@@ -49,15 +50,25 @@ public class QuizListener implements ServletContextListener {
 			e.printStackTrace();
 		}
     	
-    	QuestionManager questionManager = new QuestionManager();
+    	QuestionListener questionListener = new QuestionListener();
     	
-    	cont.setAttribute("Question", questionManager);
+    	questionListener.contextInitialized(sce);
     	
-    	QuizHistoryManager quizM = new QuizHistoryManager();
+    	Object obj = cont.getAttribute("Question");
     	
-    	cont.setAttribute("QuizHistory", quizM);
+    	QuestionManager questionManager = (QuestionManager)obj;
+    	
+    	QuizHistoryListener quizHistoryListener = new QuizHistoryListener();
+    	
+    	quizHistoryListener.contextInitialized(sce);
+    	
+    	Object obj2 = cont.getAttribute("QuizHistory");
+    	
+    	QuizHistoryManager quizHistory = (QuizHistoryManager)obj2;
+    	
+    	cont.setAttribute("QuizHistory", quizHistory);
     	    	
-    	QuizManager manager = new QuizManager(questionManager, quizM);
+    	QuizManager manager = new QuizManager(questionManager, quizHistory);
     	cont.setAttribute("Quiz", manager);
     }
 	
