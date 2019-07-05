@@ -49,15 +49,15 @@ public class QuizListener implements ServletContextListener {
 			e.printStackTrace();
 		}
     	
-        Object obj = cont.getAttribute("Question");
+    	QuestionManager questionManager = new QuestionManager();
     	
-    	QuestionManager questionManager = (QuestionManager)obj;
+    	cont.setAttribute("Question", questionManager);
     	
-    	Object obj2 = cont.getAttribute("QuizHistory");
+    	QuizHistoryManager quizM = new QuizHistoryManager();
     	
-    	QuizHistoryManager quizHistory = (QuizHistoryManager)obj2;
+    	cont.setAttribute("QuizHistory", quizM);
     	    	
-    	QuizManager manager = new QuizManager(questionManager, quizHistory);
+    	QuizManager manager = new QuizManager(questionManager, quizM);
     	cont.setAttribute("Quiz", manager);
     }
 	
