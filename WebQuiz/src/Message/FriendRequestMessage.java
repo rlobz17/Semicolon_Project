@@ -6,20 +6,18 @@ import Temp.Account;
 
 public class FriendRequestMessage {
 	
-	private Account from;
-	private Account to;
+	private int from;//account_id
+	private int to;//account_id 
 	private Date date;
 	private boolean accept;
 	private int messageID;
-	private String messageType;
 	
-	public FriendRequestMessage(Account from, Account to, Date date, int messageID, String messageType) {
+	public FriendRequestMessage(int from, int to, Date date, int messageID) {
 		this.from = from;
 		this.to = to;
 		this.date = date;
 		accept = false;
 		this.messageID = messageID;
-		this.messageType = messageType;
 	}
 
 	public void acceptFriendship() {
@@ -30,19 +28,19 @@ public class FriendRequestMessage {
 		return accept;
 	}
 	
-	public Account getFrom() {
+	public int getFrom() {
 		return from;
 	}
 
-	public void setFrom(Account from) {
+	public void setFrom(int from) {
 		this.from = from;
 	}
 
-	public Account getTo() {
+	public int getTo() {
 		return to;
 	}
 
-	public void setTo(Account to) {
+	public void setTo(int to) {
 		this.to = to;
 	}
 
@@ -63,16 +61,12 @@ public class FriendRequestMessage {
 	}
 
 	public String getMessageType() {
-		return messageType;
-	}
-
-	public void setMessageType(String messageType) {
-		this.messageType = messageType;
+		return "FriendRequest";
 	}
 	
 	@Override
 	public String toString() {
-		return "User: " + from.getFirstName() + " " + from.getLastName() + 
+		return "User: " + from + 
 				" sent you a friend request!";
 	}
 }

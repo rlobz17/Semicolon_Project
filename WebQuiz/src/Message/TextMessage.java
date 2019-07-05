@@ -4,37 +4,35 @@ import java.util.Date;
 
 import Temp.Account;
 
-public class NoteMessage {
+public class TextMessage {
 	
-	private Account from;
-	private Account to;
+	private int from;//account_id
+	private int to;//account_id
 	private String message;
 	private Date date;
 	private int messageID;
-	private String messageType;
 	
-	public NoteMessage(Account from, Account to, String message, Date date, int messageID, String messageType) {
+	public TextMessage(int from, int to, String message, Date date, int messageID, String messageType) {
 		this.from = from;
 		this.to = to;
 		this.message = message;
 		this.date = date;
 		this.messageID = messageID;
-		this.messageType = messageType;
 	}
 
-	public Account getFrom() {
+	public int getFrom() {
 		return from;
 	}
 
-	public void setFrom(Account from) {
+	public void setFrom(int from) {
 		this.from = from;
 	}
 
-	public Account getTo() {
+	public int getTo() {
 		return to;
 	}
 
-	public void setTo(Account to) {
+	public void setTo(int to) {
 		this.to = to;
 	}
 
@@ -63,16 +61,12 @@ public class NoteMessage {
 	}
 
 	public String getMessageType() {
-		return messageType;
-	}
-
-	public void setMessageType(String messageType) {
-		this.messageType = messageType;
+		return "TextMessage";
 	}
 	
 	@Override
 	public String toString() {
-		return "You have message from: " + from.getFirstName() + " " + from.getLastName() +
+		return "You have message from: " + from +
 				"\n" + "Message: " + message;
 	}
 }

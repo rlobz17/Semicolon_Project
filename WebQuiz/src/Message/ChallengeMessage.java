@@ -6,37 +6,35 @@ import Temp.Account;
 
 public class ChallengeMessage {
 	
-	private Account from;
-	private Account to;
+	private int from;//account_id
+	private int to;//account_id
 	private Date date;
 	private final String quizLink;
-	private int messageID;
-	private String messageType;
 	private double maxScore;
+	private int messageID;
 	
-	public ChallengeMessage(Account from, Account to, Date date, String quizLink, int messageID, String messageType, double maxScore) {
+	public ChallengeMessage(int from, int to, Date date, String quizLink, int messageID, double maxScore) {
 		this.from = from;
 		this.to = to; 
 		this.date = date;
 		this.quizLink = quizLink;
 		this.maxScore = maxScore;
 		this.messageID = messageID;
-		this.messageType = messageType;
 	}
 
-	public Account getFrom() {
+	public int getFrom() {
 		return from;
 	}
 
-	public void setFrom(Account from) {
+	public void setFrom(int from) {
 		this.from = from;
 	}
 
-	public Account getTo() {
+	public int getTo() {
 		return to;
 	}
 
-	public void setTo(Account to) {
+	public void setTo(int to) {
 		this.to = to;
 	}
 
@@ -61,11 +59,7 @@ public class ChallengeMessage {
 	}
 
 	public String getMessageType() {
-		return messageType;
-	}
-
-	public void setMessageType(String messageType) {
-		this.messageType = messageType;
+		return "ChallengeMessage";
 	}
 
 	public double getMaxScore() {
@@ -78,7 +72,7 @@ public class ChallengeMessage {
 	
 	@Override
 	public String toString() {
-		return "User: " + from.getFirstName() + " " + from.getLastName() + 
+		return "User: " + from + 
 				" with best score: " + maxScore + " has challenged you!"; 	
 	}
 }
