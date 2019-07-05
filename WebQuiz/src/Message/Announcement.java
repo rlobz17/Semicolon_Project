@@ -5,12 +5,12 @@ import java.util.Date;
 public class Announcement {
 	
 	private String title;
-	private String author;
+	private int author;//account_id;
 	private String fullStory;
 	private Date date;
 	private String imgURL;
 	
-	public Announcement(String title, String fullStory, String author, Date date, String imgURL) {
+	public Announcement(String title, String fullStory, int author, Date date, String imgURL) {
 		this.title = title;
 		this.fullStory = fullStory;
 		this.author = author;
@@ -34,11 +34,11 @@ public class Announcement {
 		this.title = title;
 	}
 
-	public String getAutor() {
+	public int getAutor() {
 		return author;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(int autor) {
 		this.author = autor;
 	}
 

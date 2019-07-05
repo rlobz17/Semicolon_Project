@@ -8,6 +8,9 @@ DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
+-- message tables
+DROP TABLE IF EXISTS messages, messageTypes;
+ -- remove tables if they already exist and start from scratch
 
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (
@@ -71,6 +74,29 @@ CREATE TABLE answers(
     answer_detail text not null,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
+);
+
+CREATE TABLE messageTypes (
+	messageType_id int(8) not null auto_increment,
+    messageType_name varchar(64) not null,
+	primary key (messageType_id)
+);
+
+CREATE TABLE messages (
+	message_id int(8) not null auto_increment,
+    messageType_id int(8) not null,
+    from_account_id int(8) not null,
+    to_account_id int(8) not null,
+    sent_date date,
+    text_message text,
+    quiz_id int(8), 
+    max_score double,
+    
+	primary key (message_id),
+	foreign key (messageType_id) references messageTypes(messageType_id),
+    foreign key (from_account_id) references accounts (account_id),
+    foreign key (to_account_id) references accounts (account_id),
+    foreign key (quiz_id) references quizes (quiz_id)
 );
 
 -- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234' hashed in sha-512

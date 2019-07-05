@@ -9,11 +9,11 @@ public class ChallengeMessage {
 	private int from;//account_id
 	private int to;//account_id
 	private Date date;
-	private final String quizLink;
+	private int quizLink;//link_id
 	private double maxScore;
 	private int messageID;
 	
-	public ChallengeMessage(int from, int to, Date date, String quizLink, int messageID, double maxScore) {
+	public ChallengeMessage(int from, int to, Date date, int quizLink, int messageID, double maxScore) {
 		this.from = from;
 		this.to = to; 
 		this.date = date;
@@ -46,8 +46,12 @@ public class ChallengeMessage {
 		this.date = date;
 	}
 
-	public String getQuizLink() {
+	public int getQuizLink() {
 		return quizLink;
+	}
+	
+	public void setQuizLink(int quizLink) {
+		this.quizLink = quizLink;
 	}
 
 	public int getMessageID() {
