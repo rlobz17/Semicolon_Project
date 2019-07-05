@@ -95,8 +95,8 @@ CREATE TABLE messages (
 	primary key (message_id),
 	foreign key (messageType_id) references messageTypes(messageType_id),
     foreign key (from_account_id) references accounts (account_id),
-    foreign key (to_account_id) references accounts (account_id),
-    foreign key (quiz_id) references quizes (quiz_id)
+    foreign key (to_account_id) references accounts (account_id)
+    
 );
 
 -- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234' hashed in sha-512
