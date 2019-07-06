@@ -21,8 +21,8 @@ public class AccountHistoryManagerDao {
 	 * ArrayList<Strory> - history of account with this accountID
 	 * null - for sql error
 	 */
-	public ArrayList<Story> getAccountHistory(int accountID, Connection con) {
-		ArrayList<Story> result = new ArrayList<>();
+	public ArrayList<QuizTakeStory> getAccountHistory(int accountID, Connection con) {
+		ArrayList<QuizTakeStory> result = new ArrayList<>();
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
@@ -46,7 +46,7 @@ public class AccountHistoryManagerDao {
 					return null;
 				}
 				double score = rs.getDouble("takeHistory_score");
-				result.add(new Story(storyID, accountID, quizID, takenDate, score));
+				result.add(new QuizTakeStory(storyID, accountID, quizID, takenDate, score));
 			}
 			
 			stm.close();

@@ -2,15 +2,17 @@ use webquizdatabase;
 
 -- history tables
 DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
- -- remove tables if they already exist and start from scratch  
+ -- remove tables if they already exist and start from scratch 
+ 
+-- message tables
+DROP TABLE IF EXISTS messages, messageTypes;
+ -- remove tables if they already exist and start from scratch
  
 -- main tables
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes;
  -- remove tables if they already exist and start from scratch
 
--- message tables
-DROP TABLE IF EXISTS messages, messageTypes;
- -- remove tables if they already exist and start from scratch
+
 
  -- we used SHA-512 which generates char(128)
 CREATE TABLE accounts (

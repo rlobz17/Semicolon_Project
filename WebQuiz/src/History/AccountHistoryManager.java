@@ -20,7 +20,7 @@ public class AccountHistoryManager {
 	 * ArrayList<Strory> - history of account with this accountID
 	 * null - for sql error
 	 */
-	public ArrayList<Story> getAccountHistory(int accountID, Connection con) {
+	public ArrayList<QuizTakeStory> getAccountHistory(int accountID, Connection con) {
 		return dao.getAccountHistory(accountID, con);
 	}
 	

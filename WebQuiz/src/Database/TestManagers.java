@@ -16,7 +16,7 @@ import Database.*;
 import History.AccountHistoryManager;
 import History.AccountHistoryManagerDao;
 import History.QuizHistoryManager;
-import History.Story;
+import History.QuizTakeStory;
 import Temp.Account;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
@@ -461,7 +461,7 @@ class TestManagers {
 		
 		System.out.println("-----------------------");
 		System.out.println("testing getQuizHistory method:");
-		ArrayList<Story> history = null;
+		ArrayList<QuizTakeStory> history = null;
 		System.out.println("getting history for quiz with id(1)");
 		history = quizHistory.getQuizHistory(1, con);
 		for(int i=0; i<history.size(); i++) {
