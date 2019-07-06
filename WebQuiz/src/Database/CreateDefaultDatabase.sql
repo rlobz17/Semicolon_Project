@@ -210,7 +210,7 @@ INSERT INTO takeHistory (takeHistory_score) VALUES
     ; 
     
 INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
-    (1, 1, 1),
+	(1, 1, 1),
     (2, 1, 2),
     (3, 1, 3),
     (4, 1, 4),

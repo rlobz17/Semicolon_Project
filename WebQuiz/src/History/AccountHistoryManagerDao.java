@@ -123,4 +123,48 @@ public class AccountHistoryManagerDao {
 		
 		return result;
 	}
+	
+	/**
+	 * @param newStory
+	 * @param con
+	 * @return 0 - for successful insert.
+	 * -1 - for sql error.
+	 */
+	public int addAccountQuizTakeStory(QuizTakeStory newStory, Connection con) {
+		int result = -1;
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String addTakeHistory = "INSERT INTO takeHistory (takeHistory_score) VALUES";
+			addTakeHistory += "(" + newStory.getScore() + ")";
+
+			String getTakeHistoryID = "select last_insert_id()";
+			
+			stm.executeUpdate(addTakeHistory);
+			ResultSet rs = stm.executeQuery(getTakeHistoryID);
+			int takenStoryID = 0;
+			if(rs.next()) {
+				takenStoryID = rs.getInt(1);
+			}else {
+				stm.close();
+				return -1;
+			}
+			
+			
+			String addAccountQuizTakeLinks = "INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES";
+			addAccountQuizTakeLinks += "(" + newStory.getAccountID();
+			addAccountQuizTakeLinks += "," + newStory.getQuizID();
+			addAccountQuizTakeLinks += "," + takenStoryID  + ")";
+			
+			stm.executeUpdate(addAccountQuizTakeLinks);
+			result = 0;
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}	
+		
+		return result;
+	}
 }
