@@ -71,10 +71,10 @@ CREATE TABLE quizQuestionLinks (
 
 CREATE TABLE answers(
 	answer_id int(8) not null auto_increment,
-    
     question_id int(8) not null,
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
+    answer_correct boolean default true,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
 );
@@ -147,13 +147,9 @@ INSERT INTO questionTypes (questionType_id, questionType_name, questionType_defa
 	(1,"Question_Response_type", "Answer the question"),
     (2,"Fill_In_The_Blank_type", "Fill in the blank space"),
     (3,"Multiple_Choice_type", "Select the correct answer"),
-    (4,"Picture_Response_type", "What does the picture show"),
-    (5,"Multi_Answer_type", "Fill in with answers"),
-    (6,"Multiple_Choice_With_Multiple_Answers_type", "Select Correct answers" ),
-    (7,"Mathcing_type" , "Match correct pairs"),
-    (8,"Auto_Generated_type" , "Auto generated question"),
-    (9,"Graded_Question_type" , "Answer the question (Will be graded later)"),
-    (10,"Timed_Question_type", "Answer the question before the time runs out")
+    (4,"Multi_Answer_type", "Fill in with answers"),
+    (5,"Multiple_Choice_With_Multiple_Answers_type", "Select Correct answers" ),
+    (6,"Mathcing_type" , "Match correct pairs")
     ;
     
 INSERT INTO questions (questionType_id, question_detail, question_imgUrl) VALUES
@@ -174,7 +170,6 @@ INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
     (2, -1, "free university of tbilisi")
     ;    
 
-    
     
  -- History Part    
 Create table takeHistory(
@@ -232,15 +227,13 @@ INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
 INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
 	("ქვიზი მათემატიკაზე", 2, "https://wallpaperaccess.com/full/237781.jpg");
 	
-
-INSERT INTO questions (questionType_id, question_detail, question_task) VALUES
-	(1, "რამდენია 2+5?" , null),
-    (2, "3 გამრავლებული _____-ზე არის 21", null),
-    (3, "9-6?", null),
-    (6, "8ის ჯერადები არის...", null),
-    (5, "რომელია 4-ზე ნაკლები ნატურალური რიცხვები?", null),
-    (7, "შესაბამისობა: ა) 7; ბ) 8", null);
-    
+INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
+	(1, "რამდენია 2+5?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
+    (2, "3 გამრავლებული _____-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png"),
+    (3, "9-6?", null , null),
+    (4, "8ის ჯერადები, რომლებიც მეტია 7ზე და ნაკლებია 17-ზე არიან _____ და _____", null, null),
+    (5, "რომელია 4-ზე ნაკლები ნატურალური რიცხვები?", null, "https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/f8/b3/9b/f8b39bf5-d818-f770-b7b0-f9abd5d0cf1c/mzl.ucwyveem.png/246x0w.jpg"),
+    (6, "შესაბამისობა: ა) 7; ბ) 8", null, null);
     
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
     (23, 3),
@@ -255,14 +248,27 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
     (3, -1, "7"),
     (4, -1, "7"),
-    (5, 2, "3"),
-    (6, 1, "8"),
-    (6, 2, "16"),
-    (6, 3, "24"),
+    (5, -1, "3"),
+    (6, -1, "8"),
+    (6, -1, "16"),
     (7, -1, "1"),
     (7, -1, "2"),
-    (7, -1, "3")
+    (7, -1, "3"),
+    (8, 1, "7"),
+    (8, 2, "8")
     ;
+    
+ INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES   
+	 (5, -1, "3", false),
+     (5, -1, "5", false),
+     (5, -1, "1", false),
+     (5, -1, "0", false),
+     (7, -1, "5", false),
+     (7, -1, "100", false),
+     (7, -1, "-3", false),
+	 (8, 1, "7", false),
+     (8, 2, "8", false)
+     ;     
     
     
 /*

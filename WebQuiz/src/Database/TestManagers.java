@@ -339,7 +339,7 @@ class TestManagers {
 		
 		System.out.println("testing getQuestionType:");
 		assertEquals("Question_Response_type", manager.getQuestionType(1, con));
-		assertEquals("Picture_Response_type", manager.getQuestionType(2, con));
+		assertEquals("Multi_Answer_type", manager.getQuestionType(2, con));
 		System.out.println("Correct return values on getQuestionType method");
 	
 		
@@ -358,16 +358,19 @@ class TestManagers {
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		
 		/*
-			ArrayList<Answer> testAnswers = new ArrayList<>();
-			testAnswers.add(new Answer(0, 0, 1, "test"));
+			ArrayList<Answer> testCorrectAnswers = new ArrayList<>();
+			testCorrectAnswers.add(new Answer(0, 0, 1, "test"));
 			
-			System.out.println("addQuestion(1,null,null) with testAnswers");
-			Question newQuestion = new Question(0, 1, null, null,"https://media.wired.com/photos/5b899992404e112d2df1e94e/master/pass/trash2-01.jpg", testAnswers);
+			ArrayList<Answer> testPossibleAnswers = new ArrayList<>();
+			testPossibleAnswers.add(new Answer(0, 0, 1, "test"));
+			
+			System.out.println("addQuestion(1,null,null) with testCorrectAnswers ans testPossibleAnswers");
+			Question newQuestion = new Question(0, 1, null, null,"https://media.wired.com/photos/5b899992404e112d2df1e94e/master/pass/trash2-01.jpg", testCorrectAnswers, testPossibleAnswers);
 			int newQuestionID = manager.addQuestion(newQuestion, con);
 			System.out.println("added Question - ");
 			System.out.println(manager.getQuestion(newQuestionID, con));
-		*/
 		
+		*/
 		
 		
 	}
@@ -386,16 +389,29 @@ class TestManagers {
 		Connection con = createConnection();
 		AnswerManager manager = new AnswerManager();
 		
-		System.out.println("testing getAllAnswer:");
-		System.out.println("getting all answers on questionId = 1");
-		ArrayList<Answer> result = manager.getAllAnswer(1, con);
+		System.out.println("testing getAllCorrectAnswer:");
+		System.out.println("getting all correct answers on questionId = 1");
+		ArrayList<Answer> result = manager.getAllCorrectAnswer(1, con);
 		for(int i=0; i<result.size(); i++) {
 			System.out.println(result.get(i));
 		}
 		
 		System.out.println("-----------------------");
-		System.out.println("getting all answers on questionId = 2");
-		result = manager.getAllAnswer(2, con);
+		System.out.println("getting all correct answers on questionId = 2");
+		result = manager.getAllCorrectAnswer(2, con);
+		for(int i=0; i<result.size(); i++) {
+			System.out.println(result.get(i));
+		}
+		
+		System.out.println("-----------------------");
+		System.out.println("testing getAllPossibleAnswer:");
+		System.out.println("getting all possible answers on questionId = 5");
+		result = manager.getAllPossibleAnswer(5, con);
+		for(int i=0; i<result.size(); i++) {
+			System.out.println(result.get(i));
+		}
+		System.out.println("getting all correct answers on questionId = 5");
+		result = manager.getAllCorrectAnswer(5, con);
 		for(int i=0; i<result.size(); i++) {
 			System.out.println(result.get(i));
 		}
@@ -429,11 +445,15 @@ class TestManagers {
 		
 		System.out.println("testing addQuiz method:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		
 		/*
 			ArrayList<Question> testQuestions = new ArrayList<>();
-			ArrayList<Answer> testAnswers = new ArrayList<>();
-			testAnswers.add(new Answer(0, 0, 1, "test"));
-			Question newQuestion = new Question(0, 1, null, null, testAnswers);
+			ArrayList<Answer> testCorrectAnswers = new ArrayList<>();
+			testCorrectAnswers.add(new Answer(0, 0, 1, "test"));
+			
+			ArrayList<Answer> testPossibleAnswers = new ArrayList<>();
+			testPossibleAnswers.add(new Answer(0, 0, 1, "test"));
+			Question newQuestion = new Question(0, 1, null, null, null, testCorrectAnswers, testPossibleAnswers);
 			testQuestions.add(newQuestion);
 			
 			System.out.println("adding new quiz with testQuestions");

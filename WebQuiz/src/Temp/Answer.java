@@ -8,8 +8,8 @@ public class Answer implements Comparable<Answer> {
 	private String answerDetail;
 	
 	public Answer(int answerID, int questionID, int answerIndex, String answerDetail) {
-		this.answerDetail = answerDetail;
 		this.answerID = answerID;
+		this.questionID = questionID;
 		this.answerIndex = answerIndex;
 		this.answerDetail = answerDetail;
 	}
@@ -55,11 +55,8 @@ public class Answer implements Comparable<Answer> {
 
 	
 	@Override
-	public int compareTo(Answer o) {
-		
-		
+	public int compareTo(Answer o) {		
 		int res = (this.getAnswerIndex() > o.getAnswerIndex()) ? 1 : (this.getAnswerIndex() < o.getAnswerIndex()) ? -1 : 0;
-	//	System.out.println(this.answerIndex +" is compared to "+o.answerIndex +". returned " + res);
 		return res;
 	}
 	

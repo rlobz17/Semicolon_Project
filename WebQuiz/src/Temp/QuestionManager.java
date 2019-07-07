@@ -41,18 +41,31 @@ public class QuestionManager {
 	 */
 	public int addQuestion(Question newQuestion, Connection con) {
 		int result =  dao.addQuestion(newQuestion, con);
-		ArrayList<Answer> answers = newQuestion.getCorrectAnswers();
-		if(answers==null) {
+		ArrayList<Answer> correctAnswers = newQuestion.getCorrectAnswers();
+		if(correctAnswers==null) {
 			return 0;
 		}
-		for(int i=0; i<answers.size(); i++) {
-			Answer answer = answers.get(i);
+		for(int i=0; i<correctAnswers.size(); i++) {
+			Answer answer = correctAnswers.get(i);
 			answer.setQuestionID(result);
-			int answerManagerResult = answerManager.addAnswer(answer, con);
+			int answerManagerResult = answerManager.addCorrectAnswer(answer, con);
 			if(answerManagerResult == -1) {
 				return -1;
 			}
 		}
+		
+		ArrayList<Answer> possibleAnswers = newQuestion.getPossibleAnswers();
+		if(possibleAnswers!=null) {
+			for(int i=0; i<possibleAnswers.size(); i++) {
+				Answer answer = possibleAnswers.get(i);
+				answer.setQuestionID(result);
+				int answerManagerResult = answerManager.addPossibleAnswer(answer, con);
+				if(answerManagerResult == -1) {
+					return -1;
+				}
+			}
+		}
+		
 		return result;
 	}
 

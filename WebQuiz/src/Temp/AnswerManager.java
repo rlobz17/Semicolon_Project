@@ -16,11 +16,25 @@ public class AnswerManager {
 	
 	/**
 	 * @return 
-	 * ArrayList<Answer> - correctly ordered answers for question with this id
+	 * ArrayList<Answer> - correctly ordered correct answers for question with this id
 	 * null - for sql Error 
 	 */
-	public ArrayList<Answer> getAllAnswer(int question_id, Connection con){
-		ArrayList<Answer> result = dao.getAllAnswer(question_id, con);
+	public ArrayList<Answer> getAllCorrectAnswer(int question_id, Connection con){
+		ArrayList<Answer> result = dao.getAllCorrectAnswer(question_id, con);
+		if(result==null) {
+			return null;
+		}
+		Collections.sort(result);
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 * ArrayList<Answer> - correctly ordered possible answers for question with this id
+	 * null - for sql Error 
+	 */
+	public ArrayList<Answer> getAllPossibleAnswer(int question_id, Connection con){
+		ArrayList<Answer> result = dao.getAllPossibleAnswer(question_id, con);
 		if(result==null) {
 			return null;
 		}
@@ -31,10 +45,20 @@ public class AnswerManager {
 	/**
 	 * @return
 	 *  0 - if done without any problem,
-	 *  1 - answer was not added
+	 *  1 - correct answer was not added
 	 * -1 - if sql Error
 	 */
-	public int addAnswer(Answer newAnswer, Connection con) {
-		return dao.addAnswer(newAnswer, con);
+	public int addCorrectAnswer(Answer newAnswer, Connection con) {
+		return dao.addCorrectAnswer(newAnswer, con);
+	}
+	
+	/**
+	 * @return
+	 *  0 - if done without any problem,
+	 *  1 - possible answer was not added
+	 * -1 - if sql Error
+	 */
+	public int addPossibleAnswer(Answer newAnswer, Connection con) {
+		return dao.addPossibleAnswer(newAnswer, con);
 	}
 }

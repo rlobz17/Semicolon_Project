@@ -47,7 +47,7 @@ public class QuestionManagerDao {
 		Question result = null;
 		int questionTypeID;
 		String questionDetail, questionTask, questionImgUrl;
-		ArrayList<Answer> correctAnswers;
+		ArrayList<Answer> correctAnswers, possibleAnswers;
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
@@ -66,11 +66,20 @@ public class QuestionManagerDao {
 				stm.close();
 				return null;
 			}
-			correctAnswers = answerManager.getAllAnswer(questionID, con);
+			correctAnswers = answerManager.getAllCorrectAnswer(questionID, con);
 			if(correctAnswers == null) {
 				stm.close();
 				return null;
 			}
+			possibleAnswers = answerManager.getAllPossibleAnswer(questionID, con);
+			if(possibleAnswers == null) {
+				stm.close();
+				return null;
+			}
+			if(possibleAnswers.size()==0) {
+				possibleAnswers = null;
+			}
+			
 			
 			if(questionTask == null) {
 				questionTask = getQuestionDefaultTask(questionTypeID, con);
@@ -79,7 +88,7 @@ public class QuestionManagerDao {
 					return null;
 				}
 			}
-			result = new Question(questionID, questionTypeID, questionDetail, questionTask, questionImgUrl, correctAnswers);
+			result = new Question(questionID, questionTypeID, questionDetail, questionTask, questionImgUrl, correctAnswers, possibleAnswers);
 			stm.close();
 			
 		} catch (SQLException e) {
