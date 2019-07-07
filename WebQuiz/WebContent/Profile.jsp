@@ -49,7 +49,7 @@ if(user!=null){
 
 <meta charset="UTF-8">
 
-<link href="mainPage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mainPage.css"/>
 
 <title><%= username %></title>
 
@@ -57,19 +57,19 @@ if(user!=null){
 
 <script> 
    	$(function(){
-	$("#headerContent").load("header.jsp"); 
+	$("#headerContent").load("/WebQuizProject/header.jsp"); 
 	});
 </script>
 
 <script> 
    	$(function(){
-	$("#footerContent").load("footer.jsp"); 
+	$("#footerContent").load("/WebQuizProject/footer.jsp"); 
 	});
 </script>
 
 <script> 
    	$(function(){
-	$("#sidebarContent").load("sidebar.jsp"); 
+	$("#sidebarContent").load("/WebQuizProject/sidebar.jsp"); 
 	});
 </script>
 
@@ -133,6 +133,10 @@ if(user!=null){
 						int quizesCreated = acc.getQuizesCreated();
 						ArrayList<String> friends = acc.getFriendsList();
 						
+						double avg = acc.getQuizesAverage();
+						
+						boolean admin = acc.isAdmin();
+						
 						String first = acc.getFirstName();
 						String last = acc.getLastName();
 						
@@ -173,7 +177,6 @@ if(user!=null){
 									<img src="<%= imgurl %>" alt="" 
 										style="
 		    								width: 150px;
-		    								height: 150px;
 		    								margin: auto;
 		    								padding-left: 40%;
 									">
@@ -254,6 +257,43 @@ if(user!=null){
 							
 							<tr>
 								<td>
+									საშუალო ქულა:
+								</td>
+							
+								<td>
+									<%= avg %>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									სტატუსი:
+								</td>
+								
+								<%
+									if(admin){
+										%>
+										
+										<td>
+											ადმინისტრატორი
+										</td>
+										
+										<%
+									} else{
+										%>
+										
+										<td>
+											მომხმარებელი
+										</td>
+										
+										<%
+									}
+								%>
+								
+							</tr>
+							
+							<tr>
+								<td>
 									მეგობრები:
 								</td>
 							
@@ -277,8 +317,9 @@ if(user!=null){
 						
 							<div class="login">მონაცემების ცვლილება</div>
 							
-							<form action="/" method="POST">
-							
+							<form action="/WebQuizProject/login/ProfileEditServlet" method="POST">
+								<input type="hidden" name="user" value="<%= username %>" />
+								
 								<table class="loginTable"><tbody>
 											
 									<tr>
@@ -307,6 +348,33 @@ if(user!=null){
 											<input id="mail" type="text" name="mail" class="loginInput">
 										</td>
 									</tr>
+									
+									<tr>
+										<td>
+											ახალი სურათი (URL):
+										</td>
+										<td>
+											<input id="img" type="text" name="img" class="loginInput">
+										</td>
+									</tr>
+									
+									<%
+										if(isAdmin){
+											%>
+											
+											<tr>
+												<td>
+													ადმინი:
+												</td>
+												<td>
+													<input type="checkbox" name="admin" > 
+													
+												</td>
+											</tr>
+											
+											<%
+										}
+									%>
 									
 								
 								</tbody></table>

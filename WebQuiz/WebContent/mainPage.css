@@ -590,4 +590,8 @@
     color: #46a7ac;
     padding: 10px;
     overflow: hidden;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: monospace;
+    text-align: center;
 }
