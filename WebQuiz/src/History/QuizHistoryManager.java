@@ -20,7 +20,7 @@ public class QuizHistoryManager {
 	 * ArrayList<Strory> - history of quiz with this quizID
 	 * null - for sql error
 	 */
-	public ArrayList<Story> getQuizHistory(int quizID, Connection con) {
+	public ArrayList<QuizTakeStory> getQuizHistory(int quizID, Connection con) {
 		return dao.getQuizHistory(quizID, con);
 	}
 	

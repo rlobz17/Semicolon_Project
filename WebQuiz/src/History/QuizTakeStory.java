@@ -2,7 +2,7 @@ package History;
 
 import java.util.Date;
 
-public class Story {
+public class QuizTakeStory {
 
 	private int storyID;
 	private int accountID;
@@ -11,7 +11,7 @@ public class Story {
 	private double score;
 	
 	
-	public Story(int storyID, int accountID, int quizID, Date takenDate, double score) {
+	public QuizTakeStory(int storyID, int accountID, int quizID, Date takenDate, double score) {
 		this.storyID = storyID;
 		this.accountID = accountID;
 		this.quizID = (quizID);

@@ -16,7 +16,7 @@ import Database.*;
 import History.AccountHistoryManager;
 import History.AccountHistoryManagerDao;
 import History.QuizHistoryManager;
-import History.Story;
+import History.QuizTakeStory;
 import Temp.Account;
 import Temp.AccountManager;
 import Temp.AccountManagerDao;
@@ -461,7 +461,7 @@ class TestManagers {
 		
 		System.out.println("-----------------------");
 		System.out.println("testing getQuizHistory method:");
-		ArrayList<Story> history = null;
+		ArrayList<QuizTakeStory> history = null;
 		System.out.println("getting history for quiz with id(1)");
 		history = quizHistory.getQuizHistory(1, con);
 		for(int i=0; i<history.size(); i++) {
@@ -516,7 +516,23 @@ class TestManagers {
 			System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
 		}
 		
+		System.out.println("-----------------------");
+		System.out.println("testing addAccountQuizTakeStory method:");
+		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		
+		/*
+			System.out.println("adding history for account(4) taking quiz(2) and getting 50 score");
+			assertEquals(0, accountHistory.addAccountQuizTakeStory(new QuizTakeStory(0, 4, 2, null, 50), con));
+			System.out.println("//done//");
+			System.out.println("getting history for account with id(4)");
+			history = accountHistory.getAccountHistory(4, con);
+			for(int i=0; i<history.size(); i++) {
+				System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
+			}
+		*/
 	}
+	
+	
 	
 
 }

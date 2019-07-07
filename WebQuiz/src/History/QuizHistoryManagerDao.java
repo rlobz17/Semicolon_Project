@@ -22,8 +22,8 @@ public class QuizHistoryManagerDao {
 	 * ArrayList<Strory> - history of quiz with this quizID
 	 * null - for sql error
 	 */
-	public ArrayList<Story> getQuizHistory(int quizID, Connection con) {
-		ArrayList<Story> result = new ArrayList<>();
+	public ArrayList<QuizTakeStory> getQuizHistory(int quizID, Connection con) {
+		ArrayList<QuizTakeStory> result = new ArrayList<>();
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
@@ -48,7 +48,7 @@ public class QuizHistoryManagerDao {
 					return null;
 				}
 				double score = rs.getDouble("takeHistory_score");
-				result.add(new Story(storyID, accountID, quizID, takenDate, score));
+				result.add(new QuizTakeStory(storyID, accountID, quizID, takenDate, score));
 			}
 			stm.close();
 		} catch (SQLException e) {
