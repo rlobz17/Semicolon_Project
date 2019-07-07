@@ -390,7 +390,9 @@ if(user!=null){
 						
 							<div class="login">პაროლის ცვლილება</div>
 							
-							<form action="/" method="POST">
+							<form action="/WebQuizProject/login/ChangePasswordServlet" method="POST">
+								
+								<input type="hidden" name="user" value="<%= username %>" />
 							
 								<table class="loginTable"><tbody>
 											
@@ -409,6 +411,15 @@ if(user!=null){
 										</td>
 										<td>
 											<input id="new_password" type="password" name="new_password" class="loginInput">
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											გაიმეორეთ პაროლი:*
+										</td>
+										<td>
+											<input id="repeatPass" type="password" name="repeatPass" class="loginInput">
 										</td>
 									</tr>
 									
