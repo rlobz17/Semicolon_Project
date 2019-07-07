@@ -11,13 +11,16 @@ public class Question {
 	private int questionTypeID;
 	private String questionDetail;
 	private String questionTask;
+	private String questionImgUrl;
 	
-	public Question(int questionID, int questionTypeID, String questionDetail, String questionTask, ArrayList<Answer> correctAnswers) {
+	public Question(int questionID, int questionTypeID, String questionDetail, String questionTask, String questionImgUrl, ArrayList<Answer> correctAnswers) {
 		this.questionID = questionID;
 		this.questionTypeID = questionTypeID;
 		this.questionDetail = questionDetail;
 		this.questionTask = questionTask;
+		this.questionImgUrl = questionImgUrl;
 		this.correctAnswers = correctAnswers;
+		
 	}
 	
 	
@@ -66,8 +69,16 @@ public class Question {
 	public String getQuestionTask() {
 		return questionTask;
 	}
-	
-	
+		
+	/**
+	 * @return the questionImgUrl
+	 */
+	public String getQuestionImgUrl() {
+		return questionImgUrl;
+	}
+
+
+
 	@Override
 	public String toString() {
 		String answers = "\n";
@@ -75,7 +86,7 @@ public class Question {
 			answers += correctAnswers.get(i).toString() + "\n";
 		}
 		return "questionID " + questionID +" | questionTypeID "+questionTypeID + " | questionDetail " + questionDetail + 
-				" | questionTask " + questionTask +"\nCorrect Answers :" + answers;
+				" | questionTask " + questionTask + " | questionImgUrl " + questionImgUrl +"\nCorrect Answers :" + answers;
 	}
 
 	

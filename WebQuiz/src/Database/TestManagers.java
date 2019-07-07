@@ -356,18 +356,18 @@ class TestManagers {
 		System.out.println("////////////////////////////");
 		System.out.println("testing addQuestion:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
+		
 		/*
-
 			ArrayList<Answer> testAnswers = new ArrayList<>();
 			testAnswers.add(new Answer(0, 0, 1, "test"));
 			
 			System.out.println("addQuestion(1,null,null) with testAnswers");
-			Question newQuestion = new Question(0, 1, null, null, testAnswers);
+			Question newQuestion = new Question(0, 1, null, null,"https://media.wired.com/photos/5b899992404e112d2df1e94e/master/pass/trash2-01.jpg", testAnswers);
 			int newQuestionID = manager.addQuestion(newQuestion, con);
 			System.out.println("added Question - ");
 			System.out.println(manager.getQuestion(newQuestionID, con));
-		
 		*/
+		
 		
 		
 	}

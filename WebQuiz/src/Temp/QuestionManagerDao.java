@@ -46,7 +46,7 @@ public class QuestionManagerDao {
 	public Question getQuestion(int questionID, AnswerManager answerManager,  Connection con) {
 		Question result = null;
 		int questionTypeID;
-		String questionDetail, questionTask;
+		String questionDetail, questionTask, questionImgUrl;
 		ArrayList<Answer> correctAnswers;
 		try {
 			Statement stm = con.createStatement();
@@ -55,7 +55,8 @@ public class QuestionManagerDao {
 			if(rs.next()) {				
 				questionTypeID = rs.getInt("questionType_id"); 
 				questionDetail = rs.getString("question_detail");
-				questionTask = rs.getString("question_task");			
+				questionTask = rs.getString("question_task");	
+				questionImgUrl = rs.getString("question_imgUrl");
 			}else {
 				stm.close();
 				return null;
@@ -78,7 +79,7 @@ public class QuestionManagerDao {
 					return null;
 				}
 			}
-			result = new Question(questionID, questionTypeID, questionDetail, questionTask, correctAnswers);
+			result = new Question(questionID, questionTypeID, questionDetail, questionTask, questionImgUrl, correctAnswers);
 			stm.close();
 			
 		} catch (SQLException e) {
@@ -129,12 +130,14 @@ public class QuestionManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			
-			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task) VALUES";
+			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES";
 			addQuestionString += "(" +newQuestion.getQuestionType();
 			if(newQuestion.getQuestionDetail() == null) {addQuestionString += ",null";}
 			else {addQuestionString += ",'" + newQuestion.getQuestionDetail()+"'";}
-			if(newQuestion.getQuestionTask()== null) {addQuestionString += ",null)";}
-			else {addQuestionString += ",'" + newQuestion.getQuestionTask()+"')";}
+			if(newQuestion.getQuestionTask()== null) {addQuestionString += ",null";}
+			else {addQuestionString += ",'" + newQuestion.getQuestionTask()+"'";}
+			if(newQuestion.getQuestionImgUrl()== null) {addQuestionString += ",null)";}
+			else {addQuestionString += ",'" + newQuestion.getQuestionImgUrl()+"')";}
 			
 						
 			
