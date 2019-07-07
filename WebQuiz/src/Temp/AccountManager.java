@@ -146,17 +146,15 @@ public class AccountManager {
 		return dao.changeImg(accountId, newImgUrl, con);
 	}
 	
-	
-//	/**
-//	 * @return 
-//	 *  0 - successfully added number of quizes taken,
-//	 *  1 - account with this id was not found
-//	 * -1 - for sql Error 
-//	 */
-//	public int addQuizesTaken(int accountId, Connection con) {
-//		return dao.addQuizesTaken(accountId, con);
-//	}
-	
+	/**
+	 * @return 
+	 *  0 - successfully changed password of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changePassword(int accountId, String newPassword, Connection con) {
+		return dao.changePassword(accountId, newPassword, con);
+	}
 	
 	/**
 	 * @return 

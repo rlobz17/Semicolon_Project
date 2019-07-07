@@ -670,49 +670,53 @@ public class AccountManagerDao {
 	}
 	
 	
-//	/**
-//	 * @return 
-//	 *  0 - successfully added number of quizes taken,
-//	 *  1 - account with this id was not found
-//	 * -1 - for sql Error 
-//	 */
-//	public int addQuizesTaken(int accountId, Connection con) {
-//
-//		int result = -1;
-//		try{ 
-//			Statement stm = con.createStatement();
-//			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
-//			
-//			String findAccount = "Select 1 from accounts ";
-//			findAccount += "where account_id = " + accountId;
-//						
-//			ResultSet rs = stm.executeQuery(findAccount);
-//			
-//			if(!rs.next()) {
-//				return 1;
-//			}else {
-//				if(rs.next()) {
-//					return -1;
-//				}
-//			}
-//			
-//			
-//			String addTaken = "Update accounts ";
-//			addTaken += " set account_quizesTaken = account_quizesTaken +1";
-//			addTaken += " where account_id = " + accountId;
-//
-//						
-//			stm.executeUpdate(addTaken);
-//			result = 0;
-//
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//			return -1;
-//		}
-//		
-//		return result;
-//	}
-//	
+	/**
+	 * @return 
+	 *  0 - successfully changed password of account with this id,
+	 *  1 - account with this id was not found
+	 * -1 - for sql Error 
+	 */
+	public int changePassword(int accountId, String newPassword, Connection con) {
+		
+		int result = -1;
+		
+		try{ 
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String findAccount = "Select 1 from accounts ";
+			findAccount += "where account_id = " + accountId;
+						
+			ResultSet rs = stm.executeQuery(findAccount);
+			
+			if(!rs.next()) {
+				stm.close();
+				return 1;
+			}else {
+				if(rs.next()) {
+					stm.close();
+					return -1;
+				}
+			}
+			
+			
+			String updateString = "Update accounts ";
+			updateString += " set account_password = '" + newPassword+ "'";
+			updateString += " where account_id = " + accountId;
+
+						
+			stm.executeUpdate(updateString);
+			result = 0;
+			stm.close();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return -1;
+		}
+		
+		return result;
+	}
+	
 	
 	public static final int ADMIN = 0;
 	public static final int USER = 1;

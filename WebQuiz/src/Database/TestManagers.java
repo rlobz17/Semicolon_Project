@@ -2,6 +2,7 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ import Temp.Quiz;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
 import Temp.QuizManager;
+import account.PasswordManager;
 import javafx.util.Pair;
 
 class TestManagers {
@@ -220,6 +222,20 @@ class TestManagers {
 		System.out.println("update account_imgUrl to someImageURL with id=5 (should return 1)");
 		assertEquals(1, manager.changeImg(5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeMLoLFFu0SpECMrDVcyDNMr5lxhAVTbl48UJ_pWqu62-FFQmr2Q", con));
 		
+		System.out.println("-----------------------");
+		System.out.println("update password to 'rezgo1234' with id=1");
+		try {
+			assertEquals(0, manager.changePassword(1, new PasswordManager().hashPassword("rezgo1234"), con));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		System.out.println("update password to 'rezgo1234' with id=5");
+		try {
+			assertEquals(1, manager.changePassword(5, new PasswordManager().hashPassword("rezgo1234"), con));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
 		
 		System.out.println("-----------------------");
 		System.out.println("change state of account with id=1 to admin");
@@ -231,8 +247,8 @@ class TestManagers {
 		System.out.println("change state of account with id=5 to user (should return 1)");
 		assertEquals(1, manager.makeAccountUser(5, con));
 		
-		 */   
-		
+		   
+		*/
 		
 	}
 	
