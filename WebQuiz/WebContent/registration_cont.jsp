@@ -44,6 +44,15 @@
 									<input id="password" type="password" name="password" class="loginInput">
 								</td>
 							</tr>
+							
+							<tr>
+								<td>
+									გაიმეორეთ პაროლი:*
+								</td>
+								<td>
+									<input id="repeatPass" type="password" name="repeatPass" class="loginInput">
+								</td>
+							</tr>
 									
 							<tr>
 								<td>

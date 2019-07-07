@@ -81,6 +81,20 @@ if(p!=null) n = Integer.parseInt(p);
 							</a></div>
 							
 						<%
+					} else if(n==4){
+						%>
+						
+							<div class="loginErr"> • პაროლები ერთმანეთს არ ემთხვევა</div>
+							<div id="registrationContent"></div>
+					
+						<%
+					}else if(n==5){
+						%>
+							
+							<div class="loginErr"> • პაროლის უნდა იყოს სულ მცირე 6 სიგრძის</div>
+							<div id="registrationContent"></div>
+					
+						<%
 					} else{
 						%>
 						

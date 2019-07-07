@@ -51,6 +51,7 @@ public class RegistrationServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String repeat = request.getParameter("repeatPass");
 		String mail = request.getParameter("mail");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
@@ -67,6 +68,18 @@ public class RegistrationServlet extends HttpServlet {
 		
 		if(username.length() < 1 || password.length() < 1 || mail.length() <1) {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/tryagain.jsp");
+			dispatch.forward(request, response);
+			return;
+		}
+		
+		if(!password.equals(repeat)) {
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=4");
+			dispatch.forward(request, response);
+			return;
+		}
+		
+		if(password.length()<6) {
+			RequestDispatcher dispatch = request.getRequestDispatcher("/registration.jsp?info_id=5");
 			dispatch.forward(request, response);
 			return;
 		}
