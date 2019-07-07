@@ -167,9 +167,9 @@
 								<form action="/WebQuizProject/Quiz/StartQuizServlet" method="POST">
 								
 									<input value="ქვიზის დაწყება" class="startQuiz" type="submit" >
-									
-									<% request.getSession().setAttribute("quizID", q); %>
-									
+									<input type="hidden" name="quiz_id" value="<%=quiz.getQuizID()%>" />
+									<input type="hidden" name="question_id" value="0" />
+																		
 									<div class="shortstoryLower">
 										<ul class="meta grey">
 										<li class="meta_author">

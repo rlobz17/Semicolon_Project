@@ -554,3 +554,40 @@
     border-bottom-right-radius: 12px;
     box-shadow: -2px 2px 1px 1px #0000006b;
 }
+
+.question{
+	margin-top: 30px;
+    margin-bottom: 30px;
+    width: 90%;
+    background: #6da4cb1a;
+    margin-left: 5%;
+    border: 1px solid #e7e7e7;
+    min-height: 400px;
+}
+
+.currentQuestion{
+	background: #6da4cb;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    float: right;
+    color: #f8c258;
+    padding: 11px;
+    border-bottom-right-radius: 12px;
+    border-bottom: 1px solid #f7bc45;
+    border-right: 1px solid #f7bc45;
+    text-shadow: 1px 1px #982929;
+}
+
+.questionTask{
+	width: 90%;
+    min-height: 100px;
+    background: #f8c25736;
+    margin-top: 70px;
+    margin-left: 3%;
+    border: 1px solid #6da4cc;
+    border-radius: 5px;
+    color: #46a7ac;
+    padding: 10px;
+    overflow: hidden;
+}

@@ -39,9 +39,12 @@ public class StartQuizServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
 				
-		String quizID = (String)request.getSession().getAttribute("quizID");
+		String quizID = request.getParameter("quiz_id");
+		String questionID = request.getParameter("question_id");
 				
 		String url = "/StartQuiz.jsp?id=" + quizID;
+		
+		url += "&question=" + questionID;
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);

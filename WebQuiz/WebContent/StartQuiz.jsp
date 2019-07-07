@@ -1,3 +1,5 @@
+<%@page import="Temp.Question"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Temp.AccountManager"%>
 <%@page import="java.util.Date"%>
@@ -10,7 +12,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	String q = (String)request.getSession().getAttribute("quizID");
+	String q = request.getParameter("id");
 
 	int quizID = -1;
 		
@@ -183,6 +185,30 @@
 										
 									} else{
 										
+										ArrayList<Question> questions = quiz.getQuestions();
+										
+										String questionStr = request.getParameter("question");
+										int questionNum = Integer.parseInt(questionStr);
+										
+										Question currentQuestion = questions.get(questionNum);
+										
+										String curr = " " + (questionNum+1) + "/" + questions.size();
+																				
+										%>
+											<div class="question">
+												<div class="currentQuestion">
+													კითხვა: <%=  curr%>
+												</div>
+												
+												<div class="questionTask">
+													<%= currentQuestion.getQuestionDetail() %>
+												</div>
+												
+											</div>
+																				
+										
+										<%
+
 									}
 								%>
 								
