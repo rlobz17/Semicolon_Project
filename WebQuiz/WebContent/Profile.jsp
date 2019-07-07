@@ -41,6 +41,8 @@ if(user!=null){
 	isAdmin = viewerAcc.isAdmin();
 }
 
+String result = request.getParameter("result");
+
 %>
     
 <!DOCTYPE html>
@@ -150,6 +152,28 @@ if(user!=null){
 						
 						if(imgurl==null){
 							imgurl = "https://cdn3.iconfinder.com/data/icons/users-6/100/4-512.png";
+						}
+						
+						if(result!=null){
+						
+							if(result.equals("0")){
+								%>
+									<div class="loginSucc"> • მონაცემები წარმატებით შეიცვალა</div>
+								<%
+							} else if(result.equals("1")){
+								%>
+									<div class="loginErr"> • პაროლები ერთმანეთს არ ემთხვევა ან ფორმატი არასწორია</div>
+								<%	
+							} else if(result.equals("2")){
+								%>
+									<div class="loginErr"> • შეყვანილი პაროლი არასწორია</div>
+								<%
+							} else if(result.equals("3")){
+								%>
+									<div class="loginErr"> • მეილი უკვე დაკავებულია</div>
+								<%
+							}
+						
 						}
 						
 						%>

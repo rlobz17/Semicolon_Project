@@ -1,6 +1,7 @@
 package login;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import History.AccountHistoryManager;
 import Temp.Account;
 import Temp.AccountManager;
+import account.PasswordManager;
 
 /**
  * Servlet implementation class ChangePasswordServlet
@@ -62,12 +64,55 @@ public class ChangePasswordServlet extends HttpServlet {
 		
 		int userID = acc.getUserID();
 		
-		if(accManager.doLogin(username, oldPassword, con)==0) {
+		String profileURL = "/Profile.jsp?username=" + username;
+		
+		PasswordManager m = new PasswordManager();
+		String hashPassword = null;
+		
+		try {
+			hashPassword = m.hashPassword(oldPassword);
+		} catch (NoSuchAlgorithmException e1) {
+			// Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		if(accManager.doLogin(username, hashPassword, con)==0) {
 			if(password.equals(repeat)) {
 				
+				if(password.length()<6) {
+					profileURL += "&result=1";
+					
+					RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
+					dispatch.forward(request, response);
+				} else {
+					String pass = null;
+					
+					try {
+						pass = m.hashPassword(password);
+					} catch (NoSuchAlgorithmException e1) {
+						// Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					accManager.changePassword(userID, pass, con);
+					
+					profileURL += "&result=0";
+					
+					RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
+					dispatch.forward(request, response);
+				}
+				
+			} else {
+				profileURL += "&result=1";
+				
+				RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
+				dispatch.forward(request, response);
 			}
 		} else{
+			profileURL += "&result=2";
 			
+			RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
+			dispatch.forward(request, response);
 		}
 		
 		

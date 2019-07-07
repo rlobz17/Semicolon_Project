@@ -64,6 +64,8 @@ public class ProfileEditServlet extends HttpServlet {
 		
 		int userID = acc.getUserID();
 		
+		String profileURL = "/Profile.jsp?username=" + username + "result=0";
+		
 		if(firstname.length()>0) {
 			accManager.changeFirstName(userID, firstname, con);
 		}
@@ -73,7 +75,17 @@ public class ProfileEditServlet extends HttpServlet {
 		}
 		
 		if(mail.length()>0) {
-			accManager.changeMail(userID, mail, con);
+			int res = accManager.containsAccount("", mail, con);
+			
+			if(res!=2 && res!=-1) {
+				accManager.changeMail(userID, mail, con);
+			} else {
+				profileURL += "&result=3";
+				
+				RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
+				dispatch.forward(request, response);
+				return;
+			}
 		}
 		
 		if(img.length()>0) {
@@ -85,8 +97,6 @@ public class ProfileEditServlet extends HttpServlet {
 		} else {
 			accManager.makeAccountUser(userID, con);
 		}
-		
-		String profileURL = "/Profile.jsp?username=" + username;
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(profileURL);
 		dispatch.forward(request, response);
