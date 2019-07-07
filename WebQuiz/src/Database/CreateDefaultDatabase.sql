@@ -53,8 +53,9 @@ CREATE TABLE questionTypes (
 CREATE TABLE questions(
 	question_id int(8) not null auto_increment,
     questionType_id int(8) not null,
-    question_detail text, /*if null - question doesn't need any extra infromation*/
-    question_task text, /*if null - default questionType Task*/
+    question_detail text, /* if null - question doesn't need any extra infromation */
+    question_task text, /* if null - default questionType Task */
+    question_imgUrl text, /* if null - question doesn't need any extra information */
     primary key (question_id),
     foreign key (questionType_id) references questionTypes(questionType_id)
 );
@@ -155,9 +156,9 @@ INSERT INTO questionTypes (questionType_id, questionType_name, questionType_defa
     (10,"Timed_Question_type", "Answer the question before the time runs out")
     ;
     
-INSERT INTO questions (questionType_id, question_detail, question_task) VALUES
-	(1, "Who is the best student in the group?" , null),
-    (4, "http://freeuni.edu.ge/sites/default/themes/freeuni/images/free-og.png", "Which University logo is painted in the picture?")
+INSERT INTO questions (questionType_id, question_detail, question_imgUrl) VALUES
+	(1, "Who is the best student in the group?", "https://trademarks.justia.com/media/og_image.php?serial=87226326" ),
+    (4, "Which University logo is painted in the picture?", "http://freeuni.edu.ge/sites/default/themes/freeuni/images/free-og.png")
     ;
     
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
