@@ -55,7 +55,17 @@ public class QuizManager {
 //		return dao.addQuizTakenCount(quiz_id, con);
 //	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * @param con
+	 * @return
+	 * String QuizCategory - if successful.
+	 * null - if sql error.
+	 */
+	public String getQuizCategory(int quizCategoryID, Connection con) {
+		return dao.getQuizCategory(quizCategoryID, con);
+	}
 	
 
 }

@@ -452,6 +452,7 @@ class TestManagers {
 		System.out.println(manager.getQuiz(2, con));
 		System.out.println("-----------------------");
 		
+		System.out.println("////////////////////////////");
 		System.out.println("testing addQuiz method:");
 		System.out.println("testing is correct. i just put it in comments because, it needed reseting the database afterwards");
 		
@@ -470,6 +471,14 @@ class TestManagers {
 			int result = manager.addQuiz(newQuiz,con);
 			System.out.println(manager.getQuiz(result, con));
 		*/
+		
+		System.out.println("////////////////////////////");
+		System.out.println("testing getQuizCategory method:");
+		System.out.println("getQuizCategory id(1) : "+manager.getQuizCategory(1, con));
+		System.out.println("getQuizCategory id(2) : "+manager.getQuizCategory(2, con));
+		System.out.println("getQuizCategory id(3) : "+manager.getQuizCategory(3, con));
+		System.out.println("getQuizCategory id(4) : "+manager.getQuizCategory(4, con));
+		System.out.println("getQuizCategory id(5) : "+manager.getQuizCategory(5, con));
 		
 		
 	}
