@@ -50,7 +50,7 @@
     	search = request.getParameter("search");
     }
     
-	int quizNumber = m.searchQuizLites(search, null, beginIndex, count, con).getValue();
+	int quizNumber = m.searchQuizLites(search, null, null, beginIndex, count, con).getValue();
     
     navigation n = new navigation(quizNumber, currentPage);
 
@@ -62,7 +62,7 @@
 
     ArrayList<Integer> pagesArr = n.pagesToShow();
 
-    ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, beginIndex, count, con).getKey();
+    ArrayList<QuizLite> quizes = m.searchQuizLites(search, null, null, beginIndex, count, con).getKey();
     
 %>    
     

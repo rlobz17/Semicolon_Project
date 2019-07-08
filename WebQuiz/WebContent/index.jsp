@@ -57,7 +57,7 @@
     int count = 10;
     int beginIndex = (currentPage-1)*count;
 
-    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, beginIndex, count, con).getKey();
+    ArrayList<QuizLite> quizes = m.searchQuizLites(null, null, null, beginIndex, count, con).getKey();
 
 %>    
     

@@ -118,7 +118,7 @@
 				<%
 					if(acc!=null){
 						
-						int quizNumber = m.searchQuizLites(null, user_id, beginIndex, count, con).getValue();
+						int quizNumber = m.searchQuizLites(null, user_id, null, beginIndex, count, con).getValue();
 					    
 					    navigation n = new navigation(quizNumber, currentPage);
 
@@ -130,7 +130,7 @@
 
 					    ArrayList<Integer> pagesArr = n.pagesToShow();
 
-					    ArrayList<QuizLite> quizes = m.searchQuizLites(null, user_id, beginIndex, count, con).getKey();
+					    ArrayList<QuizLite> quizes = m.searchQuizLites(null, user_id, null, beginIndex, count, con).getKey();
 					    
 					    %>
 					    
