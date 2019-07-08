@@ -388,10 +388,10 @@ String result = request.getParameter("result");
 											
 											<tr>
 												<td>
-													ადმინი:
+													სტატუსის შეცვლა:
 												</td>
 												<td>
-													<input type="checkbox" name="admin" > 
+													<input type="checkbox" name="status" > 
 													
 												</td>
 											</tr>

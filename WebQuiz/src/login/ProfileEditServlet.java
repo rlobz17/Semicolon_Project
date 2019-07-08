@@ -52,7 +52,7 @@ public class ProfileEditServlet extends HttpServlet {
 		String lastname = request.getParameter("lastname");
 		String mail = request.getParameter("mail");
 		String img = request.getParameter("img");
-		String admin = request.getParameter("admin");
+		String status = request.getParameter("status");
 		
 		AccountHistoryManager accHistory = (AccountHistoryManager)cont.getAttribute("AccHistory");
 		
@@ -92,10 +92,14 @@ public class ProfileEditServlet extends HttpServlet {
 			accManager.changeImg(userID, img, con);
 		}
 		
-		if(admin!=null) {
-			accManager.makeAccountAdmin(userID, con);
-		} else {
-			accManager.makeAccountUser(userID, con);
+		if(status!=null) {
+			
+			if(acc.isAdmin()) {
+				accManager.makeAccountUser(userID, con);
+			} else {
+				accManager.makeAccountAdmin(userID, con);
+			}
+			
 		}
 		
 		profileURL += "&result=0";
