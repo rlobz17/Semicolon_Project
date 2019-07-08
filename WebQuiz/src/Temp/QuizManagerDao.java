@@ -177,6 +177,39 @@ public class QuizManagerDao {
 		}
 		return result;
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @param con
+	 * @return
+	 * String QuizCategory - if successful.
+	 * null - if sql error.
+	 */
+	public String getQuizCategory(int quizCategoryID, Connection con) {
+		String result = null;
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String selectString = "SELECT quizCategory_name FROM quizcategories";
+			selectString += " where quizCategory_id = " + quizCategoryID;
+			
+			
+			ResultSet rs = stm.executeQuery(selectString);
+			
+			if(rs.next()) {
+				result = rs.getString(1);
+			}
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return result;	
+	}
 }
 
 
