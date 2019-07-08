@@ -595,3 +595,33 @@
     font-family: monospace;
     text-align: center;
 }
+
+.nextQuestion{
+	width: 140px;
+    background: #f7b944;
+    margin-top: 50px;
+    margin-left: 38%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 18px;
+    padding-right: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+}
+
+.finishQuiz {
+    width: 160px;
+    background: #f7b944;
+    margin-top: 50px;
+    margin-left: 37%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+}

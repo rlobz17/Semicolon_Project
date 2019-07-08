@@ -188,12 +188,24 @@
 										ArrayList<Question> questions = quiz.getQuestions();
 										
 										String questionStr = request.getParameter("question");
-										int questionNum = Integer.parseInt(questionStr);
 										
-										Question currentQuestion = questions.get(questionNum);
+										if(questionStr.equals("result")){
+											%>
+											
+											<div class="question">
+												<div class="currentQuestion">
+													დასრულდა
+												</div>
+											
+											<%
+										} else{
 										
-										String curr = " " + (questionNum+1) + "/" + questions.size();
-																				
+											int questionNum = Integer.parseInt(questionStr);
+											
+											Question currentQuestion = questions.get(questionNum);
+											
+											String curr = " " + (questionNum+1) + "/" + questions.size();
+													
 										%>
 											<div class="question">
 												<div class="currentQuestion">
@@ -204,12 +216,47 @@
 													<%= currentQuestion.getQuestionDetail() %>
 												</div>
 												
+												<%
+													if(questionNum == questions.size()-1){
+														
+														%>
+														
+														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
+								
+															<input value="დასრულება" class="finishQuiz" type="submit">
+															<input type="hidden" name="quiz_id" value="<%= quiz.getQuizID() %>">
+															<input type="hidden" name="question_id" value="result">
+															
+														</form>
+														
+														<%
+														
+													} else{
+														%>
+														
+														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
+								
+															<input value="შემდეგი >" class="nextQuestion" type="submit">
+															<input type="hidden" name="quiz_id" value="<%= quiz.getQuizID() %>">
+															<input type="hidden" name="question_id" value="<%= questionNum+1 %>">
+															
+														</form>
+														
+														<%
+													}
+												
+												
+											}
+												%>
+																								
+												
+												
 											</div>
 																				
 										
 										<%
 
-									}
+								}
 								%>
 								
 								

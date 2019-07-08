@@ -164,11 +164,13 @@
 									<img src="<%= imgURL %>">
 								</div>
 								
-								<form action="/WebQuizProject/Quiz/StartQuizServlet" method="POST">
+								<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
 								
 									<input value="ქვიზის დაწყება" class="startQuiz" type="submit" >
 									<input type="hidden" name="quiz_id" value="<%=quiz.getQuizID()%>" />
 									<input type="hidden" name="question_id" value="0" />
+									
+								</form>
 																		
 									<div class="shortstoryLower">
 										<ul class="meta grey">
@@ -181,7 +183,6 @@
 										</ul>
 									</div>
 								
-								</form>
 								
 							</div>
 					    	
