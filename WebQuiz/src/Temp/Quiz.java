@@ -14,9 +14,10 @@ public class Quiz {
 	private int quizTaken; // how many tames this quiz was taken
 	private double quizAverage; // average score of this quiz
 	private String imgUrl;
+	private Integer quizCategoryID;
 	private ArrayList<Question> questions;
 	
-	public Quiz(int quizID, String quiz_name, ArrayList<Question> questions,int Creator_id,Date UpdatedDate,Date CreationDate,int quizTaken,double quizAverage,String imgUrl) {
+	public Quiz(int quizID, String quiz_name, ArrayList<Question> questions,int Creator_id,Date UpdatedDate,Date CreationDate,Integer quizCategoryID, int quizTaken, double quizAverage,String imgUrl) {
 		this.quizID = quizID;
 		this.quiz_name = quiz_name;
 		this.UpdatedDate = UpdatedDate;
@@ -26,6 +27,7 @@ public class Quiz {
 		this.quizAverage = quizAverage;
 		this.imgUrl = imgUrl;
 		this.questions = questions;
+		this.quizCategoryID = quizCategoryID;
 	}
 
 	/**
@@ -113,6 +115,14 @@ public class Quiz {
 	}
 	
 	
+	/**
+	 * @return the quizCategoryID
+	 */
+	public Integer getQuizCategoryID() {
+		return quizCategoryID;
+	}
+	
+	
 	
 	@Override
 	public String toString() {
@@ -121,6 +131,6 @@ public class Quiz {
 			quests += "Question 1)\n" + questions.get(i).toString() + "\n";
 		}
 		return "quizID " + quizID +" | quiz_name "+quiz_name + " | CreationDate "+CreationDate + " | UpdatedDate " + UpdatedDate + 
-				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken +" | quizAverage "+ quizAverage+ " | imgUrl " + quests;
+				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken +" | quizAverage "+ quizAverage+" | quizCategoryID "+ quizCategoryID+ " | imgUrl "+ imgUrl + quests;
 	}
 }

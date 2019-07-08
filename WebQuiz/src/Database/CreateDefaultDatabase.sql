@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS messages, messageTypes;
  -- remove tables if they already exist and start from scratch
  
 -- main tables
-DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes;
+DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizCategories;
  -- remove tables if they already exist and start from scratch
 
 
@@ -30,6 +30,25 @@ CREATE TABLE accounts (
 	fulltext(account_first_name, account_last_name, account_username, account_mail)
 );
 
+CREATE TABLE quizCategories(
+	quizCategory_id int (8) not null auto_increment,
+    quizCategory_name varchar(64) not null,
+    primary key (quizCategory_id)
+);
+
+INSERT INTO quizCategories (quizCategory_name) values
+	('culture'),
+    ('religion'),
+    ('politics'),
+    ('sport'),
+    ('history'),
+    ('science'),
+    ('art'),
+    ('kids'),
+    ('medicine'),
+    ('others')
+    ;
+    
 
 CREATE TABLE quizes (
 	quiz_id int(8) not null auto_increment,
@@ -38,6 +57,7 @@ CREATE TABLE quizes (
     quiz_edited datetime,
     quiz_publisherId int(8) not null,
     quiz_imgUrl text,
+    quizCategory_id int (8) default 10, -- if null this quiz is added to others category
     primary key (quiz_id),
     foreign key (quiz_publisherId) references accounts(account_id),
 	fulltext(quiz_name)

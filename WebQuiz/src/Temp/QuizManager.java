@@ -1,7 +1,6 @@
 package Temp;
 
 import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import History.QuizHistoryManager;
@@ -46,15 +45,15 @@ public class QuizManager {
 		return dao.addQuiz(quiz,questionIDs, con);
 	}
 	
-	
-	/**
-	 * @return 
-	 * true  - if quiz was updated successfully
-	 * false - for sql error
-	 */
-	private boolean addQuizTakenCount(int quiz_id, Connection con) {
-		return dao.addQuizTakenCount(quiz_id, con);
-	}
+//	
+//	/**
+//	 * @return 
+//	 * true  - if quiz was updated successfully
+//	 * false - for sql error
+//	 */
+//	private boolean addQuizTakenCount(int quiz_id, Connection con) {
+//		return dao.addQuizTakenCount(quiz_id, con);
+//	}
 	
 	
 	

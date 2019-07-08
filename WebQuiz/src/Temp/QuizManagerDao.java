@@ -56,7 +56,7 @@ public class QuizManagerDao {
 			
 			String quiz_name, imgURL;
 			Date CreationDate , UpdatedDate;
-			int creatorID;
+			int creatorID, quizCategoryID;
 			
 			if(rs.next()) {
 				quiz_name = rs.getString("quiz_name");
@@ -75,6 +75,7 @@ public class QuizManagerDao {
 				}
 				creatorID = rs.getInt("quiz_publisherId");
 				imgURL = rs.getString("quiz_imgUrl");
+				quizCategoryID = rs.getInt("quizCategory_id");
 				
 			}else {
 				return null;
@@ -97,7 +98,7 @@ public class QuizManagerDao {
 			}
 					
 			
-			result = new Quiz(quizId, quiz_name, questions, creatorID, UpdatedDate, CreationDate, quizTaken, quizAverage, imgURL);
+			result = new Quiz(quizId, quiz_name, questions, creatorID, UpdatedDate, CreationDate,quizCategoryID, quizTaken, quizAverage, imgURL);
 			stm.close();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -109,30 +110,30 @@ public class QuizManagerDao {
 	
 	
 	
-	/**
-	 * @return 
-	 * true  - if quiz was updated successfully
-	 * false - for sql error
-	 */
-	public boolean addQuizTakenCount(int quiz_id,  Connection con) {
-		boolean result = false;
-		try{  
-			
-			Statement stm = con.createStatement();
-			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
-			
-			String updateDoneCount = "UPDATE quizes SET quiz_doneCount = quiz_doneCount + 1 ";
-			updateDoneCount += "where quiz_id = " + quiz_id;
-			
-			result = stm.execute(updateDoneCount);
-			stm.close();
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return false;
-		}
-		return result;
-	}
+//	/**
+//	 * @return 
+//	 * true  - if quiz was updated successfully
+//	 * false - for sql error
+//	 */
+//	public boolean addQuizTakenCount(int quiz_id,  Connection con) {
+//		boolean result = false;
+//		try{  
+//			
+//			Statement stm = con.createStatement();
+//			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
+//			
+//			String updateDoneCount = "UPDATE quizes SET quiz_doneCount = quiz_doneCount + 1 ";
+//			updateDoneCount += "where quiz_id = " + quiz_id;
+//			
+//			result = stm.execute(updateDoneCount);
+//			stm.close();
+//			
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return result;
+//	}
 	
 	/**
 	 * @return
@@ -146,10 +147,13 @@ public class QuizManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseINFO.MYSQL_DATABASE_NAME);
 			
-			String addQuiz = "INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES";
+			String addQuiz = "INSERT INTO quizes (quiz_name, quiz_publisherId,quizCategory_id, quiz_imgUrl) VALUES";
 			addQuiz += "('"+ quiz.getQuizName()+"'";
 			addQuiz += "," + quiz.getCreatorID();
+			if(quiz.getQuizCategoryID() == null) {addQuiz += ",null";}
+			else {addQuiz += "," + quiz.getQuizCategoryID();}
 			addQuiz += ",'" + quiz.getImgUrl() + "')";
+			
 		
 			stm.executeUpdate(addQuiz);
 			

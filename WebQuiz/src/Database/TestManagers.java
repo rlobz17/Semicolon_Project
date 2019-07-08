@@ -274,8 +274,8 @@ class TestManagers {
 		Pair< ArrayList<QuizLite>, Integer> result = null;
 		System.out.println("testing searchQuizLites:");
 		System.out.println("-----------------------");
-		System.out.println("getting quizLites (null, null, 0, 100, con) -");
-		result = manager.searchQuizLites(null, null, 0, 100, con);
+		System.out.println("getting quizLites (null, null, null, 0, 100, con) -");
+		result = manager.searchQuizLites(null, null,null, 0, 100, con);
 		ArrayList<QuizLite> quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -284,8 +284,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites (null, 1, 0, 10, con) -");
-		result = manager.searchQuizLites(null, 1, 0, 10, con);
+		System.out.println("getting quizLites (null, 1, null,  0, 10, con) -");
+		result = manager.searchQuizLites(null, 1, null, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -294,8 +294,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('1', null, 0, 10, con) -");
-		result = manager.searchQuizLites("1", null, 0, 10, con);
+		System.out.println("getting quizLites ('1', null, null, 0, 10, con) -");
+		result = manager.searchQuizLites("1", null, null, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -304,8 +304,8 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('1', 1, 0, 10, con) -");
-		result = manager.searchQuizLites("1", 1, 0, 10, con);
+		System.out.println("getting quizLites ('1', 1, null, 0, 10, con) -");
+		result = manager.searchQuizLites("1", 1,null, 0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -314,8 +314,17 @@ class TestManagers {
 		System.out.println("All Quizes found in this search: " + result.getValue());
 		System.out.println("-----------------------");
 		
-		System.out.println("getting quizLites ('SimpleQuiz21', null, 0, 10, con) -");
-		result = manager.searchQuizLites("SimpleQuiz21", null, 0, 10, con);
+		System.out.println("getting quizLites ('SimpleQuiz21', null, 10, 0, 10, con) -");
+		result = manager.searchQuizLites("SimpleQuiz21", null, 10,  0, 10, con);
+		quizes = result.getKey();
+		for(int i=0; i<quizes.size(); i++) {
+			QuizLite quizLite = quizes.get(i);
+			System.out.println((i+1)+") "+ quizLite);
+		}
+		System.out.println("All Quizes found in this search: " + result.getValue());
+		
+		System.out.println("getting quizLites ('SimpleQuiz21', null, 1, 0, 10, con) -");
+		result = manager.searchQuizLites("SimpleQuiz21", null, 1,  0, 10, con);
 		quizes = result.getKey();
 		for(int i=0; i<quizes.size(); i++) {
 			QuizLite quizLite = quizes.get(i);
@@ -457,7 +466,7 @@ class TestManagers {
 			testQuestions.add(newQuestion);
 			
 			System.out.println("adding new quiz with testQuestions");
-			Quiz newQuiz = new Quiz(0, "testQuiz", testQuestions, 1, null, null, 0,0, "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg");
+			Quiz newQuiz = new Quiz(0, "testQuiz", testQuestions, 1, null, null,null,0,0, "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg");
 			int result = manager.addQuiz(newQuiz,con);
 			System.out.println(manager.getQuiz(result, con));
 		*/

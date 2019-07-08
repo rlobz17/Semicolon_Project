@@ -31,11 +31,11 @@ public class QuizLiteManager {
 	 * Pair<ArrayList<QuizLite>, Integer> - ArrayList<QuizLite> is searched, ordered and limited QuizLite list, Integer is full number of QuizLites found in this search.
 	 * null - for sql Error 
 	 */
-	public  Pair<ArrayList<QuizLite>, Integer> searchQuizLites(String search, Integer user_id, int beginIndex, int count, Connection con) {
+	public  Pair<ArrayList<QuizLite>, Integer> searchQuizLites(String search, Integer user_id, Integer quizCategoryID, int beginIndex, int count, Connection con) {
 		if(search ==null ) {
 			search = "";
 		}
-		return dao.searchQuizLites(search, user_id, beginIndex, count, historyManager, con);
+		return dao.searchQuizLites(search, user_id, quizCategoryID, beginIndex, count, historyManager, con);
 	}
 
 }
