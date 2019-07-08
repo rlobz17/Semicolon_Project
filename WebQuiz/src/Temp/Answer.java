@@ -64,6 +64,12 @@ public class Answer implements Comparable<Answer> {
 	public String toString() {
 		return ("Answer Id = "+answerID+", Answer Detail = " + this.answerDetail);
 	}
+	
+	 @Override
+	 public boolean equals(Object o) { 
+		 Answer cur = (Answer)o;
+		 return cur.getAnswerDetail().equals(answerDetail);
+	 }
 
 	
 }
