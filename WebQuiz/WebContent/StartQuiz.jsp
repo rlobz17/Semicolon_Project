@@ -217,6 +217,8 @@
 											String type = questionManager.getQuestionType(questionType, con);
 										%>
 											<div class="question">
+												<!-- <h1><%= questionType %></h1> -->
+												<!-- <h1><%= type %></h1> -->
 												<div class="currentQuestion">
 													კითხვა: <%=  curr%>
 												</div>
