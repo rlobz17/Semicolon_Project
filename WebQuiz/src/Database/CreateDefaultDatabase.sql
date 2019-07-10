@@ -76,6 +76,7 @@ CREATE TABLE questions(
     question_detail text, /* if null - question doesn't need any extra infromation */
     question_task text, /* if null - default questionType Task */
     question_imgUrl text, /* if null - question doesn't need any extra information */
+    quiestion_answerOrder boolean default false,
     primary key (question_id),
     foreign key (questionType_id) references questionTypes(questionType_id)
 );
@@ -95,7 +96,6 @@ CREATE TABLE answers(
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
     answer_possible boolean default true,
-    answer_order boolean default false,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
 );
@@ -218,12 +218,12 @@ INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
 INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
 	("ქვიზი Multi_Answer_type", 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKC2Kco6H7iMrwNyfy2FbC3bzbJhMw4bFEcn46SFOkP41pLpaq");
 	
-INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
-	(1, "რამდენია 2+3?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
-    (1, "3 გამრავლებული ___(1)___-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png"),
-    (1, "2 + 3 = ___(1)___ და  7 + 8 =  ___(2)___", "შეავსეთ გამოტოვებული ადგილები სწორად", null),
-	(1, "დაწერეთ 8ის ჯერადები, რომლებიც მეტია 7ზე და ნაკლებია 17-ზე არიან:", null, null),
-    (1, "დაწერეთ 1 ცალი 8ის გამყოფი:", null, null);
+INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl, quiestion_answerOrder) VALUES
+	(1, "რამდენია 2+3?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg", false),
+    (1, "3 გამრავლებული ___(1)___-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png", false),
+    (1, "2 + 3 = ___(1)___ და  7 + 8 =  ___(2)___", "შეავსეთ გამოტოვებული ადგილები სწორად", null, true),
+	(1, "დაწერეთ 8ის ჯერადები, რომლებიც მეტია 7ზე და ნაკლებია 17-ზე არიან:", null, null, false),
+    (1, "დაწერეთ 1 ცალი 8ის გამყოფი:", null, null, false);
 
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
 	(3, 3),
@@ -232,17 +232,17 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 	(3, 6),
 	(3, 7);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_order) VALUES
-	(3, 1, "5", false),
-	(4, 1, "7", false),
-	(5, 1, "5", true),
-	(5, 2, "15", true),
-	(6, 1, "8", false),
-	(6, 2, "16", false),
-	(7, 1, "8", false),
-	(7, 1, "4", false),
-	(7, 1, "2", false),
-	(7, 1, "1", false);  
+INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
+	(3, 1, "5"),
+	(4, 1, "7"),
+	(5, 1, "5"),
+	(5, 2, "15"),
+	(6, 1, "8"),
+	(6, 2, "16"),
+	(7, 1, "8"),
+	(7, 1, "4"),
+	(7, 1, "2"),
+	(7, 1, "1");  
     
  /*
  * Multiple_Choice_type შემმოწმებელი ქუიზი.
@@ -325,13 +325,13 @@ INSERT INTO questions (questionType_id, question_detail, question_task, question
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
 	(6, 13);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible, answer_order) VALUES
-	(13, 1, "2", true, true),
-    (13, 2, "1", true, true), 
-    (13, 3, "3", true, true),
-    (13, 1, "x-1=2", false, true),
-	(13, 2, "x-1=7", false, true),
-    (13, 3, "x-1=-1", false, true);
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+	(13, 1, "2", true),
+    (13, 2, "1", true), 
+    (13, 3, "3", true),
+    (13, 1, "x-1=2", false),
+	(13, 2, "x-1=7", false),
+    (13, 3, "x-1=-1", false);
 
 
 
