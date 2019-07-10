@@ -1,6 +1,8 @@
 package Quiz;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -16,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Quiz/QuizServlet")
 public class QuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	// key: questionID, value: user's answers
+	private HashMap<Integer, ArrayList<String>> mp;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -23,6 +28,8 @@ public class QuizServlet extends HttpServlet {
     public QuizServlet() {
         super();
         // Auto-generated constructor stub
+        
+        mp = new HashMap<Integer, ArrayList<String>>();
     }
 
 	/**
@@ -45,6 +52,26 @@ public class QuizServlet extends HttpServlet {
 		String url = "/StartQuiz.jsp?id=" + quizID;
 		
 		url += "&question=" + questionID;
+		
+		String answersNum = request.getParameter("answersNum");
+		
+		if(answersNum!=null) {
+			int n = Integer.parseInt(answersNum);
+			ArrayList<String> answers = new ArrayList<String>();
+			
+			for(int i=0; i<n; i++) {
+				String answ = request.getParameter("MultiAnswerField" + i);
+				answers.add(answ);
+				//System.out.println(answ);
+			}
+			
+			int k = mp.size();
+			mp.put(k, answers);
+		}
+		
+		if(questionID.equals("result")) {
+			request.setAttribute("answers", mp);
+		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);

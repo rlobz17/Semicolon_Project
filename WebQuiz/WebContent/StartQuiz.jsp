@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="Temp.AnswerManager"%>
 <%@page import="Temp.Answer"%>
 <%@page import="Temp.QuestionTypes"%>
@@ -196,12 +197,17 @@
 										String questionStr = request.getParameter("question");
 										
 										if(questionStr.equals("result")){
+											
+											HashMap<Integer, ArrayList<String>> mp = (HashMap)request.getAttribute("answers");
+												
 											%>
 											
 											<div class="question">
 												<div class="currentQuestion">
 													დასრულდა
+													
 												</div>
+											</div>
 											
 											<%
 										} else{
@@ -234,22 +240,28 @@
 												<div class="questionTask">
 													<%= currentQuestion.getQuestionDetail() %>
 												</div>
+													
+													<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
+														
 												
 												<%	
 													QuestionTypes types = new QuestionTypes();
 													
 													if(type.equals(types.getMultiAnswerType())){
 														// ღია კითხვა
-														%>
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
-														  <input type="text" name="answerField" class="answerField">
-														</form>
+														ArrayList<Answer> correctAns = currentQuestion.getCorrectAnswers();
+														int answerLastIndex = correctAns.get(correctAns.size()-1).getAnswerIndex();
+														
+														for(int i=0; i<answerLastIndex; i++){ %>
+															<input type="text" name="MultiAnswerField<%= i %>" class="answerField">  
+														<% } %>
+														
+															<input type="hidden" name="answersNum" value="<%= answerLastIndex %>" />
+														
 														<%
 													} else if(type.equals(types.getMultipleChoiceType())){
 														// რამდენიმე სავარაუდოდან 1ის არჩევა
-														%>
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST" class="multiAnswers">
-															<%
+														
 																ArrayList<Answer> answers = currentQuestion.getPossibleAnswers();
 															
 																for(int i=0; i<answers.size(); i++){
@@ -259,15 +271,11 @@
 																		<input type="radio" name="possibleAnswers" > <%= str %> <br>
 																	<%
 																}
-															%>
-														</form>
-														<%
+															
 														
 													} else if(type.equals(types.getMultipleChoiceWithMultipleAnswersType())){
 														// რამდენიმე სავარაუდოდან რამდენიმეს არჩევა
-														%>
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST" class="multiAnswers">
-															<%
+														
 																ArrayList<Answer> answers = currentQuestion.getPossibleAnswers();
 															
 																for(int i=0; i<answers.size(); i++){
@@ -277,9 +285,7 @@
 																		<input type="checkbox" name="checkAnswers" > <%= str %> <br>
 																	<%
 																}
-															%>
-														</form>
-														<%
+															
 														
 													} else if(type.equals(types.getMatchingType())){
 														// შესაბამისობა
@@ -289,41 +295,26 @@
 													if(questionNum == questions.size()-1){
 														
 														%>
-														
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
-								
+																						
 															<input value="დასრულება" class="finishQuiz" type="submit">
 															<input type="hidden" name="quiz_id" value="<%= quiz.getQuizID() %>">
 															<input type="hidden" name="question_id" value="result">
-															
-														</form>
 														
 														<%
 														
 													} else{
 														%>
-														
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
-								
+																						
 															<input value="შემდეგი >" class="nextQuestion" type="submit">
 															<input type="hidden" name="quiz_id" value="<%= quiz.getQuizID() %>">
 															<input type="hidden" name="question_id" value="<%= questionNum+1 %>">
-															
-														</form>
-														
+																													
 														<%
 													}
 												
-												
+												%> </div> <%
 											}
-												%>
-																								
-												
-												
-											</div>
-																				
-										
-										<%
+											%> </form> <%
 
 								}
 								%>
