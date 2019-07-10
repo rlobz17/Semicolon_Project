@@ -13,8 +13,9 @@ public class Question {
 	private String questionTask;
 	private String questionImgUrl;
 	private ArrayList<Answer> possibleAnswers;
+	private boolean questionAnswerOrder;
 	
-	public Question(int questionID, int questionTypeID, String questionDetail, String questionTask, String questionImgUrl, ArrayList<Answer> correctAnswers, ArrayList<Answer> possibleAnswers) {
+	public Question(int questionID, int questionTypeID, String questionDetail, String questionTask, String questionImgUrl, ArrayList<Answer> correctAnswers, ArrayList<Answer> possibleAnswers, boolean questionAnswerOrder) {
 		this.questionID = questionID;
 		this.questionTypeID = questionTypeID;
 		this.questionDetail = questionDetail;
@@ -22,6 +23,7 @@ public class Question {
 		this.questionImgUrl = questionImgUrl;
 		this.correctAnswers = correctAnswers;
 		this.possibleAnswers = possibleAnswers;
+		this.questionAnswerOrder = questionAnswerOrder;
 	}
 	
 	
@@ -84,6 +86,13 @@ public class Question {
 	public String getQuestionImgUrl() {
 		return questionImgUrl;
 	}
+	
+	/**
+	 * @return the questionAnswerOrder
+	 */
+	public boolean getQuestionAnswerOrder() {
+		return questionAnswerOrder;
+	}
 
 
 
@@ -104,7 +113,7 @@ public class Question {
 		}	
 		
 		return "questionID " + questionID +" | questionTypeID "+questionTypeID + " | questionDetail " + questionDetail + 
-				" | questionTask " + questionTask + " | questionImgUrl " + questionImgUrl +"\n\nPossible Answers :" + possibles +"\nCorrect Answers :" + corrects;
+				" | questionTask " + questionTask + " | questionAnswerOrder " + questionAnswerOrder + " | questionImgUrl " + questionImgUrl +"\n\nPossible Answers :" + possibles +"\nCorrect Answers :" + corrects;
 	}
 
 	

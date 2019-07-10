@@ -6,14 +6,12 @@ public class Answer implements Comparable<Answer> {
 	private int questionID;
 	private int answerIndex;
 	private String answerDetail;
-	private boolean answerOrder;
 	
-	public Answer(int answerID, int questionID, int answerIndex, String answerDetail, boolean answerOrder) {
+	public Answer(int answerID, int questionID, int answerIndex, String answerDetail) {
 		this.answerID = answerID;
 		this.questionID = questionID;
 		this.answerIndex = answerIndex;
 		this.answerDetail = answerDetail;
-		this.answerOrder = answerOrder;
 	}
 	
 	/**
@@ -55,13 +53,6 @@ public class Answer implements Comparable<Answer> {
 		return answerDetail;
 	}
 	
-	/**
-	 * @return the answerOrder
-	 */
-	public boolean getAnswerOrder() {
-		return answerOrder;
-	}
-
 	
 	@Override
 	public int compareTo(Answer o) {		
@@ -71,7 +62,7 @@ public class Answer implements Comparable<Answer> {
 	
 	@Override
 	public String toString() {
-		return ("Answer Id = "+answerID+", Answer Detail = " + this.answerDetail) + "(has order -"+answerOrder+")";
+		return ("Answer Id = "+answerID+", Answer Detail = " + this.answerDetail);
 	}
 	
 	 @Override
