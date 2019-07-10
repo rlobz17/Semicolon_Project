@@ -223,8 +223,6 @@
 											String type = questionManager.getQuestionType(questionType, con);
 										%>
 											<div class="question">
-												 <h1><%= questionType %></h1> 
-												 <h1><%= type %></h1> 
 												<div class="currentQuestion">
 													კითხვა: <%=  curr%>
 												</div>
@@ -253,7 +251,9 @@
 														int answerLastIndex = correctAns.get(correctAns.size()-1).getAnswerIndex();
 														
 														for(int i=0; i<answerLastIndex; i++){ %>
-															<input type="text" name="MultiAnswerField<%= i %>" class="answerField">  
+															<div class="answerArea">
+																<input type="text" name="AnswerField<%= i %>" class="answerField"> 
+															</div> 
 														<% } %>
 														
 															<input type="hidden" name="answersNum" value="<%= answerLastIndex %>" />
@@ -289,7 +289,20 @@
 														
 													} else if(type.equals(types.getMatchingType())){
 														// შესაბამისობა
+														ArrayList<Answer> possAns = currentQuestion.getPossibleAnswers();
+														int s = possAns.size();
 														
+														for(int i=0; i<s; i++){
+															Answer currAn = possAns.get(i);
+														%>	<div class="answerArea">
+																<%= currAn.getAnswerDetail() %>
+																<input type="text" name="AnswerField<%= i %>" class="answerField">
+															</div>
+														<% } %>
+														
+															<input type="hidden" name="answersNum" value="<%= s %>" />
+														
+														<%
 													}
 													
 													if(questionNum == questions.size()-1){

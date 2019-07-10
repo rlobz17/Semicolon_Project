@@ -60,7 +60,7 @@ public class QuizServlet extends HttpServlet {
 			ArrayList<String> answers = new ArrayList<String>();
 			
 			for(int i=0; i<n; i++) {
-				String answ = request.getParameter("MultiAnswerField" + i);
+				String answ = request.getParameter("AnswerField" + i);
 				answers.add(answ);
 				//System.out.println(answ);
 			}
