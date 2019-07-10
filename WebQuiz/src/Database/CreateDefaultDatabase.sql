@@ -94,7 +94,7 @@ CREATE TABLE answers(
     question_id int(8) not null,
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
-    answer_correct boolean default true,
+    answer_possible boolean default true,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
 );
@@ -134,58 +134,31 @@ INSERT INTO accounts (account_first_name, account_last_name, account_username, a
 
 INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
 	("simpleQuiz1", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz2", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz3", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz4", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz5", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz6", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz7", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz8", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz9", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz10", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
+    ("simpleQuiz2", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
 ;
-
-do sleep(1);
-
-INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
-    ("simpleQuiz11", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz12", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz13", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz14", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz15", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz16", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz17", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz18", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz19", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz20", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg"),
-    ("simpleQuiz21", 1, "https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550"),
-    ("simpleQuiz22", 2 ,"https://cdn.davidwolfe.com/wp-content/uploads/2016/11/perfectionist-quiz-FI.jpg")
-    ;
     
     
 INSERT INTO questionTypes (questionType_id, questionType_name, questionType_defaultTask) VALUES
-	(1,"Question_Response_type", "Answer the question"),
-    (2,"Fill_In_The_Blank_type", "Fill in the blank space"),
-    (3,"Multiple_Choice_type", "Select the correct answer"),
-    (4,"Multi_Answer_type", "Fill in with answers"),
-    (5,"Multiple_Choice_With_Multiple_Answers_type", "Select Correct answers" ),
-    (6,"Mathcing_type" , "Match correct pairs")
+    (1,"Multi_Answer_type", "Fill in with answers"),
+	(2,"Multiple_Choice_type", "Select one correct answer"),
+    (3,"Multiple_Choice_With_Multiple_Answers_type", "Select Correct answers" ),
+    (4,"Mathcing_type" , "Match correct pairs")
     ;
     
 INSERT INTO questions (questionType_id, question_detail, question_imgUrl) VALUES
 	(1, "Who is the best student in the group?", "https://trademarks.justia.com/media/og_image.php?serial=87226326" ),
-    (4, "Which University logo is painted in the picture?", "http://freeuni.edu.ge/sites/default/themes/freeuni/images/free-og.png")
+    (1, "Which University logo is painted in the picture?", "http://freeuni.edu.ge/sites/default/themes/freeuni/images/free-og.png")
     ;
     
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
     (1, 1),
-    (2, 2)
+    (1, 2)
     ;
 
 INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
-    (1, 1, "rlobz17"),
-    (1, 3, "rezi"),
-    (1, 2, "rezgo"),
+    (1, -1, "rlobz17"),
+    (1, -1, "rezi"),
+    (1, -1, "rezgo"),
     (2, -1, "freeuni"),
     (2, -1, "free university of tbilisi")
     ;    
@@ -235,72 +208,131 @@ INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
 ;  
 
 
-
-
+    
+    
 
 
 /*
- * testable quiz
+ * Multi_Answer_type შემმოწმებელი ქუიზი.
  */
 
-
 INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
-	("ქვიზი მათემატიკაზე", 2, "https://wallpaperaccess.com/full/237781.jpg");
+	("ქვიზი Multi_Answer_type", 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKC2Kco6H7iMrwNyfy2FbC3bzbJhMw4bFEcn46SFOkP41pLpaq");
 	
 INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
-	(1, "რამდენია 2+5?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
-    (2, "3 გამრავლებული _____-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png"),
-    (3, "9-6?", null , null),
-    (4, "8ის ჯერადები, რომლებიც მეტია 7ზე და ნაკლებია 17-ზე არიან _____ და _____", null, null),
-    (5, "რომელია 4-ზე ნაკლები ნატურალური რიცხვები?", null, "https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/f8/b3/9b/f8b39bf5-d818-f770-b7b0-f9abd5d0cf1c/mzl.ucwyveem.png/246x0w.jpg"),
-    (6, "შესაბამისობა: ა) 7; ბ) 8", null, null);
-    
-INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
-    (23, 3),
-    (23, 4),
-    (23, 5),
-    (23, 6),
-    (23, 7),
-    (23, 8)
-    ;    
-    
+	(1, "რამდენია 2+3?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
+    (1, "3 გამრავლებული ___(1)___-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png"),
+    (1, "2 + 3 = ___(1)___ და  7 + 8 =  ___(2)___", "შეავსეთ გამოტოვებული ადგილები სწორად", null),
+	(1, "დაწერეთ 8ის ჯერადები, რომლებიც მეტია 7ზე და ნაკლებია 17-ზე არიან:", null, null),
+    (1, "დაწერეთ 1 ცალი 8ის გამყოფი:", null, null);
 
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
+	(3, 3),
+	(3, 4),
+	(3, 5),
+	(3, 6),
+	(3, 7);
+    
 INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
-    (3, -1, "7"),
-    (4, -1, "7"),
-    (5, -1, "3"),
-    (6, -1, "8"),
-    (6, -1, "16"),
-    (7, -1, "1"),
-    (7, -1, "2"),
-    (7, -1, "3"),
-    (8, 1, "7"),
-    (8, 2, "8")
-    ;
+	(3, 1, "5"),
+	(4, 1, "7"),
+	(5, 1, "5"),
+	(5, 2, "15"),
+	(6, 1, "8"),
+	(6, 2, "16"),
+	(7, 1, "8"),
+	(7, 1, "4"),
+	(7, 1, "2"),
+	(7, 1, "1");  
     
- INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES   
-	 (5, -1, "3", false),
-     (5, -1, "5", false),
-     (5, -1, "1", false),
-     (5, -1, "0", false),
-     (7, -1, "5", false),
-     (7, -1, "100", false),
-     (7, -1, "-3", false),
-	 (8, 1, "7", false),
-     (8, 2, "8", false)
-     ;     
+ /*
+ * Multiple_Choice_type შემმოწმებელი ქუიზი.
+ */   
     
+ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
+	("ქვიზი Multiple_Choice_type", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKC2Kco6H7iMrwNyfy2FbC3bzbJhMw4bFEcn46SFOkP41pLpaq");
+	
+INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
+	(2, "რამდენია 2+3?" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
+    (2, "3 გამრავლებული ___(1)___-ზე არის 21", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png"),
+    (2, "8*8?", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png");
+
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
+	(4, 8),
+	(4, 9),
+    (4, 10);
     
-/*
- *this code is left for undo purpose (probably never used)
- 
-DROP TABLE IF EXISTS Question_Response_type, Fill_In_The_Blank_type, Multiple_Choice_type, Picture_Response_type, Multi_Answer_type, Multiple_Choice_With_Multiple_Answers_type,
-						Mathcing_type, Auto_Generated_type, Graded_Question_type, Timed_Question_type, answers;
- -- remove tables if they already exist and start from scratch
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+	(8, 1, "5", true),
+    (8, -1, "5", false), 
+    (8, -1, "6", false),
+	(9, 1, "7", true),
+    (9, -1, "7", false),
+    (9, -1, "8", false),
+    (9, -1, "0", false),
+    (10, 1, "64", true),
+    (10, 1, "64", false),
+    (10, 1, "8", false),
+    (10, 1, "128", false),
+    (10, 1, "32", false);
+      
+      
+      
+      
     
-*/
+ /*
+ * Multiple_Choice_With_Multiple_Answers_type შემმოწმებელი ქუიზი.
+ */   
+    
+ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
+	("ქვიზი Multiple_Choice_With_Multiple_Answers_type", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKC2Kco6H7iMrwNyfy2FbC3bzbJhMw4bFEcn46SFOkP41pLpaq");
+	
+INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
+	(3, "ნატურალური რიცხვი n, რომელიც აკმაყოფილებს პირობას: 0 < n < 3" , null, "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg"),
+    (3, "რიცხვი ___(1)___-ის კვადრატი არის 81", null, "https://cdn-t-3.bvkstatic.com/us/static/images/5s/7-times-table.png");
+
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
+	(5, 11),
+	(5, 12);
+    
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+	(11, 1, "1", true),
+    (11, 1, "2", true), 
+    (11, -1, "1", false),
+	(11, -1, "2", false),
+    (11, -1, "3", false),
+    (12, 1, "9", true),
+    (12, 1, "-9", true),
+    (12, -1, "9", false),
+    (12, -1, "-9", false),
+    (12, -1, "0", false),
+    (12, -1, "7", false),
+    (12, -1, "80", false),
+    (12, -1, "3", false),
+    (12, -1, "27", false);
 
 
+
+ /*
+ * Mathcing_type შემმოწმებელი ქუიზი.
+ */   
+    
+ INSERT INTO quizes (quiz_name, quiz_publisherId, quiz_imgUrl) VALUES
+	("ქვიზი Mathcing_type", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKC2Kco6H7iMrwNyfy2FbC3bzbJhMw4bFEcn46SFOkP41pLpaq");
+	
+INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl) VALUES
+	(4, "(1) x=8 | (2) x=3 | (3) x=0" , "შეუსაბამეთ უცნობის მნიშვნელობები მათ გამოსახულებებს", "https://i.ytimg.com/vi/XM1NNRNmZ6c/maxresdefault.jpg");
+
+INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
+	(6, 13);
+    
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+	(13, 1, "2", true),
+    (13, 2, "1", true), 
+    (13, 3, "3", true),
+    (13, 1, "x-1=2", false),
+	(13, 2, "x-1=7", false),
+    (13, 3, "x-1=-1", false);
 
 
 

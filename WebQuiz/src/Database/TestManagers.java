@@ -347,8 +347,10 @@ class TestManagers {
 		QuestionManager manager = new QuestionManager();
 		
 		System.out.println("testing getQuestionType:");
-		assertEquals("Question_Response_type", manager.getQuestionType(1, con));
-		assertEquals("Multi_Answer_type", manager.getQuestionType(2, con));
+		assertEquals("Multi_Answer_type", manager.getQuestionType(1, con));
+		assertEquals("Multiple_Choice_type", manager.getQuestionType(2, con));
+		assertEquals("Multiple_Choice_With_Multiple_Answers_type", manager.getQuestionType(3, con));
+		assertEquals("Mathcing_type", manager.getQuestionType(4, con));
 		System.out.println("Correct return values on getQuestionType method");
 	
 		
@@ -450,6 +452,22 @@ class TestManagers {
 		
 		System.out.println("getting quiz with id = 2");
 		System.out.println(manager.getQuiz(2, con));
+		System.out.println("-----------------------");
+		
+		System.out.println("getting quiz with id = 3");
+		System.out.println(manager.getQuiz(3, con));
+		System.out.println("-----------------------");
+		
+		System.out.println("getting quiz with id = 4");
+		System.out.println(manager.getQuiz(4, con));
+		System.out.println("-----------------------");
+		
+		System.out.println("getting quiz with id = 5");
+		System.out.println(manager.getQuiz(5, con));
+		System.out.println("-----------------------");
+		
+		System.out.println("getting quiz with id = 6");
+		System.out.println(manager.getQuiz(6, con));
 		System.out.println("-----------------------");
 		
 		System.out.println("////////////////////////////");

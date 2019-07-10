@@ -43,7 +43,6 @@ public class QuizManagerDao {
 				Question question = questionManager.getQuestion(questionIDs.get(i), con);
 				if(question == null) {
 					stm.close();
-					System.out.println("2");
 					return null;
 				}
 				questions.add(question);

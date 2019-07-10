@@ -14,16 +14,16 @@ public class QuestionManagerDao {
 	
 	/**
 	 * @return
-	 * String QuestionTypeName - for the question with this id 
+	 * String QuestionTypeName - for the questionType with this id 
 	 * null - for sql Error
 	 */
-	public String getQuestionType(int questionID, Connection con) {
+	public String getQuestionType(int questionTypeID, Connection con) {
 		String result = null;
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT t.questionType_name FROM questiontypes t "
-					+ "where t.questionType_id = (select q.questionType_id from questions q where q.question_id = "+questionID+");");
+					+ "where t.questionType_id = " + questionTypeID);
 			
 			if(rs.next()) {
 				result = rs.getString(1);

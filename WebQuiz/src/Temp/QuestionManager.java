@@ -15,7 +15,7 @@ public class QuestionManager {
 	
 	/**
 	 * @return
-	 * String QuestionTypeName - for the question with this id 
+	 * String QuestionTypeName - for the questionType with this id 
 	 * null - for sql Error
 	 */
 	public String getQuestionType(int questionID, Connection con) {

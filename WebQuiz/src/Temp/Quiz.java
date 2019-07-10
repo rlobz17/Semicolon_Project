@@ -128,7 +128,7 @@ public class Quiz {
 	public String toString() {
 		String quests = "\n";
 		for(int i=0; i<questions.size(); i++) {
-			quests += "Question 1)\n" + questions.get(i).toString() + "\n";
+			quests += "Question "+(i+1)+")\n" + questions.get(i).toString() + "\n";
 		}
 		return "quizID " + quizID +" | quiz_name "+quiz_name + " | CreationDate "+CreationDate + " | UpdatedDate " + UpdatedDate + 
 				" | Creator_id " + Creator_id +" | quizTaken "+ quizTaken +" | quizAverage "+ quizAverage+" | quizCategoryID "+ quizCategoryID+ " | imgUrl "+ imgUrl + quests;
