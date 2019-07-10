@@ -95,6 +95,7 @@ CREATE TABLE answers(
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
     answer_possible boolean default true,
+    answer_order boolean default false,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
 );
@@ -205,9 +206,7 @@ INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
     (4, 1, 4),
     (1, 2, 5),
     (2, 2, 6)
-;  
-
-
+;
     
     
 
@@ -233,17 +232,17 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 	(3, 6),
 	(3, 7);
     
-INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
-	(3, 1, "5"),
-	(4, 1, "7"),
-	(5, 1, "5"),
-	(5, 2, "15"),
-	(6, 1, "8"),
-	(6, 2, "16"),
-	(7, 1, "8"),
-	(7, 1, "4"),
-	(7, 1, "2"),
-	(7, 1, "1");  
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_order) VALUES
+	(3, 1, "5", false),
+	(4, 1, "7", false),
+	(5, 1, "5", true),
+	(5, 2, "15", true),
+	(6, 1, "8", false),
+	(6, 2, "16", false),
+	(7, 1, "8", false),
+	(7, 1, "4", false),
+	(7, 1, "2", false),
+	(7, 1, "1", false);  
     
  /*
  * Multiple_Choice_type შემმოწმებელი ქუიზი.
@@ -326,13 +325,13 @@ INSERT INTO questions (questionType_id, question_detail, question_task, question
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
 	(6, 13);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
-	(13, 1, "2", true),
-    (13, 2, "1", true), 
-    (13, 3, "3", true),
-    (13, 1, "x-1=2", false),
-	(13, 2, "x-1=7", false),
-    (13, 3, "x-1=-1", false);
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible, answer_order) VALUES
+	(13, 1, "2", true, true),
+    (13, 2, "1", true, true), 
+    (13, 3, "3", true, true),
+    (13, 1, "x-1=2", false, true),
+	(13, 2, "x-1=7", false, true),
+    (13, 3, "x-1=-1", false, true);
 
 
 

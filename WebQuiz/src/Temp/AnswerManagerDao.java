@@ -30,8 +30,9 @@ public class AnswerManagerDao {
 				int questionID = rs.getInt("question_id");
 				int answerIndex = rs.getInt("answer_index");
 				String answerDetail = rs.getString("answer_detail");
+				boolean answerOrder = rs.getBoolean("answer_order");
 				
-				Answer newAnswer = new Answer(answerID, questionID, answerIndex, answerDetail);
+				Answer newAnswer = new Answer(answerID, questionID, answerIndex, answerDetail, answerOrder);
 				result.add(newAnswer);		
 			}
 			stm.close();
@@ -62,8 +63,10 @@ public class AnswerManagerDao {
 				int questionID = rs.getInt("question_id");
 				int answerIndex = rs.getInt("answer_index");
 				String answerDetail = rs.getString("answer_detail");
+				boolean answerOrder = rs.getBoolean("answer_order");
 				
-				Answer newAnswer = new Answer(answerID, questionID, answerIndex, answerDetail);
+				
+				Answer newAnswer = new Answer(answerID, questionID, answerIndex, answerDetail,answerOrder);
 				result.add(newAnswer);		
 			}
 			stm.close();
