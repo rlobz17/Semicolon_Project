@@ -217,8 +217,8 @@
 											String type = questionManager.getQuestionType(questionType, con);
 										%>
 											<div class="question">
-												<!-- <h1><%= questionType %></h1> -->
-												<!-- <h1><%= type %></h1> -->
+												 <h1><%= questionType %></h1> 
+												 <h1><%= type %></h1> 
 												<div class="currentQuestion">
 													კითხვა: <%=  curr%>
 												</div>
@@ -238,15 +238,8 @@
 												<%	
 													QuestionTypes types = new QuestionTypes();
 													
-													if(type.equals(types.getQuestionResponseType())){
+													if(type.equals(types.getMultiAnswerType())){
 														// ღია კითხვა
-														%>
-														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
-														  <input type="text" name="answerField" class="answerField">
-														</form>
-														<%
-													} else if(type.equals(types.getFillInTheBlankType())){
-														// გამოტოვებული სიტყვა
 														%>
 														<form action="/WebQuizProject/Quiz/QuizServlet" method="POST">
 														  <input type="text" name="answerField" class="answerField">
@@ -269,9 +262,6 @@
 															%>
 														</form>
 														<%
-														
-													} else if(type.equals(types.getMultiAnswerType())){
-														// რამდენიმე შესავსები ველი
 														
 													} else if(type.equals(types.getMultipleChoiceWithMultipleAnswersType())){
 														// რამდენიმე სავარაუდოდან რამდენიმეს არჩევა
