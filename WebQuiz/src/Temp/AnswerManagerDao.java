@@ -23,7 +23,7 @@ public class AnswerManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT * FROM answers "
-					+ "where "+questionId+" = question_id and answer_possible = true;");
+					+ "where "+questionId+" = question_id and answer_correct = true;");
 			
 			while(rs.next()) {
 				int answerID = rs.getInt("answer_id");
@@ -56,7 +56,7 @@ public class AnswerManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT * FROM answers "
-					+ "where "+questionId+" = question_id and answer_possible = false;");
+					+ "where "+questionId+" = question_id and answer_correct = false;");
 			
 			while(rs.next()) {
 				int answerID = rs.getInt("answer_id");
@@ -120,7 +120,7 @@ public class AnswerManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			
-			String addAnswerString = "INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES";
+			String addAnswerString = "INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES";
 			addAnswerString+= "("+newAnswer.getQuestionID();
 			addAnswerString+= ","+newAnswer.getAnswerIndex();
 			addAnswerString+= ",'"+newAnswer.getAnswerDetail() + "'";

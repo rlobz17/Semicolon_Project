@@ -95,7 +95,7 @@ CREATE TABLE answers(
     question_id int(8) not null,
     answer_index int(8) default -1, /* determines if answers have order or not */
     answer_detail text not null,
-    answer_possible boolean default true,
+    answer_correct boolean default true,
     primary key (answer_id),
     foreign key (question_id) references questions(question_id)
 );
@@ -261,7 +261,7 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 	(4, 9),
     (4, 10);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES
 	(8, 1, "5", true),
     (8, -1, "5", false), 
     (8, -1, "6", false),
@@ -294,7 +294,7 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 	(5, 11),
 	(5, 12);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES
 	(11, 1, "1", true),
     (11, 1, "2", true), 
     (11, -1, "1", false),
@@ -325,7 +325,7 @@ INSERT INTO questions (questionType_id, question_detail, question_task, question
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES   
 	(6, 13);
     
-INSERT INTO answers (question_id, answer_index, answer_detail, answer_possible) VALUES
+INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES
 	(13, 1, "2", true),
     (13, 2, "1", true), 
     (13, 3, "3", true),
