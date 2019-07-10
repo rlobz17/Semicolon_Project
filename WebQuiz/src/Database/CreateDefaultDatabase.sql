@@ -232,7 +232,7 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
 	(3, 6),
 	(3, 7);
     
-INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
+INSERT INTO answers (question_id, answer_index, answer_detail) VALUES 
 	(3, 1, "5"),
 	(4, 1, "7"),
 	(5, 1, "5"),
@@ -270,10 +270,10 @@ INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) V
     (9, -1, "8", false),
     (9, -1, "0", false),
     (10, 1, "64", true),
-    (10, 1, "64", false),
-    (10, 1, "8", false),
-    (10, 1, "128", false),
-    (10, 1, "32", false);
+    (10, -1, "64", false),
+    (10, -1, "8", false),
+    (10, -1, "128", false),
+    (10, -1, "32", false);
       
       
       
@@ -296,12 +296,12 @@ INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
     
 INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) VALUES
 	(11, 1, "1", true),
-    (11, 1, "2", true), 
+    (11, 2, "2", true), 
     (11, -1, "1", false),
 	(11, -1, "2", false),
     (11, -1, "3", false),
     (12, 1, "9", true),
-    (12, 1, "-9", true),
+    (12, 2, "-9", true),
     (12, -1, "9", false),
     (12, -1, "-9", false),
     (12, -1, "0", false),
