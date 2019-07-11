@@ -87,25 +87,17 @@ public class QuestionCreator {
 	 */
 	public Question createMatchingQuestionQ(int questionTypeID, String questionDetail, String imgURL, ArrayList<String> left, ArrayList<String> right) {
 		int size = left.size();
-		ArrayList<Integer> randomizer = new ArrayList<>();
-		for(int i=0; i<size; i++) {
-			randomizer.add(i);
-		}
-		
-		Collections.shuffle(randomizer);
-			
-		ArrayList<String> correctAnswersTemp = new ArrayList<>(right);
+
 		
 		for(int i=0; i<size; i++) {
-			questionDetail += "\n ("+(i+1)+") "+right.get(randomizer.get(i));
-			correctAnswersTemp.set(randomizer.get(i), Integer.toString(i+1));
+			questionDetail += "\n ("+(i+1)+") "+right.get(i);
 		}
 		
 		ArrayList<Answer> correctAnswers = new ArrayList<>();
 		ArrayList<Answer> possibleAnswers = new ArrayList<>();
 
 		for(int i=0; i<size; i++) {
-			Answer newCorrect = new Answer(0, 0, i+1, correctAnswersTemp.get(i));
+			Answer newCorrect = new Answer(0, 0, i+1, Integer.toString(i+1));
 			correctAnswers.add(newCorrect);
 			Answer newPossible = new Answer(0, 0, i+1, left.get(i));
 			possibleAnswers.add(newPossible);

@@ -149,10 +149,12 @@ public class QuizManagerDao {
 			String addQuiz = "INSERT INTO quizes (quiz_name, quiz_publisherId,quizCategory_id, quiz_imgUrl) VALUES";
 			addQuiz += "('"+ quiz.getQuizName()+"'";
 			addQuiz += "," + quiz.getCreatorID();
-			if(quiz.getQuizCategoryID() == null) {addQuiz += ",null";}
+			if(quiz.getQuizCategoryID() == null) {addQuiz += ",DEFAULT";}
 			else {addQuiz += "," + quiz.getQuizCategoryID();}
 			addQuiz += ",'" + quiz.getImgUrl() + "')";
 			
+			
+			System.out.println(addQuiz);
 		
 			stm.executeUpdate(addQuiz);
 			

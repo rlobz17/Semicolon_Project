@@ -5,12 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.util.Collections;
 
 import Database.DataBaseINFO;
+import javafx.util.Pair;
 
 public class QuestionManagerDao {
 
+	QuestionTypes questionTypes;
+	
+	public QuestionManagerDao() {
+		questionTypes = new QuestionTypes();
+	}
 	
 	/**
 	 * @return
@@ -116,6 +122,38 @@ public class QuestionManagerDao {
 					return null;
 				}
 			}
+			
+			
+			if(!getQuestionType(questionTypeID,con).equals(questionTypes.getMultiAnswerType())) {
+				
+				if(!getQuestionType(questionTypeID,con).equals(questionTypes.getMatchingType())) {
+					Collections.shuffle(possibleAnswers);
+				}else {
+					int size = possibleAnswers.size();
+					ArrayList<Integer> randomizer = new ArrayList<>();
+					for(int i=0; i<size; i++) {
+						randomizer.add(i);
+					}
+					Collections.shuffle(randomizer);
+					
+										
+					ArrayList<Answer> newCorrectAnswers = new ArrayList<>(correctAnswers);
+					ArrayList<Answer> newPossibleAnswers = new ArrayList<>(possibleAnswers);
+
+					for(int i=0; i<size; i++) {
+						int randomedNumber = randomizer.get(i);
+						newCorrectAnswers.set(randomedNumber, correctAnswers.get(randomedNumber));
+						newPossibleAnswers.set(randomedNumber, possibleAnswers.get(randomedNumber));
+					}
+					
+					correctAnswers = newCorrectAnswers;
+					possibleAnswers= newPossibleAnswers;
+					
+				}		
+				
+			}
+			
+			
 			result = new Question(questionID, questionTypeID, questionDetail, questionTask, questionImgUrl, correctAnswers, possibleAnswers, questionAnswerOrder);
 			stm.close();
 			
@@ -167,7 +205,7 @@ public class QuestionManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			
-			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl, ) VALUES";
+			String addQuestionString = "INSERT INTO questions (questionType_id, question_detail, question_task, question_imgUrl,quiestion_answerOrder ) VALUES";
 			addQuestionString += "(" +newQuestion.getQuestionType();
 			if(newQuestion.getQuestionDetail() == null) {addQuestionString += ",null";}
 			else {addQuestionString += ",'" + newQuestion.getQuestionDetail()+"'";}
@@ -178,7 +216,7 @@ public class QuestionManagerDao {
 			addQuestionString += "," + newQuestion.getQuestionAnswerOrder()+ ")";
 			
 						
-			
+			System.out.println(addQuestionString);
 			stm.executeUpdate(addQuestionString);
 			
 			ResultSet rs =  stm.executeQuery("select last_insert_id()");
