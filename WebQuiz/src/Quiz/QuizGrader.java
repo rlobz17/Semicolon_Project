@@ -37,7 +37,12 @@ public class QuizGrader {
 				type = t.getMatchingType();
 			}
 			
-			double questionScore = questionScore(quest.getPossibleAnswers().size(),type, corrAnsws, userAnswers.get(id), quest.getQuestionAnswerOrder());
+			int size = -1;
+			if(quest.getPossibleAnswers() != null) {
+				size = quest.getPossibleAnswers().size();
+			}
+			
+			double questionScore = questionScore(size,type, corrAnsws, userAnswers.get(id), quest.getQuestionAnswerOrder());
 			String userScore = questionScore+"";
 			if(userScore.equals("1.0")) {
 				userScore = "1.00";
