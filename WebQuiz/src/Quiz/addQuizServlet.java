@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Temp.Quiz;
+
 /**
  * Servlet implementation class addQuizServlet
  */
 @WebServlet("/Quiz/addQuizServlet")
 public class addQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Quiz quiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -20,6 +23,7 @@ public class addQuizServlet extends HttpServlet {
     public addQuizServlet() {
         super();
         // Auto-generated constructor stub
+        quiz = new Quiz();
     }
 
 	/**

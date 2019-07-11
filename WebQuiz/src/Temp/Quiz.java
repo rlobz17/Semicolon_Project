@@ -29,6 +29,14 @@ public class Quiz {
 		this.questions = questions;
 		this.quizCategoryID = quizCategoryID;
 	}
+	
+	public Quiz() {
+		this.questions = new ArrayList<Question>();
+		this.UpdatedDate = null;
+		this.quizAverage = 0;
+		this.quizTaken = 0;
+		this.imgUrl = null;
+	}
 
 	/**
 	 * @return the imgUrl
@@ -122,6 +130,26 @@ public class Quiz {
 		return quizCategoryID;
 	}
 	
+	
+	public void setQuizID(int quizID) {
+		this.quizID = quizID;
+	}
+	
+	public void setQuizName(String quiz_name) {
+		this.quiz_name = quiz_name;
+	}
+	
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	
+	public void setQuizCategoryID(int quizCategoryID) {
+		this.quizCategoryID = quizCategoryID;
+	}
+	
+	public void setCreatorID(int Creator_id) {
+		this.Creator_id = Creator_id;
+	}
 	
 	
 	@Override

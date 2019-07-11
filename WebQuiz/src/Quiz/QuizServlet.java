@@ -3,6 +3,7 @@ package Quiz;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
  * Servlet implementation class StartQuizServlet
@@ -19,17 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 public class QuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	// key: questionID, value: user's answers
-	private HashMap<Integer, ArrayList<String>> mp;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public QuizServlet() {
         super();
         // Auto-generated constructor stub
-        
-        mp = new HashMap<Integer, ArrayList<String>>();
     }
 
 	/**
@@ -53,6 +52,17 @@ public class QuizServlet extends HttpServlet {
 		
 		url += "&question=" + questionID;
 		
+		HttpSession session = request.getSession();
+		
+		if(!questionID.equals("result")) {
+			if(Integer.parseInt(questionID)==0) {
+				session.setAttribute("ResultsMap", new HashMap<Integer, ArrayList<String>>());
+			}
+		}
+		
+		Object obj = session.getAttribute("ResultsMap");
+		HashMap<Integer, ArrayList<String>> mp = (HashMap<Integer, ArrayList<String>>)obj;
+				
 		String FieldAnswersNum = request.getParameter("FieldAnswersNum");
 		
 		if(FieldAnswersNum!=null) {
@@ -62,11 +72,11 @@ public class QuizServlet extends HttpServlet {
 			for(int i=0; i<n; i++) {
 				String answ = request.getParameter("AnswerField" + i);
 				answers.add(answ);
-				System.out.println(answ);
+				//System.out.println(answ);
 			}
 			
-			int k = mp.size();
-			mp.put(k, answers);
+			mp.put(mp.size(), answers);
+			//System.out.println(mp.size());
 		}
 		
 		String MultiAnswersMultiNum = request.getParameter("MultiAnswersMultiNum");
@@ -87,10 +97,8 @@ public class QuizServlet extends HttpServlet {
 				
 			}
 			
-			int k = mp.size();
-			mp.put(k, answers);
-			
-			//System.out.println("size: " + answers.size());
+			mp.put(mp.size(), answers);
+			//System.out.println(mp.size());
 		}
 		
 		String MultiAnswersNum = request.getParameter("MultiAnswersNum");
@@ -105,15 +113,16 @@ public class QuizServlet extends HttpServlet {
 				answers.add(answ);
 			}
 			
-			int k = mp.size();
-			mp.put(k, answers);
-			
-			//System.out.println("size: " + answers.size());
+			mp.put(mp.size(), answers);
+			//System.out.println(mp.size());
 		}
+		
 		
 		if(questionID.equals("result")) {
 			request.setAttribute("answers", mp);
 		}
+		
+		session.setAttribute("ResultsMap", mp);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);

@@ -13,7 +13,7 @@
 
 <head>
 
-<title>ქვიზის დამატება</title>
+<title>კითხვის ფორმა</title>
 
 <meta charset="UTF-8">
 
@@ -73,22 +73,24 @@
 				<form action="/WebQuizProject/Quiz/addQuizServlet" method="POST">
 					
 					<div class="question">
-						<div class="currentQuestion">ქვიზის დამატება</div>
+						<div class="currentQuestion">კითხვის ფორმის შევსება</div>
 						<div class="questionTask">
-							აირჩიეთ ქვიზის კატეგორია:
+							<div class="addQuestionArea">
+								სავარაუდო პასუხების რ-ბა:
+								<input type="text" name="AnswersNumber" class="addQuestionField">
+							</div>
+							
+							<div class="addQuestionArea">
+								პასუხების დასაშვები რ-ბა:
+								<input type="text" name="MaxAnswers" class="addQuestionField">
+							</div>
 						</div>
 						
-						<div class="chooseType">
-							<input type="radio" name="category" > კულტურა <br>
-							<input type="radio" name="category" > რელიგია <br>
-							<input type="radio" name="category" > პოლიტიკა <br>
-							<input type="radio" name="category" > სპორტი <br>
-							<input type="radio" name="category" > ისტორია <br>
-							<input type="radio" name="category" > მეცნიერება <br>
-							<input type="radio" name="category" > ხელოვნება <br>
-							<input type="radio" name="category" > საბავშვო <br>
-							<input type="radio" name="category" > მედიცინა <br>
-							<input type="radio" name="category" checked> სხვა
+						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
+							<input type="radio" name="type" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა 1 პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა რამდენიმე პასუხით <br>
+							<input type="radio" name="type" > შესაბამისობა 
 						</div>
 						
 						<input value="გაგრძელება" class="finishQuiz" type="submit">
