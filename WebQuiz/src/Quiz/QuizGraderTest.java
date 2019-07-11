@@ -441,11 +441,13 @@ public class QuizGraderTest {
 		choA.add("h");
 		
 		
+		
 		ArrayList<Question> qs = new ArrayList<Question>();
 		qs.add(matching);
 		qs.add(multiple);
 		qs.add(mult);
 		qs.add(choi);
+		
 		
 		//1/6
 		/////////////////////////////////////

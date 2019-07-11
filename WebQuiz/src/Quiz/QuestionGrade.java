@@ -16,6 +16,7 @@ public class QuestionGrade {
 		}
 		this.correctAnswers = correctAnswers;
 	}
+	
 
 	/**
 	 * @return the score

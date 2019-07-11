@@ -13,6 +13,7 @@ public class QuizGrade {
 		this.eachQuestionScore = eachQuestionScore;
 	}
 	
+	
 	/**
 	 * returns userScore as string
 	 * */

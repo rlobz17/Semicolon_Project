@@ -52,7 +52,7 @@ public class QuizGrader {
 		
 	}
 	
-	public double gradeFillInAnswerAndMatching(ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean order) {
+	private double gradeFillInAnswerAndMatching(ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean order) {
 		int score = 0;
 		int maxScore = 0;
 		List<String> correctAnswers = new ArrayList<>(corAnswers);
@@ -81,15 +81,14 @@ public class QuizGrader {
 		return (double)score/maxScore;
 	}
 	
-	public double gradeMultipleChoice(ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
+	private double gradeMultipleChoice(ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
 		if(corAnswers.get(0).equals(userAnswers.get(0))) {
 			return 1;
 		}
 		return 0;
 	}
 	
-	
-	public double gradeMultipleChoiceAndAnswerQ(int allAnswers,ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
+	private double gradeMultipleChoiceAndAnswerQ(int allAnswers,ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
 		int score = 0;
 		int maxScore = 0;
 		int mistake = 0;
