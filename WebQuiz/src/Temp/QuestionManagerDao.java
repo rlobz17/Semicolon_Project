@@ -40,6 +40,32 @@ public class QuestionManagerDao {
 	
 	/**
 	 * @return
+	 * int QuestionTypeID - for the questionType with this name 
+	 * -1 - for sql Error
+	 */
+	public int getQuestionType(String questionTypeName, Connection con) {
+		int result = -1;
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			ResultSet rs = stm.executeQuery("SELECT t.questionType_id FROM questiontypes t "
+					+ "where t.questionType_name = " + questionTypeName);
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}	
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}	
+		
+		return result;	
+	}
+	
+	
+	/**
+	 * @return
 	 * Question - question with id of @param questionID
 	 * null - if sql Error
 	 */

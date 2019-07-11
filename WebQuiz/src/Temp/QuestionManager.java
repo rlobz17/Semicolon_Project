@@ -25,6 +25,16 @@ public class QuestionManager {
 	
 	/**
 	 * @return
+	 * int QuestionTypeID - for the questionType with this name 
+	 * -1 - for sql Error
+	 */
+	public int getQuestionType(String questionTypeName, Connection con) {
+		return dao.getQuestionType(questionTypeName, con);
+	}
+	
+	
+	/**
+	 * @return
 	 * Question - question with id of @param questionID
 	 * null - if sql Error
 	 */

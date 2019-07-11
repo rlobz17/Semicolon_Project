@@ -14,7 +14,7 @@ public class QuestionTypes {
 	/**
 	 * @return the multipleChoiceType
 	 */
-	public static String getMultipleChoiceType() {
+	public String getMultipleChoiceType() {
 		return Multiple_Choice_type;
 	}
 
@@ -22,14 +22,14 @@ public class QuestionTypes {
 	/**
 	 * @return the multiAnswerType
 	 */
-	public static String getMultiAnswerType() {
+	public String getMultiAnswerType() {
 		return Multi_Answer_type;
 	}
 
 	/**
 	 * @return the multipleChoiceWithMultipleAnswersType
 	 */
-	public static String getMultipleChoiceWithMultipleAnswersType() {
+	public String getMultipleChoiceWithMultipleAnswersType() {
 		return Multiple_Choice_With_Multiple_Answers_type;
 	}
 
@@ -37,7 +37,7 @@ public class QuestionTypes {
 	/**
 	 * @return the matchingTtype
 	 */
-	public static String getMatchingType() {
+	public String getMatchingType() {
 		return Matching_type;
 	}
 
