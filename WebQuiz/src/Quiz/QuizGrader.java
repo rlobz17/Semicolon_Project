@@ -80,7 +80,7 @@ public class QuizGrader {
 			}
 			maxScore = 1;
 		} else {
-			maxScore = correctAnswers.size();
+			maxScore = userAnswers.size();
 			if(order) {
 				for (int i = 0; i < userAnswers.size(); i++) {
 					if(userAnswers.get(i).length() >0) {
