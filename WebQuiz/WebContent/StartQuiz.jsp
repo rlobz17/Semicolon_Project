@@ -1,3 +1,5 @@
+<%@page import="Quiz.QuizGrader"%>
+<%@page import="Quiz.QuizGrade"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="Temp.AnswerManager"%>
 <%@page import="Temp.Answer"%>
@@ -199,7 +201,19 @@
 										if(questionStr.equals("result")){
 											
 											HashMap<Integer, ArrayList<String>> mp = (HashMap)request.getAttribute("answers");
-												
+											
+											QuizGrader grader = new QuizGrader();
+											QuizGrade grade = grader.getQuizGrade(quiz, mp);
+											
+											ArrayList<String> grades = grade.getEachQuestionScore();
+											
+											for(int i=0; i<grades.size(); i++){
+												String questionGrade = grades.get(i);
+												%>
+													<h1><%= i %> : <%= questionGrade %></h1>
+												<%
+											}
+											
 											%>
 											
 											<div class="question">

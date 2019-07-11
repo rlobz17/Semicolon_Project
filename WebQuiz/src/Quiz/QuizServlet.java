@@ -75,6 +75,8 @@ public class QuizServlet extends HttpServlet {
 				//System.out.println(answ);
 			}
 			
+			//System.out.println(answers.size());
+			
 			mp.put(mp.size(), answers);
 			//System.out.println(mp.size());
 		}
@@ -107,10 +109,10 @@ public class QuizServlet extends HttpServlet {
 			ArrayList<String> answers = new ArrayList<String>();
 						
 			String answ = request.getParameter("AnswerPossible");
-			//System.out.println(answ);
 			
 			if(answ!=null) {
 				answers.add(answ);
+				//System.out.println(answ);
 			}
 			
 			mp.put(mp.size(), answers);

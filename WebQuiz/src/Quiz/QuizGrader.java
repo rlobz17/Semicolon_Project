@@ -80,8 +80,11 @@ public class QuizGrader {
 				if(userAnswers.get(i).length() >0) {
 					if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
 				}
-			}				
+			}
+			
 		} else {
+			
+			
 			for(String cur : userAnswers) {
 				if(cur.length() > 0 ) {
 					if(correctAnswers.contains(cur)) {
