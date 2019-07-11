@@ -52,10 +52,8 @@ public class addQuizServlet extends HttpServlet {
 		String quizTiTle = request.getParameter("quizTiTle");
 		String quizImg = request.getParameter("quizImg");
 		
-		if(quizTiTle.length() < 1 || quizImg.length() < 1) {
-			response.sendRedirect("/WebQuizProject/index.jsp");
-			return;
-		}
+		System.out.println(quizImg);
+		System.out.println(quizTiTle);
 		
 		//System.out.println(category);
 		
@@ -72,6 +70,11 @@ public class addQuizServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if(category!=null) {
+			if(quizTiTle.length() < 1 || quizImg.length() < 1) {
+				response.sendRedirect("/WebQuizProject/index.jsp");
+				return;
+			}
+			
 			Quiz q = new Quiz();
 			q.setQuizCategoryID(Integer.parseInt(category));
 			
