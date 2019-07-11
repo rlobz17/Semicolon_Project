@@ -207,20 +207,61 @@
 											
 											ArrayList<String> grades = grade.getEachQuestionScore();
 											
-											for(int i=0; i<grades.size(); i++){
-												String questionGrade = grades.get(i);
-												%>
-													<h1><%= i %> : <%= questionGrade %></h1>
-												<%
-											}
-											
-											%>
-											
+									%>
 											<div class="question">
 												<div class="currentQuestion">
 													დასრულდა
 													
 												</div>
+												
+												<table class="profileTable" style="margin-top: 60px; font-family: none;">
+													<tbody>
+									
+														<tr>
+															<td colspan="2" 
+																style="
+									    							background: linear-gradient(to bottom, #f1f0f0 0%,#edecec 28%,#dddcdc 100%);
+									    							text-shadow: #fff 0px 1px 0px;
+									    							padding-left: 35%;
+									    							border: 1px solid #ccc;
+									    							color: #696969;
+									    							font-size: 19px;
+									    							font-weight: bold;
+															">
+																ქვიზის შედეგები
+															</td>
+														
+														</tr>
+														
+														<%
+															
+														for(int i=0; i<grades.size(); i++){
+															String questionGrade = grades.get(i);
+															%>	
+															
+																<tr>
+																	<td> <%= i+1 %> </td>
+																
+																	<td> <%= questionGrade %></td>
+																</tr>
+															<%
+														}
+														
+														%>
+														
+														<tr style="font-weight: bold;">
+															<td> ჯამი </td>
+																
+															<td> <%= grade.getTotalScore() %> </td>
+														</tr>
+														
+														<tr style="font-weight: bold;">
+															<td> % </td>
+																
+															<td> <%= grade.getPrecentage() %> </td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 											
 											<%
