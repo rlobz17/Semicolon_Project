@@ -36,6 +36,7 @@ public class Quiz {
 		this.quizAverage = 0;
 		this.quizTaken = 0;
 		this.imgUrl = null;
+		this.quizID = 0;
 	}
 
 	/**

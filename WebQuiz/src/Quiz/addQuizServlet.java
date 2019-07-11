@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Temp.QuestionTypes;
 import Temp.Quiz;
 
 /**
@@ -53,7 +54,45 @@ public class addQuizServlet extends HttpServlet {
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/QuestionForm.jsp");
 			dispatch.forward(request, response);
+			return;
 		}
+		
+		String type = request.getParameter("type");
+		if(type!=null) {
+			String answersNum = request.getParameter("answersNum");
+			
+			boolean answerFormat = true;
+			for(int i=0; i<answersNum.length(); i++) {
+				if(answersNum.charAt(i) < '0' || answersNum.charAt(i) > '9') {
+					answerFormat = false;
+					break;
+				}
+			}
+			
+			if(answersNum.length()<1) {
+				answerFormat = false;
+			}
+			
+			//System.out.println(type);
+			//System.out.println(answersNum);
+			if(!answerFormat) {
+				response.sendRedirect("/WebQuizProject/index.jsp");
+			} else {
+				QuestionTypes t = new QuestionTypes();
+				if(type.equals(t.getMultiAnswerType())){
+					RequestDispatcher dispatch = request.getRequestDispatcher("/MultiAnswer.jsp");
+					response.addHeader("answersNum", answersNum);
+					dispatch.forward(request, response);
+				} else if(type.equals(t.getMultipleChoiceType())) {
+					
+				} else if(type.equals(t.getMultipleChoiceWithMultipleAnswersType())) {
+					
+				} else if(type.equals(t.getMatchingType())) {
+					
+				}
+			}
+		}
+		
 	}
 
 }

@@ -14,7 +14,7 @@
 
 <head>
 
-<title>კითხვის ფორმა</title>
+<title>ღია კითხვა</title>
 
 <meta charset="UTF-8">
 
@@ -75,22 +75,36 @@
 				<form action="/WebQuizProject/Quiz/addQuizServlet" method="POST">
 					
 					<div class="question">
-						<div class="currentQuestion">კითხვის ფორმის შევსება</div>
-						<div class="questionTask">
-							<div class="addQuestionArea">
-								პასუხების ველის რ-ბა:
-								<input type="text" name="answersNum" class="addQuestionField">
-							</div>
+						<div class="currentQuestion">კითხვის დამატება</div>
+						
+						<div class="addQuestionArea" style="margin-top: 60px;">
+							კითხვა:
+							<input type="text" name="answersNum" class="addQuestionField">
 						</div>
 						
-						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
-							<input type="radio" name="type" value="<%= t.getMultiAnswerType() %>" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
-							<input type="radio" name="type" value="<%= t.getMultipleChoiceType() %>" > დახურული კითხვა 1 სწორი პასუხით <br>
-							<input type="radio" name="type" value="<%= t.getMultipleChoiceWithMultipleAnswersType() %>"> დახურული კითხვა რამდენიმე სწორი პასუხით <br>
-							<input type="radio" name="type" value="<%= t.getMatchingType() %>"> შესაბამისობა 
+						<div class="addQuestionArea">
+							სურათის URL(არასავალდებულო):
+							<input type="text" name="answersNum" class="addQuestionField">
 						</div>
 						
-						<input value="გაგრძელება" class="finishQuiz" type="submit">
+						<% 	String st = response.getHeader("answersNum"); 
+							int answersNum = Integer.parseInt(st);
+							
+							for(int i=0; i<answersNum; i++){
+								%>
+								<div class="answerArea">
+									<%= i+1 %>: <input type="text" name="AnswerField<%= i %>" class="answerField"> 
+								</div> 
+								<% 
+							}
+							
+						%>
+						
+						<div class="answerArea">
+							<input type="checkbox" name="order" > რიგითობის გათვალისწინება <br>
+						</div>
+						<input value="კითხვის კიდევ დამატება" class="finishQuiz" type="submit" style="width: 300px;margin-left: 25%;">
+						<input value="დასრულება" class="finishQuiz" type="submit">
 					</div>
 					
 				</form>
