@@ -337,6 +337,7 @@ String result = request.getParameter("result");
 			<%
 				if(myAccount || isAdmin){
 					%>
+						<a name="EditProfile"></a>
 						<div class="profileEdit">
 						
 							<div class="login">მონაცემების ცვლილება</div>

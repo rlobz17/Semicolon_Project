@@ -130,6 +130,7 @@ INSERT INTO accounts (account_first_name, account_last_name, account_username, a
     ("shota", "nozadze", "snoza17", "snoza17@freeuni.edu.ge", 'eb734e38f4f768eba4cf7c8d02e4d04f8350616c680a506cedb68a6af1fcafef83be5ddb3ea3038a8bff12ae198549fe936e06f9b80c229a15e396c4765d5f57', 1),
     ("davit", "popkhadze", "dpopk17","dpopk17@freeuni.edu.ge", '227893fda4a3337dc6a242538fa543c0d58489dc43c2e7574d2f8f8fe04876016ad2ac5c010a577d63abf35af3ab15918a08405d18c8af5df002954c31704bd9', 1),
     ("davit", "kveladze", "dkvel17", "dkvel17@freeuni.edu.ge", '7899d010326dbc410102de1294962da127d057609b522ee802922d799244ef3e2877c4f39e00d95ce1035e77045d97122cc77b29c76cf1daac5d07c7022d7a6c', 0)
+    ("sandro", "surguladze", "asurg17", "asurg17@freeuni.edu.ge", '7899d010326dbc410102de1294962da127d057609b522ee802922d799244ef3e2877c4f39e00d95ce1035e77045d97122cc77b29c76cf1daac5d07c7022d7a6c', 0)
     ;
     
 

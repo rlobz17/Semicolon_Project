@@ -660,11 +660,38 @@
     margin-top: 10px;
 }
 
+.chooseType{
+	margin-left: 20px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.addQuestionArea{
+	margin-top: 15px;
+    margin-bottom: 5px;
+	padding: 0px 5px;
+	color: #000000;
+	float: left;
+	font-weight: bold;
+}
+
+.addQuestionField{
+	width: 200px;
+    height: 30px;
+    font-size: 14px;
+    padding: 0 5px;
+    border-radius: 5px;
+    color: #000000;
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.21);
+    border: 1px solid #f7ba44;
+    margin-left: 10px;
+}
+
 
 
 .top-menu{
 	width:100%;
-	height: 43px;
+	height: 55px;
 	background: linear-gradient(to bottom, #172C59 0%, #0F1D3C 100%);
 }
 
@@ -684,7 +711,6 @@
 }
 
 #css-menu {
-	font-family: bpg_mrgvlovani_caps_2010;
 	border-radius: 5px 5px 0 0;
 	width: auto;
 }
@@ -694,7 +720,6 @@
 	content: '';
 	display: block;
 	clear: both;
-	font-family: bpg_mrgvlovani_caps_2010;
 }
 
 #css-menu a:hover, #navi ul li:hover {  
@@ -704,8 +729,7 @@
 #css-menu a {
 	color: #ffffff;
 	display: block;
-	font-family: bpg_mrgvlovani_caps_2010;
-	padding: 13px 20px;
+	padding: 20px 28px;
 	text-decoration: none;
 }
 
@@ -717,6 +741,8 @@
 	display: inline-block;
 	float: left;
 	margin: 0;
+	border-right: 1px solid #111d35;
+    border-left: 1px solid #162e5f;
 }
 
 #css-menu.align-center {
@@ -741,7 +767,7 @@
 
 #css-menu > ul > li > a {
 	color: #fff;
-	font-size: 11px;
+	font-size: 13px;
 }
 
 #css-menu > ul > li:hover:after {
@@ -774,7 +800,6 @@
 #css-menu > ul > li.active > a,
 #css-menu > ul > li:hover > a {
 	color: #FFFFFF;
-	font-family: bpg_mrgvlovani_caps_2010;
 }
 
 #css-menu .has-sub {
@@ -813,11 +838,11 @@
 #css-menu .has-sub ul li a {
 	background: #0F2A56;
 	border-top: 1px solid #0A182F;
-	font-size: 11px;
+	font-size: 12px;
 	filter: none;
 	display: block;
 	line-height: 140%;
-	padding: 10px;
+	padding: 13px;
 	color: #ffffff;
 }
 

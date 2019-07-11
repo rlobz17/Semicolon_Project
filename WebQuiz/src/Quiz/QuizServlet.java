@@ -82,7 +82,7 @@ public class QuizServlet extends HttpServlet {
 				
 				if(on!=null) {
 					answers.add(answ);
-					System.out.println(answ);
+					//System.out.println(answ);
 				}
 				
 			}

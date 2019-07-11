@@ -5,7 +5,7 @@
 
 <head>
 
-<title>ავტორიზაცია</title>
+<title>შეცდომა</title>
 
 <meta charset="UTF-8">
 
@@ -39,14 +39,8 @@
 	
 		<div id="headerContent"></div>
 		
-		<div class="loginErr"> • სამწუხაროდ, ამ ლოგინით მომხმარებელი ვერ მოიძებნა</div>
-		
-		<div class="loginSucc"> <a href="/WebQuizProject/registration.jsp" style="color: #2a6113;"> 
-		• ჩვენს ვებ-გვერდზე დასარეგისტრირებლად გთხოვთ დააკლიკოთ 
-		</a></div>
-		
-		<div id="loginContent"></div>
-		
+		<div class="loginErr"> • დაფიქსირდა შეცდომა</div>
+				
 		<div id="footerContent"></div>
 		
 	</div>
