@@ -79,16 +79,16 @@
 						</div>
 						
 						<div class="chooseType">
-							<input type="radio" name="category" > კულტურა <br>
-							<input type="radio" name="category" > რელიგია <br>
-							<input type="radio" name="category" > პოლიტიკა <br>
-							<input type="radio" name="category" > სპორტი <br>
-							<input type="radio" name="category" > ისტორია <br>
-							<input type="radio" name="category" > მეცნიერება <br>
-							<input type="radio" name="category" > ხელოვნება <br>
-							<input type="radio" name="category" > საბავშვო <br>
-							<input type="radio" name="category" > მედიცინა <br>
-							<input type="radio" name="category" checked> სხვა
+							<input type="radio" name="category" value="1"> კულტურა <br>
+							<input type="radio" name="category" value="2"> რელიგია <br>
+							<input type="radio" name="category" value="3"> პოლიტიკა <br>
+							<input type="radio" name="category" value="4"> სპორტი <br>
+							<input type="radio" name="category" value="5"> ისტორია <br>
+							<input type="radio" name="category" value="6"> მეცნიერება <br>
+							<input type="radio" name="category" value="7"> ხელოვნება <br>
+							<input type="radio" name="category" value="8"> საბავშვო <br>
+							<input type="radio" name="category" value="9"> მედიცინა <br>
+							<input type="radio" name="category" checked value="10"> სხვა
 						</div>
 						
 						<input value="გაგრძელება" class="finishQuiz" type="submit">

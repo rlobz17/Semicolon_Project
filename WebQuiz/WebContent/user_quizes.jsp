@@ -81,7 +81,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mainPage.css"/>
 
-<title>WebQuiz</title>
+<title>მომხმარებლის ქვიზები</title>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
 
