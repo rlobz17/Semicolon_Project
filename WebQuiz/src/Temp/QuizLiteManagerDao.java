@@ -128,4 +128,70 @@ public class QuizLiteManagerDao {
 		
 		return new Pair<ArrayList<QuizLite>, Integer>(result, allFoundCount);
 	}
+	
+	
+	/**
+	 * 
+	 * @param quizesCount
+	 * @param con
+	 * @return
+	 * ArrayList<QuizLite> - get quizes from ArrayList of quizIDs.
+	 * null - for sql error
+	 */
+	public ArrayList<QuizLite> getQuizLites(ArrayList<Integer> quizIDs,QuizHistoryManager historyManager, Connection con){
+		ArrayList<QuizLite> result = new ArrayList<>();
+		try {
+			Statement stm = con.createStatement();
+			
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			
+			String query = " SELECT q.quiz_id,";
+			query += " q.quiz_name,";
+			query += " (select a.account_username from accounts a where a.account_id = q.quiz_publisherId) publisher,";
+			query += " q.quiz_imgUrl,";
+			query += " q.quiz_created,";
+			query += " q.quizCategory_id";
+			query += " FROM quizes q ";
+			query += " where q.quiz_id = ";
+			
+			for(int i=0; i<quizIDs.size(); i++) {
+				String getQuizLiteQuery = query + quizIDs.get(i);
+				ResultSet rs = stm.executeQuery(getQuizLiteQuery);
+				
+				if(rs.next()) {
+					int quiz_id = rs.getInt("quiz_id");
+					String title = rs.getString("quiz_name");
+					String publisher = rs.getString("publisher");
+					String imgurl = rs.getString("quiz_imgUrl");
+					int quizCategoryID = rs.getInt("quizCategory_id");
+					
+					Date createDate;
+					try {
+						createDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("quiz_created"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+						stm.close();
+						return null;
+					}
+					
+					int quizDone = historyManager.getQuizTakenCount(quiz_id, con);
+					double quizAverage = historyManager.getQuizAverageScore(quiz_id, con);
+								
+					QuizLite newQuizLite = new QuizLite(quiz_id, title, publisher, imgurl, createDate, quizCategoryID, quizDone, quizAverage);
+					result.add(newQuizLite);
+				}else {
+					return null;
+				}
+			}			
+	
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return result;
+	}
+	
 }

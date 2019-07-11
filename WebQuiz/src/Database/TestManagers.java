@@ -331,6 +331,18 @@ class TestManagers {
 			System.out.println((i+1)+") "+ quizLite);
 		}
 		System.out.println("All Quizes found in this search: " + result.getValue());
+		
+		
+		
+		System.out.println("////////////////////////////");
+		System.out.println("testing getTopQuizes:");
+		
+		System.out.println("getting top 10 quizes:");
+		ArrayList<QuizLite> topQuizes = manager.getTopQuizes(10, con);
+		
+		for(int i=0; i<topQuizes.size(); i++) {
+			System.out.println((i+1)+") "+ topQuizes.get(i));
+		}
 	}
 	
 	@Test
