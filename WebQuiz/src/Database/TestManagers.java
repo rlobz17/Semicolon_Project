@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ import Temp.Answer;
 import Temp.AnswerManager;
 import Temp.Question;
 import Temp.QuestionManager;
+import Temp.QuestionTypes;
 import Temp.Quiz;
 import Temp.QuizLite;
 import Temp.QuizLiteManager;
@@ -358,12 +360,21 @@ class TestManagers {
 		Connection con = createConnection();
 		QuestionManager manager = new QuestionManager();
 		
-		System.out.println("testing getQuestionType:");
+		System.out.println("testing getQuestionType1:");
 		assertEquals("Multi_Answer_type", manager.getQuestionType(1, con));
 		assertEquals("Multiple_Choice_type", manager.getQuestionType(2, con));
 		assertEquals("Multiple_Choice_With_Multiple_Answers_type", manager.getQuestionType(3, con));
 		assertEquals("Mathcing_type", manager.getQuestionType(4, con));
-		System.out.println("Correct return values on getQuestionType method");
+		System.out.println("Correct return values on getQuestionType1 method");
+		
+		System.out.println("testing getQuestionType2:");
+		assertEquals(1, manager.getQuestionType("Multi_Answer_type", con));
+		assertEquals(2, manager.getQuestionType("Multiple_Choice_type", con));
+		assertEquals(3, manager.getQuestionType("Multiple_Choice_With_Multiple_Answers_type", con));
+		assertEquals(4, manager.getQuestionType("Mathcing_type", con));
+		System.out.println("Correct return values on getQuestionType2 method");
+
+		
 	
 		
 		System.out.println("////////////////////////////");
@@ -622,8 +633,6 @@ class TestManagers {
 		System.out.println("has account(1) taken quiz(3)? -- " + accountHistory.hasAccountTakenQuiz(1, 3, con));
 		
 	}
-	
-	
 	
 
 }
