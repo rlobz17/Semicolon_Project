@@ -1,6 +1,7 @@
 package Question;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Temp.Answer;
 import Temp.Question;
@@ -8,9 +9,6 @@ import Temp.Question;
 
 public class QuestionCreator {
 
-	public Question createMatchingQuestionQ() {
-		return null;
-	}
 	
 	/**
 	 * @param questionTypeID as int, which question type it is
@@ -76,5 +74,45 @@ public class QuestionCreator {
 		if(imgUrl.isEmpty()) imgUrl = null;
 		
 		return new Question(0, questionTypeID, questionDetail, null, imgUrl, correctAnswers, possibleAnswers, order);
+	}
+	
+	/**
+	 * 
+	 * @param questionTypeID
+	 * @param questionDetail
+	 * @param imgURL
+	 * @param left
+	 * @param right
+	 * @return Question type object with given data
+	 */
+	public Question createMatchingQuestionQ(int questionTypeID, String questionDetail, String imgURL, ArrayList<String> left, ArrayList<String> right) {
+		int size = left.size();
+		ArrayList<Integer> randomizer = new ArrayList<>();
+		for(int i=0; i<size; i++) {
+			randomizer.add(i);
+		}
+		
+		Collections.shuffle(randomizer);
+			
+		ArrayList<String> correctAnswersTemp = new ArrayList<>(right);
+		
+		for(int i=0; i<size; i++) {
+			questionDetail += "\n ("+(i+1)+") "+right.get(randomizer.get(i));
+			correctAnswersTemp.set(randomizer.get(i), Integer.toString(i+1));
+		}
+		
+		ArrayList<Answer> correctAnswers = new ArrayList<>();
+		ArrayList<Answer> possibleAnswers = new ArrayList<>();
+
+		for(int i=0; i<size; i++) {
+			Answer newCorrect = new Answer(0, 0, i+1, correctAnswersTemp.get(i));
+			correctAnswers.add(newCorrect);
+			Answer newPossible = new Answer(0, 0, i+1, left.get(i));
+			possibleAnswers.add(newPossible);
+		}
+		
+		Question result = new Question(0, questionTypeID, questionDetail, null, imgURL, correctAnswers, possibleAnswers, true);
+		
+		return result;
 	}
 }

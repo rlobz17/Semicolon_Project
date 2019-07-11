@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import Temp.Answer;
 import Temp.Question;
+import Temp.QuestionManager;
+import Temp.QuestionTypes;
 
 public class QuestionCreatorTests {
 	private QuestionCreator questionCreator;
@@ -131,6 +133,24 @@ public class QuestionCreatorTests {
 		
 		assertEquals(false, result.getQuestionAnswerOrder());
 	}
+	
+	
+	
+	@Test
+	public void testMatchingQuestionCreator() {
+		System.out.println("################################");
+		ArrayList<String> left = new ArrayList<>();
+		left.add("x=a");
+		left.add("x=b");
+		left.add("x=c");
+		ArrayList<String> right = new ArrayList<>();
+		right.add("a");
+		right.add("b");
+		right.add("c");
+		System.out.println(questionCreator.createMatchingQuestionQ(1,"match", "",left,right));
+		System.out.println("################################");
+	}
+	
 	
 	
 }
