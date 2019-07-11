@@ -1,8 +1,10 @@
 package Quiz;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import History.AccountHistoryManager;
+import Temp.Account;
+import Temp.AccountManager;
 import Temp.QuestionTypes;
 import Temp.Quiz;
 
@@ -44,14 +49,39 @@ public class addQuizServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
 		String category = request.getParameter("category");
+		String quizTiTle = request.getParameter("quizTiTle");
+		String quizImg = request.getParameter("quizImg");
+		
+		if(quizTiTle.length() < 1 || quizImg.length() < 1) {
+			response.sendRedirect("/WebQuizProject/index.jsp");
+			return;
+		}
 		
 		//System.out.println(category);
 		
+		ServletContext cont = getServletContext();
+	    Object obj = cont.getAttribute("manager");
+	    AccountManager accMan = (AccountManager)obj;
+	    
+	    Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+	    Connection con = d.getConnection();
+	    
+	    Object obj2 = cont.getAttribute("AccHistory");
+	    AccountHistoryManager histMan = (AccountHistoryManager)obj2;
+	    
 		HttpSession session = request.getSession();
 		
 		if(category!=null) {
 			Quiz q = new Quiz();
-			q.setCreatorID(Integer.parseInt(category));
+			q.setQuizCategoryID(Integer.parseInt(category));
+			
+			String user = (String)session.getAttribute("username");
+			Account account = accMan.getAccount(user, histMan, con);
+			int Creator_id = account.getUserID();
+			
+			q.setCreatorID(Creator_id);
+			q.setQuizName(quizTiTle);
+			q.setImgUrl(quizImg);
 			session.setAttribute("AddQuiz", q);
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/QuestionForm.jsp");

@@ -75,10 +75,19 @@
 					<div class="question">
 						<div class="currentQuestion">ქვიზის დამატება</div>
 						<div class="questionTask">
-							აირჩიეთ ქვიზის კატეგორია:
+							<div class="addQuestionArea">
+								ქვიზის სათაური(*):
+								<input type="text" name="quizTiTle" class="addQuestionField">
+							</div>
+							
+							<div class="addQuestionArea">
+								ქვიზის პოსტერი (URL*):
+								<input type="text" name="quizImg" class="addQuestionField">
+							</div>
 						</div>
 						
-						<div class="chooseType">
+						
+						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
 							<input type="radio" name="category" value="1"> კულტურა <br>
 							<input type="radio" name="category" value="2"> რელიგია <br>
 							<input type="radio" name="category" value="3"> პოლიტიკა <br>

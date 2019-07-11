@@ -78,7 +78,7 @@
 						<div class="currentQuestion">კითხვის ფორმის შევსება</div>
 						<div class="questionTask">
 							<div class="addQuestionArea">
-								პასუხების ველის რ-ბა:
+								პასუხების ველის რ-ბა (*):
 								<input type="text" name="answersNum" class="addQuestionField">
 							</div>
 						</div>
