@@ -77,13 +77,17 @@ public class QuizGrader {
 			maxScore = correctAnswers.size();
 			if(order) {
 				for (int i = 0; i < userAnswers.size(); i++) {
-					if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
+					if(userAnswers.get(i).length() >0) {
+						if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
+					}
 				}				
 			} else {
 				for(String cur : userAnswers) {
-					if(correctAnswers.contains(cur)) {
-						score++;
-						correctAnswers.remove(cur);
+					if(cur.length() > 0 ) {
+						if(correctAnswers.contains(cur)) {
+							score++;
+							correctAnswers.remove(cur);
+						}
 					}
 				}
 			}
