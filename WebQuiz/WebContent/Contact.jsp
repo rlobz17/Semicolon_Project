@@ -12,7 +12,7 @@ if(p!=null) n = Integer.parseInt(p);
 
 <head>
 
-<title>ავტორიზაცია</title>
+<title>კონტაქტი</title>
 
 <meta charset="UTF-8">
 
@@ -28,12 +28,6 @@ if(p!=null) n = Integer.parseInt(p);
 <script> 
    	$(function(){
 	$("#footerContent").load("/WebQuizProject/footer.jsp"); 
-	});
-</script>
-
-<script> 
-   	$(function(){
-	$("#loginContent").load("/WebQuizProject/login_cont.jsp"); 
 	});
 </script>
 
@@ -56,9 +50,13 @@ if(p!=null) n = Integer.parseInt(p);
 			<div class="mainContent">		
 		
 				
-							<div class="loginSucc"> <a href="/WebQuizProject/registration.jsp" style="color: #2a6113; text-decoration: none;"> 
-								• ჩვენს ვებ-გვერდის ადმინისტრაციასთან საკონტაქტოდ მოიწერეთ მეილი <A HREF="mailto:rlobz17@freeuni.edu.ge">აქ</A>
-							</a></div>
+							<div class="loginSucc"> <p> 
+								• ჩვენს ვებ-გვერდის ადმინისტრაციასთან საკონტაქტოდ მოიწერეთ მეილი ერთ-ერთ მეილზე:
+								<br>
+								1) <a HREF="mailto:rlobz17@freeuni.edu.ge">rlobz17@freeuni.edu.ge</a>
+								<br>
+								2) <a HREF="mailto:snoza17@freeuni.edu.ge">snoza17@freeuni.edu.ge</a> 
+							</p></div>
 						
 						
 			</div>
