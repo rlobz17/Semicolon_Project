@@ -49,6 +49,7 @@ public class QuizGrade {
 	/**
 	 * return percentage in double
 	 * */
+	
 	public double getPercentage() {
 		return (totalScore/maxScore)*100;
 	}
