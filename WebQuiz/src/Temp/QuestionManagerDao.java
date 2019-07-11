@@ -49,7 +49,7 @@ public class QuestionManagerDao {
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT t.questionType_id FROM questiontypes t "
-					+ "where t.questionType_name = " + questionTypeName);
+					+ "where t.questionType_name = '" + questionTypeName+"'");
 			
 			if(rs.next()) {
 				result = rs.getInt(1);
