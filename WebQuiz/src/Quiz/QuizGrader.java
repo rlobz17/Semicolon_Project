@@ -12,21 +12,50 @@ import Temp.Quiz;
 
 public class QuizGrader {
 	
-	public QuizGrade getQuizGrade(Quiz q, Map<Question, ArrayList<Answer>> userAnswers) {
+	public QuizGrade getQuizGrade(Quiz q, Map<Integer, ArrayList<String>> userAnswers) {
 		double totalScore = 0;
 		ArrayList<String> eachQuestionScore = new ArrayList<String>();
-		for (Question quest : userAnswers.keySet()) {
-			double questionScore = questionScore(quest.getCorrectAnswers(), userAnswers.get(quest));
-			eachQuestionScore.add(questionScore+"/1.00");
+		for (Integer id : userAnswers.keySet()) {
+			Question quest = q.getQuestions().get(id);
+			ArrayList<Answer> answ = quest.getCorrectAnswers();
+			ArrayList<String> corrAnsws = new ArrayList<String>();
+			for(Answer a : answ) {
+				corrAnsws.add(a.getAnswerDetail());
+			}
+			
+			
+			double questionScore = questionScore(quest.getPossibleAnswers().size(), quest.getQuestionTask(), corrAnsws, userAnswers.get(id), quest.getQuestionAnswerOrder());
+			String userScore = questionScore+"";
+			if(userScore.equals("1.0")) {
+				userScore = "1.00";
+			} else if (userScore.length()>4) {
+				userScore = userScore.substring(0,4);
+			}
+			eachQuestionScore.add(userScore+"/1.00");
 			totalScore += questionScore;
 		}
 		return new QuizGrade(totalScore, userAnswers.size(), eachQuestionScore);
 	}
 	
-	private double questionScore(ArrayList<Answer> corAnswers, ArrayList<Answer> userAnswers) {
+	
+	
+	private double questionScore(int allAnswers,String questionTask,ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean questionAnswerOrder) {
+		
+		switch (questionTask) {
+		case "Multiple_Choice_type": 
+			return gradeMultipleChoice(corAnswers, userAnswers);
+		case "Multiple_Choice_With_Multiple_Answers_type":
+			return gradeMultipleChoiceAndAnswerQ(allAnswers,corAnswers, userAnswers);
+		default:
+			return gradeFillInAnswerAndMatching(corAnswers, userAnswers, questionAnswerOrder);
+		}
+		
+	}
+	
+	public double gradeFillInAnswerAndMatching(ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean order) {
 		int score = 0;
 		int maxScore = 0;
-		List<Answer> correctAnswers = new ArrayList<>(corAnswers);
+		List<String> correctAnswers = new ArrayList<>(corAnswers);
 		
 		if(correctAnswers.size() == 1) {
 			if(correctAnswers.get(0).equals(userAnswers.get(0))) {
@@ -35,25 +64,70 @@ public class QuizGrader {
 			maxScore = 1;
 		} else {
 			maxScore = correctAnswers.size();
-			for(Answer cur : userAnswers) {
-				if(correctAnswers.contains(cur)) {
-					score++;
-					correctAnswers.remove(cur);
+			if(order) {
+				for (int i = 0; i < userAnswers.size(); i++) {
+					if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
+				}				
+			} else {
+				for(String cur : userAnswers) {
+					if(correctAnswers.contains(cur)) {
+						score++;
+						correctAnswers.remove(cur);
+					}
 				}
 			}
 		}
+		
 		return (double)score/maxScore;
 	}
 	
-	public QuestionGrade gradeQuestion(Question q, ArrayList<Answer> userAnswers) {
+	public double gradeMultipleChoice(ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
+		if(corAnswers.get(0).equals(userAnswers.get(0))) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	
+	public double gradeMultipleChoiceAndAnswerQ(int allAnswers,ArrayList<String> corAnswers, ArrayList<String> userAnswers) {
+		int score = 0;
+		int maxScore = 0;
+		int mistake = 0;
+		List<String> correctAnswers = new ArrayList<>(corAnswers);
+		
+		if(correctAnswers.size() == 1) {
+			if(correctAnswers.get(0).equals(userAnswers.get(0))) {
+				score = 1;
+			}
+			maxScore = 1;
+		} else {
+			maxScore = correctAnswers.size();
+			
+			for(String cur : userAnswers) {
+				if(correctAnswers.contains(cur)) {
+					score++;
+					correctAnswers.remove(cur);
+				}else {
+					mistake++;
+				}
+			}
+		}
+		
+		return (double)score/maxScore * (double)(allAnswers-maxScore-mistake)/(allAnswers-maxScore) ;
+	}
+	
+	public QuestionGrade gradeQuestion(Question q, ArrayList<String> userAnswers) {
 		ArrayList<String> correctAnswersString = new ArrayList<String>();
+		ArrayList<String> temp = new ArrayList<String>();
 		ArrayList<Answer> correctAnswers = q.getCorrectAnswers();
 		
 		for (Answer cur : correctAnswers) {
 			correctAnswersString.add(cur.getAnswerDetail());
+			temp.add(cur.getAnswerDetail());
 		}
 		
-		return new QuestionGrade(questionScore(correctAnswers, userAnswers), correctAnswersString);
+
+		return new QuestionGrade(questionScore(q.getPossibleAnswers().size(),q.getQuestionTask(),temp, userAnswers,q.getQuestionAnswerOrder()), correctAnswersString);
 	}
 	
 

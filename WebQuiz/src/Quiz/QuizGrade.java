@@ -17,14 +17,18 @@ public class QuizGrade {
 	 * returns userScore as string
 	 * */
 	public String getUserScore() {
-		return totalScore+"";
+		String res = totalScore+"";
+		if( res.length() - res.indexOf(".") > 3) {
+			res = res.substring(0,res.indexOf(".")+3);
+		}
+		return res;
 	}
 
 	/**
 	 * @return the totalScore
 	 */
 	public String getTotalScore() {
-		return totalScore+"/"+maxScore;
+		return getUserScore()+"/"+maxScore;
 	}
 
 	/**

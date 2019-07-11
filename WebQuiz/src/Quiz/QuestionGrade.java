@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 
 public class QuestionGrade {
-	private double score;
+	private String score;
 	private ArrayList<String> correctAnswers;
 	
 	public QuestionGrade(double score, ArrayList<String> correctAnswers) {
-		this.score = score;
+		this.score = score+"";
+		if(this.score.equals("1.0")) {
+			this.score = "1.00";
+		} else if (this.score.length()>4) {
+			this.score = this.score.substring(0,4);
+		}
 		this.correctAnswers = correctAnswers;
 	}
 
