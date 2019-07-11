@@ -58,7 +58,8 @@ public class QuizGrader {
 	
 	
 	private double questionScore(int allAnswers,String questionTask,ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean questionAnswerOrder) {
-		if(userAnswers.isEmpty()) return 0; // no answers
+		if(userAnswers.isEmpty()) return 0;
+		// no answers
 		
 		if(questionTask.equals("Multiple_Choice_type")) {
 			 gradeMultipleChoice(corAnswers, userAnswers);
