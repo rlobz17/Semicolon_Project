@@ -24,8 +24,20 @@ public class QuizGrader {
 				corrAnsws.add(a.getAnswerDetail());
 			}
 			
+			QuestionTypes t = new QuestionTypes();
 			
-			double questionScore = questionScore(quest.getPossibleAnswers().size(), quest.getQuestionTask(), corrAnsws, userAnswers.get(id), quest.getQuestionAnswerOrder());
+			int k = quest.getQuestionType();
+			String type = t.getMultiAnswerType();
+			
+			if( k == 2) {
+				type = t.getMultipleChoiceType();
+			} else if(k == 3) {
+				type = t.getMultipleChoiceWithMultipleAnswersType();
+			} else if (k == 4) {
+				type = t.getMatchingType();
+			}
+			
+			double questionScore = questionScore(quest.getPossibleAnswers().size(),type, corrAnsws, userAnswers.get(id), quest.getQuestionAnswerOrder());
 			String userScore = questionScore+"";
 			if(userScore.equals("1.0")) {
 				userScore = "1.00";
