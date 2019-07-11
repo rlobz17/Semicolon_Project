@@ -8,6 +8,7 @@ import java.util.Set;
 
 import Temp.Answer;
 import Temp.Question;
+import Temp.QuestionTypes;
 import Temp.Quiz;
 
 public class QuizGrader {
@@ -126,8 +127,21 @@ public class QuizGrader {
 			temp.add(cur.getAnswerDetail());
 		}
 		
+		QuestionTypes t = new QuestionTypes();
+		
+		int k = q.getQuestionType();
+		String type = t.getMultiAnswerType();
+		
+		if( k == 2) {
+			type = t.getMultipleChoiceType();
+		} else if(k == 3) {
+			type = t.getMultipleChoiceWithMultipleAnswersType();
+		} else if (k == 4) {
+			type = t.getMatchingType();
+		}
+		
 
-		return new QuestionGrade(questionScore(q.getPossibleAnswers().size(),q.getQuestionTask(),temp, userAnswers,q.getQuestionAnswerOrder()), correctAnswersString);
+		return new QuestionGrade(questionScore(q.getPossibleAnswers().size(),type,temp, userAnswers,q.getQuestionAnswerOrder()), correctAnswersString);
 	}
 	
 
