@@ -128,6 +128,35 @@ public class QuizHistoryManagerDao {
 	}
 	
 	
+	/**
+	 * 
+	 * @param quizesCount
+	 * @param con
+	 * @return
+	 * ArrayList<Integer> - top quizesCount quiz IDs ordered by quizTakenTimes.
+	 * null - for sql error
+	 */
+	public ArrayList<Integer> getTopQuizIDs(int quizesCount, Connection con){
+		ArrayList<Integer> result = new ArrayList<>();
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String getTopQuizes = "select quiz_id, count(1) as taken from accountquiztakelinks group by quiz_id order by taken desc ";
+			getTopQuizes += " limit 0,"+quizesCount;
+			
+			ResultSet rs = stm.executeQuery(getTopQuizes);
+			while(rs.next()) {
+				result.add(rs.getInt("quiz_id"));
+			}
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+		return result;
+	}
 	
 }
 

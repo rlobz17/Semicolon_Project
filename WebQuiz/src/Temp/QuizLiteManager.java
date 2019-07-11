@@ -37,5 +37,19 @@ public class QuizLiteManager {
 		}
 		return dao.searchQuizLites(search, user_id, quizCategoryID, beginIndex, count, historyManager, con);
 	}
+	
+	/**
+	 * 
+	 * @param quizesCount
+	 * @param con
+	 * @return
+	 * ArrayList<QuizLite> - top 10 quizes ordered by quizTakenTimes.
+	 * null - for sql error
+	 */
+	public ArrayList<QuizLite> getTopQuizes(int quizesCount, Connection con){
+		ArrayList<Integer> topQuizIDs = historyManager.getTopQuizIDs(quizesCount, con);
+		if(topQuizIDs== null) return null;
+		return dao.getQuizLites(topQuizIDs,historyManager, con);
+	}
 
 }

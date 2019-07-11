@@ -1,7 +1,6 @@
 package History;
 
 import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class QuizHistoryManager {
@@ -48,5 +47,16 @@ public class QuizHistoryManager {
 		return dao.getQuizTakenCount(quizID, con);
 	}
 	
+	/**
+	 * 
+	 * @param quizesCount
+	 * @param con
+	 * @return
+	 * ArrayList<Integer> - top quizesCount quiz IDs ordered by quizTakenTimes.
+	 * null - for sql error
+	 */
+	public ArrayList<Integer> getTopQuizIDs(int quizesCount, Connection con){
+		return dao.getTopQuizIDs(quizesCount, con);
+	}
 	
 }
