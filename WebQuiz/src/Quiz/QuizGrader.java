@@ -40,6 +40,7 @@ public class QuizGrader {
 	
 	
 	private double questionScore(int allAnswers,String questionTask,ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean questionAnswerOrder) {
+		if(userAnswers.isEmpty()) return 0; // no answers
 		
 		switch (questionTask) {
 		case "Multiple_Choice_type": 
