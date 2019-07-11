@@ -1,6 +1,7 @@
 package History;
 
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AccountHistoryManager {
@@ -31,7 +32,9 @@ public class AccountHistoryManager {
 	 * -1 - for sql error.
 	 */
 	public double getAccountAverageScore(int accountID, Connection con) {
-		return dao.getAccountAverageScore(accountID, con);
+		double result = dao.getAccountAverageScore(accountID, con);
+		result = Double.parseDouble(new DecimalFormat("##.##").format(result));
+		return result;
 	}
 	
 	/**

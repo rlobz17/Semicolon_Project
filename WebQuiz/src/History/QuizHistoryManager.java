@@ -1,6 +1,7 @@
 package History;
 
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class QuizHistoryManager {
@@ -32,7 +33,9 @@ public class QuizHistoryManager {
 	 * -1 - for sql error 
 	 */
 	public double getQuizAverageScore(int quizID, Connection con) {
-		return dao.getQuizAverageScore(quizID, con);
+		double result = dao.getQuizAverageScore(quizID, con);
+		result = Double.parseDouble(new DecimalFormat("##.##").format(result));
+		return result;
 	}
 	
 	/**
