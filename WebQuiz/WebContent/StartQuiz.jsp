@@ -1,3 +1,6 @@
+<%@page import="Temp.Account"%>
+<%@page import="History.QuizTakeStory"%>
+<%@page import="History.AccountHistoryManager"%>
 <%@page import="Quiz.QuizGrader"%>
 <%@page import="Quiz.QuizGrade"%>
 <%@page import="java.util.HashMap"%>
@@ -50,6 +53,9 @@
 	
 	Object obj2 = cont.getAttribute("Question");
 	QuestionManager questionManager = (QuestionManager)obj2;
+	
+	Object obj3 = cont.getAttribute("AccHistory");
+	AccountHistoryManager accHistManager = (AccountHistoryManager)obj3;
 	
 %>
     
@@ -180,8 +186,10 @@
 								</div>
 								
 								
-								<%
-									if(!logged){
+								<%	
+									
+								
+								if(!logged){
 										%>
 										
 											<div class="loginErr"> • თქვენ არ ხართ შესული ექაუნთში</div>
@@ -192,6 +200,19 @@
 											
 										<%									
 										
+								} else{
+										Account acc = accM.getAccount(user, accHistManager, con);
+										
+										int hasDone = accHistManager.hasAccountTakenQuiz(acc.getUserID(), quiz.getQuizID(), con);
+										
+									if(hasDone!=0){
+										
+										%>
+										
+										<div class="loginErr"> • თქვენ ეს ქვიზი უკვე გაკეთებული გაქვთ</div>
+						
+										<%
+											
 									} else{
 										
 										ArrayList<Question> questions = quiz.getQuestions();
@@ -246,6 +267,10 @@
 																</tr>
 															<%
 														}
+														
+														QuizTakeStory takeStory = new QuizTakeStory(0, acc.getUserID(), quiz.getQuizID(), null, grade.getPercentage());
+														
+														accHistManager.addAccountQuizTakeStory(takeStory, con);
 														
 														%>
 														
@@ -387,6 +412,8 @@
 												%> </div> <%
 											}
 											%> </form> <%
+											
+										}
 
 								}
 								%>

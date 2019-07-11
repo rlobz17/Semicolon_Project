@@ -13,7 +13,7 @@
 
 <head>
 
-<title>კითხვის ფორმა</title>
+<title>კითხვის დამატება</title>
 
 <meta charset="UTF-8">
 
@@ -73,20 +73,8 @@
 				<form action="/WebQuizProject/Quiz/addQuizServlet" method="POST">
 					
 					<div class="question">
-						<div class="currentQuestion">კითხვის ფორმის შევსება</div>
-						<div class="questionTask">
-							<div class="addQuestionArea">
-								პასუხების ველის რ-ბა:
-								<input type="text" name="MaxAnswers" class="addQuestionField">
-							</div>
-						</div>
+						<div class="currentQuestion">კითხვის დამატება</div>
 						
-						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
-							<input type="radio" name="type" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
-							<input type="radio" name="type" > დახურული კითხვა 1 სწორი პასუხით <br>
-							<input type="radio" name="type" > დახურული კითხვა რამდენიმე სწორი პასუხით <br>
-							<input type="radio" name="type" > შესაბამისობა 
-						</div>
 						
 						<input value="გაგრძელება" class="finishQuiz" type="submit">
 					</div>
