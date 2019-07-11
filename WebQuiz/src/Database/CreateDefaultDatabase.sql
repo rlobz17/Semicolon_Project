@@ -8,6 +8,10 @@ DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
 DROP TABLE IF EXISTS messages, messageTypes;
  -- remove tables if they already exist and start from scratch
  
+ -- friend table
+DROP TABLE IF EXISTS friendLinks;
+-- remove tables if they already exist and start from scratch
+ 
 -- main tables
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizCategories;
  -- remove tables if they already exist and start from scratch
@@ -115,6 +119,16 @@ CREATE TABLE messages (
     foreign key (to_account_id) references accounts (account_id),
     foreign key (quiz_id) references quizes (quiz_id)
     
+);
+
+CREATE TABLE friendLinks (
+	friendLinks_id int(8) not null auto_increment,
+	account_id int(8) not null,
+    friend_of_account_id int(8) not null,
+    
+    primary key (friendLinks_id),
+    foreign key (account_id) references accounts (account_id),
+    foreign key (friend_of_account_id) references accounts (account_id)
 );
 
 -- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234' hashed in sha-512
