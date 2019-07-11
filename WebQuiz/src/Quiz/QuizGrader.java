@@ -47,11 +47,8 @@ public class QuizGrader {
 			 gradeMultipleChoice(corAnswers, userAnswers);
 		} else if (questionTask.equals( "Multiple_Choice_With_Multiple_Answers_type")) {
 			return gradeMultipleChoiceAndAnswerQ(allAnswers,corAnswers, userAnswers);
-		} else {
-			return gradeFillInAnswerAndMatching(corAnswers, userAnswers, questionAnswerOrder);
-		}
-		 
-		
+		} 
+		return gradeFillInAnswerAndMatching(corAnswers, userAnswers, questionAnswerOrder);
 	}
 	
 	private double gradeFillInAnswerAndMatching(ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean order) {
