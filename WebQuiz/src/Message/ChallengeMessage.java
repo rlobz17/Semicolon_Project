@@ -13,7 +13,7 @@ public class ChallengeMessage {
 	private double maxScore;
 	private int messageID;
 	
-	public ChallengeMessage(int from, int to, Date date, int quizLink, int messageID, double maxScore) {
+	public ChallengeMessage(int from, int to, Date date, int quizLink, double maxScore, int messageID) {
 		this.from = from;
 		this.to = to; 
 		this.date = date;
