@@ -83,11 +83,6 @@ public class FriendRequestMessageManagerDao {
 			
 			stm.executeUpdate(addFriendRequestMessageString);
 			
-//			if(newFriendRequestMessage.isFriendshipAccepted()) {
-//				
-//			}
-			
-			
 			ResultSet rs =  stm.executeQuery("select last_insert_id()");
 			if(rs.next()) {
 				res = rs.getInt(1);
@@ -106,8 +101,6 @@ public class FriendRequestMessageManagerDao {
 		return res ;
 	}
 
-	
-	
 	
 	
 	
