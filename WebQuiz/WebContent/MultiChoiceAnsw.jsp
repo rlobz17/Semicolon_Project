@@ -92,7 +92,9 @@
 							
 							for(int i=0; i<answersNum; i++){
 								%>
+								
 								<div class="answerArea">
+									<input type="checkbox" name="AnswerCheck<%= i %>" >
 									<%= i+1 %>: <input type="text" name="AnswerField<%= i %>" class="answerField"> 
 								</div> 
 								<% 
@@ -100,9 +102,6 @@
 							
 						%>
 						
-						<div class="answerArea">
-							<input type="checkbox" name="order" > რიგითობის გათვალისწინება <br>
-						</div>
 						<input value="კითხვის კიდევ დამატება" class="finishQuiz" type="submit" style="width: 300px;margin-left: 25%;">
 						<input value="დასრულება" class="finishQuiz" type="submit">
 					</div>

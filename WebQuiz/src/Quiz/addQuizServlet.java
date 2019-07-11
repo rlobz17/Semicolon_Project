@@ -84,9 +84,13 @@ public class addQuizServlet extends HttpServlet {
 					response.addHeader("answersNum", answersNum);
 					dispatch.forward(request, response);
 				} else if(type.equals(t.getMultipleChoiceType())) {
-					
+					RequestDispatcher dispatch = request.getRequestDispatcher("/MultiChoice.jsp");
+					response.addHeader("answersNum", answersNum);
+					dispatch.forward(request, response);
 				} else if(type.equals(t.getMultipleChoiceWithMultipleAnswersType())) {
-					
+					RequestDispatcher dispatch = request.getRequestDispatcher("/MultiChoiceAnsw.jsp");
+					response.addHeader("answersNum", answersNum);
+					dispatch.forward(request, response);
 				} else if(type.equals(t.getMatchingType())) {
 					
 				}
