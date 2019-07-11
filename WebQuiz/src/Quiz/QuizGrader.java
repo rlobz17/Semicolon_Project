@@ -129,7 +129,7 @@ public class QuizGrader {
 			}
 		}
 		
-		double res =  (double)score/maxScore - (double)mistake/maxScore;
+		double res =  (double)(score-mistake)/maxScore;
 		
 		if(res < 0 ) return 0;
 		
