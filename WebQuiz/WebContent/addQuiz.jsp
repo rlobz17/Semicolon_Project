@@ -70,7 +70,9 @@
 				} else{
 				%>
 					
-					
+					<div class="question">
+						<div class="currentQuestion">kitxva</div>
+					</div>
 					
 				<%	
 				}

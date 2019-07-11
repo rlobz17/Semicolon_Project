@@ -19,6 +19,18 @@
 </head>
 
 <body>
+	
+	<div class="top-menu">
+		<div id="top-menu">
+			<div id="css-menu">
+				<ul>
+					<li><a href="/WebQuizProject"><span>მთავარი გვერდი</span></a></li>
+					<li><a href="/WebQuizProject/addQuiz.jsp">ქვიზის დამატება</a></li>
+					<li><a href="/">კონტაქტი</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 	<div class="header">
 		<div class="logo">
