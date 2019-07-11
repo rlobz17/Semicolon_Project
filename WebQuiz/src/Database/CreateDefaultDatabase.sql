@@ -8,10 +8,6 @@ DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
 DROP TABLE IF EXISTS messages, messageTypes;
  -- remove tables if they already exist and start from scratch
  
- -- friend table
-DROP TABLE IF EXISTS friendLinks;
--- remove tables if they already exist and start from scratch
- 
 -- main tables
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizCategories;
  -- remove tables if they already exist and start from scratch
@@ -121,17 +117,17 @@ CREATE TABLE messages (
     
 );
 
-CREATE TABLE friendLinks (
-	friendLinks_id int(8) not null auto_increment,
-	account_id int(8) not null,
-    friend_of_account_id int(8) not null,
-    
-    primary key (friendLinks_id),
-    foreign key (account_id) references accounts (account_id),
-    foreign key (friend_of_account_id) references accounts (account_id)
+create table  announcements(
+	announcement_id int(8) not null auto_increment,
+	announcement_name varchar(64) not null,
+	announcement_text text not null,
+	announcement_publisherId int(8) not null,
+	announcement_created datetime default now(),
+	primary key (announcement_id),
+    foreign key (announcement_publisherId ) references accounts(account_id)
 );
 
--- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234' hashed in sha-512
+-- password is 'rezi1234', 'shota1234', 'dudu1234', 'kvela1234', 'kvela1234' hashed in sha-512
 INSERT INTO accounts (account_first_name, account_last_name, account_username, account_mail, account_password, account_isAdmin) VALUES
 	("rezi", "lobzhanidze", "rlobz17", "rlobz17@freeuni.edu.ge", '899ebae3fc157705404ea24cb090ce5f42e7af6a019dc304e3fc7943adf4360060cc67f51b86ba83ff76344fc7d77a4e34d30a213e5804212f58acd737f760a1', 1),
     ("shota", "nozadze", "snoza17", "snoza17@freeuni.edu.ge", 'eb734e38f4f768eba4cf7c8d02e4d04f8350616c680a506cedb68a6af1fcafef83be5ddb3ea3038a8bff12ae198549fe936e06f9b80c229a15e396c4765d5f57', 1),
@@ -340,6 +336,24 @@ INSERT INTO answers (question_id, answer_index, answer_detail, answer_correct) V
     (13, 1, "x-1=2", false),
 	(13, 2, "x-1=7", false),
     (13, 3, "x-1=-1", false);
+    
+    
+    
+-- for testing getTopQuizes.
+
+INSERT INTO takeHistory (takeHistory_score) VALUES
+    (100),
+    (90),
+    (10),
+    (40)
+    ; 
+    
+INSERT INTO accountQuizTakeLinks (account_id, quiz_id, takeHistory_id) VALUES
+	(1, 3, 7),
+    (2, 4, 8),
+    (5, 5, 9),
+    (3, 3, 10)
+;
 
 
 
