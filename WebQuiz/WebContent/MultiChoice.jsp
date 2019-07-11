@@ -72,19 +72,20 @@
 					QuestionTypes t = new QuestionTypes();
 				%>
 				
-				<form action="/WebQuizProject/Quiz/addQuizServlet" method="POST">
+				<form action="/WebQuizProject/Quiz/PassQuestionServlet" method="POST">
+				<input type="hidden" name="QuestionType" value="<%= t.getMultipleChoiceType() %>">
 					
 					<div class="question">
 						<div class="currentQuestion">კითხვის დამატება</div>
 						
 						<div class="addQuestionArea" style="margin-top: 60px;">
 							კითხვა:
-							<input type="text" name="answersNum" class="addQuestionField" style="width: 500px;height: 100px;">
+							<input type="text" name="QuestionDetail" class="addQuestionField" style="width: 500px;height: 100px;">
 						</div>
 						
 						<div class="addQuestionArea">
 							სურათის URL(არასავალდებულო):
-							<input type="text" name="answersNum" class="addQuestionField">
+							<input type="text" name="imgURL" class="addQuestionField">
 						</div>
 						
 						<% 	String st = response.getHeader("answersNum"); 
@@ -94,16 +95,16 @@
 								%>
 								
 								<div class="answerArea">
-									<input type="radio" name="possibleAnswer" checked>
-									<%= i+1 %>: <input type="text" name="AnswerField<%= i %>" class="answerField"> 
+									<input type="radio" name="correctAnswer" value="<%= i %>" checked>
+									<%= i+1 %>: <input type="text" name="PossibleAnswer<%= i %>" class="answerField"> 
 								</div> 
 								<% 
 							}
 							
 						%>
-						
-						<input value="კითხვის კიდევ დამატება" class="finishQuiz" type="submit" style="width: 300px;margin-left: 25%;">
-						<input value="დასრულება" class="finishQuiz" type="submit">
+						<input type="hidden" name="AnswerNum" value="<%= answersNum %>">
+						<input value="კითხვის კიდევ დამატება" class="finishQuiz" name="butt1" type="submit" style="width: 300px;margin-left: 25%;">
+						<input value="დასრულება" class="finishQuiz" name="butt2" type="submit">
 					</div>
 					
 				</form>

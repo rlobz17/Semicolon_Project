@@ -45,6 +45,8 @@ public class addQuizServlet extends HttpServlet {
 		// Auto-generated method stub
 		String category = request.getParameter("category");
 		
+		//System.out.println(category);
+		
 		HttpSession session = request.getSession();
 		
 		if(category!=null) {
