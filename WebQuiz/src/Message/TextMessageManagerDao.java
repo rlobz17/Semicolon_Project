@@ -70,7 +70,8 @@ public class TextMessageManagerDao {
 					+ " sent_date, text_message, quiz_id, max_score) VALUES";
 			
 			addTextMessageString += "(" + "'" + newTextMessage.getMessageType() + "'";
-			addTextMessageString += "," + newTextMessage.getFrom() + "," + newTextMessage.getTo();
+			addTextMessageString += "," + newTextMessage.getFrom();
+			addTextMessageString += "," + newTextMessage.getTo();
 			addTextMessageString += "," + newTextMessage.getDate();
 			if(newTextMessage.getMessage() == null) {
 				addTextMessageString += ",null";
