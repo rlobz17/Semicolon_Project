@@ -256,19 +256,21 @@
 															</div> 
 														<% } %>
 														
-															<input type="hidden" name="answersNum" value="<%= answerLastIndex %>" />
+															<input type="hidden" name="FieldAnswersNum" value="<%= answerLastIndex %>" />
 														
 														<%
 													} else if(type.equals(types.getMultipleChoiceType())){
 														// რამდენიმე სავარაუდოდან 1ის არჩევა
 														
 																ArrayList<Answer> answers = currentQuestion.getPossibleAnswers();
+																%> <input type="hidden" name="MultiAnswersNum" value="<%= answers.size() %>" /> <%
 															
 																for(int i=0; i<answers.size(); i++){
 																	Answer ans = answers.get(i);
 																	String str = ans.getAnswerDetail();
-																	%>
-																		<input type="radio" name="possibleAnswers" > <%= str %> <br>
+																	%>	
+																		<input type="hidden" name="currAns<%= i %>" value="<%= str %>" />
+																		<input type="radio" name="AnswerPossible<%= i %>" > <%= str %> <br>
 																	<%
 																}
 															
@@ -277,12 +279,14 @@
 														// რამდენიმე სავარაუდოდან რამდენიმეს არჩევა
 														
 																ArrayList<Answer> answers = currentQuestion.getPossibleAnswers();
-															
+																%> <input type="hidden" name="MultiAnswersNum" value="<%= answers.size() %>" /> <%
+																
 																for(int i=0; i<answers.size(); i++){
 																	Answer ans = answers.get(i);
 																	String str = ans.getAnswerDetail();
-																	%>
-																		<input type="checkbox" name="checkAnswers" > <%= str %> <br>
+																	%>	
+																		<input type="hidden" name="currAns<%= i %>" value="<%= str %>" />
+																		<input type="checkbox" name="AnswerPossible<%= i %>" > <%= str %> <br>
 																	<%
 																}
 															
@@ -300,7 +304,7 @@
 															</div>
 														<% } %>
 														
-															<input type="hidden" name="answersNum" value="<%= s %>" />
+															<input type="hidden" name="FieldAnswersNum" value="<%= s %>" />
 														
 														<%
 													}

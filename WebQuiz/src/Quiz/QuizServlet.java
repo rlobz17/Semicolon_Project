@@ -53,16 +53,38 @@ public class QuizServlet extends HttpServlet {
 		
 		url += "&question=" + questionID;
 		
-		String answersNum = request.getParameter("answersNum");
+		String FieldAnswersNum = request.getParameter("FieldAnswersNum");
 		
-		if(answersNum!=null) {
-			int n = Integer.parseInt(answersNum);
+		if(FieldAnswersNum!=null) {
+			int n = Integer.parseInt(FieldAnswersNum);
 			ArrayList<String> answers = new ArrayList<String>();
 			
 			for(int i=0; i<n; i++) {
 				String answ = request.getParameter("AnswerField" + i);
 				answers.add(answ);
-				//System.out.println(answ);
+				System.out.println(answ);
+			}
+			
+			int k = mp.size();
+			mp.put(k, answers);
+		}
+		
+		String MultiAnswersNum = request.getParameter("MultiAnswersNum");
+		
+		if(MultiAnswersNum!=null) {
+			int n = Integer.parseInt(MultiAnswersNum);
+			ArrayList<String> answers = new ArrayList<String>();
+						
+			for(int i=0; i<n; i++) {
+				String on = request.getParameter("AnswerPossible" + i);
+				
+				String answ = request.getParameter("currAns" + i);
+				
+				if(on!=null) {
+					answers.add(answ);
+					System.out.println(answ);
+				}
+				
 			}
 			
 			int k = mp.size();
