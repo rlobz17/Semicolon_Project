@@ -16,16 +16,20 @@ public class ChallengeMessageManagerDao {
 	 * null - if sql Error
 	 */
 	public ChallengeMessage getChallengeMessage(int messageID, Connection con) {
+		
 		ChallengeMessage res = null;
+		
 		int from, to, quizLink;
 		double maxScore;
 		Date sentDate;
 		
 		
 		try {
+			
 			Statement stm = con.createStatement();
 			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
 			ResultSet rs = stm.executeQuery("SELECT * FROM messages where message_id =  " + messageID);
+			
 			if(rs.next()) {				
 				from = rs.getInt("from_account_id");
 				to = rs.getInt("to_account_id");
@@ -54,6 +58,8 @@ public class ChallengeMessageManagerDao {
 		return res;
 	}
 
+	
+	
 	/**
 	 * @return
 	 *  0 - message was not added
@@ -71,9 +77,10 @@ public class ChallengeMessageManagerDao {
 					+ " sent_date, text_message, quiz_id, max_score) VALUES";
 			
 			addChallengeMessageString += "(" + "'" + newChallengeMessage.getMessageType() + "'";
-			addChallengeMessageString += "," + newChallengeMessage.getFrom() + "," + newChallengeMessage.getTo();
+			addChallengeMessageString += "," + newChallengeMessage.getFrom();
+			addChallengeMessageString += "," + newChallengeMessage.getTo();
 			addChallengeMessageString += "," + newChallengeMessage.getDate();
-			addChallengeMessageString += ",null";//Text message dasn't exist
+			addChallengeMessageString += ",null";//Text message doesn't exist
 			addChallengeMessageString += "," + newChallengeMessage.getQuizLink();
 			addChallengeMessageString += "," + newChallengeMessage.getMaxScore() + ")";
 			
