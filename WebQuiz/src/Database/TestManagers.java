@@ -602,6 +602,13 @@ class TestManagers {
 				System.out.println("\tstory " + (i+1) + ") "+ history.get(i));
 			}
 		*/
+		
+		System.out.println("-----------------------");
+		System.out.println("testing hasAccountTakenQuiz method:");
+		System.out.println("has account(1) taken quiz(1)? -- " + accountHistory.hasAccountTakenQuiz(1, 1, con));
+		System.out.println("has account(2) taken quiz(1)? -- " + accountHistory.hasAccountTakenQuiz(2, 1, con));
+		System.out.println("has account(1) taken quiz(3)? -- " + accountHistory.hasAccountTakenQuiz(1, 3, con));
+		
 	}
 	
 	

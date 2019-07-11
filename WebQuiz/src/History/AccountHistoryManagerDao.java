@@ -167,4 +167,44 @@ public class AccountHistoryManagerDao {
 		
 		return result;
 	}
+	
+	
+	/**
+	 * @param accountID
+	 * @param quizID
+	 * @param con
+	 * @return 
+	 * 0 -  if account with this accountID has not done quiz with this quizID
+	 * 1 -  if account with this accountID has done quiz with this quizID
+	 * -1 - for sql error
+	 */
+	public int hasAccountTakenQuiz(int accountID, int quizID, Connection con) {
+		int result = -1;
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("USE "+DataBaseINFO.MYSQL_DATABASE_NAME);
+			
+			String getAccountAndQuizHistory = "SELECT 1 FROM accountquiztakelinks" ;
+			getAccountAndQuizHistory += " where quiz_id = "+quizID;
+			getAccountAndQuizHistory += " and account_id = "+accountID;
+			
+			
+			ResultSet rs = stm.executeQuery(getAccountAndQuizHistory);
+			if(rs.next()) {
+				result = 1;
+				if(rs.next()) {
+					result = -1;
+				}
+			}else {
+				result = 0;
+			}	
+			
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}	
+		
+		return result;
+	}
 }

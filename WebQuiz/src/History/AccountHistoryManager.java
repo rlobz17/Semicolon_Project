@@ -54,4 +54,18 @@ public class AccountHistoryManager {
 	public int addAccountQuizTakeStory(QuizTakeStory newStory, Connection con) {
 		return dao.addAccountQuizTakeStory(newStory, con);
 	}
+	
+	
+	/**
+	 * @param accountID
+	 * @param quizID
+	 * @param con
+	 * @return 
+	 * 0 -  if account with this accountID has not done quiz with this quizID
+	 * 1 -  if account with this accountID has done quiz with this quizID
+	 * -1 - for sql error
+	 */
+	public int hasAccountTakenQuiz(int accountID, int quizID, Connection con) {
+		return dao.hasAccountTakenQuiz(accountID, quizID, con);
+	}
 }
