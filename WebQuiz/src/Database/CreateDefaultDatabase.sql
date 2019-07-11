@@ -100,15 +100,9 @@ CREATE TABLE answers(
     foreign key (question_id) references questions(question_id)
 );
 
-CREATE TABLE messageTypes (
-	messageType_id int(8) not null auto_increment,
-    messageType_name varchar(64) not null,
-	primary key (messageType_id)
-);
-
 CREATE TABLE messages (
 	message_id int(8) not null auto_increment,
-    messageType_id int(8) not null,
+    messageType_name varchar(64) not null,
     from_account_id int(8) not null,
     to_account_id int(8) not null,
     sent_date date,
@@ -117,7 +111,6 @@ CREATE TABLE messages (
     max_score double,
     
 	primary key (message_id),
-	foreign key (messageType_id) references messageTypes(messageType_id),
     foreign key (from_account_id) references accounts (account_id),
     foreign key (to_account_id) references accounts (account_id),
     foreign key (quiz_id) references quizes (quiz_id)
