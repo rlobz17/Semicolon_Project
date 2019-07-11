@@ -4,15 +4,22 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Question.QuestionCreator;
+import Temp.Answer;
+import Temp.Question;
 import Temp.QuestionManager;
 import Temp.QuestionTypes;
+import Temp.Quiz;
+import Temp.QuizManager;
 
 /**
  * Servlet implementation class PassQuestionServlet
@@ -43,6 +50,8 @@ public class PassQuestionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
 		String type = request.getParameter("QuestionType");
+		
+		HttpSession session = request.getSession();
 		
 		ServletContext cont = getServletContext();
 	    Object obj = cont.getAttribute("Question");
@@ -79,6 +88,15 @@ public class PassQuestionServlet extends HttpServlet {
 	    	
 	    	//System.out.println(order);
 	    	
+	    	QuestionCreator creator = new QuestionCreator();
+	    	Question question = creator.createMultiAnswerQ(typeID, QuestionDetail, imgURL, answers, order);
+	    	
+	    	Quiz quiz = (Quiz)session.getAttribute("AddQuiz");
+	    	
+	    	quiz.addQuestion(question);
+	    	
+	    	session.setAttribute("AddQuiz", quiz);
+	    	
 	    	String butt = request.getParameter("butt1");
 	    	
 	    	if(butt==null) {
@@ -101,6 +119,15 @@ public class PassQuestionServlet extends HttpServlet {
 	    	int correctIdx = Integer.parseInt(correct);
 	    	correct = answers.get(correctIdx);
 	    	
+	    	QuestionCreator creator = new QuestionCreator();
+	    	Question question = creator.createMultipleChoiceQ(typeID, QuestionDetail, imgURL, answers, correct);
+	    	
+	    	Quiz quiz = (Quiz)session.getAttribute("AddQuiz");
+	    	
+	    	quiz.addQuestion(question);
+	    	
+	    	session.setAttribute("AddQuiz", quiz);
+	    	
 	    	String butt = request.getParameter("butt1");
 	    	
 	    	if(butt==null) {
@@ -110,10 +137,56 @@ public class PassQuestionServlet extends HttpServlet {
 	    	}
 	    	
 	    } else if(type.equals(qTypes.getMultipleChoiceWithMultipleAnswersType())) {
+	    	ArrayList<String> PossibleAnswers = new ArrayList<String>();
+	    	ArrayList<String> correctAnswers = new ArrayList<String>();
 	    	
+	    	for(int i=0; i<answersSize; i++) {
+	    		String PossibleAnswer = request.getParameter("PossibleAnswer" + i);
+	    		PossibleAnswers.add(PossibleAnswer);
+	    		//System.out.println(PossibleAnswer);
+	    		
+	    		String correctAnswer = request.getParameter("AnswerCheck" + i);
+	    		if(correctAnswer!=null) {
+	    			correctAnswers.add(PossibleAnswer);
+	    			//System.out.println("correct: "+PossibleAnswer);
+	    		}
+	    	}
+	    	
+	    	QuestionCreator creator = new QuestionCreator();
+	    	Question question = creator.createMultipleChoiceAndAnswerQ(typeID, QuestionDetail, imgURL, PossibleAnswers, correctAnswers);
+	    	
+	    	Quiz quiz = (Quiz)session.getAttribute("AddQuiz");
+	    	
+	    	quiz.addQuestion(question);
+	    	
+	    	session.setAttribute("AddQuiz", quiz);
+	    	
+	    	String butt = request.getParameter("butt1");
+	    	
+	    	if(butt==null) {
+	    		// დასრულება და ქვიზის ბაზაში დამატება
+	    	} else {
+	    		// კიდევ დამატება
+	    	}
 	    } else if(type.equals(qTypes.getMatchingType())) {
 	    	
 	    }
+	    
+	    String butt = request.getParameter("butt1");
+    	
+    	if(butt==null) {
+    		// დასრულება და ქვიზის ბაზაში დამატება
+    		Quiz quiz = (Quiz)session.getAttribute("AddQuiz");
+    		QuizManager qManager = (QuizManager)cont.getAttribute("Quiz");
+    		
+    		System.out.println(quiz.toString());
+    		
+    		qManager.addQuiz(quiz, con);
+    	} else {
+    		// კიდევ დამატება
+    		RequestDispatcher dispatch = request.getRequestDispatcher("/QuestionForm.jsp");
+			dispatch.forward(request, response);
+    	}
 	    
 	}
 
