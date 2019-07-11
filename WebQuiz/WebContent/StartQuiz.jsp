@@ -270,7 +270,7 @@
 																	String str = ans.getAnswerDetail();
 																	%>	
 																		<input type="hidden" name="currAns<%= i %>" value="<%= str %>" />
-																		<input type="radio" name="AnswerPossible<%= i %>" > <%= str %> <br>
+																		<input type="radio" name="AnswerPossible" value="<%= str %>"> <%= str %> <br>
 																	<%
 																}
 															
@@ -279,7 +279,7 @@
 														// რამდენიმე სავარაუდოდან რამდენიმეს არჩევა
 														
 																ArrayList<Answer> answers = currentQuestion.getPossibleAnswers();
-																%> <input type="hidden" name="MultiAnswersNum" value="<%= answers.size() %>" /> <%
+																%> <input type="hidden" name="MultiAnswersMultiNum" value="<%= answers.size() %>" /> <%
 																
 																for(int i=0; i<answers.size(); i++){
 																	Answer ans = answers.get(i);

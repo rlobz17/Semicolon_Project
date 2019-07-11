@@ -87,10 +87,10 @@
 						</div>
 						
 						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
-							<input type="radio" name="Multi_Answer_type" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
-							<input type="radio" name="Multiple_Choice_type" > დახურული კითხვა 1 პასუხით <br>
-							<input type="radio" name="Multiple_Choice_With_Multiple_Answers_type" > დახურული კითხვა რამდენიმე პასუხით <br>
-							<input type="radio" name="Mathcing_type" > შესაბამისობა <br>
+							<input type="radio" name="type" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა 1 პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა რამდენიმე პასუხით <br>
+							<input type="radio" name="type" > შესაბამისობა <br>
 						</div>
 						
 						<input value="გაგრძელება" class="finishQuiz" type="submit">

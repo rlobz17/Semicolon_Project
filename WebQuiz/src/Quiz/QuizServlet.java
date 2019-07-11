@@ -69,10 +69,10 @@ public class QuizServlet extends HttpServlet {
 			mp.put(k, answers);
 		}
 		
-		String MultiAnswersNum = request.getParameter("MultiAnswersNum");
+		String MultiAnswersMultiNum = request.getParameter("MultiAnswersMultiNum");
 		
-		if(MultiAnswersNum!=null) {
-			int n = Integer.parseInt(MultiAnswersNum);
+		if(MultiAnswersMultiNum!=null) {
+			int n = Integer.parseInt(MultiAnswersMultiNum);
 			ArrayList<String> answers = new ArrayList<String>();
 						
 			for(int i=0; i<n; i++) {
@@ -89,6 +89,26 @@ public class QuizServlet extends HttpServlet {
 			
 			int k = mp.size();
 			mp.put(k, answers);
+			
+			//System.out.println("size: " + answers.size());
+		}
+		
+		String MultiAnswersNum = request.getParameter("MultiAnswersNum");
+		
+		if(MultiAnswersNum!=null) {
+			ArrayList<String> answers = new ArrayList<String>();
+						
+			String answ = request.getParameter("AnswerPossible");
+			//System.out.println(answ);
+			
+			if(answ!=null) {
+				answers.add(answ);
+			}
+			
+			int k = mp.size();
+			mp.put(k, answers);
+			
+			//System.out.println("size: " + answers.size());
 		}
 		
 		if(questionID.equals("result")) {
