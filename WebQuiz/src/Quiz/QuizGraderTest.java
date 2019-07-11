@@ -231,7 +231,7 @@ public class QuizGraderTest {
 		uA.add("a");
 		
 		qGrade = qg.gradeQuestion(q, uA);
-		assertEquals("0.16/1.00", qGrade.getScore());
+		assertEquals("0.33/1.00", qGrade.getScore());
 		
 		uA = new ArrayList<String>();
 		uA.add("v");
@@ -239,7 +239,7 @@ public class QuizGraderTest {
 		uA.add("a");
 		
 		qGrade = qg.gradeQuestion(q, uA);
-		assertEquals("0.5/1.00", qGrade.getScore());
+		assertEquals("0.66/1.00", qGrade.getScore());
 		
 	}
 	
@@ -461,9 +461,9 @@ public class QuizGraderTest {
 		userAnswers.put(new Integer(3), choA);
 //		
 		QuizGrade qGrade = qg.getQuizGrade(q, userAnswers);
-		assertEquals("2.16", qGrade.getUserScore());
+		assertEquals("2.33", qGrade.getUserScore());
 //		
-		assertEquals("54%", qGrade.getPrecentage());
+		assertEquals("58%", qGrade.getPrecentage());
 		
 		ArrayList<String> eachQS = qGrade.getEachQuestionScore();
 		assertEquals(4, eachQS.size());
