@@ -335,7 +335,7 @@ String result = request.getParameter("result");
 				%>
 				
 			<%
-				if(myAccount || isAdmin){
+				if((myAccount || isAdmin) && acc!=null){
 					%>
 						<a name="EditProfile"></a>
 						<div class="profileEdit">

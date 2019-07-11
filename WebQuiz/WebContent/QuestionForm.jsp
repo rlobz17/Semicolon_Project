@@ -81,15 +81,15 @@
 							</div>
 							
 							<div class="addQuestionArea">
-								პასუხების დასაშვები რ-ბა:
+								პასუხების ველის რ-ბა:
 								<input type="text" name="MaxAnswers" class="addQuestionField">
 							</div>
 						</div>
 						
 						<div class="chooseType"> აირჩიეთ კითხვის ტიპი: <br> <br>
 							<input type="radio" name="type" checked> ღია კითხვა 1 ან რამდენიმე პასუხით <br>
-							<input type="radio" name="type" > დახურული კითხვა 1 პასუხით <br>
-							<input type="radio" name="type" > დახურული კითხვა რამდენიმე პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა 1 სწორი პასუხით <br>
+							<input type="radio" name="type" > დახურული კითხვა რამდენიმე სწორი პასუხით <br>
 							<input type="radio" name="type" > შესაბამისობა 
 						</div>
 						
