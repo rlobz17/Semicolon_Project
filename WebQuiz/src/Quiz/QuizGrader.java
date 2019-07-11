@@ -74,8 +74,8 @@ public class QuizGrader {
 		int maxScore = 0;
 		List<String> correctAnswers = new ArrayList<>(corAnswers);
 		
-		if(correctAnswers.size() == 1) {
-			if(corAnswers.contains(correctAnswers.get(0))) {
+		if(userAnswers.size() == 1) {
+			if(corAnswers.contains(userAnswers.get(0))) {
 				score = 1;
 			}
 			maxScore = 1;
