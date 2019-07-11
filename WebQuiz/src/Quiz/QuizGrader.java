@@ -43,14 +43,14 @@ public class QuizGrader {
 	private double questionScore(int allAnswers,String questionTask,ArrayList<String> corAnswers, ArrayList<String> userAnswers, boolean questionAnswerOrder) {
 		if(userAnswers.isEmpty()) return 0; // no answers
 		
-		switch (questionTask) {
-		case "Multiple_Choice_type": 
-			return gradeMultipleChoice(corAnswers, userAnswers);
-		case "Multiple_Choice_With_Multiple_Answers_type":
+		if(questionTask.equals("Multiple_Choice_type")) {
+			 gradeMultipleChoice(corAnswers, userAnswers);
+		} else if (questionTask.equals( "Multiple_Choice_With_Multiple_Answers_type")) {
 			return gradeMultipleChoiceAndAnswerQ(allAnswers,corAnswers, userAnswers);
-		default:
+		} else {
 			return gradeFillInAnswerAndMatching(corAnswers, userAnswers, questionAnswerOrder);
 		}
+		 
 		
 	}
 	
