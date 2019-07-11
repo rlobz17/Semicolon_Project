@@ -5,13 +5,18 @@ DROP TABLE IF EXISTS accountQuizTakeLinks, takeHistory;
  -- remove tables if they already exist and start from scratch 
  
 -- message tables
-DROP TABLE IF EXISTS messages, messageTypes;
+DROP TABLE IF EXISTS messages;
  -- remove tables if they already exist and start from scratch
  
  -- friend table
  DROP TABLE IF EXISTS friendLinks;
  -- remove tables if they already exist and start from scratch
  
+ -- announcmet table
+ DROP TABLE IF EXISTS announcements;
+  -- remove tables if they already exist and start from scratch
+  
+  
 -- main tables
 DROP TABLE IF EXISTS quizes, accounts, questions, answers, quizQuestionLinks, questionTypes, quizCategories;
  -- remove tables if they already exist and start from scratch
@@ -207,8 +212,6 @@ INSERT INTO takeHistory (takeHistory_score) VALUES
     (100),
     (90)
     ; 
-    
- do sleep(1);
  
  INSERT INTO takeHistory (takeHistory_score) VALUES
     (70),
