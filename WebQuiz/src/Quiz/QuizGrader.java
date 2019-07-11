@@ -74,26 +74,19 @@ public class QuizGrader {
 		int maxScore = 0;
 		List<String> correctAnswers = new ArrayList<>(corAnswers);
 		
-		if(userAnswers.size() == 1) {
-			if(corAnswers.contains(userAnswers.get(0))) {
-				score = 1;
-			}
-			maxScore = 1;
+		maxScore = userAnswers.size();
+		if(order) {
+			for (int i = 0; i < userAnswers.size(); i++) {
+				if(userAnswers.get(i).length() >0) {
+					if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
+				}
+			}				
 		} else {
-			maxScore = userAnswers.size();
-			if(order) {
-				for (int i = 0; i < userAnswers.size(); i++) {
-					if(userAnswers.get(i).length() >0) {
-						if(userAnswers.get(i).equals(correctAnswers.get(i))) score++;
-					}
-				}				
-			} else {
-				for(String cur : userAnswers) {
-					if(cur.length() > 0 ) {
-						if(correctAnswers.contains(cur)) {
-							score++;
-							correctAnswers.remove(cur);
-						}
+			for(String cur : userAnswers) {
+				if(cur.length() > 0 ) {
+					if(correctAnswers.contains(cur)) {
+						score++;
+						correctAnswers.remove(cur);
 					}
 				}
 			}
