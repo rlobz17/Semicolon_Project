@@ -129,7 +129,11 @@ public class QuizGrader {
 			}
 		}
 		
-		return (double)score/maxScore * (double)(allAnswers-maxScore-mistake)/(allAnswers-maxScore) ;
+		double res =  (double)score/maxScore - (double)mistake/maxScore;
+		
+		if(res < 0 ) return 0;
+		
+		return res ;
 	}
 	
 	public QuestionGrade gradeQuestion(Question q, ArrayList<String> userAnswers) {
