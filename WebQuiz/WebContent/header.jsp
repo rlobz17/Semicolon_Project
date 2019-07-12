@@ -26,7 +26,7 @@
 				<ul>
 					<li><a href="/WebQuizProject"><span>მთავარი გვერდი</span></a></li>
 					<li><a href="/WebQuizProject/addQuiz.jsp">ქვიზის დამატება</a></li>
-					<li><a href="/WebQuizProject">კონტაქტი</a></li>
+					<li><a href="/WebQuizProject/Contact.jsp">კონტაქტი</a></li>
 					<li class='active has-sub'><a href='#'><span>ადმინისტრაცია</span></a><ul>
 						<li class='has-sub'><a href='/WebQuizProject/Profile.jsp?username=snoza17'><span>snoza17</span></a>
 						<li class='has-sub'><a href='/WebQuizProject/Profile.jsp?username=rlobz17'><span>rlobz17</span></a>

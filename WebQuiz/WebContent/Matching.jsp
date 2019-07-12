@@ -14,7 +14,7 @@
 
 <head>
 
-<title>დახურული კითხვა</title>
+<title>შესაბამისობა</title>
 
 <meta charset="UTF-8">
 
@@ -73,7 +73,7 @@
 				%>
 				
 				<form action="/WebQuizProject/Quiz/PassQuestionServlet" method="POST">
-				<input type="hidden" name="QuestionType" value="<%= t.getMultipleChoiceType() %>">
+					<input type="hidden" name="QuestionType" value="<%= t.getMatchingType() %>">
 					
 					<div class="question">
 						<div class="currentQuestion">კითხვის დამატება</div>
@@ -93,16 +93,18 @@
 							
 							for(int i=0; i<answersNum; i++){
 								%>
+								<div class="answerArea" style="margin-left: 10%;">
+									<input type="text" name="LeftAnswer<%= i %>" class="answerField"> 
+									
+									- <input type="text" name="RightAnswer<%= i %>" class="answerField">
+								</div>
 								
-								<div class="answerArea">
-									<input type="radio" name="correctAnswer" value="<%= i %>" checked>
-									<%= i+1 %>: <input type="text" name="PossibleAnswer<%= i %>" class="answerField"> 
-								</div> 
 								<% 
 							}
 							
 						%>
 						<input type="hidden" name="AnswerNum" value="<%= answersNum %>">
+						
 						<input value="კითხვის კიდევ დამატება" class="finishQuiz" name="butt1" type="submit" style="width: 300px;margin-left: 25%;">
 						<input value="დასრულება" class="finishQuiz" name="butt2" type="submit">
 					</div>

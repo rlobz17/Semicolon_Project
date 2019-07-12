@@ -51,10 +51,7 @@ public class addQuizServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String quizTiTle = request.getParameter("quizTiTle");
 		String quizImg = request.getParameter("quizImg");
-		
-		System.out.println(quizImg);
-		System.out.println(quizTiTle);
-		
+				
 		//System.out.println(category);
 		
 		ServletContext cont = getServletContext();
@@ -127,7 +124,9 @@ public class addQuizServlet extends HttpServlet {
 					response.addHeader("answersNum", answersNum);
 					dispatch.forward(request, response);
 				} else if(type.equals(t.getMatchingType())) {
-					
+					RequestDispatcher dispatch = request.getRequestDispatcher("/Matching.jsp");
+					response.addHeader("answersNum", answersNum);
+					dispatch.forward(request, response);
 				}
 			}
 		}

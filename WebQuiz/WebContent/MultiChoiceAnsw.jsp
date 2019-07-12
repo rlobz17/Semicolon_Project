@@ -14,7 +14,7 @@
 
 <head>
 
-<title>ღია კითხვა</title>
+<title>დახურული კითხვა</title>
 
 <meta charset="UTF-8">
 

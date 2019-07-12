@@ -96,15 +96,7 @@ public class PassQuestionServlet extends HttpServlet {
 	    	quiz.addQuestion(question);
 	    	
 	    	session.setAttribute("AddQuiz", quiz);
-	    	
-	    	String butt = request.getParameter("butt1");
-	    	
-	    	if(butt==null) {
-	    		// დასრულება და ქვიზის ბაზაში დამატება
-	    	} else {
-	    		// კიდევ დამატება
-	    	}
-	    	
+	    		    	
 	    } else if(type.equals(qTypes.getMultipleChoiceType())) {
 	    	ArrayList<String> answers = new ArrayList<String>();
 	    	
@@ -127,15 +119,7 @@ public class PassQuestionServlet extends HttpServlet {
 	    	quiz.addQuestion(question);
 	    	
 	    	session.setAttribute("AddQuiz", quiz);
-	    	
-	    	String butt = request.getParameter("butt1");
-	    	
-	    	if(butt==null) {
-	    		// დასრულება და ქვიზის ბაზაში დამატება
-	    	} else {
-	    		// კიდევ დამატება
-	    	}
-	    	
+	    		    	
 	    } else if(type.equals(qTypes.getMultipleChoiceWithMultipleAnswersType())) {
 	    	ArrayList<String> PossibleAnswers = new ArrayList<String>();
 	    	ArrayList<String> correctAnswers = new ArrayList<String>();
@@ -160,16 +144,28 @@ public class PassQuestionServlet extends HttpServlet {
 	    	quiz.addQuestion(question);
 	    	
 	    	session.setAttribute("AddQuiz", quiz);
-	    	
-	    	String butt = request.getParameter("butt1");
-	    	
-	    	if(butt==null) {
-	    		// დასრულება და ქვიზის ბაზაში დამატება
-	    	} else {
-	    		// კიდევ დამატება
-	    	}
+	    		    	
 	    } else if(type.equals(qTypes.getMatchingType())) {
+	    	ArrayList<String> left = new ArrayList<String>();
+	    	ArrayList<String> right = new ArrayList<String>();
+	    		    	
+	    	for(int i=0; i<answersSize; i++) {
+	    		String LeftAnswer = request.getParameter("LeftAnswer" + i);
+	    		String RightAnswer = request.getParameter("RightAnswer" + i);
+	    		
+	    		left.add(LeftAnswer);
+	    		right.add(RightAnswer);
+	    		
+	    	}
+
+	    	QuestionCreator creator = new QuestionCreator();
+	    	Question question = creator.createMatchingQuestionQ(typeID, QuestionDetail, imgURL, left, right);
 	    	
+	    	Quiz quiz = (Quiz)session.getAttribute("AddQuiz");
+	    	
+	    	quiz.addQuestion(question);
+	    	
+	    	session.setAttribute("AddQuiz", quiz);
 	    }
 	    
 	    String butt = request.getParameter("butt1");
