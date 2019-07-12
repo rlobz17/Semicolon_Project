@@ -153,8 +153,6 @@ public class QuizManagerDao {
 			else {addQuiz += "," + quiz.getQuizCategoryID();}
 			addQuiz += ",'" + quiz.getImgUrl() + "')";
 			
-			
-			System.out.println(addQuiz);
 		
 			stm.executeUpdate(addQuiz);
 			

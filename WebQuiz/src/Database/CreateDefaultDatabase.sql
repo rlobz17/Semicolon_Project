@@ -176,15 +176,15 @@ INSERT INTO questions (questionType_id, question_detail, question_imgUrl) VALUES
     
 INSERT INTO quizQuestionLinks (quiz_id, question_id) VALUES
     (1, 1),
-    (1, 2)
+    (2, 2)
     ;
 
 INSERT INTO answers (question_id, answer_index, answer_detail) VALUES
-    (1, -1, "rlobz17"),
-    (1, -1, "rezi"),
-    (1, -1, "rezgo"),
-    (2, -1, "freeuni"),
-    (2, -1, "free university of tbilisi")
+    (1, 1, "rlobz17"),
+    (1, 1, "rezi"),
+    (1, 1, "rezgo"),
+    (2, 1, "freeuni"),
+    (2, 1, "free university of tbilisi")
     ;    
 
     

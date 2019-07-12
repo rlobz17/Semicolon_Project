@@ -142,12 +142,13 @@ public class QuestionManagerDao {
 
 					for(int i=0; i<size; i++) {
 						int randomedNumber = randomizer.get(i);
-						newCorrectAnswers.set(randomedNumber, correctAnswers.get(randomedNumber));
-						newPossibleAnswers.set(randomedNumber, possibleAnswers.get(randomedNumber));
+						newCorrectAnswers.set(i, correctAnswers.get(randomedNumber));
+						newPossibleAnswers.set(i, possibleAnswers.get(randomedNumber));
 					}
 					
 					correctAnswers = newCorrectAnswers;
 					possibleAnswers= newPossibleAnswers;
+					
 					
 				}		
 				
@@ -216,7 +217,7 @@ public class QuestionManagerDao {
 			addQuestionString += "," + newQuestion.getQuestionAnswerOrder()+ ")";
 			
 						
-			System.out.println(addQuestionString);
+		
 			stm.executeUpdate(addQuestionString);
 			
 			ResultSet rs =  stm.executeQuery("select last_insert_id()");
