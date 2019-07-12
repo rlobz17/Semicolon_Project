@@ -48,6 +48,7 @@ public class addQuizServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("category");
 		String quizTiTle = request.getParameter("quizTiTle");
 		String quizImg = request.getParameter("quizImg");

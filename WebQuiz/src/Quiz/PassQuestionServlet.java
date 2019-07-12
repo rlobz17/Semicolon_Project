@@ -49,6 +49,7 @@ public class PassQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("QuestionType");
 		
 		HttpSession session = request.getSession();
