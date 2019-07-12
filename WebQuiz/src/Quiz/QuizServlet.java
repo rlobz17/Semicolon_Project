@@ -44,6 +44,7 @@ public class QuizServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 				
 		String quizID = request.getParameter("quiz_id");
 		String questionID = request.getParameter("question_id");
