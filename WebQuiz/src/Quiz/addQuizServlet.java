@@ -68,7 +68,7 @@ public class addQuizServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if(category!=null) {
-			if(quizTiTle.length() < 1 || quizImg.length() < 1) {
+			if(quizTiTle.length() < 1) {
 				response.sendRedirect("/WebQuizProject/index.jsp");
 				return;
 			}
