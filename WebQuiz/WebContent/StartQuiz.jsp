@@ -22,6 +22,7 @@
     
 <%
 	String q = request.getParameter("id");
+	String questionStr = request.getParameter("question");
 
 	int quizID = -1;
 		
@@ -36,15 +37,29 @@
 	}
 	
 	ServletContext cont = getServletContext();
-    Object obj = cont.getAttribute("Quiz");
 	
-    QuizManager quizManager = (QuizManager)obj;
+	Quiz quiz = null;
+	Connection con  = null;
 	
-	Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
-   	
-	Connection con = d.getConnection();
+	if(questionStr!=null){
+		if(questionStr.equals("0")){
+			Object obj = cont.getAttribute("Quiz");
+			QuizManager quizManager = (QuizManager)obj;
+			
+			Database.DateBaseManager d = (Database.DateBaseManager)cont.getAttribute("baseManager");
+		   	con = d.getConnection();
+			
+			quiz = quizManager.getQuiz(quizID, con);
+			cont.setAttribute("CurrentQuiz", quiz);
+			
+			cont.setAttribute("CurrCon", con);
+		} else{
+			quiz = (Quiz)cont.getAttribute("CurrentQuiz");
+			con = (Connection)cont.getAttribute("CurrCon");
+		}
+	}
 	
-	Quiz quiz = quizManager.getQuiz(quizID, con);
+	
 	
 	String user = (String)request.getSession().getAttribute("username");
 
@@ -216,9 +231,6 @@
 									} else{
 										
 										ArrayList<Question> questions = quiz.getQuestions();
-										
-										String questionStr = request.getParameter("question");
-										
 										if(questionStr.equals("result")){
 											
 											HashMap<Integer, ArrayList<String>> mp = (HashMap)request.getAttribute("answers");
