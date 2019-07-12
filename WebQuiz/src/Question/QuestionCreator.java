@@ -21,7 +21,7 @@ public class QuestionCreator {
 	public Question createMultipleChoiceQ(int questionTypeID,String questionDetail, String imgUrl, ArrayList<String> possibleAnswersString,String correctAnswer) {
 		ArrayList<Answer> possibleAnswers = new ArrayList<Answer>();
 		for (int i = 0; i <possibleAnswersString.size(); i++) {
-			possibleAnswers.add(new Answer(0, 0,i, possibleAnswersString.get(i)));
+			possibleAnswers.add(new Answer(0, 0,i+1, possibleAnswersString.get(i)));
 		}
 		ArrayList<Answer> correctAnswers = new ArrayList<Answer>();
 		correctAnswers.add(new Answer(0, 0, 0, correctAnswer));
@@ -42,12 +42,12 @@ public class QuestionCreator {
 	public Question createMultipleChoiceAndAnswerQ(int questionTypeID,String questionDetail, String imgUrl, ArrayList<String> possibleAnswersString,ArrayList<String> correctAnswersString) {
 		ArrayList<Answer> possibleAnswers = new ArrayList<Answer>();	
 		for (int i = 0; i <possibleAnswersString.size(); i++) {
-			possibleAnswers.add(new Answer(0, 0,i, possibleAnswersString.get(i)));
+			possibleAnswers.add(new Answer(0, 0,i+1, possibleAnswersString.get(i)));
 		}
 		
 		ArrayList<Answer> correctAnswers = new ArrayList<Answer>();
 		for (int i = 0; i <correctAnswersString.size(); i++) {
-			correctAnswers.add(new Answer(0, 0,i, correctAnswersString.get(i)));
+			correctAnswers.add(new Answer(0, 0,i+1, correctAnswersString.get(i)));
 		}
 		
 		if(imgUrl.isEmpty()) imgUrl = null;
@@ -68,7 +68,7 @@ public class QuestionCreator {
 		
 		ArrayList<Answer> correctAnswers = new ArrayList<Answer>();
 		for (int i = 0; i <correctAnswersString.size(); i++) {
-			correctAnswers.add(new Answer(0, 0,i, correctAnswersString.get(i)));
+			correctAnswers.add(new Answer(0, 0,i+1, correctAnswersString.get(i)));
 		}
 		
 		if(imgUrl.isEmpty()) imgUrl = null;
