@@ -12,6 +12,7 @@ import java.util.Date;
 
 import Database.DataBaseINFO;
 import History.QuizHistoryManager;
+import Quiz.QuizGrade;
 
 public class QuizManagerDao {
 
@@ -151,8 +152,9 @@ public class QuizManagerDao {
 			addQuiz += "," + quiz.getCreatorID();
 			if(quiz.getQuizCategoryID() == null) {addQuiz += ",DEFAULT";}
 			else {addQuiz += "," + quiz.getQuizCategoryID();}
-			addQuiz += ",'" + quiz.getImgUrl() + "')";
-			
+			if(quiz.getImgUrl()==null) addQuiz += ",'https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550')";
+			else if(quiz.getImgUrl().length()==0) addQuiz += ",'https://spectator.imgix.net/content/uploads/2017/10/iStock-501042977.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550')";
+			else addQuiz+=",'"+quiz.getImgUrl()+"'";
 		
 			stm.executeUpdate(addQuiz);
 			
