@@ -68,6 +68,11 @@ public class PassQuestionServlet extends HttpServlet {
 	    String QuestionDetail = request.getParameter("QuestionDetail");
 	    String imgURL = request.getParameter("imgURL");
 	    
+	    if(QuestionDetail.length() < 1) {
+			response.sendRedirect("/WebQuizProject/index.jsp");
+			return;
+		}
+	    
 	    String AnswerNum = request.getParameter("AnswerNum");
 	    int answersSize = Integer.parseInt(AnswerNum);
 	    
@@ -77,6 +82,10 @@ public class PassQuestionServlet extends HttpServlet {
 	    	
 	    	for(int i=0; i<answersSize; i++) {
 	    		String MultiAnswer = request.getParameter("MultiAnswer" + i);
+	    		if(MultiAnswer.length() < 1) {
+	    			response.sendRedirect("/WebQuizProject/index.jsp");
+	    			return;
+	    		}
 	    		answers.add(MultiAnswer);
 	    		//System.out.println(MultiAnswer);
 	    	}
@@ -103,6 +112,11 @@ public class PassQuestionServlet extends HttpServlet {
 	    	for(int i=0; i<answersSize; i++) {
 	    		String PossibleAnswer = request.getParameter("PossibleAnswer" + i);
 	    		answers.add(PossibleAnswer);
+	    		
+	    		if(PossibleAnswer.length() < 1) {
+	    			response.sendRedirect("/WebQuizProject/index.jsp");
+	    			return;
+	    		}
 	    		//System.out.println(PossibleAnswer);
 	    	}
 	    	
@@ -127,6 +141,11 @@ public class PassQuestionServlet extends HttpServlet {
 	    	for(int i=0; i<answersSize; i++) {
 	    		String PossibleAnswer = request.getParameter("PossibleAnswer" + i);
 	    		PossibleAnswers.add(PossibleAnswer);
+	    		
+	    		if(PossibleAnswer.length() < 1) {
+	    			response.sendRedirect("/WebQuizProject/index.jsp");
+	    			return;
+	    		}
 	    		//System.out.println(PossibleAnswer);
 	    		
 	    		String correctAnswer = request.getParameter("AnswerCheck" + i);
@@ -135,6 +154,11 @@ public class PassQuestionServlet extends HttpServlet {
 	    			//System.out.println("correct: "+PossibleAnswer);
 	    		}
 	    	}
+	    	
+	    	if(correctAnswers.size() < 1) {
+    			response.sendRedirect("/WebQuizProject/index.jsp");
+    			return;
+    		}
 	    	
 	    	QuestionCreator creator = new QuestionCreator();
 	    	Question question = creator.createMultipleChoiceAndAnswerQ(typeID, QuestionDetail, imgURL, PossibleAnswers, correctAnswers);
@@ -155,6 +179,11 @@ public class PassQuestionServlet extends HttpServlet {
 	    		
 	    		left.add(LeftAnswer);
 	    		right.add(RightAnswer);
+	    		
+	    		if(LeftAnswer.length() < 1 || RightAnswer.length() < 1) {
+	    			response.sendRedirect("/WebQuizProject/index.jsp");
+	    			return;
+	    		}
 	    		
 	    	}
 
@@ -178,6 +207,9 @@ public class PassQuestionServlet extends HttpServlet {
     		System.out.println(quiz.toString());
     		
     		qManager.addQuiz(quiz, con);
+    		
+    		RequestDispatcher dispatch = request.getRequestDispatcher("/quizAdded.jsp");
+			dispatch.forward(request, response);
     	} else {
     		// კიდევ დამატება
     		RequestDispatcher dispatch = request.getRequestDispatcher("/QuestionForm.jsp");
